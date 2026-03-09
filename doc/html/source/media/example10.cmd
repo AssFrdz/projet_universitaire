@@ -1,0 +1,1 @@
+./example10 -tmax_sim 5

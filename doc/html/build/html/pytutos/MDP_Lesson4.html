@@ -1,0 +1,2280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP Lesson 4: Total Reward MDP with two-dimensional state space &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application Lesson 1: Application to Mitrani’s hysteresis model" href="App_Lesson1.html" />
+    <link rel="prev" title="MDP Lesson 3: average MDP and policy handling" href="MDP_Lesson3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Using-the-library">Using the library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Description-of-the-model">Description of the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Creating-Spaces">Creating Spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Use-a-third-way-to-build-the-MDP">Use a third way to build the MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Print-policy-dimension-by-dimension">Print policy dimension by dimension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Enumerating-the-policy">Enumerating the policy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">MDP Lesson 4: Total Reward MDP with two-dimensional state space</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/MDP_Lesson4.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="MDP-Lesson-4:-Total-Reward-MDP-with-two-dimensional-state-space">
+<h1>MDP Lesson 4: Total Reward MDP with two-dimensional state space<a class="headerlink" href="#MDP-Lesson-4:-Total-Reward-MDP-with-two-dimensional-state-space" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<section id="Using-the-library">
+<h2>Using the library<a class="headerlink" href="#Using-the-library" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.mdp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">md</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<section id="Build-a-MDP-associated-with-a-Stochastic-Shortest-Path">
+<h3>Build a MDP associated with a Stochastic Shortest Path<a class="headerlink" href="#Build-a-MDP-associated-with-a-Stochastic-Shortest-Path" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="Description-of-the-model">
+<h2>Description of the model<a class="headerlink" href="#Description-of-the-model" title="Link to this heading"></a></h2>
+<p>We consider the (classic) four rooms model which is represented on the figure below. This model is related to a <em>Stochastic Shortest Path</em>. The state space is divided into 4 rooms, each with (5 x 5) positions. You can only move from one room to another at particular locations. There is also an exit state from the system, which yields a gain. Moving from one position to another incurs a cost.</p>
+<p><img alt="61a4b08a526f41b9becfae41efb85978" src="../_images/FourRooms1.png" /></p>
+<p>More Precisely:</p>
+<p>We assume that the state space has two dimensions 11 lines x 10 columns ([0,10]*[0,9])</p>
+<p>If we reach the state (9,2) we receive a reward of -1 and we go in state (10,2). In any state in line 10 we stay in this state without receiving anything (absorbing states).</p>
+<div class="line-block">
+<div class="line">There is wall between line 4 and 5 that can be crossed</div>
+<div class="line">-&gt; at states (4,2)-&gt;(5,2) and (4,7)-&gt;(5,7)</div>
+<div class="line">-&gt; at states (5,2)-&gt;(4,2) and (5,7)-&gt;(4,7)</div>
+</div>
+<div class="line-block">
+<div class="line">There is a wall between column 4 and 5 that can be crossed</div>
+<div class="line">-&gt; at states (2,4)-&gt;(2,5) and (7,4)-&gt;(7,5)</div>
+<div class="line">-&gt; at states (2,5)-&gt;(2,4) and (7,5)-&gt;(7,4)</div>
+</div>
+<p>There are 4 actions: 0 is up 1 is down 2 is left and 3 is right. With a probability <em>p=0.9</em> the action has the desired effect and with probability <em>1-p</em> the action has no effect. Performing an action in any state except (9,2) has a cost of 1.</p>
+<section id="Multidimensional-State-Space">
+<h3>Multidimensional State Space<a class="headerlink" href="#Multidimensional-State-Space" title="Link to this heading"></a></h3>
+<p>In all what follows we consider a two dimensionals state space with first dimension equals to 11 and second dimension equal to 10.</p>
+</section>
+</section>
+<section id="Creating-Spaces">
+<h2>Creating Spaces<a class="headerlink" href="#Creating-Spaces" title="Link to this heading"></a></h2>
+<p><strong>Definitions of the state</strong></p>
+<p>The object used to create the state space is a <code class="docutils literal notranslate"><span class="pre">MarmoteBox</span></code> with dimension 11 x 10. First define the dimensions of the box in a numpy array</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Then create the box (and illustrate this by printing the cardinal, the dimension and the object)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stateSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteBox</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+
+<span class="n">dim_SS</span> <span class="o">=</span> <span class="n">stateSpace</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State Space cardinal&quot;</span><span class="p">,</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State Space dimension&quot;</span><span class="p">,</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">tot_nb_dims</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State Space type&quot;</span><span class="p">,</span><span class="n">stateSpace</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+State Space cardinal 110
+State Space dimension 2
+State Space type Box( [ 0..10 ] x [ 0..9 ] )
+</pre></div></div>
+</div>
+<p>Create the action space as an interval between 0 and 3</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actionSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dim_AS</span> <span class="o">=</span> <span class="n">actionSpace</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Associate a state to a variable</strong></p>
+<p>It is possible to associate a state either to a buffer of to a numpy array (both ways are used in this notebook). The buffer or the array stores the different values of a given state. Furthermore to each state is associated an index. it is then possible to pass from a state to an index and conversely.</p>
+<p>Here one creates two arrays: one to represent the initial state (before transition) and the second one to represent the state after transition. The state is <em>(0,0)</em> in the following instruction.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First tab allows to manage initial state</span>
+<span class="n">etat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Second tab allows to manage final state (after transition)</span>
+<span class="n">sortie</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Filling Cost matrix</strong></p>
+<p>We fill in the matrix : all the costs are equal to 1 except in 9,2 in which it is equal to -1 and in line 10 in which it is equal to 0</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fill in Cost Matrix&quot;</span><span class="p">)</span>
+<span class="n">CostMat</span>  <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">FullMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">,</span> <span class="n">dim_AS</span><span class="p">)</span>
+
+<span class="c1">#definition of some indexes</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">0</span>  <span class="c1"># to iterate on states</span>
+<span class="n">l</span><span class="o">=</span><span class="mi">0</span> <span class="c1"># to iterate on lines</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">0</span> <span class="c1"># to iterate on columns</span>
+<span class="n">indexO</span><span class="o">=</span><span class="mi">0</span> <span class="c1"># indexes of the initial state</span>
+<span class="n">indexD</span><span class="o">=</span><span class="mi">0</span> <span class="c1"># indexes of the final state</span>
+
+
+<span class="n">stateSpace</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">):</span>
+        <span class="c1"># computing the index of the state</span>
+        <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="c1"># for each state we give a value of any action</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim_AS</span><span class="p">)</span> <span class="p">:</span>
+                <span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">stateSpace</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+
+<span class="c1"># replacing the term in (9,2) with action UP to -1</span>
+<span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">9</span>
+<span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;index of state (9,2) &quot;</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Fill in the line 10 all costs are equal to zero</span>
+<span class="c1"># Define the line</span>
+<span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">k</span>
+    <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+    <span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">CostMat</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Fill in Cost Matrix
+index of state (9,2)  92
+
+</pre></div></div>
+</div>
+</section>
+<section id="Use-a-third-way-to-build-the-MDP">
+<h2>Use a third way to build the MDP<a class="headerlink" href="#Use-a-third-way-to-build-the-MDP" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">In what follows, we use a constructor that does not require to build the list of matrices. They are added one by one.</div>
+<div class="line">Please notice that the name of the matrices should differ.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create and initialize elements of MDP</span>
+<span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;min&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Begining of building MDP&quot;</span><span class="p">)</span>
+<span class="c1"># create the MDP</span>
+<span class="n">mdpSSP</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">TotalRewardMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">CostMat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;End of building MDP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Begining of building MDP
+End of building MDP
+</pre></div></div>
+</div>
+<p>Then we fill in the transition matrices. Then we have four matrices to fill in.</p>
+<p>First we complete matrix for action 0 (UP). All the states are browsed by iterating over the rows and columns. For each new state value, the index is calculated, then the possible output states and their indexes are computed to fill in the entry.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add matrices&quot;</span><span class="p">)</span>
+
+
+<span class="n">p</span><span class="o">=</span><span class="mf">0.9</span>
+
+<span class="n">P0</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+                <span class="c1"># define a state and get its index</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span> <span class="c1"># initialize the value of the first dim</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+                <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">((</span> <span class="n">l</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">9</span><span class="p">))</span> <span class="p">:</span>
+                        <span class="k">if</span>  <span class="p">(</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="ow">and</span>  <span class="p">(</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">7</span><span class="p">))</span> <span class="p">)</span> <span class="p">:</span>
+                                <span class="c1"># I am on a door two possibilities</span>
+                                <span class="c1"># either I move up with probability p</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+                                <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1"># either I stay</span>
+                                <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                                <span class="k">if</span>  <span class="p">(</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">9</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">2</span><span class="p">)):</span>
+                                <span class="c1"># I am on a door two possibilities</span>
+                                    <span class="c1"># either I move up with probability p</span>
+                                        <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span>
+                                        <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+                                        <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                        <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1">#either I stay</span>
+                                        <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                <span class="c1"># I am on the wall l=4 or l=9 I stay in the same state</span>
+                                        <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#I am whatever in a rooms I have two possibilities</span>
+                <span class="c1"># either I move up with probability p</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+                        <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                        <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                <span class="c1">#either I stay</span>
+                        <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># fill in last line</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="c1"># define a state and get its index</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># initialize the value of the first dim</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+                <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+                <span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="n">mdpSSP</span><span class="o">.</span><span class="n">AddMatrix</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">P0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added matrix (action 0)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Add matrices
+Added matrix (action 0)
+</pre></div></div>
+</div>
+<p>We complete the remaining matrices</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complete matrix for action 1 (DOWN)</span>
+<span class="n">P1</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+                <span class="c1"># define a state and get its index</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span> <span class="c1"># initialize the value of the first dim</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+                <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">l</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="p">:</span>
+                        <span class="k">if</span> <span class="p">((</span><span class="n">l</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">7</span><span class="p">))</span> <span class="p">)</span> <span class="p">:</span>
+                                <span class="c1">#two possibilities I am on a door</span>
+                                <span class="c1">#either I move down with probability p</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+                                <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1">#either I stay</span>
+                                <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                                        <span class="c1">#I am on the wall l=5 or l=0 I stay in the same state</span>
+                                        <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                                <span class="c1"># I am whatever in a rooms I have two possibilities</span>
+                                <span class="c1"># either I move down with probability p</span>
+                                <span class="c1"># or I stay with a probability 1-p</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+                                <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1"># either I stay</span>
+                                <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># fill in last line</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="c1"># define a state and get its index</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># initialize the value of the first dim</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+        <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="n">mdpSSP</span><span class="o">.</span><span class="n">AddMatrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">P1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added matrix (action 1)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define matrix for action 2 (LEFT)</span>
+<span class="n">P2</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+                <span class="c1"># define a state and get its index</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span> <span class="c1"># initialize the value of the first dim</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+                <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">0</span><span class="p">))</span> <span class="p">:</span>
+                        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">==</span><span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">7</span><span class="p">))</span> <span class="p">)</span> <span class="p">:</span>
+                                <span class="c1"># I am on a door</span>
+                                <span class="c1"># either I move left with probability p</span>
+                                <span class="c1"># or I stay with propability 1-p</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span>
+                                <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1">#either I stay</span>
+                                <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+                        <span class="k">else</span> <span class="p">:</span>
+                                <span class="c1"># I am on the wall c=5 or c=0 I stay in the same state</span>
+                                <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+                <span class="k">else</span> <span class="p">:</span>
+                        <span class="c1">#I am whatever in a rooms I have two possibilities</span>
+                        <span class="c1">#either i move left with probability p</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span>
+                        <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                        <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                        <span class="c1"># or I stay</span>
+                        <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># fill in last line</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="c1"># define a state and get its index</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># initialize the value of the first dim</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+        <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">mdpSSP</span><span class="o">.</span><span class="n">AddMatrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">P2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added matrix (action 2)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define matrix for action 3 (RIGHT)</span>
+<span class="n">P3</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+                <span class="c1"># define a state and get its index</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span> <span class="c1"># initialize the value of the first dim</span>
+                <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+                <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">9</span><span class="p">))</span> <span class="p">:</span>
+                        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">l</span><span class="o">==</span><span class="mi">7</span><span class="p">))</span> <span class="p">)</span> <span class="p">:</span>
+                                <span class="c1"># I am on a door</span>
+                                <span class="c1"># either I move right with probability p</span>
+                                <span class="c1"># or I stay with propability 1-p</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span>
+                                <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span>
+                                <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                                <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                                <span class="c1"># either I stay</span>
+                                <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+                        <span class="k">else</span> <span class="p">:</span>
+                <span class="c1"># I am on the wall c=4 or c=9 I stay in the same state</span>
+                                <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+                <span class="k">else</span> <span class="p">:</span>
+                        <span class="c1"># I am whatever in a rooms I have two possibilities</span>
+                        <span class="c1"># either i move left with probability p</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">l</span>
+                        <span class="n">sortie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span>
+                        <span class="n">indexD</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">sortie</span><span class="p">)</span> <span class="c1">#computing the index of destination</span>
+                        <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexD</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+                        <span class="c1"># either I stay</span>
+                        <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># fill in last line</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span>
+        <span class="c1"># define a state and get its index</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># initialize the value of the first dim</span>
+        <span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">c</span> <span class="c1"># initialize the value of the second dim</span>
+        <span class="n">indexO</span><span class="o">=</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="n">P3</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexO</span><span class="p">,</span><span class="n">indexO</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+
+<span class="n">mdpSSP</span><span class="o">.</span><span class="n">AddMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">P3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added matrix (action 3)&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finishing Adding matrices MDP&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing MDP&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mdpSSP</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Added matrix (action 1)
+Added matrix (action 2)
+Added matrix (action 3)
+Finishing Adding matrices MDP
+Writing MDP
+#############################################
+# Model Infinite Horizon MDP
+# MDP Criteria : Total reward
+#############################################
+#############################################
+#############################################
+# Model Infinite Horizon MDP
+# MDP Criteria : Total reward
+#############################################
+TotalRewardMDP (Object at 000001C3BBEBFAA0)
+MDP type (discrete,continuous): discrete
+MDP rule (min,max): min
+State space size: 110
+Action space size: 4
+State  dimension: 2
+Action dimension: 1
+#############################################
+Transition matrix per action:
+action: 0
+         0         10 9.000000e-01
+         0          0 1.000000e-01
+         1         11 9.000000e-01
+         1          1 1.000000e-01
+         2         12 9.000000e-01
+         2          2 1.000000e-01
+         3         13 9.000000e-01
+         3          3 1.000000e-01
+         4         14 9.000000e-01
+         4          4 1.000000e-01
+         5         15 9.000000e-01
+         5          5 1.000000e-01
+         6         16 9.000000e-01
+         6          6 1.000000e-01
+         7         17 9.000000e-01
+         7          7 1.000000e-01
+         8         18 9.000000e-01
+         8          8 1.000000e-01
+         9         19 9.000000e-01
+         9          9 1.000000e-01
+        10         20 9.000000e-01
+        10         10 1.000000e-01
+        11         21 9.000000e-01
+        11         11 1.000000e-01
+        12         22 9.000000e-01
+        12         12 1.000000e-01
+        13         23 9.000000e-01
+        13         13 1.000000e-01
+        14         24 9.000000e-01
+        14         14 1.000000e-01
+        15         25 9.000000e-01
+        15         15 1.000000e-01
+        16         26 9.000000e-01
+        16         16 1.000000e-01
+        17         27 9.000000e-01
+        17         17 1.000000e-01
+        18         28 9.000000e-01
+        18         18 1.000000e-01
+        19         29 9.000000e-01
+        19         19 1.000000e-01
+        20         30 9.000000e-01
+        20         20 1.000000e-01
+        21         31 9.000000e-01
+        21         21 1.000000e-01
+        22         32 9.000000e-01
+        22         22 1.000000e-01
+        23         33 9.000000e-01
+        23         23 1.000000e-01
+        24         34 9.000000e-01
+        24         24 1.000000e-01
+        25         35 9.000000e-01
+        25         25 1.000000e-01
+        26         36 9.000000e-01
+        26         26 1.000000e-01
+        27         37 9.000000e-01
+        27         27 1.000000e-01
+        28         38 9.000000e-01
+        28         28 1.000000e-01
+        29         39 9.000000e-01
+        29         29 1.000000e-01
+        30         40 9.000000e-01
+        30         30 1.000000e-01
+        31         41 9.000000e-01
+        31         31 1.000000e-01
+        32         42 9.000000e-01
+        32         32 1.000000e-01
+        33         43 9.000000e-01
+        33         33 1.000000e-01
+        34         44 9.000000e-01
+        34         34 1.000000e-01
+        35         45 9.000000e-01
+        35         35 1.000000e-01
+        36         46 9.000000e-01
+        36         36 1.000000e-01
+        37         47 9.000000e-01
+        37         37 1.000000e-01
+        38         48 9.000000e-01
+        38         38 1.000000e-01
+        39         49 9.000000e-01
+        39         39 1.000000e-01
+        40         40 1.000000e+00
+        41         41 1.000000e+00
+        42         52 9.000000e-01
+        42         42 1.000000e-01
+        43         43 1.000000e+00
+        44         44 1.000000e+00
+        45         45 1.000000e+00
+        46         46 1.000000e+00
+        47         57 9.000000e-01
+        47         47 1.000000e-01
+        48         48 1.000000e+00
+        49         49 1.000000e+00
+        50         60 9.000000e-01
+        50         50 1.000000e-01
+        51         61 9.000000e-01
+        51         51 1.000000e-01
+        52         62 9.000000e-01
+        52         52 1.000000e-01
+        53         63 9.000000e-01
+        53         53 1.000000e-01
+        54         64 9.000000e-01
+        54         54 1.000000e-01
+        55         65 9.000000e-01
+        55         55 1.000000e-01
+        56         66 9.000000e-01
+        56         56 1.000000e-01
+        57         67 9.000000e-01
+        57         57 1.000000e-01
+        58         68 9.000000e-01
+        58         58 1.000000e-01
+        59         69 9.000000e-01
+        59         59 1.000000e-01
+        60         70 9.000000e-01
+        60         60 1.000000e-01
+        61         71 9.000000e-01
+        61         61 1.000000e-01
+        62         72 9.000000e-01
+        62         62 1.000000e-01
+        63         73 9.000000e-01
+        63         63 1.000000e-01
+        64         74 9.000000e-01
+        64         64 1.000000e-01
+        65         75 9.000000e-01
+        65         65 1.000000e-01
+        66         76 9.000000e-01
+        66         66 1.000000e-01
+        67         77 9.000000e-01
+        67         67 1.000000e-01
+        68         78 9.000000e-01
+        68         68 1.000000e-01
+        69         79 9.000000e-01
+        69         69 1.000000e-01
+        70         80 9.000000e-01
+        70         70 1.000000e-01
+        71         81 9.000000e-01
+        71         71 1.000000e-01
+        72         82 9.000000e-01
+        72         72 1.000000e-01
+        73         83 9.000000e-01
+        73         73 1.000000e-01
+        74         84 9.000000e-01
+        74         74 1.000000e-01
+        75         85 9.000000e-01
+        75         75 1.000000e-01
+        76         86 9.000000e-01
+        76         76 1.000000e-01
+        77         87 9.000000e-01
+        77         77 1.000000e-01
+        78         88 9.000000e-01
+        78         78 1.000000e-01
+        79         89 9.000000e-01
+        79         79 1.000000e-01
+        80         90 9.000000e-01
+        80         80 1.000000e-01
+        81         91 9.000000e-01
+        81         81 1.000000e-01
+        82         92 9.000000e-01
+        82         82 1.000000e-01
+        83         93 9.000000e-01
+        83         83 1.000000e-01
+        84         94 9.000000e-01
+        84         84 1.000000e-01
+        85         95 9.000000e-01
+        85         85 1.000000e-01
+        86         96 9.000000e-01
+        86         86 1.000000e-01
+        87         97 9.000000e-01
+        87         87 1.000000e-01
+        88         98 9.000000e-01
+        88         88 1.000000e-01
+        89         99 9.000000e-01
+        89         89 1.000000e-01
+        90         90 1.000000e+00
+        91         91 1.000000e+00
+        92        102 9.000000e-01
+        92         92 1.000000e-01
+        93         93 1.000000e+00
+        94         94 1.000000e+00
+        95         95 1.000000e+00
+        96         96 1.000000e+00
+        97         97 1.000000e+00
+        98         98 1.000000e+00
+        99         99 1.000000e+00
+       100        100 1.000000e+00
+       101        101 1.000000e+00
+       102        102 1.000000e+00
+       103        103 1.000000e+00
+       104        104 1.000000e+00
+       105        105 1.000000e+00
+       106        106 1.000000e+00
+       107        107 1.000000e+00
+       108        108 1.000000e+00
+       109        109 1.000000e+00
+
+action: 1
+         0          0 1.000000e+00
+         1          1 1.000000e+00
+         2          2 1.000000e+00
+         3          3 1.000000e+00
+         4          4 1.000000e+00
+         5          5 1.000000e+00
+         6          6 1.000000e+00
+         7          7 1.000000e+00
+         8          8 1.000000e+00
+         9          9 1.000000e+00
+        10          0 9.000000e-01
+        10         10 1.000000e-01
+        11          1 9.000000e-01
+        11         11 1.000000e-01
+        12          2 9.000000e-01
+        12         12 1.000000e-01
+        13          3 9.000000e-01
+        13         13 1.000000e-01
+        14          4 9.000000e-01
+        14         14 1.000000e-01
+        15          5 9.000000e-01
+        15         15 1.000000e-01
+        16          6 9.000000e-01
+        16         16 1.000000e-01
+        17          7 9.000000e-01
+        17         17 1.000000e-01
+        18          8 9.000000e-01
+        18         18 1.000000e-01
+        19          9 9.000000e-01
+        19         19 1.000000e-01
+        20         10 9.000000e-01
+        20         20 1.000000e-01
+        21         11 9.000000e-01
+        21         21 1.000000e-01
+        22         12 9.000000e-01
+        22         22 1.000000e-01
+        23         13 9.000000e-01
+        23         23 1.000000e-01
+        24         14 9.000000e-01
+        24         24 1.000000e-01
+        25         15 9.000000e-01
+        25         25 1.000000e-01
+        26         16 9.000000e-01
+        26         26 1.000000e-01
+        27         17 9.000000e-01
+        27         27 1.000000e-01
+        28         18 9.000000e-01
+        28         28 1.000000e-01
+        29         19 9.000000e-01
+        29         29 1.000000e-01
+        30         20 9.000000e-01
+        30         30 1.000000e-01
+        31         21 9.000000e-01
+        31         31 1.000000e-01
+        32         22 9.000000e-01
+        32         32 1.000000e-01
+        33         23 9.000000e-01
+        33         33 1.000000e-01
+        34         24 9.000000e-01
+        34         34 1.000000e-01
+        35         25 9.000000e-01
+        35         35 1.000000e-01
+        36         26 9.000000e-01
+        36         36 1.000000e-01
+        37         27 9.000000e-01
+        37         37 1.000000e-01
+        38         28 9.000000e-01
+        38         38 1.000000e-01
+        39         29 9.000000e-01
+        39         39 1.000000e-01
+        40         30 9.000000e-01
+        40         40 1.000000e-01
+        41         31 9.000000e-01
+        41         41 1.000000e-01
+        42         32 9.000000e-01
+        42         42 1.000000e-01
+        43         33 9.000000e-01
+        43         43 1.000000e-01
+        44         34 9.000000e-01
+        44         44 1.000000e-01
+        45         35 9.000000e-01
+        45         45 1.000000e-01
+        46         36 9.000000e-01
+        46         46 1.000000e-01
+        47         37 9.000000e-01
+        47         47 1.000000e-01
+        48         38 9.000000e-01
+        48         48 1.000000e-01
+        49         39 9.000000e-01
+        49         49 1.000000e-01
+        50         50 1.000000e+00
+        51         51 1.000000e+00
+        52         42 9.000000e-01
+        52         52 1.000000e-01
+        53         53 1.000000e+00
+        54         54 1.000000e+00
+        55         55 1.000000e+00
+        56         56 1.000000e+00
+        57         47 9.000000e-01
+        57         57 1.000000e-01
+        58         58 1.000000e+00
+        59         59 1.000000e+00
+        60         50 9.000000e-01
+        60         60 1.000000e-01
+        61         51 9.000000e-01
+        61         61 1.000000e-01
+        62         52 9.000000e-01
+        62         62 1.000000e-01
+        63         53 9.000000e-01
+        63         63 1.000000e-01
+        64         54 9.000000e-01
+        64         64 1.000000e-01
+        65         55 9.000000e-01
+        65         65 1.000000e-01
+        66         56 9.000000e-01
+        66         66 1.000000e-01
+        67         57 9.000000e-01
+        67         67 1.000000e-01
+        68         58 9.000000e-01
+        68         68 1.000000e-01
+        69         59 9.000000e-01
+        69         69 1.000000e-01
+        70         60 9.000000e-01
+        70         70 1.000000e-01
+        71         61 9.000000e-01
+        71         71 1.000000e-01
+        72         62 9.000000e-01
+        72         72 1.000000e-01
+        73         63 9.000000e-01
+        73         73 1.000000e-01
+        74         64 9.000000e-01
+        74         74 1.000000e-01
+        75         65 9.000000e-01
+        75         75 1.000000e-01
+        76         66 9.000000e-01
+        76         76 1.000000e-01
+        77         67 9.000000e-01
+        77         77 1.000000e-01
+        78         68 9.000000e-01
+        78         78 1.000000e-01
+        79         69 9.000000e-01
+        79         79 1.000000e-01
+        80         70 9.000000e-01
+        80         80 1.000000e-01
+        81         71 9.000000e-01
+        81         81 1.000000e-01
+        82         72 9.000000e-01
+        82         82 1.000000e-01
+        83         73 9.000000e-01
+        83         83 1.000000e-01
+        84         74 9.000000e-01
+        84         84 1.000000e-01
+        85         75 9.000000e-01
+        85         85 1.000000e-01
+        86         76 9.000000e-01
+        86         86 1.000000e-01
+        87         77 9.000000e-01
+        87         87 1.000000e-01
+        88         78 9.000000e-01
+        88         88 1.000000e-01
+        89         79 9.000000e-01
+        89         89 1.000000e-01
+        90         80 9.000000e-01
+        90         90 1.000000e-01
+        91         81 9.000000e-01
+        91         91 1.000000e-01
+        92         82 9.000000e-01
+        92         92 1.000000e-01
+        93         83 9.000000e-01
+        93         93 1.000000e-01
+        94         84 9.000000e-01
+        94         94 1.000000e-01
+        95         85 9.000000e-01
+        95         95 1.000000e-01
+        96         86 9.000000e-01
+        96         96 1.000000e-01
+        97         87 9.000000e-01
+        97         97 1.000000e-01
+        98         88 9.000000e-01
+        98         98 1.000000e-01
+        99         89 9.000000e-01
+        99         99 1.000000e-01
+       100        100 1.000000e+00
+       101        101 1.000000e+00
+       102        102 1.000000e+00
+       103        103 1.000000e+00
+       104        104 1.000000e+00
+       105        105 1.000000e+00
+       106        106 1.000000e+00
+       107        107 1.000000e+00
+       108        108 1.000000e+00
+       109        109 1.000000e+00
+
+action: 2
+         0          0 1.000000e+00
+         1          0 9.000000e-01
+         1          1 1.000000e-01
+         2          1 9.000000e-01
+         2          2 1.000000e-01
+         3          2 9.000000e-01
+         3          3 1.000000e-01
+         4          3 9.000000e-01
+         4          4 1.000000e-01
+         5          5 1.000000e+00
+         6          5 9.000000e-01
+         6          6 1.000000e-01
+         7          6 9.000000e-01
+         7          7 1.000000e-01
+         8          7 9.000000e-01
+         8          8 1.000000e-01
+         9          8 9.000000e-01
+         9          9 1.000000e-01
+        10         10 1.000000e+00
+        11         10 9.000000e-01
+        11         11 1.000000e-01
+        12         11 9.000000e-01
+        12         12 1.000000e-01
+        13         12 9.000000e-01
+        13         13 1.000000e-01
+        14         13 9.000000e-01
+        14         14 1.000000e-01
+        15         15 1.000000e+00
+        16         15 9.000000e-01
+        16         16 1.000000e-01
+        17         16 9.000000e-01
+        17         17 1.000000e-01
+        18         17 9.000000e-01
+        18         18 1.000000e-01
+        19         18 9.000000e-01
+        19         19 1.000000e-01
+        20         20 1.000000e+00
+        21         20 9.000000e-01
+        21         21 1.000000e-01
+        22         21 9.000000e-01
+        22         22 1.000000e-01
+        23         22 9.000000e-01
+        23         23 1.000000e-01
+        24         23 9.000000e-01
+        24         24 1.000000e-01
+        25         24 9.000000e-01
+        25         25 1.000000e-01
+        26         25 9.000000e-01
+        26         26 1.000000e-01
+        27         26 9.000000e-01
+        27         27 1.000000e-01
+        28         27 9.000000e-01
+        28         28 1.000000e-01
+        29         28 9.000000e-01
+        29         29 1.000000e-01
+        30         30 1.000000e+00
+        31         30 9.000000e-01
+        31         31 1.000000e-01
+        32         31 9.000000e-01
+        32         32 1.000000e-01
+        33         32 9.000000e-01
+        33         33 1.000000e-01
+        34         33 9.000000e-01
+        34         34 1.000000e-01
+        35         35 1.000000e+00
+        36         35 9.000000e-01
+        36         36 1.000000e-01
+        37         36 9.000000e-01
+        37         37 1.000000e-01
+        38         37 9.000000e-01
+        38         38 1.000000e-01
+        39         38 9.000000e-01
+        39         39 1.000000e-01
+        40         40 1.000000e+00
+        41         40 9.000000e-01
+        41         41 1.000000e-01
+        42         41 9.000000e-01
+        42         42 1.000000e-01
+        43         42 9.000000e-01
+        43         43 1.000000e-01
+        44         43 9.000000e-01
+        44         44 1.000000e-01
+        45         45 1.000000e+00
+        46         45 9.000000e-01
+        46         46 1.000000e-01
+        47         46 9.000000e-01
+        47         47 1.000000e-01
+        48         47 9.000000e-01
+        48         48 1.000000e-01
+        49         48 9.000000e-01
+        49         49 1.000000e-01
+        50         50 1.000000e+00
+        51         50 9.000000e-01
+        51         51 1.000000e-01
+        52         51 9.000000e-01
+        52         52 1.000000e-01
+        53         52 9.000000e-01
+        53         53 1.000000e-01
+        54         53 9.000000e-01
+        54         54 1.000000e-01
+        55         55 1.000000e+00
+        56         55 9.000000e-01
+        56         56 1.000000e-01
+        57         56 9.000000e-01
+        57         57 1.000000e-01
+        58         57 9.000000e-01
+        58         58 1.000000e-01
+        59         58 9.000000e-01
+        59         59 1.000000e-01
+        60         60 1.000000e+00
+        61         60 9.000000e-01
+        61         61 1.000000e-01
+        62         61 9.000000e-01
+        62         62 1.000000e-01
+        63         62 9.000000e-01
+        63         63 1.000000e-01
+        64         63 9.000000e-01
+        64         64 1.000000e-01
+        65         65 1.000000e+00
+        66         65 9.000000e-01
+        66         66 1.000000e-01
+        67         66 9.000000e-01
+        67         67 1.000000e-01
+        68         67 9.000000e-01
+        68         68 1.000000e-01
+        69         68 9.000000e-01
+        69         69 1.000000e-01
+        70         70 1.000000e+00
+        71         70 9.000000e-01
+        71         71 1.000000e-01
+        72         71 9.000000e-01
+        72         72 1.000000e-01
+        73         72 9.000000e-01
+        73         73 1.000000e-01
+        74         73 9.000000e-01
+        74         74 1.000000e-01
+        75         74 9.000000e-01
+        75         75 1.000000e-01
+        76         75 9.000000e-01
+        76         76 1.000000e-01
+        77         76 9.000000e-01
+        77         77 1.000000e-01
+        78         77 9.000000e-01
+        78         78 1.000000e-01
+        79         78 9.000000e-01
+        79         79 1.000000e-01
+        80         80 1.000000e+00
+        81         80 9.000000e-01
+        81         81 1.000000e-01
+        82         81 9.000000e-01
+        82         82 1.000000e-01
+        83         82 9.000000e-01
+        83         83 1.000000e-01
+        84         83 9.000000e-01
+        84         84 1.000000e-01
+        85         85 1.000000e+00
+        86         85 9.000000e-01
+        86         86 1.000000e-01
+        87         86 9.000000e-01
+        87         87 1.000000e-01
+        88         87 9.000000e-01
+        88         88 1.000000e-01
+        89         88 9.000000e-01
+        89         89 1.000000e-01
+        90         90 1.000000e+00
+        91         90 9.000000e-01
+        91         91 1.000000e-01
+        92         91 9.000000e-01
+        92         92 1.000000e-01
+        93         92 9.000000e-01
+        93         93 1.000000e-01
+        94         93 9.000000e-01
+        94         94 1.000000e-01
+        95         95 1.000000e+00
+        96         95 9.000000e-01
+        96         96 1.000000e-01
+        97         96 9.000000e-01
+        97         97 1.000000e-01
+        98         97 9.000000e-01
+        98         98 1.000000e-01
+        99         98 9.000000e-01
+        99         99 1.000000e-01
+       100        100 1.000000e+00
+       101        101 1.000000e+00
+       102        102 1.000000e+00
+       103        103 1.000000e+00
+       104        104 1.000000e+00
+       105        105 1.000000e+00
+       106        106 1.000000e+00
+       107        107 1.000000e+00
+       108        108 1.000000e+00
+       109        109 1.000000e+00
+
+action: 3
+         0          1 9.000000e-01
+         0          0 1.000000e-01
+         1          2 9.000000e-01
+         1          1 1.000000e-01
+         2          3 9.000000e-01
+         2          2 1.000000e-01
+         3          4 9.000000e-01
+         3          3 1.000000e-01
+         4          4 1.000000e+00
+         5          6 9.000000e-01
+         5          5 1.000000e-01
+         6          7 9.000000e-01
+         6          6 1.000000e-01
+         7          8 9.000000e-01
+         7          7 1.000000e-01
+         8          9 9.000000e-01
+         8          8 1.000000e-01
+         9          9 1.000000e+00
+        10         11 9.000000e-01
+        10         10 1.000000e-01
+        11         12 9.000000e-01
+        11         11 1.000000e-01
+        12         13 9.000000e-01
+        12         12 1.000000e-01
+        13         14 9.000000e-01
+        13         13 1.000000e-01
+        14         14 1.000000e+00
+        15         16 9.000000e-01
+        15         15 1.000000e-01
+        16         17 9.000000e-01
+        16         16 1.000000e-01
+        17         18 9.000000e-01
+        17         17 1.000000e-01
+        18         19 9.000000e-01
+        18         18 1.000000e-01
+        19         19 1.000000e+00
+        20         21 9.000000e-01
+        20         20 1.000000e-01
+        21         22 9.000000e-01
+        21         21 1.000000e-01
+        22         23 9.000000e-01
+        22         22 1.000000e-01
+        23         24 9.000000e-01
+        23         23 1.000000e-01
+        24         25 9.000000e-01
+        24         24 1.000000e-01
+        25         26 9.000000e-01
+        25         25 1.000000e-01
+        26         27 9.000000e-01
+        26         26 1.000000e-01
+        27         28 9.000000e-01
+        27         27 1.000000e-01
+        28         29 9.000000e-01
+        28         28 1.000000e-01
+        29         29 1.000000e+00
+        30         31 9.000000e-01
+        30         30 1.000000e-01
+        31         32 9.000000e-01
+        31         31 1.000000e-01
+        32         33 9.000000e-01
+        32         32 1.000000e-01
+        33         34 9.000000e-01
+        33         33 1.000000e-01
+        34         34 1.000000e+00
+        35         36 9.000000e-01
+        35         35 1.000000e-01
+        36         37 9.000000e-01
+        36         36 1.000000e-01
+        37         38 9.000000e-01
+        37         37 1.000000e-01
+        38         39 9.000000e-01
+        38         38 1.000000e-01
+        39         39 1.000000e+00
+        40         41 9.000000e-01
+        40         40 1.000000e-01
+        41         42 9.000000e-01
+        41         41 1.000000e-01
+        42         43 9.000000e-01
+        42         42 1.000000e-01
+        43         44 9.000000e-01
+        43         43 1.000000e-01
+        44         44 1.000000e+00
+        45         46 9.000000e-01
+        45         45 1.000000e-01
+        46         47 9.000000e-01
+        46         46 1.000000e-01
+        47         48 9.000000e-01
+        47         47 1.000000e-01
+        48         49 9.000000e-01
+        48         48 1.000000e-01
+        49         49 1.000000e+00
+        50         51 9.000000e-01
+        50         50 1.000000e-01
+        51         52 9.000000e-01
+        51         51 1.000000e-01
+        52         53 9.000000e-01
+        52         52 1.000000e-01
+        53         54 9.000000e-01
+        53         53 1.000000e-01
+        54         54 1.000000e+00
+        55         56 9.000000e-01
+        55         55 1.000000e-01
+        56         57 9.000000e-01
+        56         56 1.000000e-01
+        57         58 9.000000e-01
+        57         57 1.000000e-01
+        58         59 9.000000e-01
+        58         58 1.000000e-01
+        59         59 1.000000e+00
+        60         61 9.000000e-01
+        60         60 1.000000e-01
+        61         62 9.000000e-01
+        61         61 1.000000e-01
+        62         63 9.000000e-01
+        62         62 1.000000e-01
+        63         64 9.000000e-01
+        63         63 1.000000e-01
+        64         64 1.000000e+00
+        65         66 9.000000e-01
+        65         65 1.000000e-01
+        66         67 9.000000e-01
+        66         66 1.000000e-01
+        67         68 9.000000e-01
+        67         67 1.000000e-01
+        68         69 9.000000e-01
+        68         68 1.000000e-01
+        69         69 1.000000e+00
+        70         71 9.000000e-01
+        70         70 1.000000e-01
+        71         72 9.000000e-01
+        71         71 1.000000e-01
+        72         73 9.000000e-01
+        72         72 1.000000e-01
+        73         74 9.000000e-01
+        73         73 1.000000e-01
+        74         75 9.000000e-01
+        74         74 1.000000e-01
+        75         76 9.000000e-01
+        75         75 1.000000e-01
+        76         77 9.000000e-01
+        76         76 1.000000e-01
+        77         78 9.000000e-01
+        77         77 1.000000e-01
+        78         79 9.000000e-01
+        78         78 1.000000e-01
+        79         79 1.000000e+00
+        80         81 9.000000e-01
+        80         80 1.000000e-01
+        81         82 9.000000e-01
+        81         81 1.000000e-01
+        82         83 9.000000e-01
+        82         82 1.000000e-01
+        83         84 9.000000e-01
+        83         83 1.000000e-01
+        84         84 1.000000e+00
+        85         86 9.000000e-01
+        85         85 1.000000e-01
+        86         87 9.000000e-01
+        86         86 1.000000e-01
+        87         88 9.000000e-01
+        87         87 1.000000e-01
+        88         89 9.000000e-01
+        88         88 1.000000e-01
+        89         89 1.000000e+00
+        90         91 9.000000e-01
+        90         90 1.000000e-01
+        91         92 9.000000e-01
+        91         91 1.000000e-01
+        92         93 9.000000e-01
+        92         92 1.000000e-01
+        93         94 9.000000e-01
+        93         93 1.000000e-01
+        94         94 1.000000e+00
+        95         96 9.000000e-01
+        95         95 1.000000e-01
+        96         97 9.000000e-01
+        96         96 1.000000e-01
+        97         98 9.000000e-01
+        97         97 1.000000e-01
+        98         99 9.000000e-01
+        98         98 1.000000e-01
+        99         99 1.000000e+00
+       100        100 1.000000e+00
+       101        101 1.000000e+00
+       102        102 1.000000e+00
+       103        103 1.000000e+00
+       104        104 1.000000e+00
+       105        105 1.000000e+00
+       106        106 1.000000e+00
+       107        107 1.000000e+00
+       108        108 1.000000e+00
+       109        109 1.000000e+00
+
+#############################################
+Reward Matrix (state,action):
+         0          0 1.000000e+00
+         0          1 1.000000e+00
+         0          2 1.000000e+00
+         0          3 1.000000e+00
+         1          0 1.000000e+00
+         1          1 1.000000e+00
+         1          2 1.000000e+00
+         1          3 1.000000e+00
+         2          0 1.000000e+00
+         2          1 1.000000e+00
+         2          2 1.000000e+00
+         2          3 1.000000e+00
+         3          0 1.000000e+00
+         3          1 1.000000e+00
+         3          2 1.000000e+00
+         3          3 1.000000e+00
+         4          0 1.000000e+00
+         4          1 1.000000e+00
+         4          2 1.000000e+00
+         4          3 1.000000e+00
+         5          0 1.000000e+00
+         5          1 1.000000e+00
+         5          2 1.000000e+00
+         5          3 1.000000e+00
+         6          0 1.000000e+00
+         6          1 1.000000e+00
+         6          2 1.000000e+00
+         6          3 1.000000e+00
+         7          0 1.000000e+00
+         7          1 1.000000e+00
+         7          2 1.000000e+00
+         7          3 1.000000e+00
+         8          0 1.000000e+00
+         8          1 1.000000e+00
+         8          2 1.000000e+00
+         8          3 1.000000e+00
+         9          0 1.000000e+00
+         9          1 1.000000e+00
+         9          2 1.000000e+00
+         9          3 1.000000e+00
+        10          0 1.000000e+00
+        10          1 1.000000e+00
+        10          2 1.000000e+00
+        10          3 1.000000e+00
+        11          0 1.000000e+00
+        11          1 1.000000e+00
+        11          2 1.000000e+00
+        11          3 1.000000e+00
+        12          0 1.000000e+00
+        12          1 1.000000e+00
+        12          2 1.000000e+00
+        12          3 1.000000e+00
+        13          0 1.000000e+00
+        13          1 1.000000e+00
+        13          2 1.000000e+00
+        13          3 1.000000e+00
+        14          0 1.000000e+00
+        14          1 1.000000e+00
+        14          2 1.000000e+00
+        14          3 1.000000e+00
+        15          0 1.000000e+00
+        15          1 1.000000e+00
+        15          2 1.000000e+00
+        15          3 1.000000e+00
+        16          0 1.000000e+00
+        16          1 1.000000e+00
+        16          2 1.000000e+00
+        16          3 1.000000e+00
+        17          0 1.000000e+00
+        17          1 1.000000e+00
+        17          2 1.000000e+00
+        17          3 1.000000e+00
+        18          0 1.000000e+00
+        18          1 1.000000e+00
+        18          2 1.000000e+00
+        18          3 1.000000e+00
+        19          0 1.000000e+00
+        19          1 1.000000e+00
+        19          2 1.000000e+00
+        19          3 1.000000e+00
+        20          0 1.000000e+00
+        20          1 1.000000e+00
+        20          2 1.000000e+00
+        20          3 1.000000e+00
+        21          0 1.000000e+00
+        21          1 1.000000e+00
+        21          2 1.000000e+00
+        21          3 1.000000e+00
+        22          0 1.000000e+00
+        22          1 1.000000e+00
+        22          2 1.000000e+00
+        22          3 1.000000e+00
+        23          0 1.000000e+00
+        23          1 1.000000e+00
+        23          2 1.000000e+00
+        23          3 1.000000e+00
+        24          0 1.000000e+00
+        24          1 1.000000e+00
+        24          2 1.000000e+00
+        24          3 1.000000e+00
+        25          0 1.000000e+00
+        25          1 1.000000e+00
+        25          2 1.000000e+00
+        25          3 1.000000e+00
+        26          0 1.000000e+00
+        26          1 1.000000e+00
+        26          2 1.000000e+00
+        26          3 1.000000e+00
+        27          0 1.000000e+00
+        27          1 1.000000e+00
+        27          2 1.000000e+00
+        27          3 1.000000e+00
+        28          0 1.000000e+00
+        28          1 1.000000e+00
+        28          2 1.000000e+00
+        28          3 1.000000e+00
+        29          0 1.000000e+00
+        29          1 1.000000e+00
+        29          2 1.000000e+00
+        29          3 1.000000e+00
+        30          0 1.000000e+00
+        30          1 1.000000e+00
+        30          2 1.000000e+00
+        30          3 1.000000e+00
+        31          0 1.000000e+00
+        31          1 1.000000e+00
+        31          2 1.000000e+00
+        31          3 1.000000e+00
+        32          0 1.000000e+00
+        32          1 1.000000e+00
+        32          2 1.000000e+00
+        32          3 1.000000e+00
+        33          0 1.000000e+00
+        33          1 1.000000e+00
+        33          2 1.000000e+00
+        33          3 1.000000e+00
+        34          0 1.000000e+00
+        34          1 1.000000e+00
+        34          2 1.000000e+00
+        34          3 1.000000e+00
+        35          0 1.000000e+00
+        35          1 1.000000e+00
+        35          2 1.000000e+00
+        35          3 1.000000e+00
+        36          0 1.000000e+00
+        36          1 1.000000e+00
+        36          2 1.000000e+00
+        36          3 1.000000e+00
+        37          0 1.000000e+00
+        37          1 1.000000e+00
+        37          2 1.000000e+00
+        37          3 1.000000e+00
+        38          0 1.000000e+00
+        38          1 1.000000e+00
+        38          2 1.000000e+00
+        38          3 1.000000e+00
+        39          0 1.000000e+00
+        39          1 1.000000e+00
+        39          2 1.000000e+00
+        39          3 1.000000e+00
+        40          0 1.000000e+00
+        40          1 1.000000e+00
+        40          2 1.000000e+00
+        40          3 1.000000e+00
+        41          0 1.000000e+00
+        41          1 1.000000e+00
+        41          2 1.000000e+00
+        41          3 1.000000e+00
+        42          0 1.000000e+00
+        42          1 1.000000e+00
+        42          2 1.000000e+00
+        42          3 1.000000e+00
+        43          0 1.000000e+00
+        43          1 1.000000e+00
+        43          2 1.000000e+00
+        43          3 1.000000e+00
+        44          0 1.000000e+00
+        44          1 1.000000e+00
+        44          2 1.000000e+00
+        44          3 1.000000e+00
+        45          0 1.000000e+00
+        45          1 1.000000e+00
+        45          2 1.000000e+00
+        45          3 1.000000e+00
+        46          0 1.000000e+00
+        46          1 1.000000e+00
+        46          2 1.000000e+00
+        46          3 1.000000e+00
+        47          0 1.000000e+00
+        47          1 1.000000e+00
+        47          2 1.000000e+00
+        47          3 1.000000e+00
+        48          0 1.000000e+00
+        48          1 1.000000e+00
+        48          2 1.000000e+00
+        48          3 1.000000e+00
+        49          0 1.000000e+00
+        49          1 1.000000e+00
+        49          2 1.000000e+00
+        49          3 1.000000e+00
+        50          0 1.000000e+00
+        50          1 1.000000e+00
+        50          2 1.000000e+00
+        50          3 1.000000e+00
+        51          0 1.000000e+00
+        51          1 1.000000e+00
+        51          2 1.000000e+00
+        51          3 1.000000e+00
+        52          0 1.000000e+00
+        52          1 1.000000e+00
+        52          2 1.000000e+00
+        52          3 1.000000e+00
+        53          0 1.000000e+00
+        53          1 1.000000e+00
+        53          2 1.000000e+00
+        53          3 1.000000e+00
+        54          0 1.000000e+00
+        54          1 1.000000e+00
+        54          2 1.000000e+00
+        54          3 1.000000e+00
+        55          0 1.000000e+00
+        55          1 1.000000e+00
+        55          2 1.000000e+00
+        55          3 1.000000e+00
+        56          0 1.000000e+00
+        56          1 1.000000e+00
+        56          2 1.000000e+00
+        56          3 1.000000e+00
+        57          0 1.000000e+00
+        57          1 1.000000e+00
+        57          2 1.000000e+00
+        57          3 1.000000e+00
+        58          0 1.000000e+00
+        58          1 1.000000e+00
+        58          2 1.000000e+00
+        58          3 1.000000e+00
+        59          0 1.000000e+00
+        59          1 1.000000e+00
+        59          2 1.000000e+00
+        59          3 1.000000e+00
+        60          0 1.000000e+00
+        60          1 1.000000e+00
+        60          2 1.000000e+00
+        60          3 1.000000e+00
+        61          0 1.000000e+00
+        61          1 1.000000e+00
+        61          2 1.000000e+00
+        61          3 1.000000e+00
+        62          0 1.000000e+00
+        62          1 1.000000e+00
+        62          2 1.000000e+00
+        62          3 1.000000e+00
+        63          0 1.000000e+00
+        63          1 1.000000e+00
+        63          2 1.000000e+00
+        63          3 1.000000e+00
+        64          0 1.000000e+00
+        64          1 1.000000e+00
+        64          2 1.000000e+00
+        64          3 1.000000e+00
+        65          0 1.000000e+00
+        65          1 1.000000e+00
+        65          2 1.000000e+00
+        65          3 1.000000e+00
+        66          0 1.000000e+00
+        66          1 1.000000e+00
+        66          2 1.000000e+00
+        66          3 1.000000e+00
+        67          0 1.000000e+00
+        67          1 1.000000e+00
+        67          2 1.000000e+00
+        67          3 1.000000e+00
+        68          0 1.000000e+00
+        68          1 1.000000e+00
+        68          2 1.000000e+00
+        68          3 1.000000e+00
+        69          0 1.000000e+00
+        69          1 1.000000e+00
+        69          2 1.000000e+00
+        69          3 1.000000e+00
+        70          0 1.000000e+00
+        70          1 1.000000e+00
+        70          2 1.000000e+00
+        70          3 1.000000e+00
+        71          0 1.000000e+00
+        71          1 1.000000e+00
+        71          2 1.000000e+00
+        71          3 1.000000e+00
+        72          0 1.000000e+00
+        72          1 1.000000e+00
+        72          2 1.000000e+00
+        72          3 1.000000e+00
+        73          0 1.000000e+00
+        73          1 1.000000e+00
+        73          2 1.000000e+00
+        73          3 1.000000e+00
+        74          0 1.000000e+00
+        74          1 1.000000e+00
+        74          2 1.000000e+00
+        74          3 1.000000e+00
+        75          0 1.000000e+00
+        75          1 1.000000e+00
+        75          2 1.000000e+00
+        75          3 1.000000e+00
+        76          0 1.000000e+00
+        76          1 1.000000e+00
+        76          2 1.000000e+00
+        76          3 1.000000e+00
+        77          0 1.000000e+00
+        77          1 1.000000e+00
+        77          2 1.000000e+00
+        77          3 1.000000e+00
+        78          0 1.000000e+00
+        78          1 1.000000e+00
+        78          2 1.000000e+00
+        78          3 1.000000e+00
+        79          0 1.000000e+00
+        79          1 1.000000e+00
+        79          2 1.000000e+00
+        79          3 1.000000e+00
+        80          0 1.000000e+00
+        80          1 1.000000e+00
+        80          2 1.000000e+00
+        80          3 1.000000e+00
+        81          0 1.000000e+00
+        81          1 1.000000e+00
+        81          2 1.000000e+00
+        81          3 1.000000e+00
+        82          0 1.000000e+00
+        82          1 1.000000e+00
+        82          2 1.000000e+00
+        82          3 1.000000e+00
+        83          0 1.000000e+00
+        83          1 1.000000e+00
+        83          2 1.000000e+00
+        83          3 1.000000e+00
+        84          0 1.000000e+00
+        84          1 1.000000e+00
+        84          2 1.000000e+00
+        84          3 1.000000e+00
+        85          0 1.000000e+00
+        85          1 1.000000e+00
+        85          2 1.000000e+00
+        85          3 1.000000e+00
+        86          0 1.000000e+00
+        86          1 1.000000e+00
+        86          2 1.000000e+00
+        86          3 1.000000e+00
+        87          0 1.000000e+00
+        87          1 1.000000e+00
+        87          2 1.000000e+00
+        87          3 1.000000e+00
+        88          0 1.000000e+00
+        88          1 1.000000e+00
+        88          2 1.000000e+00
+        88          3 1.000000e+00
+        89          0 1.000000e+00
+        89          1 1.000000e+00
+        89          2 1.000000e+00
+        89          3 1.000000e+00
+        90          0 1.000000e+00
+        90          1 1.000000e+00
+        90          2 1.000000e+00
+        90          3 1.000000e+00
+        91          0 1.000000e+00
+        91          1 1.000000e+00
+        91          2 1.000000e+00
+        91          3 1.000000e+00
+        92          0 -1.000000e+00
+        92          1 1.000000e+00
+        92          2 1.000000e+00
+        92          3 1.000000e+00
+        93          0 1.000000e+00
+        93          1 1.000000e+00
+        93          2 1.000000e+00
+        93          3 1.000000e+00
+        94          0 1.000000e+00
+        94          1 1.000000e+00
+        94          2 1.000000e+00
+        94          3 1.000000e+00
+        95          0 1.000000e+00
+        95          1 1.000000e+00
+        95          2 1.000000e+00
+        95          3 1.000000e+00
+        96          0 1.000000e+00
+        96          1 1.000000e+00
+        96          2 1.000000e+00
+        96          3 1.000000e+00
+        97          0 1.000000e+00
+        97          1 1.000000e+00
+        97          2 1.000000e+00
+        97          3 1.000000e+00
+        98          0 1.000000e+00
+        98          1 1.000000e+00
+        98          2 1.000000e+00
+        98          3 1.000000e+00
+        99          0 1.000000e+00
+        99          1 1.000000e+00
+        99          2 1.000000e+00
+        99          3 1.000000e+00
+       100          0 0.000000e+00
+       100          1 0.000000e+00
+       100          2 0.000000e+00
+       100          3 0.000000e+00
+       101          0 0.000000e+00
+       101          1 0.000000e+00
+       101          2 0.000000e+00
+       101          3 0.000000e+00
+       102          0 0.000000e+00
+       102          1 0.000000e+00
+       102          2 0.000000e+00
+       102          3 0.000000e+00
+       103          0 0.000000e+00
+       103          1 0.000000e+00
+       103          2 0.000000e+00
+       103          3 0.000000e+00
+       104          0 0.000000e+00
+       104          1 0.000000e+00
+       104          2 0.000000e+00
+       104          3 0.000000e+00
+       105          0 0.000000e+00
+       105          1 0.000000e+00
+       105          2 0.000000e+00
+       105          3 0.000000e+00
+       106          0 0.000000e+00
+       106          1 0.000000e+00
+       106          2 0.000000e+00
+       106          3 0.000000e+00
+       107          0 0.000000e+00
+       107          1 0.000000e+00
+       107          2 0.000000e+00
+       107          3 0.000000e+00
+       108          0 0.000000e+00
+       108          1 0.000000e+00
+       108          2 0.000000e+00
+       108          3 0.000000e+00
+       109          0 0.000000e+00
+       109          1 0.000000e+00
+       109          2 0.000000e+00
+       109          3 0.000000e+00
+
+#############################################
+
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create and initialize elements of solving</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">maxIter</span><span class="o">=</span><span class="mi">250</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Printing solution from value iteration&quot;</span><span class="p">)</span>
+<span class="n">optimum2</span> <span class="o">=</span> <span class="n">mdpSSP</span><span class="o">.</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Printing solution from value iteration
+#############################################
+Solution of MDP problem
+Size of the state space: 110
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           11.1111   0
+  1                10   0
+  2           8.88889   0
+  3                10   0
+  4           11.1111   0
+  5           12.2222   0
+  6           13.3333   0
+  7           14.4444   0
+  8           15.5556   0
+  9           16.6667   0
+ 10                10   0
+ 11           8.88889   0
+ 12           7.77778   0
+ 13           8.88889   0
+ 14                10   0
+ 15           11.1111   0
+ 16           12.2222   0
+ 17           13.3333   0
+ 18           14.4444   0
+ 19           15.5556   0
+ 20           8.88889   0
+ 21           7.77778   0
+ 22           6.66667   0
+ 23           7.77778   0
+ 24           8.88889   0
+ 25                10   2
+ 26           11.1111   2
+ 27           12.2222   0
+ 28           13.3333   0
+ 29           14.4444   0
+ 30           7.77778   0
+ 31           6.66667   0
+ 32           5.55556   0
+ 33           6.66667   0
+ 34           7.77778   0
+ 35           11.1111   1
+ 36           12.2222   0
+ 37           11.1111   0
+ 38           12.2222   0
+ 39           13.3333   0
+ 40           6.66667   3
+ 41           5.55556   3
+ 42           4.44444   0
+ 43           5.55556   2
+ 44           6.66667   2
+ 45           12.2222   1
+ 46           11.1111   3
+ 47                10   0
+ 48           11.1111   2
+ 49           12.2222   2
+ 50           5.55556   0
+ 51           4.44444   0
+ 52           3.33333   0
+ 53           4.44444   0
+ 54           5.55556   0
+ 55           6.66667   0
+ 56           7.77778   0
+ 57           8.88889   0
+ 58                10   0
+ 59           11.1111   0
+ 60           4.44444   0
+ 61           3.33333   0
+ 62           2.22222   0
+ 63           3.33333   0
+ 64           4.44444   0
+ 65           5.55556   0
+ 66           6.66667   0
+ 67           7.77778   0
+ 68           8.88889   0
+ 69                10   0
+ 70           3.33333   0
+ 71           2.22222   0
+ 72           1.11111   0
+ 73           2.22222   0
+ 74           3.33333   0
+ 75           4.44444   2
+ 76           5.55556   2
+ 77           6.66667   2
+ 78           7.77778   2
+ 79           8.88889   2
+ 80           2.22222   0
+ 81           1.11111   0
+ 82                 0   0
+ 83           1.11111   0
+ 84           2.22222   0
+ 85           5.55556   1
+ 86           6.66667   1
+ 87           7.77778   1
+ 88           8.88889   1
+ 89                10   1
+ 90           1.11111   3
+ 91                 0   3
+ 92          -1.11111   0
+ 93                 0   2
+ 94           1.11111   2
+ 95           6.66667   1
+ 96           7.77778   1
+ 97           8.88889   1
+ 98                10   1
+ 99           11.1111   1
+100                 0   0
+101                 0   0
+102                 0   0
+103                 0   0
+104                 0   0
+105                 0   0
+106                 0   0
+107                 0   0
+108                 0   0
+109                 0   0
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+<section id="Print-policy-dimension-by-dimension">
+<h2>Print policy dimension by dimension<a class="headerlink" href="#Print-policy-dimension-by-dimension" title="Link to this heading"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> can be printed dimension by dimension with method <code class="docutils literal notranslate"><span class="pre">SolutionByDim</span></code> whose first parameter is the dimension to be scanned. Below we scan the columns. THe line is fixed and we let vary the columns.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print solution by dimension (line by line)&quot;</span><span class="p">)</span>
+<span class="n">line</span><span class="o">=</span><span class="n">optimum2</span><span class="o">.</span><span class="n">SolutionByDim</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">stateSpace</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Print solution by dimension (line by line)
+Solution of MDP problem
+Size of the state space : 110
+Dimension to follow : 1
+#############################################
+# Solution of the entered problem model:
+# - column 1: index of the state
+# - column 2: Value function
+# - column 3: Optimal action
+#
+ etat : 0       (   0,   0)              11.1111   0
+ etat : 1       (   0,   1)                   10   0
+ etat : 2       (   0,   2)              8.88889   0
+ etat : 3       (   0,   3)                   10   0
+ etat : 4       (   0,   4)              11.1111   0
+ etat : 5       (   0,   5)              12.2222   0
+ etat : 6       (   0,   6)              13.3333   0
+ etat : 7       (   0,   7)              14.4444   0
+ etat : 8       (   0,   8)              15.5556   0
+ etat : 9       (   0,   9)              16.6667   0
+
+ etat : 10      (   1,   0)                   10   0
+ etat : 11      (   1,   1)              8.88889   0
+ etat : 12      (   1,   2)              7.77778   0
+ etat : 13      (   1,   3)              8.88889   0
+ etat : 14      (   1,   4)                   10   0
+ etat : 15      (   1,   5)              11.1111   0
+ etat : 16      (   1,   6)              12.2222   0
+ etat : 17      (   1,   7)              13.3333   0
+ etat : 18      (   1,   8)              14.4444   0
+ etat : 19      (   1,   9)              15.5556   0
+
+ etat : 20      (   2,   0)              8.88889   0
+ etat : 21      (   2,   1)              7.77778   0
+ etat : 22      (   2,   2)              6.66667   0
+ etat : 23      (   2,   3)              7.77778   0
+ etat : 24      (   2,   4)              8.88889   0
+ etat : 25      (   2,   5)                   10   2
+ etat : 26      (   2,   6)              11.1111   2
+ etat : 27      (   2,   7)              12.2222   0
+ etat : 28      (   2,   8)              13.3333   0
+ etat : 29      (   2,   9)              14.4444   0
+
+ etat : 30      (   3,   0)              7.77778   0
+ etat : 31      (   3,   1)              6.66667   0
+ etat : 32      (   3,   2)              5.55556   0
+ etat : 33      (   3,   3)              6.66667   0
+ etat : 34      (   3,   4)              7.77778   0
+ etat : 35      (   3,   5)              11.1111   1
+ etat : 36      (   3,   6)              12.2222   0
+ etat : 37      (   3,   7)              11.1111   0
+ etat : 38      (   3,   8)              12.2222   0
+ etat : 39      (   3,   9)              13.3333   0
+
+ etat : 40      (   4,   0)              6.66667   3
+ etat : 41      (   4,   1)              5.55556   3
+ etat : 42      (   4,   2)              4.44444   0
+ etat : 43      (   4,   3)              5.55556   2
+ etat : 44      (   4,   4)              6.66667   2
+ etat : 45      (   4,   5)              12.2222   1
+ etat : 46      (   4,   6)              11.1111   3
+ etat : 47      (   4,   7)                   10   0
+ etat : 48      (   4,   8)              11.1111   2
+ etat : 49      (   4,   9)              12.2222   2
+
+ etat : 50      (   5,   0)              5.55556   0
+ etat : 51      (   5,   1)              4.44444   0
+ etat : 52      (   5,   2)              3.33333   0
+ etat : 53      (   5,   3)              4.44444   0
+ etat : 54      (   5,   4)              5.55556   0
+ etat : 55      (   5,   5)              6.66667   0
+ etat : 56      (   5,   6)              7.77778   0
+ etat : 57      (   5,   7)              8.88889   0
+ etat : 58      (   5,   8)                   10   0
+ etat : 59      (   5,   9)              11.1111   0
+
+ etat : 60      (   6,   0)              4.44444   0
+ etat : 61      (   6,   1)              3.33333   0
+ etat : 62      (   6,   2)              2.22222   0
+ etat : 63      (   6,   3)              3.33333   0
+ etat : 64      (   6,   4)              4.44444   0
+ etat : 65      (   6,   5)              5.55556   0
+ etat : 66      (   6,   6)              6.66667   0
+ etat : 67      (   6,   7)              7.77778   0
+ etat : 68      (   6,   8)              8.88889   0
+ etat : 69      (   6,   9)                   10   0
+
+ etat : 70      (   7,   0)              3.33333   0
+ etat : 71      (   7,   1)              2.22222   0
+ etat : 72      (   7,   2)              1.11111   0
+ etat : 73      (   7,   3)              2.22222   0
+ etat : 74      (   7,   4)              3.33333   0
+ etat : 75      (   7,   5)              4.44444   2
+ etat : 76      (   7,   6)              5.55556   2
+ etat : 77      (   7,   7)              6.66667   2
+ etat : 78      (   7,   8)              7.77778   2
+ etat : 79      (   7,   9)              8.88889   2
+
+ etat : 80      (   8,   0)              2.22222   0
+ etat : 81      (   8,   1)              1.11111   0
+ etat : 82      (   8,   2)                    0   0
+ etat : 83      (   8,   3)              1.11111   0
+ etat : 84      (   8,   4)              2.22222   0
+ etat : 85      (   8,   5)              5.55556   1
+ etat : 86      (   8,   6)              6.66667   1
+ etat : 87      (   8,   7)              7.77778   1
+ etat : 88      (   8,   8)              8.88889   1
+ etat : 89      (   8,   9)                   10   1
+
+ etat : 90      (   9,   0)              1.11111   3
+ etat : 91      (   9,   1)                    0   3
+ etat : 92      (   9,   2)             -1.11111   0
+ etat : 93      (   9,   3)                    0   2
+ etat : 94      (   9,   4)              1.11111   2
+ etat : 95      (   9,   5)              6.66667   1
+ etat : 96      (   9,   6)              7.77778   1
+ etat : 97      (   9,   7)              8.88889   1
+ etat : 98      (   9,   8)                   10   1
+ etat : 99      (   9,   9)              11.1111   1
+
+ etat : 100     (  10,   0)                    0   0
+ etat : 101     (  10,   1)                    0   0
+ etat : 102     (  10,   2)                    0   0
+ etat : 103     (  10,   3)                    0   0
+ etat : 104     (  10,   4)                    0   0
+ etat : 105     (  10,   5)                    0   0
+ etat : 106     (  10,   6)                    0   0
+ etat : 107     (  10,   7)                    0   0
+ etat : 108     (  10,   8)                    0   0
+ etat : 109     (  10,   9)                    0   0
+
+#############################################
+
+</pre></div></div>
+</div>
+</section>
+<section id="Enumerating-the-policy">
+<h2>Enumerating the policy<a class="headerlink" href="#Enumerating-the-policy" title="Link to this heading"></a></h2>
+<p>We can scan the policy by the way of the <em>iterator</em> of space. We also create a <em>buffer</em> to store the state.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create the buffer</span>
+<span class="n">bbuf</span> <span class="o">=</span> <span class="n">stateSpace</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Printing State Space Path and value function with a browsing by iterating space&quot;</span><span class="p">)</span>
+<span class="c1"># initial state (bbuf receive the value of the first state of the state space</span>
+<span class="n">stateSpace</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+<span class="c1"># scan</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+        <span class="c1"># getting the index of the state</span>
+        <span class="n">indexO</span> <span class="o">=</span> <span class="n">stateSpace</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+        <span class="c1"># the different values of the states are in the array</span>
+        <span class="n">l</span><span class="o">=</span><span class="n">bbuf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># getting value of the first dimension of the box</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">bbuf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># getting value of the second dimension of the box</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--State in line=&quot;</span><span class="p">,</span> <span class="n">l</span> <span class="p">,</span> <span class="s2">&quot; column=&quot;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">&lt;=</span><span class="mi">4</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">l</span><span class="o">&lt;=</span><span class="mi">4</span><span class="p">))</span> <span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; --in Room at Bottom Left  &quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">&lt;=</span><span class="mi">4</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">))</span> <span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; --in Room at Top Left     &quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">l</span><span class="o">&lt;=</span><span class="mi">4</span><span class="p">))</span> <span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; --in Room at Bottom Right &quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">c</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">l</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">))</span> <span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; --in Room at Top Right    &quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="c1"># getting the values and the action at the index of the state</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; --Optimal Action=&quot;</span> <span class="p">,</span> <span class="n">optimum2</span><span class="o">.</span><span class="n">getActionIndex</span><span class="p">(</span><span class="n">indexO</span><span class="p">)</span> <span class="p">,</span> <span class="s2">&quot; --Value=&quot;</span> <span class="p">,</span> <span class="n">optimum2</span><span class="o">.</span><span class="n">getValueIndex</span><span class="p">(</span><span class="n">indexO</span><span class="p">)</span> <span class="p">)</span>
+        <span class="c1"># Move to next state</span>
+        <span class="n">stateSpace</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Printing State Space Path and value function with a browsing by iterating space
+--State in line= 0  column= 0  --in Room at Bottom Left    --Optimal Action= 0  --Value= 11.111111111563469
+--State in line= 0  column= 1  --in Room at Bottom Left    --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 0  column= 2  --in Room at Bottom Left    --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 0  column= 3  --in Room at Bottom Left    --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 0  column= 4  --in Room at Bottom Left    --Optimal Action= 0  --Value= 11.111111111563469
+--State in line= 0  column= 5  --in Room at Bottom Right   --Optimal Action= 0  --Value= 12.222222227640405
+--State in line= 0  column= 6  --in Room at Bottom Right   --Optimal Action= 0  --Value= 13.333333389457422
+--State in line= 0  column= 7  --in Room at Bottom Right   --Optimal Action= 0  --Value= 14.444444947828393
+--State in line= 0  column= 8  --in Room at Bottom Right   --Optimal Action= 0  --Value= 15.555559463358785
+--State in line= 0  column= 9  --in Room at Bottom Right   --Optimal Action= 0  --Value= 16.66669286901964
+--State in line= 1  column= 0  --in Room at Bottom Left    --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 1  column= 1  --in Room at Bottom Left    --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 1  column= 2  --in Room at Bottom Left    --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 1  column= 3  --in Room at Bottom Left    --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 1  column= 4  --in Room at Bottom Left    --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 1  column= 5  --in Room at Bottom Right   --Optimal Action= 0  --Value= 11.111111111563469
+--State in line= 1  column= 6  --in Room at Bottom Right   --Optimal Action= 0  --Value= 12.222222227640405
+--State in line= 1  column= 7  --in Room at Bottom Right   --Optimal Action= 0  --Value= 13.333333389457422
+--State in line= 1  column= 8  --in Room at Bottom Right   --Optimal Action= 0  --Value= 14.444444947828393
+--State in line= 1  column= 9  --in Room at Bottom Right   --Optimal Action= 0  --Value= 15.555559463358785
+--State in line= 2  column= 0  --in Room at Bottom Left    --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 2  column= 1  --in Room at Bottom Left    --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 2  column= 2  --in Room at Bottom Left    --Optimal Action= 0  --Value= 6.6666666666666705
+--State in line= 2  column= 3  --in Room at Bottom Left    --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 2  column= 4  --in Room at Bottom Left    --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 2  column= 5  --in Room at Bottom Right   --Optimal Action= 2  --Value= 10.000000000032566
+--State in line= 2  column= 6  --in Room at Bottom Right   --Optimal Action= 2  --Value= 11.111111111563469
+--State in line= 2  column= 7  --in Room at Bottom Right   --Optimal Action= 0  --Value= 12.222222227640405
+--State in line= 2  column= 8  --in Room at Bottom Right   --Optimal Action= 0  --Value= 13.333333389457422
+--State in line= 2  column= 9  --in Room at Bottom Right   --Optimal Action= 0  --Value= 14.444444947828393
+--State in line= 3  column= 0  --in Room at Bottom Left    --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 3  column= 1  --in Room at Bottom Left    --Optimal Action= 0  --Value= 6.6666666666666705
+--State in line= 3  column= 2  --in Room at Bottom Left    --Optimal Action= 0  --Value= 5.555555555555555
+--State in line= 3  column= 3  --in Room at Bottom Left    --Optimal Action= 0  --Value= 6.6666666666666705
+--State in line= 3  column= 4  --in Room at Bottom Left    --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 3  column= 5  --in Room at Bottom Right   --Optimal Action= 1  --Value= 11.111111111563469
+--State in line= 3  column= 6  --in Room at Bottom Right   --Optimal Action= 0  --Value= 12.222222227640405
+--State in line= 3  column= 7  --in Room at Bottom Right   --Optimal Action= 0  --Value= 11.111111111563469
+--State in line= 3  column= 8  --in Room at Bottom Right   --Optimal Action= 0  --Value= 12.222222227640405
+--State in line= 3  column= 9  --in Room at Bottom Right   --Optimal Action= 0  --Value= 13.333333389457422
+--State in line= 4  column= 0  --in Room at Bottom Left    --Optimal Action= 3  --Value= 6.6666666666666705
+--State in line= 4  column= 1  --in Room at Bottom Left    --Optimal Action= 3  --Value= 5.555555555555555
+--State in line= 4  column= 2  --in Room at Bottom Left    --Optimal Action= 0  --Value= 4.444444444444445
+--State in line= 4  column= 3  --in Room at Bottom Left    --Optimal Action= 2  --Value= 5.555555555555555
+--State in line= 4  column= 4  --in Room at Bottom Left    --Optimal Action= 2  --Value= 6.6666666666666705
+--State in line= 4  column= 5  --in Room at Bottom Right   --Optimal Action= 1  --Value= 12.222222227640405
+--State in line= 4  column= 6  --in Room at Bottom Right   --Optimal Action= 3  --Value= 11.111111111563469
+--State in line= 4  column= 7  --in Room at Bottom Right   --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 4  column= 8  --in Room at Bottom Right   --Optimal Action= 2  --Value= 11.111111111563469
+--State in line= 4  column= 9  --in Room at Bottom Right   --Optimal Action= 2  --Value= 12.222222227640405
+--State in line= 5  column= 0  --in Room at Top Left       --Optimal Action= 0  --Value= 5.555555555555555
+--State in line= 5  column= 1  --in Room at Top Left       --Optimal Action= 0  --Value= 4.444444444444445
+--State in line= 5  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= 3.333333333333333
+--State in line= 5  column= 3  --in Room at Top Left       --Optimal Action= 0  --Value= 4.444444444444445
+--State in line= 5  column= 4  --in Room at Top Left       --Optimal Action= 0  --Value= 5.555555555555555
+--State in line= 5  column= 5  --in Room at Top Right      --Optimal Action= 0  --Value= 6.6666666666666705
+--State in line= 5  column= 6  --in Room at Top Right      --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 5  column= 7  --in Room at Top Right      --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 5  column= 8  --in Room at Top Right      --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 5  column= 9  --in Room at Top Right      --Optimal Action= 0  --Value= 11.111111111563469
+--State in line= 6  column= 0  --in Room at Top Left       --Optimal Action= 0  --Value= 4.444444444444445
+--State in line= 6  column= 1  --in Room at Top Left       --Optimal Action= 0  --Value= 3.333333333333333
+--State in line= 6  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= 2.2222222222222223
+--State in line= 6  column= 3  --in Room at Top Left       --Optimal Action= 0  --Value= 3.333333333333333
+--State in line= 6  column= 4  --in Room at Top Left       --Optimal Action= 0  --Value= 4.444444444444445
+--State in line= 6  column= 5  --in Room at Top Right      --Optimal Action= 0  --Value= 5.555555555555555
+--State in line= 6  column= 6  --in Room at Top Right      --Optimal Action= 0  --Value= 6.6666666666666705
+--State in line= 6  column= 7  --in Room at Top Right      --Optimal Action= 0  --Value= 7.777777777777883
+--State in line= 6  column= 8  --in Room at Top Right      --Optimal Action= 0  --Value= 8.8888888888909
+--State in line= 6  column= 9  --in Room at Top Right      --Optimal Action= 0  --Value= 10.000000000032566
+--State in line= 7  column= 0  --in Room at Top Left       --Optimal Action= 0  --Value= 3.333333333333333
+--State in line= 7  column= 1  --in Room at Top Left       --Optimal Action= 0  --Value= 2.2222222222222223
+--State in line= 7  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= 1.1111111111111112
+--State in line= 7  column= 3  --in Room at Top Left       --Optimal Action= 0  --Value= 2.2222222222222223
+--State in line= 7  column= 4  --in Room at Top Left       --Optimal Action= 0  --Value= 3.333333333333333
+--State in line= 7  column= 5  --in Room at Top Right      --Optimal Action= 2  --Value= 4.444444444444445
+--State in line= 7  column= 6  --in Room at Top Right      --Optimal Action= 2  --Value= 5.555555555555555
+--State in line= 7  column= 7  --in Room at Top Right      --Optimal Action= 2  --Value= 6.6666666666666705
+--State in line= 7  column= 8  --in Room at Top Right      --Optimal Action= 2  --Value= 7.777777777777883
+--State in line= 7  column= 9  --in Room at Top Right      --Optimal Action= 2  --Value= 8.8888888888909
+--State in line= 8  column= 0  --in Room at Top Left       --Optimal Action= 0  --Value= 2.2222222222222223
+--State in line= 8  column= 1  --in Room at Top Left       --Optimal Action= 0  --Value= 1.1111111111111112
+--State in line= 8  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 8  column= 3  --in Room at Top Left       --Optimal Action= 0  --Value= 1.1111111111111112
+--State in line= 8  column= 4  --in Room at Top Left       --Optimal Action= 0  --Value= 2.2222222222222223
+--State in line= 8  column= 5  --in Room at Top Right      --Optimal Action= 1  --Value= 5.555555555555555
+--State in line= 8  column= 6  --in Room at Top Right      --Optimal Action= 1  --Value= 6.6666666666666705
+--State in line= 8  column= 7  --in Room at Top Right      --Optimal Action= 1  --Value= 7.777777777777883
+--State in line= 8  column= 8  --in Room at Top Right      --Optimal Action= 1  --Value= 8.8888888888909
+--State in line= 8  column= 9  --in Room at Top Right      --Optimal Action= 1  --Value= 10.000000000032566
+--State in line= 9  column= 0  --in Room at Top Left       --Optimal Action= 3  --Value= 1.1111111111111112
+--State in line= 9  column= 1  --in Room at Top Left       --Optimal Action= 3  --Value= 0.0
+--State in line= 9  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= -1.1111111111111112
+--State in line= 9  column= 3  --in Room at Top Left       --Optimal Action= 2  --Value= 0.0
+--State in line= 9  column= 4  --in Room at Top Left       --Optimal Action= 2  --Value= 1.1111111111111112
+--State in line= 9  column= 5  --in Room at Top Right      --Optimal Action= 1  --Value= 6.6666666666666705
+--State in line= 9  column= 6  --in Room at Top Right      --Optimal Action= 1  --Value= 7.777777777777883
+--State in line= 9  column= 7  --in Room at Top Right      --Optimal Action= 1  --Value= 8.8888888888909
+--State in line= 9  column= 8  --in Room at Top Right      --Optimal Action= 1  --Value= 10.000000000032566
+--State in line= 9  column= 9  --in Room at Top Right      --Optimal Action= 1  --Value= 11.111111111563469
+--State in line= 10  column= 0  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 1  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 2  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 3  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 4  --in Room at Top Left       --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 5  --in Room at Top Right      --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 6  --in Room at Top Right      --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 7  --in Room at Top Right      --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 8  --in Room at Top Right      --Optimal Action= 0  --Value= 0.0
+--State in line= 10  column= 9  --in Room at Top Right      --Optimal Action= 0  --Value= 0.0
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MDP_Lesson3.html" class="btn btn-neutral float-left" title="MDP Lesson 3: average MDP and policy handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="App_Lesson1.html" class="btn btn-neutral float-right" title="Application Lesson 1: Application to Mitrani’s hysteresis model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

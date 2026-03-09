@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ API" href="../cpp_api.html" />
+    <link rel="prev" title="Using the Python API of Marmote on google colab" href="colab/run_python_colab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../build_instructions.html#principle-of-the-software">Principle of the software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build_instructions.html#versions-and-prerequisites">Versions and prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build_instructions.html#platform-specific-instructions">Platform-specific instructions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../build_instructions.html#in-case-of-problems">In case of problems</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#problems-with-marmote-1-3-0">Problems with marmote-1-3-0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problems-with-marmote-1-2-0">Problems with marmote-1-2-0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../build_instructions.html">Install and run instructions</a></li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/instructions/faq.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<nav class="contents local" id="issues-are-organised-by-marmote-version">
+<p class="topic-title">Issues are organised by marmote version</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#problems-with-marmote-1-3-0" id="id4">Problems with marmote-1-3-0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installation-problem-with-linux" id="id5">Installation problem with Linux</a></p></li>
+<li><p><a class="reference internal" href="#installation-problem-with-macos" id="id6">Installation problem with MacOS</a></p></li>
+<li><p><a class="reference internal" href="#installation-problem-with-windows" id="id7">Installation problem with Windows</a></p></li>
+<li><p><a class="reference internal" href="#installation-problem-on-colab" id="id8">Installation problem on colab</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#problems-with-marmote-1-2-0" id="id9">Problems with marmote-1-2-0</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id10">Installation problem on colab</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id11">Installation problem with Linux</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="problems-with-marmote-1-3-0">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Problems with marmote-1-3-0</a><a class="headerlink" href="#problems-with-marmote-1-3-0" title="Link to this heading"></a></h2>
+<section id="installation-problem-with-linux">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Installation problem with Linux</a><a class="headerlink" href="#installation-problem-with-linux" title="Link to this heading"></a></h3>
+<section id="june-2025-problem-of-python-3-13">
+<h4>June 2025.  Problem of python 3.13<a class="headerlink" href="#june-2025-problem-of-python-3-13" title="Link to this heading"></a></h4>
+<p>For the version of <em>python3.13</em> it is not possible to have both <em>marmote-1-3-0</em> and <em>jupyter</em>. Furthermore, without installing a specific version of python in the conda env
+(with  command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">python=3.1X</span></code>) before marmote install, then during the installation of <em>marmote1-3-0</em>, the version of python is switched to <em>python3-13</em>.
+For the time being, we recommend that you install <em>python3.12</em>.</p>
+</section>
+<section id="june-2025-problem-of-compiling">
+<h4>June 2025.  Problem of compiling<a class="headerlink" href="#june-2025-problem-of-compiling" title="Link to this heading"></a></h4>
+<p>If you encounter the following error message during compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>undefined<span class="w"> </span>reference<span class="w"> </span>«<span class="w"> </span>std::__cxx11::basic_string&lt;char,<span class="w"> </span>std::char_traits&lt;char&gt;,<span class="w"> </span>std::allocator&lt;char&gt;<span class="w"> </span>&gt;::_M_replace_cold<span class="o">(</span>char*,<span class="w"> </span>unsigned<span class="w"> </span>long,<span class="w"> </span>char<span class="w"> </span>const*,<span class="w"> </span>unsigned<span class="w"> </span>long,<span class="w"> </span>unsigned<span class="w"> </span>long<span class="o">)</span>@GLIBCXX_3.4.31
+</pre></div>
+</div>
+<p>Then you need to install a new version of the library  <cite>GLIBCXX</cite> (marmote-1-3-0 has been compiled with version 15 of GLIBC). This can be done by typing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">gxx</span><span class="o">=</span><span class="m">15</span><span class="w"> </span>libstdcxx-ng
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installation-problem-with-macos">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Installation problem with MacOS</a><a class="headerlink" href="#installation-problem-with-macos" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>June 2025.  Problem of compiling<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<p>If the following error appears
+<code class="docutils literal notranslate"><span class="pre">fatal</span> <span class="pre">error:</span> <span class="pre">'string'</span> <span class="pre">file</span> <span class="pre">not</span> <span class="pre">found</span> <span class="pre">#include</span> <span class="pre">&lt;string&gt;</span></code>, this is not an error of <em>marmote</em> but a (more general) problem of MacOS.
+To resolve the issue you should desinstall and reinstall the command line tool by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/Library/Developer/CommandLineTools
+xcode-select<span class="w"> </span>--install
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installation-problem-with-windows">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Installation problem with Windows</a><a class="headerlink" href="#installation-problem-with-windows" title="Link to this heading"></a></h3>
+<section id="june-2025-problem-with-mkl-library">
+<h4>June 2025.  Problem with <em>mkl</em> library<a class="headerlink" href="#june-2025-problem-with-mkl-library" title="Link to this heading"></a></h4>
+<p>In this case, it may be necessary to reinstall <em>mkl</em> library after marmote install. To do so <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">mkl</span></code>.</p>
+</section>
+</section>
+<section id="installation-problem-on-colab">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Installation problem on colab</a><a class="headerlink" href="#installation-problem-on-colab" title="Link to this heading"></a></h3>
+<section id="october-2025-problem-of-colab-environment">
+<h4>October 2025.  Problem of colab environment<a class="headerlink" href="#october-2025-problem-of-colab-environment" title="Link to this heading"></a></h4>
+</section>
+</section>
+</section>
+<section id="problems-with-marmote-1-2-0">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Problems with marmote-1-2-0</a><a class="headerlink" href="#problems-with-marmote-1-2-0" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Installation problem on colab</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="june-2025-problem-of-numpy-version">
+<h4>June 2025.  Problem of numpy version<a class="headerlink" href="#june-2025-problem-of-numpy-version" title="Link to this heading"></a></h4>
+<p>Google change the numpy version in colab. The standard version is now <em>2.0.2</em> but <em>marmote-1-2-0</em> expects an older version of numpy <em>1.26.4</em> or older. It must be necessary to change the numpy version.</p>
+<p><strong>Check the installed version</strong> To check the version,</p>
+<ol class="arabic simple">
+<li><p>Add a new code cell in the notebook juste before the cell with text <code class="docutils literal notranslate"><span class="pre">To</span> <span class="pre">install</span> <span class="pre">marmote</span></code> and fill in with the instructions</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Execute the cell. The version of numpy used is printed. If the version is not <em>1.XX.yy</em>, then you can not use marmote (but you can install it) and you should install the correct version of numpy.</p></li>
+</ol>
+<p><strong>Install the correct version of numpy</strong> To install the correct version of numpy</p>
+<ol class="arabic simple">
+<li><p>Add a new code cell just before the cell with text  <code class="docutils literal notranslate"><span class="pre">To</span> <span class="pre">install</span> <span class="pre">condacolab</span></code> and fill in with the instructions</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>uninstall<span class="w"> </span>numpy<span class="w"> </span>thinc<span class="w"> </span>spacy<span class="w"> </span>-y
+!pip<span class="w"> </span>uninstall<span class="w"> </span>numpy<span class="w"> </span>-y
+!pip<span class="w"> </span>install<span class="w"> </span>-qq<span class="w"> </span><span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.26.4
+<span class="k">if</span><span class="w"> </span>int<span class="o">(</span>np.__version__<span class="o">[</span><span class="m">0</span><span class="o">])</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span>:
+<span class="w">    </span>import<span class="w"> </span>os
+<span class="w">    </span>os.kill<span class="o">(</span>os.getpid<span class="o">()</span>,<span class="w"> </span><span class="m">9</span><span class="o">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>In <code class="docutils literal notranslate"><span class="pre">Runtime</span></code> tab, select <code class="docutils literal notranslate"><span class="pre">Disconnect</span> <span class="pre">and</span> <span class="pre">delete</span> <span class="pre">runtime</span></code></p></li>
+<li><p>Execute the notebook.</p></li>
+</ol>
+<p><em>N.B.</em> It may happen than during the installation of the new version of numpy some dependances are not satisfied (this occurs if the message  * <cite>error pip’s dependency resolver does not currently take into account all the packages that are installed</cite> * appears). However, even if the message appears you can continue to execute the notebook and the correct version of numpy should be installed.</p>
+</section>
+</section>
+<section id="id3">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Installation problem with Linux</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="june-2024-problem-of-old-libstdcxx-on-debian-stable">
+<h4>June 2024. Problem of old <cite>libstdcxx</cite> (on debian stable).<a class="headerlink" href="#june-2024-problem-of-old-libstdcxx-on-debian-stable" title="Link to this heading"></a></h4>
+<p>If you encounter the following error message during compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/usr/bin/ld<span class="w"> </span>:<span class="w"> </span>/miniconda3/envs/marmote-use/lib/libmarmoteMarkovChain.so.1.2.0<span class="w"> </span>:<span class="w"> </span>undefined<span class="w"> </span>reference<span class="w"> </span>«<span class="w"> </span>std::__cxx11::basic_string&lt;char,<span class="w"> </span>std::char_traits&lt;char&gt;,<span class="w"> </span>std::allocator&lt;char&gt;<span class="w"> </span>&gt;::_M_replace_cold<span class="o">(</span>char*,<span class="w"> </span>unsigned<span class="w"> </span>long,<span class="w"> </span>char<span class="w"> </span>const*,<span class="w"> </span>unsigned<span class="w"> </span>long,<span class="w"> </span>unsigned<span class="w"> </span>long<span class="o">)</span>@GLIBCXX_3.4.31
+</pre></div>
+</div>
+<p>Then you need to install a new version of the library  <cite>GLIBCXX</cite> (marmote-1-2-0 has been compiled with version 13 of GLIBC). This can be done by typing</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>libstdcxx-ng
+conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">gxx</span><span class="o">=</span><span class="m">13</span>.2.0
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colab/run_python_colab.html" class="btn btn-neutral float-left" title="Using the Python API of Marmote on google colab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cpp_api.html" class="btn btn-neutral float-right" title="C++ API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

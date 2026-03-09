@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{16E64D90-0F25-396B-9976-9A747ADDF7FE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\assia\miniconda3\envs\marmote-use\Library\include;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteCore;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMarkovChain;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMDP;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteLog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\assia\miniconda3\envs\marmote-use\Library\include;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteCore;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMarkovChain;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMDP;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteLog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\assia\miniconda3\envs\marmote-use\Library\include;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteCore;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMarkovChain;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMDP;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteLog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\assia\miniconda3\envs\marmote-use\Library\include;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteCore;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMarkovChain;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteMDP;C:\Users\assia\miniconda3\envs\marmote-use\Library\include\marmoteLog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\xpl\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\assia\miniconda3\envs\marmote-use\Library\bin\cmake.exe "-SC:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl" "-BC:/Users/assia/Documents/projet_univ/dossier 2/project-root/build" --check-stamp-file "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCXXCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeRCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\assia\miniconda3\envs\marmote-use\Library\bin\cmake.exe "-SC:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl" "-BC:/Users/assia/Documents/projet_univ/dossier 2/project-root/build" --check-stamp-file "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCXXCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeRCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\assia\miniconda3\envs\marmote-use\Library\bin\cmake.exe "-SC:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl" "-BC:/Users/assia/Documents/projet_univ/dossier 2/project-root/build" --check-stamp-file "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCXXCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeRCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\assia\miniconda3\envs\marmote-use\Library\bin\cmake.exe "-SC:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl" "-BC:/Users/assia/Documents/projet_univ/dossier 2/project-root/build" --check-stamp-file "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeCXXCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeRCCompiler.cmake;C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\4.2.3\CMakeSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Users\assia\miniconda3\envs\marmote-use\Library\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\ZERO_CHECK.vcxproj">
+      <Project>{6229B2F6-33FA-3C51-A918-CEDE55D86C9C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example1.vcxproj">
+      <Project>{77DA23A3-8CCA-34CA-A719-FEC1D59AEA45}</Project>
+      <Name>example1</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example10.vcxproj">
+      <Project>{BAB36E22-6E7B-3771-ADE4-0B989588DB9E}</Project>
+      <Name>example10</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example2.vcxproj">
+      <Project>{697DB9A1-DD6C-32F5-8DBD-87637C73C31E}</Project>
+      <Name>example2</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example3.vcxproj">
+      <Project>{1861D7A2-6BFD-324D-A64D-F68500F933C3}</Project>
+      <Name>example3</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example4_bin.vcxproj">
+      <Project>{00663D5D-117D-332E-B549-26869137CE72}</Project>
+      <Name>example4_bin</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example5.vcxproj">
+      <Project>{37295741-D4E8-3F8D-A286-685B656273DE}</Project>
+      <Name>example5</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example6.vcxproj">
+      <Project>{96CBC0AF-6F7C-3DE5-9D9A-70616C306F98}</Project>
+      <Name>example6</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\example7.vcxproj">
+      <Project>{0FD00E47-B0D9-35FB-8F25-F77A1C51E782}</Project>
+      <Name>example7</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\exampleMDP10.vcxproj">
+      <Project>{3063C499-A225-3B2A-8F47-3D040D852584}</Project>
+      <Name>exampleMDP10</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\exampleMDP11.vcxproj">
+      <Project>{ABFE88F2-2365-3DD7-AAD3-9CF9DB617AAF}</Project>
+      <Name>exampleMDP11</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\exampleMDP21.vcxproj">
+      <Project>{09F58794-DE6E-331C-90AF-E444CF1DB751}</Project>
+      <Name>exampleMDP21</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\exampleMDP31.vcxproj">
+      <Project>{998C222E-67FC-3CBD-92FD-0C6374F9A1D4}</Project>
+      <Name>exampleMDP31</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\assia\Documents\projet_univ\dossier 2\project-root\build\exampleMDP40.vcxproj">
+      <Project>{610FAE06-1B40-35E6-BDA1-3182B5850850}</Project>
+      <Name>exampleMDP40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

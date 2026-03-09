@@ -1,0 +1,913 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Lesson 1: Application to Mitrani’s hysteresis model &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application Lesson 2: Application to the control of a tandem multi server system" href="App_Lesson2.html" />
+    <link rel="prev" title="MDP Lesson 4: Total Reward MDP with two-dimensional state space" href="MDP_Lesson4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Application Lesson 1: Application to Mitrani’s hysteresis model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Picture-of-the-model-(credit:-Mitrani-2013,-Figure-2)">Picture of the model (credit: Mitrani 2013, Figure 2)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Naming-elements-to-make-code-readable">Naming elements to make code readable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Setting-up-the-loop-on-states">Setting up the loop on states</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Looping">Looping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Inspecting-the-matrix.">Inspecting the matrix.</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Application Lesson 1: Application to Mitrani’s hysteresis model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/App_Lesson1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Application-Lesson-1:-Application-to-Mitrani's-hysteresis-model">
+<h1>Application Lesson 1: Application to Mitrani’s hysteresis model<a class="headerlink" href="#Application-Lesson-1:-Application-to-Mitrani's-hysteresis-model" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">marmotecore</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.markovchain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">marmotemarkovchain</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<section id="Picture-of-the-model-(credit:-Mitrani-2013,-Figure-2)">
+<h2>Picture of the model (credit: Mitrani 2013, Figure 2)<a class="headerlink" href="#Picture-of-the-model-(credit:-Mitrani-2013,-Figure-2)" title="Link to this heading"></a></h2>
+<p><img alt="302dd700899f4e95a0c0764c4980e42a" src="../_images/Mitrani_chain.png" /></p>
+<p>Defining the constants/parameters of the model</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="mi">4</span>          <span class="c1"># Number of reserve servers</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>          <span class="c1"># Number of permanent servers</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span>        <span class="c1"># Total number of servers</span>
+<span class="n">lambda_</span> <span class="o">=</span> <span class="mf">3.0</span>  <span class="c1"># Arrival rate</span>
+<span class="n">mu_</span> <span class="o">=</span> <span class="mf">1.0</span>      <span class="c1"># Individual server service rate</span>
+<span class="n">nu_</span> <span class="o">=</span> <span class="mf">5.0</span>      <span class="c1"># Inverse of average warmup time of the block of m reserve servers</span>
+<span class="n">up</span> <span class="o">=</span> <span class="mi">6</span>         <span class="c1"># Upper threshold</span>
+<span class="n">down</span> <span class="o">=</span> <span class="mi">4</span>       <span class="c1"># Lower threshold</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">10</span>         <span class="c1"># Queue truncation parameter</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">space</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteBox</span><span class="p">(</span> <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="n">K</span><span class="o">+</span><span class="mi">1</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">space</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;(   0,   0) (   0,   1) (   0,   2) (   0,   3) (   0,   4) (   0,   5) (   0,   6) (   0,   7) (   0,   8) (   0,   9) (   0,  10) (   1,   0) (   1,   1) (   1,   2) (   1,   3) (   1,   4) (   1,   5) (   1,   6) (   1,   7) (   1,   8) (   1,   9) (   1,  10) (   2,   0) (   2,   1) (   2,   2) (   2,   3) (   2,   4) (   2,   5) (   2,   6) (   2,   7) (   2,   8) (   2,   9) (   2,  10) &#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qtrans</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span> <span class="n">space</span> <span class="p">)</span>
+<span class="n">Qtrans</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">CONTINUOUS</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qtrans</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+marmotecore.SparseMatrix (SparseMatrix (Object at 000001F631B84180) :
+- generator type: continuous
+- number of origin states:      33
+- number of destination states: 33
+- number of non zero elements:  0
+)
+</pre></div></div>
+</div>
+<section id="Filling-the-matrix">
+<h3>Filling the matrix<a class="headerlink" href="#Filling-the-matrix" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="Naming-elements-to-make-code-readable">
+<h2>Naming elements to make code readable<a class="headerlink" href="#Naming-elements-to-make-code-readable" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># naming of coordinates</span>
+<span class="n">QUEUE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SERV</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># naming of server states</span>
+<span class="n">SLOW</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">WARMING</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FAST</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Setting-up-the-loop-on-states">
+<h2>Setting up the loop on states<a class="headerlink" href="#Setting-up-the-loop-on-states" title="Link to this heading"></a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stateBuffer</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">space</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0 0]
+</pre></div></div>
+</div>
+</section>
+<section id="Looping">
+<h2>Looping<a class="headerlink" href="#Looping" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">looping</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">while</span> <span class="n">looping</span><span class="p">:</span>
+    <span class="c1"># print( &quot;Transitions for state &quot;, stateBuffer )</span>
+    <span class="c1"># convenience local variables, also used for restoring stateBuffer</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: arrivals</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">K</span> <span class="p">):</span>
+      <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">up</span> <span class="p">)</span> <span class="ow">and</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">==</span> <span class="n">SLOW</span> <span class="p">)</span> <span class="p">):</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">WARMING</span><span class="p">;</span>
+
+      <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">lambda_</span> <span class="p">);</span>
+      <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">lambda_</span> <span class="p">);</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: departure</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="c1"># number of active servers</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">s</span> <span class="o">==</span> <span class="n">FAST</span> <span class="p">):</span>
+            <span class="n">nbServ</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">m</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nbServ</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span> <span class="p">)</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">==</span> <span class="n">down</span> <span class="p">):</span> <span class="c1"># whatever state of server: becomes SLOW</span>
+            <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">SLOW</span><span class="p">;</span>
+
+        <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">mu_</span> <span class="o">*</span> <span class="n">nbServ</span> <span class="p">)</span>
+        <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">mu_</span> <span class="o">*</span> <span class="n">nbServ</span> <span class="p">)</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: end of warmup</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">s</span> <span class="o">==</span> <span class="n">WARMING</span> <span class="p">):</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAST</span>
+        <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">nu_</span> <span class="p">)</span>
+        <span class="n">Qtrans</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">nu_</span> <span class="p">)</span>
+
+    <span class="c1"># next state</span>
+    <span class="n">space</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span> <span class="n">stateBuffer</span> <span class="p">)</span>
+    <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">looping</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">space</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Inspecting-the-matrix.">
+<h2>Inspecting the matrix.<a class="headerlink" href="#Inspecting-the-matrix." title="Link to this heading"></a></h2>
+<p>Matrices can be printed using a variety of formats (sparse, Matlab, Maple, numpy).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">Qtrans</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">FORMAT_NUMPY</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=np.array([
+[-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, -4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 2, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 2, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 2, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 2, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -8, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -9, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -4, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, -6, 3, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, -7, 3, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -8, 3, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -6]
+], dtype=float)
+
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Diagnose</span></code> method produces a summary of various metrics <strong>plus</strong> the structural analysis of the matrix (recurrent/transient classes).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_INDEX</span> <span class="p">)</span>
+<span class="n">Qtrans</span><span class="o">.</span><span class="n">Diagnose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Since it is not always simple to relate indices to states, it is also possible to print both the index <strong>and</strong> the state.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_BOTH</span> <span class="p">)</span>
+<span class="n">Qtrans</span><span class="o">.</span><span class="n">Diagnose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The connectivity of the state space can be further investigated with the function <code class="docutils literal notranslate"><span class="pre">IsAccessible()</span></code>. This requires creating the Markov chain.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hymc</span> <span class="o">=</span> <span class="n">marmotemarkovchain</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">Qtrans</span> <span class="p">)</span>
+<span class="n">hymc</span><span class="o">.</span><span class="n">set_model_name</span><span class="p">(</span> <span class="s2">&quot;Hysteresis_box&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="p">[</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsAccessible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">31</span><span class="p">),</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsAccessible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsAccessible</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+        <span class="n">hymc</span><span class="o">.</span><span class="n">IsAccessible</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsAccessible</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">27</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[True, True, False, True, True]
+</pre></div></div>
+</div>
+<p>Whether the chain is irreducible or not is checked with the method <code class="docutils literal notranslate"><span class="pre">IsIrreducible()</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsIrreducible</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<section id="Stationary-distribution-and-average-cost">
+<h3>Stationary distribution and average cost<a class="headerlink" href="#Stationary-distribution-and-average-cost" title="Link to this heading"></a></h3>
+<p>Let us compute the stationary distribution. This can be done here despite the fact that the chain is not irreducible.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dista</span> <span class="o">=</span> <span class="n">hymc</span><span class="o">.</span><span class="n">StationaryDistribution</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Inspecting the distribution. As expected, it has many zeroes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dista</span><span class="p">)</span>             <span class="c1"># Printing a summary of the distribution</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dista</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>  <span class="c1"># Printing the distribution in extenso</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete distribution values { 0:{   0   0}  1:{   0   1}  2:{   0   2}  3:{   0   3}  4:{   0   4}  5:{   0   5}  6:{   0   6}  7:{   0   7}  8:{   0   8}  ... 32:{   2  10}  } probas { 0.0177265 0.0531795 0.0797691 0.119654  0.17948 0.141695 0.0850168        0        0 ... 0.0144368 }
+#
+discrete values { 0:{   0   0}  1:{   0   1}  2:{   0   2}  3:{   0   3}  4:{   0   4}  5:{   0   5}  6:{   0   6}  7:{   0   7}  8:{   0   8}  9:{   0   9}  10:{   0  10}  11:{   1   0}  12:{   1   1}  13:{   1   2}  14:{   1   3}  15:{   1   4}  16:{   1   5}  17:{   1   6}  18:{   1   7}  19:{   1   8}  20:{   1   9}  21:{   1  10}  22:{   2   0}  23:{   2   1}  24:{   2   2}  25:{   2   3}  26:{   2   4}  27:{   2   5}  28:{   2   6}  29:{   2   7}  30:{   2   8}  31:{   2   9}  32:{   2  10}  } probas {  0.01773  0.05318  0.07977   0.1197   0.1795   0.1417  0.08502        0        0        0        0        0        0        0        0        0 0.001245 0.006223  0.02925 0.009391 0.003082 0.001321        0        0        0        0        0  0.05051  0.06631  0.06903  0.04601  0.02667  0.01444 }
+</pre></div></div>
+</div>
+<p>Checking that the distribution is consistent by summing its probabilities.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">dista</span><span class="o">.</span><span class="n">getProbaByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.9999999999999972
+</pre></div></div>
+</div>
+<p>Computing an average linear cost.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">avg_cost</span><span class="p">(</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">dis</span> <span class="p">):</span>
+    <span class="n">avgL</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">avgS</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">space</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+    <span class="c1"># print(stateBuffer)</span>
+    <span class="n">go_on</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">go_on</span><span class="p">:</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">dis</span><span class="o">.</span><span class="n">getProbaByIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">nbServ</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">==</span> <span class="n">FAST</span> <span class="p">):</span>
+            <span class="n">nbServ</span> <span class="o">+=</span> <span class="n">m</span>
+        <span class="n">avgL</span> <span class="o">=</span> <span class="n">avgL</span> <span class="o">+</span> <span class="n">prob</span><span class="o">*</span><span class="n">stateBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span>
+        <span class="n">avgS</span> <span class="o">=</span> <span class="n">avgS</span> <span class="o">+</span> <span class="n">prob</span><span class="o">*</span><span class="n">nbServ</span>
+        <span class="n">space</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+        <span class="c1"># print(stateBuffer)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">go_on</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">space</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span> <span class="n">c1</span><span class="o">*</span><span class="n">avgL</span> <span class="o">+</span> <span class="n">c2</span><span class="o">*</span><span class="n">avgS</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span> <span class="o">=</span> <span class="n">avg_cost</span><span class="p">(</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dista</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7.850531279190159
+</pre></div></div>
+</div>
+</section>
+<section id="Tayloring-the-state-space">
+<h3>Tayloring the state space<a class="headerlink" href="#Tayloring-the-state-space" title="Link to this heading"></a></h3>
+<p>The previous approach with a rectangular (box) state space was inefficient, since probabilities had to be computed for non-recurrent states.</p>
+<p>In the following it is shown how to define a state space which fits exactly the recurrent class.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smaller_space</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteUnionSet</span><span class="p">()</span>                  <span class="c1"># Prepare the construction of the state space as a union</span>
+<span class="n">smaller_space</span><span class="o">.</span><span class="n">AddSet</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">up</span><span class="p">)</span> <span class="p">)</span>      <span class="c1"># Sub-space with only permanent servers</span>
+<span class="n">smaller_space</span><span class="o">.</span><span class="n">AddSet</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="n">down</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)</span> <span class="p">)</span>  <span class="c1"># Sub-space with additional servers warming up</span>
+<span class="n">smaller_space</span><span class="o">.</span><span class="n">AddSet</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="n">down</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="p">)</span> <span class="p">)</span>  <span class="c1"># Sub-space with additional servers running</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smaller_space</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39; 0:[ 0]  0:[ 1]  0:[ 2]  0:[ 3]  0:[ 4]  0:[ 5]  0:[ 6]  1:[ 5]  1:[ 6]  1:[ 7]  1:[ 8]  1:[ 9]  1:[ 10]  2:[ 5]  2:[ 6]  2:[ 7]  2:[ 8]  2:[ 9]  2:[ 10] &#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smaller_space</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+19
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smaller_space</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>Defining a new matrix on this smaller state space, and filling it.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qtrans_alt</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span> <span class="n">smaller_space</span> <span class="p">)</span>
+<span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">CONTINUOUS</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># naming of coordinates</span>
+<span class="n">QUEUE</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SERV</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># naming of server states</span>
+<span class="n">SLOW</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">WARMING</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FAST</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1"># preparation of buffers</span>
+<span class="n">stateBuffer</span> <span class="o">=</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">smaller_space</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+<span class="n">looping</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">looping</span><span class="p">:</span>
+    <span class="c1"># print( &quot;Transitions for state &quot;, stateBuffer )</span>
+    <span class="c1"># convenience local variables, also used for restoring stateBuffer</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: arrivals</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">K</span> <span class="p">):</span>
+      <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">up</span> <span class="p">)</span> <span class="ow">and</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">==</span> <span class="n">SLOW</span> <span class="p">)</span> <span class="p">):</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">WARMING</span><span class="p">;</span>
+
+      <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">lambda_</span> <span class="p">);</span>
+      <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">lambda_</span> <span class="p">);</span>
+      <span class="c1"># print( stateBuffer, &quot; to &quot;, nextBuffer )</span>
+      <span class="c1"># print( smaller_space.Belongs(nextBuffer), smaller_space.Index(nextBuffer) )</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: departure</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">):</span>
+        <span class="c1"># number of active servers</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">s</span> <span class="o">==</span> <span class="n">FAST</span> <span class="p">):</span>
+            <span class="n">nbServ</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="n">m</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nbServ</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="n">q</span><span class="p">,</span> <span class="n">n</span> <span class="p">)</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">nextBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span> <span class="o">==</span> <span class="n">down</span> <span class="p">):</span> <span class="c1"># whatever state of server: becomes SLOW</span>
+            <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">SLOW</span><span class="p">;</span>
+
+        <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">mu_</span> <span class="o">*</span> <span class="n">nbServ</span> <span class="p">)</span>
+        <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">mu_</span> <span class="o">*</span> <span class="n">nbServ</span> <span class="p">)</span>
+
+    <span class="n">nextBuffer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span> <span class="c1"># copy current state</span>
+    <span class="c1"># Event: end of warmup</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">s</span> <span class="o">==</span> <span class="n">WARMING</span> <span class="p">):</span>
+        <span class="n">nextBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">=</span> <span class="n">FAST</span>
+        <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">nextBuffer</span><span class="p">),</span> <span class="n">nu_</span> <span class="p">)</span>
+        <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span> <span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="o">-</span><span class="n">nu_</span> <span class="p">)</span>
+
+    <span class="c1"># next state</span>
+    <span class="n">smaller_space</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span> <span class="n">stateBuffer</span> <span class="p">)</span>
+    <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">looping</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">FORMAT_NUMPY</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=np.array([
+[-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[1, -4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 2, -5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 2, -5, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 2, 0, 0, -10, 3, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 5, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 5, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 5, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -10, 3, 0, 0, 0, 0, 5, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -7, 0, 0, 0, 0, 0, 5],
+[0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, -8, 3, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -9, 3],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, -6]
+], dtype=float)
+
+</pre></div></div>
+</div>
+<p>Using the “full state” feature to inspect in detail the transitions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">FORMAT_FULLSTATE</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ 0:{ 0 0}   1:{ 0 1}  3.000000e+00
+ 0:{ 0 0}   0:{ 0 0}  -3.000000e+00
+ 1:{ 0 1}   2:{ 0 2}  3.000000e+00
+ 1:{ 0 1}   1:{ 0 1}  -4.000000e+00
+ 1:{ 0 1}   0:{ 0 0}  1.000000e+00
+ 2:{ 0 2}   3:{ 0 3}  3.000000e+00
+ 2:{ 0 2}   2:{ 0 2}  -5.000000e+00
+ 2:{ 0 2}   1:{ 0 1}  2.000000e+00
+ 3:{ 0 3}   4:{ 0 4}  3.000000e+00
+ 3:{ 0 3}   3:{ 0 3}  -5.000000e+00
+ 3:{ 0 3}   2:{ 0 2}  2.000000e+00
+ 4:{ 0 4}   5:{ 0 5}  3.000000e+00
+ 4:{ 0 4}   4:{ 0 4}  -5.000000e+00
+ 4:{ 0 4}   3:{ 0 3}  2.000000e+00
+ 5:{ 0 5}   6:{ 0 6}  3.000000e+00
+ 5:{ 0 5}   5:{ 0 5}  -5.000000e+00
+ 5:{ 0 5}   4:{ 0 4}  2.000000e+00
+ 6:{ 0 6}   9:{ 1 7}  3.000000e+00
+ 6:{ 0 6}   6:{ 0 6}  -5.000000e+00
+ 6:{ 0 6}   5:{ 0 5}  2.000000e+00
+ 7:{ 1 5}   8:{ 1 6}  3.000000e+00
+ 7:{ 1 5}   7:{ 1 5}  -1.000000e+01
+ 7:{ 1 5}   4:{ 0 4}  2.000000e+00
+ 7:{ 1 5}  13:{ 2 5}  5.000000e+00
+ 8:{ 1 6}   9:{ 1 7}  3.000000e+00
+ 8:{ 1 6}   8:{ 1 6}  -1.000000e+01
+ 8:{ 1 6}   7:{ 1 5}  2.000000e+00
+ 8:{ 1 6}  14:{ 2 6}  5.000000e+00
+ 9:{ 1 7}  10:{ 1 8}  3.000000e+00
+ 9:{ 1 7}   9:{ 1 7}  -1.000000e+01
+ 9:{ 1 7}   8:{ 1 6}  2.000000e+00
+ 9:{ 1 7}  15:{ 2 7}  5.000000e+00
+10:{ 1 8}  11:{ 1 9}  3.000000e+00
+10:{ 1 8}  10:{ 1 8}  -1.000000e+01
+10:{ 1 8}   9:{ 1 7}  2.000000e+00
+10:{ 1 8}  16:{ 2 8}  5.000000e+00
+11:{ 1 9}  12:{ 1 10}  3.000000e+00
+11:{ 1 9}  11:{ 1 9}  -1.000000e+01
+11:{ 1 9}  10:{ 1 8}  2.000000e+00
+11:{ 1 9}  17:{ 2 9}  5.000000e+00
+12:{ 1 10}  11:{ 1 9}  2.000000e+00
+12:{ 1 10}  12:{ 1 10}  -7.000000e+00
+12:{ 1 10}  18:{ 2 10}  5.000000e+00
+13:{ 2 5}  14:{ 2 6}  3.000000e+00
+13:{ 2 5}  13:{ 2 5}  -8.000000e+00
+13:{ 2 5}   4:{ 0 4}  5.000000e+00
+14:{ 2 6}  15:{ 2 7}  3.000000e+00
+14:{ 2 6}  14:{ 2 6}  -9.000000e+00
+14:{ 2 6}  13:{ 2 5}  6.000000e+00
+15:{ 2 7}  16:{ 2 8}  3.000000e+00
+15:{ 2 7}  15:{ 2 7}  -9.000000e+00
+15:{ 2 7}  14:{ 2 6}  6.000000e+00
+16:{ 2 8}  17:{ 2 9}  3.000000e+00
+16:{ 2 8}  16:{ 2 8}  -9.000000e+00
+16:{ 2 8}  15:{ 2 7}  6.000000e+00
+17:{ 2 9}  18:{ 2 10}  3.000000e+00
+17:{ 2 9}  17:{ 2 9}  -9.000000e+00
+17:{ 2 9}  16:{ 2 8}  6.000000e+00
+18:{ 2 10}  17:{ 2 9}  6.000000e+00
+18:{ 2 10}  18:{ 2 10}  -6.000000e+00
+
+</pre></div></div>
+</div>
+<p>Looking at the structural analysis.</p>
+<p>Now all states are recurrent.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qtrans_alt</span><span class="o">.</span><span class="n">Diagnose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Indeed, irreducibility can be tested on Markov chains with the <code class="docutils literal notranslate"><span class="pre">IsIrreducible()</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hymc_alt</span> <span class="o">=</span> <span class="n">marmotemarkovchain</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">Qtrans_alt</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">hymc_alt</span><span class="o">.</span><span class="n">IsIrreducible</span><span class="p">()</span> <span class="p">)</span>                        <span class="c1"># The new chain is irreducible</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">hymc</span><span class="o">.</span><span class="n">IsIrreducible</span><span class="p">()</span> <span class="p">)</span>                            <span class="c1"># The old one is not</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+False
+</pre></div></div>
+</div>
+<p>Computing the stationary distribution of this new chain, checking that it is consistent, then computing the average cost.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dista_alt</span> <span class="o">=</span> <span class="n">hymc_alt</span><span class="o">.</span><span class="n">StationaryDistribution</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dista_alt</span><span class="p">)</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">smaller_space</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">dista_alt</span><span class="o">.</span><span class="n">getProbaByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete distribution values { 0:{ 0 0}  1:{ 0 1}  2:{ 0 2}  3:{ 0 3}  4:{ 0 4}  5:{ 0 5}  6:{ 0 6}  7:{ 1 5}  8:{ 1 6}  ... 18:{ 2 10}  } probas { 0.0177265 0.0531795 0.0797691 0.119654  0.17948 0.141695 0.0850168 0.0012447 0.00622349 ... 0.0144368 }
+0.9999999999999972
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">avg_cost_alt</span><span class="p">(</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">dis</span> <span class="p">):</span>
+    <span class="n">avgL</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">avgS</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">smaller_space</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+    <span class="c1"># print(stateBuffer)</span>
+    <span class="n">go_on</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">go_on</span><span class="p">:</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">dis</span><span class="o">.</span><span class="n">getProbaByIndex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">nbServ</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">stateBuffer</span><span class="p">[</span><span class="n">SERV</span><span class="p">]</span> <span class="o">==</span> <span class="n">FAST</span> <span class="p">):</span>
+            <span class="n">nbServ</span> <span class="o">+=</span> <span class="n">m</span>
+        <span class="n">avgL</span> <span class="o">=</span> <span class="n">avgL</span> <span class="o">+</span> <span class="n">prob</span><span class="o">*</span><span class="n">stateBuffer</span><span class="p">[</span><span class="n">QUEUE</span><span class="p">]</span>
+        <span class="n">avgS</span> <span class="o">=</span> <span class="n">avgS</span> <span class="o">+</span> <span class="n">prob</span><span class="o">*</span><span class="n">nbServ</span>
+        <span class="n">smaller_space</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+        <span class="c1"># print(stateBuffer)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">go_on</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">smaller_space</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">stateBuffer</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span> <span class="n">c1</span><span class="o">*</span><span class="n">avgL</span> <span class="o">+</span> <span class="n">c2</span><span class="o">*</span><span class="n">avgS</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_alt</span> <span class="o">=</span> <span class="n">avg_cost_alt</span><span class="p">(</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">dista_alt</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In the end we have the same cost</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cost_alt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">cost</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7.850531279190159
+7.850531279190159
+</pre></div></div>
+</div>
+<p>End of App_Lesson1.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MDP_Lesson4.html" class="btn btn-neutral float-left" title="MDP Lesson 4: Total Reward MDP with two-dimensional state space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="App_Lesson2.html" class="btn btn-neutral float-right" title="Application Lesson 2: Application to the control of a tandem multi server system" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

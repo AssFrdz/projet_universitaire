@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+html.writer-html4 .rst-content dl:not(.docutils)>dt, html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple)>dt {
+    @apply block bg-transparent border-t-transparent;
+}
+
+html.writer-html4 .rst-content dl:not(.docutils) .descclassname, html.writer-html4 .rst-content dl:not(.docutils) .descname, html.writer-html4 .rst-content dl:not(.docutils) .sig-name, html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) .descclassname, html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) .descname, html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.citation):not(.glossary):not(.simple) .sig-name {
+    @apply font-mono font-bold;
+}
+
+.wy-nav-content {
+    @apply m-0 min-h-screen;
+}
+
+.rst-content dl dd {
+    @apply m-0;
+}
+
+dl.py.class {
+    @apply w-full rounded border border-gray-200 bg-gray-50;
+}
+
+dl.py.method {
+    @apply w-full rounded border border-gray-200 bg-gray-50;
+}
+
+h1 {
+    @apply border-b border-gray-200;
+}
+
+em {
+    @apply font-mono not-italic;
+}
+
+pre {
+    @apply font-mono not-italic;
+}
+
+input[type=color], input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week] {
+    @apply shadow-none border border-gray-200 bg-gray-50 text-gray-900;
+}

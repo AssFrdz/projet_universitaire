@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 3: working with state spaces &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 4: working with Distributions" href="Lesson4.html" />
+    <link rel="prev" title="Lesson 2: solving Markov chains" href="Lesson2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lesson 3: working with state spaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Functionalities-of-MarmoteSet:-example-with-intervals-and-boxes">Functionalities of MarmoteSet: example with intervals and boxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#States-and-their-indices">States and their indices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Other-sets">Other sets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Lesson 3: working with state spaces</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/Lesson3.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-3:-working-with-state-spaces">
+<h1>Lesson 3: working with state spaces<a class="headerlink" href="#Lesson-3:-working-with-state-spaces" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">marmotecore</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.markovchain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mmc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<p>State spaces for <code class="docutils literal notranslate"><span class="pre">Marmote</span></code>’s Markov chains are specified with <code class="docutils literal notranslate"><span class="pre">MarmoteSet</span></code> objects. This lesson presents the principal features of this object, and the currently available implementations.</p>
+<section id="Functionalities-of-MarmoteSet:-example-with-intervals-and-boxes">
+<h2>Functionalities of MarmoteSet: example with intervals and boxes<a class="headerlink" href="#Functionalities-of-MarmoteSet:-example-with-intervals-and-boxes" title="Link to this heading"></a></h2>
+<p>Basic sets in <code class="docutils literal notranslate"><span class="pre">Marmote</span></code> are intervals and “boxes”: the object classes are <code class="docutils literal notranslate"><span class="pre">MarmoteInterval</span></code> and <code class="docutils literal notranslate"><span class="pre">MarmoteBox</span></code>.</p>
+<p>Creation of an (integer) interval between 0 and 6 included.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">itl</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;name = &quot;</span><span class="p">,</span> <span class="n">itl</span><span class="o">.</span><span class="n">className</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;cardinal = &quot;</span><span class="p">,</span> <span class="n">itl</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">itl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+name =  MarmoteInterval
+cardinal =  7
+Interval( 0..6 )
+</pre></div></div>
+</div>
+<p>Creation of a 2-d box with size 2 in the first dimension and 3 in the second one. Note that ranges will be 0..1 and 0..2.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteBox</span><span class="p">(</span> <span class="p">[</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Inspecting the propreties of the object</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;name = &quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">className</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;cardinal = &quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+name =  MarmoteBox
+cardinal =  6
+Box( [ 0..1 ] x [ 0..2 ] )
+</pre></div></div>
+</div>
+<p>Listing all the states</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;(   0,   0) (   0,   1) (   0,   2) (   1,   0) (   1,   1) (   1,   2) &#39;
+</pre></div></div>
+</div>
+</section>
+<section id="States-and-their-indices">
+<h2>States and their indices<a class="headerlink" href="#States-and-their-indices" title="Link to this heading"></a></h2>
+<p>Every state has an index and conversely. Indices range from 0 to Cardinal()-1. The relevant methods are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Index(</span> <span class="pre">state</span> <span class="pre">)</span></code> to get the index of some state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DecodeState(</span> <span class="pre">idx</span> <span class="pre">)</span></code> to get the state corresponding to some index</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">box</span><span class="o">.</span><span class="n">DecodeState</span><span class="p">(</span> <span class="mi">4</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1, 1])
+</pre></div></div>
+</div>
+<section id="Printing-states">
+<h3>Printing states<a class="headerlink" href="#Printing-states" title="Link to this heading"></a></h3>
+<p>When printing states, it is possible to get both its index information and its description.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Marmote</span></code> has a “policy” for writing states which is controlled as follows. First we save the current policy using the method <code class="docutils literal notranslate"><span class="pre">stateWritePolicy()</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polsave</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">stateWritePolicy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Next we manipulate the way states are printed with the method <code class="docutils literal notranslate"><span class="pre">setStateWritePolicy()</span></code>. We set in sequence the policy to its three possible values: <code class="docutils literal notranslate"><span class="pre">STATE_INDEX</span></code>, <code class="docutils literal notranslate"><span class="pre">STATE_BOTH</span></code> and <code class="docutils literal notranslate"><span class="pre">STATE_FULL</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_INDEX</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Format with index: &quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">FormatState</span><span class="p">(</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_BOTH</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Format with both: &quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">FormatState</span><span class="p">(</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span>
+<span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_FULL</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Format with full description: &quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">.</span><span class="n">FormatState</span><span class="p">(</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Format with index:  4
+Format with both:  4:{   1   1}
+Format with full description:     1   1
+</pre></div></div>
+</div>
+<p>Finally we restore the policy to what it was previously.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span><span class="n">polsave</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Checking-membership">
+<h3>Checking membership<a class="headerlink" href="#Checking-membership" title="Link to this heading"></a></h3>
+<p>Membership is tested with the method <code class="docutils literal notranslate"><span class="pre">Belongs</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">itl</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span> <span class="p">)</span>    <span class="c1"># 4 is in [0..6]</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">itl</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">40</span><span class="p">])</span> <span class="p">)</span> <span class="p">)</span>   <span class="c1"># 40 is not</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">box</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="p">)</span> <span class="p">)</span>  <span class="c1"># a state outside the 2-d box</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">box</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="p">)</span> <span class="p">)</span>  <span class="c1"># a state inside</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+False
+False
+True
+</pre></div></div>
+</div>
+</section>
+<section id="Looping-through-the-states">
+<h3>Looping through the states<a class="headerlink" href="#Looping-through-the-states" title="Link to this heading"></a></h3>
+<p>The easiest way to loop through all states is to use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. It enumerates the states in the form: (index, array representation).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">box</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(0, array([0, 0]))
+(1, array([0, 1]))
+(2, array([0, 2]))
+(3, array([1, 0]))
+(4, array([1, 1]))
+(5, array([1, 2]))
+</pre></div></div>
+</div>
+<p>There exist other ways to inspect <code class="docutils literal notranslate"><span class="pre">MarmoteSet</span></code> objects and make the correspondence between <em>states</em> and <em>indices</em>. The following one uses the standard way to walk through a set using methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FirstState(state)</span></code> to initialize the state to the “zero state”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Index(state)</span></code> to convert a state to its index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NextState(state)</span></code> to move the state its follower in the set’s order</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IsFirst(state)</span></code> to test if the state is the “zero state”.</p></li>
+</ul>
+<p>All use a <code class="docutils literal notranslate"><span class="pre">state</span></code> variable which is an array of integers. Some methods <em>modify</em> this array.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marmotecore</span><span class="o">.</span><span class="n">setStateWritePolicy</span><span class="p">(</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">STATE_BOTH</span> <span class="p">)</span>
+<span class="n">bbuf</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">box</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>           <span class="c1"># the buffer is modified!</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+<span class="n">isover</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">isover</span><span class="p">:</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">box</span><span class="o">.</span><span class="n">FormatState</span><span class="p">(</span> <span class="n">box</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="n">box</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>        <span class="c1"># the buffer is modified!</span>
+    <span class="n">isover</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0 0]
+0:{   0   0}
+1:{   0   1}
+2:{   0   2}
+3:{   1   0}
+4:{   1   1}
+5:{   1   2}
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Other-sets">
+<h2>Other sets<a class="headerlink" href="#Other-sets" title="Link to this heading"></a></h2>
+<p>The complete hierarchy of <code class="docutils literal notranslate"><span class="pre">MarmoteSet</span></code> objects is currently:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EmptySet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MarmoteInterval</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Integers</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MarmoteBox</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BinarySequence</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BinarySimplex</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Simplex</span></code></p></li>
+</ul>
+<section id="Binary-sequences">
+<h3>Binary sequences<a class="headerlink" href="#Binary-sequences" title="Link to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biseq</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">BinarySequence</span><span class="p">(</span> <span class="mi">6</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;name = &quot;</span><span class="p">,</span> <span class="n">biseq</span><span class="o">.</span><span class="n">className</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;cardinal = &quot;</span><span class="p">,</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="n">biseq</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+name =  BinarySequence
+cardinal =  64
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;( 0 0 0 0 0 0) ( 0 0 0 0 0 1) ( 0 0 0 0 1 0) ( 0 0 0 0 1 1) ( 0 0 0 1 0 0) ( 0 0 0 1 0 1) ( 0 0 0 1 1 0) ( 0 0 0 1 1 1) ( 0 0 1 0 0 0) ( 0 0 1 0 0 1) ( 0 0 1 0 1 0) ( 0 0 1 0 1 1) ( 0 0 1 1 0 0) ( 0 0 1 1 0 1) ( 0 0 1 1 1 0) ( 0 0 1 1 1 1) ( 0 1 0 0 0 0) ( 0 1 0 0 0 1) ( 0 1 0 0 1 0) ( 0 1 0 0 1 1) ( 0 1 0 1 0 0) ( 0 1 0 1 0 1) ( 0 1 0 1 1 0) ( 0 1 0 1 1 1) ( 0 1 1 0 0 0) ( 0 1 1 0 0 1) ( 0 1 1 0 1 0) ( 0 1 1 0 1 1) ( 0 1 1 1 0 0) ( 0 1 1 1 0 1) ( 0 1 1 1 1 0) ( 0 1 1 1 1 1) ( 1 0 0 0 0 0) ( 1 0 0 0 0 1) ( 1 0 0 0 1 0) ( 1 0 0 0 1 1) ( 1 0 0 1 0 0) ( 1 0 0 1 0 1) ( 1 0 0 1 1 0) ( 1 0 0 1 1 1) ( 1 0 1 0 0 0) ( 1 0 1 0 0 1) ( 1 0 1 0 1 0) ( 1 0 1 0 1 1) ( 1 0 1 1 0 0) ( 1 0 1 1 0 1) ( 1 0 1 1 1 0) ( 1 0 1 1 1 1) ( 1 1 0 0 0 0) ( 1 1 0 0 0 1) ( 1 1 0 0 1 0) ( 1 1 0 0 1 1) ( 1 1 0 1 0 0) ( 1 1 0 1 0 1) ( 1 1 0 1 1 0) ( 1 1 0 1 1 1) ( 1 1 1 0 0 0) ( 1 1 1 0 0 1) ( 1 1 1 0 1 0) ( 1 1 1 0 1 1) ( 1 1 1 1 0 0) ( 1 1 1 1 0 1) ( 1 1 1 1 1 0) ( 1 1 1 1 1 1) &#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bbuf</span> <span class="o">=</span> <span class="n">biseq</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">biseq</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+<span class="n">isover</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">isover</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">FormatState</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="n">biseq</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+    <span class="n">isover</span> <span class="o">=</span> <span class="n">biseq</span><span class="o">.</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">bbuf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0:{0 0 0 0 0 0}
+1:{0 0 0 0 0 1}
+2:{0 0 0 0 1 0}
+3:{0 0 0 0 1 1}
+4:{0 0 0 1 0 0}
+5:{0 0 0 1 0 1}
+6:{0 0 0 1 1 0}
+7:{0 0 0 1 1 1}
+8:{0 0 1 0 0 0}
+9:{0 0 1 0 0 1}
+10:{0 0 1 0 1 0}
+11:{0 0 1 0 1 1}
+12:{0 0 1 1 0 0}
+13:{0 0 1 1 0 1}
+14:{0 0 1 1 1 0}
+15:{0 0 1 1 1 1}
+16:{0 1 0 0 0 0}
+17:{0 1 0 0 0 1}
+18:{0 1 0 0 1 0}
+19:{0 1 0 0 1 1}
+20:{0 1 0 1 0 0}
+21:{0 1 0 1 0 1}
+22:{0 1 0 1 1 0}
+23:{0 1 0 1 1 1}
+24:{0 1 1 0 0 0}
+25:{0 1 1 0 0 1}
+26:{0 1 1 0 1 0}
+27:{0 1 1 0 1 1}
+28:{0 1 1 1 0 0}
+29:{0 1 1 1 0 1}
+30:{0 1 1 1 1 0}
+31:{0 1 1 1 1 1}
+32:{1 0 0 0 0 0}
+33:{1 0 0 0 0 1}
+34:{1 0 0 0 1 0}
+35:{1 0 0 0 1 1}
+36:{1 0 0 1 0 0}
+37:{1 0 0 1 0 1}
+38:{1 0 0 1 1 0}
+39:{1 0 0 1 1 1}
+40:{1 0 1 0 0 0}
+41:{1 0 1 0 0 1}
+42:{1 0 1 0 1 0}
+43:{1 0 1 0 1 1}
+44:{1 0 1 1 0 0}
+45:{1 0 1 1 0 1}
+46:{1 0 1 1 1 0}
+47:{1 0 1 1 1 1}
+48:{1 1 0 0 0 0}
+49:{1 1 0 0 0 1}
+50:{1 1 0 0 1 0}
+51:{1 1 0 0 1 1}
+52:{1 1 0 1 0 0}
+53:{1 1 0 1 0 1}
+54:{1 1 0 1 1 0}
+55:{1 1 0 1 1 1}
+56:{1 1 1 0 0 0}
+57:{1 1 1 0 0 1}
+58:{1 1 1 0 1 0}
+59:{1 1 1 0 1 1}
+60:{1 1 1 1 0 0}
+61:{1 1 1 1 0 1}
+62:{1 1 1 1 1 0}
+63:{1 1 1 1 1 1}
+</pre></div></div>
+</div>
+<p>Illustration of membership tests. When a state does not belong to the set, its index is 0 by convention and a warning is issued.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">st1</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span> <span class="n">st1</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+45
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="n">st2</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">biseq</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span> <span class="n">st2</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+0
+</pre></div></div>
+</div>
+</section>
+<section id="The-set-of-integers">
+<h3>The set of integers<a class="headerlink" href="#The-set-of-integers" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Marmote</span></code> has also a set for all integers!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">itg</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">MarmoteIntegers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;name = &quot;</span><span class="p">,</span> <span class="n">itg</span><span class="o">.</span><span class="n">className</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;cardinal = &quot;</span><span class="p">,</span> <span class="n">itg</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span> <span class="c1">## -2 is the convention for &#39;infinite cardinal&#39;</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">itg</span><span class="o">.</span><span class="n">IsFinite</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+name =  MarmoteIntegers
+cardinal =  -2
+False
+</pre></div></div>
+</div>
+<p>Membership tests</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">itg</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">itg</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+False
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">itg</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
+</section>
+<section id="Simplices">
+<h3>Simplices<a class="headerlink" href="#Simplices" title="Link to this heading"></a></h3>
+<p>Simplex sets are sometimes difficult to enumerate. Not with <code class="docutils literal notranslate"><span class="pre">Marmote</span></code>!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">splx</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">Simplex</span><span class="p">(</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">splx</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;( 0 0 0 0 0 0 3) ( 0 0 0 0 0 1 2) ( 0 0 0 0 0 2 1) ( 0 0 0 0 0 3 0) ( 0 0 0 0 1 0 2) ( 0 0 0 0 1 1 1) ( 0 0 0 0 1 2 0) ( 0 0 0 0 2 0 1) ( 0 0 0 0 2 1 0) ( 0 0 0 0 3 0 0) ( 0 0 0 1 0 0 2) ( 0 0 0 1 0 1 1) ( 0 0 0 1 0 2 0) ( 0 0 0 1 1 0 1) ( 0 0 0 1 1 1 0) ( 0 0 0 1 2 0 0) ( 0 0 0 2 0 0 1) ( 0 0 0 2 0 1 0) ( 0 0 0 2 1 0 0) ( 0 0 0 3 0 0 0) ( 0 0 1 0 0 0 2) ( 0 0 1 0 0 1 1) ( 0 0 1 0 0 2 0) ( 0 0 1 0 1 0 1) ( 0 0 1 0 1 1 0) ( 0 0 1 0 2 0 0) ( 0 0 1 1 0 0 1) ( 0 0 1 1 0 1 0) ( 0 0 1 1 1 0 0) ( 0 0 1 2 0 0 0) ( 0 0 2 0 0 0 1) ( 0 0 2 0 0 1 0) ( 0 0 2 0 1 0 0) ( 0 0 2 1 0 0 0) ( 0 0 3 0 0 0 0) ( 0 1 0 0 0 0 2) ( 0 1 0 0 0 1 1) ( 0 1 0 0 0 2 0) ( 0 1 0 0 1 0 1) ( 0 1 0 0 1 1 0) ( 0 1 0 0 2 0 0) ( 0 1 0 1 0 0 1) ( 0 1 0 1 0 1 0) ( 0 1 0 1 1 0 0) ( 0 1 0 2 0 0 0) ( 0 1 1 0 0 0 1) ( 0 1 1 0 0 1 0) ( 0 1 1 0 1 0 0) ( 0 1 1 1 0 0 0) ( 0 1 2 0 0 0 0) ( 0 2 0 0 0 0 1) ( 0 2 0 0 0 1 0) ( 0 2 0 0 1 0 0) ( 0 2 0 1 0 0 0) ( 0 2 1 0 0 0 0) ( 0 3 0 0 0 0 0) ( 1 0 0 0 0 0 2) ( 1 0 0 0 0 1 1) ( 1 0 0 0 0 2 0) ( 1 0 0 0 1 0 1) ( 1 0 0 0 1 1 0) ( 1 0 0 0 2 0 0) ( 1 0 0 1 0 0 1) ( 1 0 0 1 0 1 0) ( 1 0 0 1 1 0 0) ( 1 0 0 2 0 0 0) ( 1 0 1 0 0 0 1) ( 1 0 1 0 0 1 0) ( 1 0 1 0 1 0 0) ( 1 0 1 1 0 0 0) ( 1 0 2 0 0 0 0) ( 1 1 0 0 0 0 1) ( 1 1 0 0 0 1 0) ( 1 1 0 0 1 0 0) ( 1 1 0 1 0 0 0) ( 1 1 1 0 0 0 0) ( 1 2 0 0 0 0 0) ( 2 0 0 0 0 0 1) ( 2 0 0 0 0 1 0) ( 2 0 0 0 1 0 0) ( 2 0 0 1 0 0 0) ( 2 0 1 0 0 0 0) ( 2 1 0 0 0 0 0) ( 3 0 0 0 0 0 0) &#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">splx</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">splx</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">splx</span><span class="o">.</span><span class="n">Belongs</span><span class="p">(</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+True
+False
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bsplx</span> <span class="o">=</span> <span class="n">marmotecore</span><span class="o">.</span><span class="n">BinarySimplex</span><span class="p">(</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bsplx</span><span class="o">.</span><span class="n">Enumerate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;( 1 1 1 0 0 0 0) ( 1 1 0 1 0 0 0) ( 1 1 0 0 1 0 0) ( 1 1 0 0 0 1 0) ( 1 1 0 0 0 0 1) ( 1 0 1 1 0 0 0) ( 1 0 1 0 1 0 0) ( 1 0 1 0 0 1 0) ( 1 0 1 0 0 0 1) ( 1 0 0 1 1 0 0) ( 1 0 0 1 0 1 0) ( 1 0 0 1 0 0 1) ( 1 0 0 0 1 1 0) ( 1 0 0 0 1 0 1) ( 1 0 0 0 0 1 1) ( 0 1 1 1 0 0 0) ( 0 1 1 0 1 0 0) ( 0 1 1 0 0 1 0) ( 0 1 1 0 0 0 1) ( 0 1 0 1 1 0 0) ( 0 1 0 1 0 1 0) ( 0 1 0 1 0 0 1) ( 0 1 0 0 1 1 0) ( 0 1 0 0 1 0 1) ( 0 1 0 0 0 1 1) ( 0 0 1 1 1 0 0) ( 0 0 1 1 0 1 0) ( 0 0 1 1 0 0 1) ( 0 0 1 0 1 1 0) ( 0 0 1 0 1 0 1) ( 0 0 1 0 0 1 1) ( 0 0 0 1 1 1 0) ( 0 0 0 1 1 0 1) ( 0 0 0 1 0 1 1) ( 0 0 0 0 1 1 1) &#39;
+</pre></div></div>
+</div>
+<p>More set manipulations to be seen in App_Lesson1!</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lesson2.html" class="btn btn-neutral float-left" title="Lesson 2: solving Markov chains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lesson4.html" class="btn btn-neutral float-right" title="Lesson 4: working with Distributions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example 7 &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example 10" href="example10.html" />
+    <link rel="prev" title="Example 6" href="example6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example1.html">Example 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example2.html">Example 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example3.html">Example 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example4.html">Example 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example5.html">Example 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example6.html">Example 6</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example 7</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks-performed">Tasks performed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="example10.html">Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP10.html">MDP Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP11.html">MDP Example 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP21.html">MDP Example 21</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP31.html">MDP Example 31</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP40.html">MDP Example 40</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Example 7</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/example/example7.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-7">
+<h1>Example 7<a class="headerlink" href="#example-7" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>Example that constructs four 8x8 discrete-time Markov chain then performs structural analysis on them.
+Usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>example7
+</pre></div>
+</div>
+</section>
+<section id="tasks-performed">
+<h2>Tasks performed<a class="headerlink" href="#tasks-performed" title="Link to this heading"></a></h2>
+<ul>
+<li><p>create 4 Markov chains with 8 states each, but different transition structures (see figure below)</p></li>
+<li><p>for each of them:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>perform a quick diagnostic of the generator</p></li>
+<li><p>compute the absorbing states</p></li>
+<li><p>compute the communicating classes</p></li>
+<li><p>list the recurrent classes</p></li>
+<li><p>compute the period</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<img alt="../_images/example7.png" src="../_images/example7.png" />
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Example that constructs four 8x8 discrete-time Markov chain</span>
+<span class="c1">// then performs structural analysis on them.</span>
+<span class="c1">//</span>
+<span class="c1">// Usage: example7</span>
+<span class="c1">//</span>
+
+<span class="c1">// Include necessary header files</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteSparseMatrix.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ranges&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+
+<span class="c1">// Forward declaration of utility</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mc</span><span class="w"> </span><span class="p">);</span>
+
+<span class="c1">// The application code</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// Create 4 discrete-time Markov chains of size 8.</span>
+<span class="w">	</span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="w">	</span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="w">	</span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="w">	</span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">DISCRETE</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Creating 4 transition matrices with size 8*8.</span>
+<span class="w">	</span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Add entries to the first transition matrix.</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P1</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Add entries to the second transition matrix.</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// split transition 5-&gt;5 to 5-&gt;(5,7)</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// with 1/2 proba each</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P2</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Add entries to the third transition matrix.</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// split transition 5-&gt;5 to 5-&gt;(3,5)</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// with 1/2 proba each</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P3</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Add entries to the fourth transition matrix.</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">	</span><span class="n">P4</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Assign the transition matrices to chains (respectively). </span>
+<span class="w">	</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_generator</span><span class="p">(</span><span class="n">P1</span><span class="p">);</span>
+<span class="w">	</span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">set_generator</span><span class="p">(</span><span class="n">P2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">c3</span><span class="o">-&gt;</span><span class="n">set_generator</span><span class="p">(</span><span class="n">P3</span><span class="p">);</span>
+<span class="w">	</span><span class="n">c4</span><span class="o">-&gt;</span><span class="n">set_generator</span><span class="p">(</span><span class="n">P4</span><span class="p">);</span><span class="w"> </span>
+<span class="w">		</span>
+<span class="w">	</span><span class="c1">//////////////////////////////////////////////////////////////////////////</span>
+<span class="w">	</span><span class="n">fprintf</span><span class="p">(</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;##### Analysis of chain #1</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">fprintf</span><span class="p">(</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">##### Analysis of chain #2</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">fprintf</span><span class="p">(</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">##### Analysis of chain #3</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">fprintf</span><span class="p">(</span><span class="w"> </span><span class="n">stdout</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">##### Analysis of chain #4</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Destruct the chains in order to free the allocated memory.</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">## Destruction of MCs</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">c2</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">c3</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">c4</span><span class="p">;</span>
+
+<span class="w">	</span><span class="c1">// Exit with OK code</span>
+<span class="w">  	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Procedure that analyzes some MarkovChain. Tasks performed:</span>
+<span class="c1">// - general diagnostic of the chain</span>
+<span class="c1">// - list absorbing states</span>
+<span class="c1">// - list communicating classes</span>
+<span class="c1">// - list recurrent classes</span>
+<span class="c1">// - print period</span>
+<span class="c1">//</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">analysis</span><span class="p">(</span><span class="w"> </span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mc</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SparseMatrix</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">mc</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">());</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Generator general diagnostic:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">sp</span><span class="o">-&gt;</span><span class="n">Diagnose</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Absorbing states:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="w"> </span><span class="n">abs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mc</span><span class="o">-&gt;</span><span class="n">AbsorbingStates</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;number = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">abs</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;list = ( &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">abs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">iter</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">iter</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Communicating classes:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">com</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mc</span><span class="o">-&gt;</span><span class="n">CommunicatingClasses</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;number = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w">  </span><span class="n">com</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;list = ( &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">	</span><span class="n">iter</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">iter</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[ &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">itr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">).</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">	  </span><span class="n">itr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">).</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">itr</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">itr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Recurrent classes:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mc</span><span class="o">-&gt;</span><span class="n">RecurrentClasses</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;number = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;list = ( &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">	</span><span class="n">iter</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rec</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">iter</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[ &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">itr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">).</span><span class="n">begin</span><span class="p">();</span>
+<span class="w">	  </span><span class="n">itr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">).</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">itr</span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">itr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Period: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mc</span><span class="o">-&gt;</span><span class="n">Period</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Link to this heading"></a></h2>
+<p>The source file is <a class="reference download internal" download="" href="../_downloads/f2a940e62966bc81a2e8e6d5bcc8b695/example7.cpp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example6.html" class="btn btn-neutral float-left" title="Example 6" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example10.html" class="btn btn-neutral float-right" title="Example 10" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

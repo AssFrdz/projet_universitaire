@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP Example 40 &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Downloads" href="../cpp_downloads.html" />
+    <link rel="prev" title="MDP Example 31" href="exampleMDP31.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example1.html">Example 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example2.html">Example 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example3.html">Example 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example4.html">Example 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example5.html">Example 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example6.html">Example 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example7.html">Example 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example10.html">Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP10.html">MDP Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP11.html">MDP Example 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP21.html">MDP Example 21</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP31.html">MDP Example 31</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MDP Example 40</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks-performed">Tasks performed:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">MDP Example 40</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/example/exampleMDP40.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mdp-example-40">
+<h1>MDP Example 40<a class="headerlink" href="#mdp-example-40" title="Link to this heading"></a></h1>
+<p>A finite horizon MDP</p>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>This is the <em>stochastic inventory model</em> studied in Puterman’s book (op. cit.).
+This model is formally described in in section 3.2.1. Then a numerical example is given and
+detailed in section 3.2.2. Finally, in section 4.6.1, the various steps of the solving algorithm are
+illustrated.</p>
+<p>The maximum stock size is 3 (<em>i.e.</em> [0,3]) and we have four actions from 0 to 3.</p>
+<section id="expected-results">
+<h3>Expected Results<a class="headerlink" href="#expected-results" title="Link to this heading"></a></h3>
+<p>Recal that the horizon is 4. This means that the steps index varies from 0 to 3 and that the value function is equal to 0 at step 3</p>
+<p>We should have</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="3"><p>At Step 2</p></td>
+</tr>
+<tr class="row-even"><td colspan="3"></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>v(s)</p></td>
+<td><p>q(s)</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>6</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>5</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="3"><p>At Step 1</p></td>
+</tr>
+<tr class="row-even"><td colspan="3"></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>v(s)</p></td>
+<td><p>q(s)</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>6.25</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>10.0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>10.5</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td colspan="3"><p>At Step 0</p></td>
+</tr>
+<tr class="row-even"><td colspan="3"></td>
+</tr>
+<tr class="row-odd"><td><p>s</p></td>
+<td><p>v(s)</p></td>
+<td><p>q(s)</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>4.1875</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>8.0625</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>12.125</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>14.188</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="tasks-performed">
+<h2>Tasks performed:<a class="headerlink" href="#tasks-performed" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>We build the different transition matrices as described in the book. e.g. the matrix associated with action 0</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.75</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Added transition matrix 0 to vector&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>We build the <cite>FiniteHorizonMDP</cite></p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">FiniteHorizonMDP</span><span class="w"> </span><span class="o">*</span><span class="n">mdp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FiniteHorizonMDP</span><span class="p">(</span><span class="n">critere</span><span class="p">,</span><span class="w"> </span><span class="n">stateSpace</span><span class="p">,</span><span class="w"> </span><span class="n">actionSpace</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">beta</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>where</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>critere</cite> is the criteria (min or max)</p></li>
+<li><p><cite>stateSpace</cite> is the state set</p></li>
+<li><p><cite>actionSpace</cite> is the action set</p></li>
+<li><p><cite>trans</cite> is the vector of transition matrices</p></li>
+<li><p><cite>Cost</cite> is the matrix of the rewards</p></li>
+<li><p><cite>beta</cite> is the discount factor. This discount factor can be equal to 1.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p>We compute the solution by a usual dynamic programming algorithm.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Be carefull</strong> that the call of the function is done by the name  <cite>ValueIteration(epsilon, maxIter)</cite>. However <em>epsilon</em> and <em>maxIter</em> are not implied in the algorithm and can be filled in with arbitrary values.</p></li>
+<li><p><strong>Be carefull</strong> that for a finite horizon the solution returned is not a stationary feedbackpolicy but a non stationary policy. The object returned is than a <cite>NonStationarySolution</cite> and not a <cite>FeedbackSolution</cite>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SolutionMDP</span><span class="w"> </span><span class="o">*</span><span class="n">optimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">maxIter</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>We write the solution. This <cite>NonStationarySolution</cite> writes the policy step by step.</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span><span class="o">-&gt;</span><span class="n">WriteSolution</span><span class="p">();</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>We apply the policy with method <cite>PolicyCost</cite>. This function computes the value of a given <cite>NonStationaryPolicy</cite></p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">sol1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">optimum</span><span class="p">,</span><span class="n">epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">maxIter</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<p>The whole code is</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;list&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteCore/marmoteInterval.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteCore/marmoteSet.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteCore/marmoteSparseMatrix.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteMDP/marmoteFiniteHorizonMDP.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteMDP/marmoteNonStationarySolutionMDP.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteMDP/marmoteSolutionMDP.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">//==================MDP features==================//</span>
+<span class="n">string</span><span class="w"> </span><span class="n">critere</span><span class="p">(</span><span class="s">&quot;max&quot;</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">penalty</span><span class="o">=</span><span class="mi">-1000</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span><span class="w">  </span><span class="c1">//horizon</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">//==================MDP features==================//</span>
+<span class="c1">//create and initialize epsilon.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">epsilon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+<span class="c1">//create and initialize the maximum number of iterations allowed.</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">maxIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+
+<span class="c1">//==================Test new features==================//</span>
+
+<span class="c1">//Create the MDP object to test 1-dimension example and fill all its fields.</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="n">MarmoteSet</span><span class="w"> </span><span class="o">*</span><span class="n">actionSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">MarmoteSet</span><span class="w"> </span><span class="o">*</span><span class="n">stateSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="n">min</span><span class="p">,</span><span class="n">max</span><span class="p">);</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">trans</span><span class="p">(</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+
+<span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.75</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Added transition matrix 0 to vector&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.75</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Added transition matrix 1 to vector&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Added transition matrix 2 to vector&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Added transition matrix 3 to vector&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">R</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">(),</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">-1</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">-2</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">-5</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">-3</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">-1</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">penalty</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Begining building MDP&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">FiniteHorizonMDP</span><span class="w"> </span><span class="o">*</span><span class="n">mdp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FiniteHorizonMDP</span><span class="p">(</span><span class="n">critere</span><span class="p">,</span><span class="w"> </span><span class="n">stateSpace</span><span class="p">,</span><span class="w"> </span><span class="n">actionSpace</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">beta</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;MDP built&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;print MDP&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">WriteMDP</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Print solution after value iteration&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="cm">/*call the function to solve the MDP.*/</span>
+<span class="n">SolutionMDP</span><span class="w"> </span><span class="o">*</span><span class="n">optimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">maxIter</span><span class="p">);</span>
+<span class="n">optimum</span><span class="o">-&gt;</span><span class="n">WriteSolution</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Checking solutions&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">sol1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">optimum</span><span class="p">,</span><span class="n">epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">maxIter</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="n">stateType</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">stateSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">     </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;i=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; solution= &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sol1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">********************************&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Destroying&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">mdp1</span><span class="o">-&gt;</span><span class="n">ClearRew</span><span class="p">();</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">optimum</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Destroying 2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">mdp1</span><span class="p">;</span>
+
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Link to this heading"></a></h2>
+<p>The source file is <a class="reference download internal" download="" href="../_downloads/839928196aa17f433ffadf1b411cce1a/exampleMDP40.cpp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a></p>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exampleMDP31.html" class="btn btn-neutral float-left" title="MDP Example 31" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../cpp_downloads.html" class="btn btn-neutral float-right" title="Downloads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP Lesson 3: average MDP and policy handling &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MDP Lesson 4: Total Reward MDP with two-dimensional state space" href="MDP_Lesson4.html" />
+    <link rel="prev" title="MDP Lesson 2: additional methods" href="MDP_Lesson2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MDP Lesson 3: average MDP and policy handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Build-an-average-MDP">Build an average MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Policy-(FeedbackSolutionMDP)-handling">Policy (FeedbackSolutionMDP) handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Structural-Analysis">Structural Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">MDP Lesson 3: average MDP and policy handling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/MDP_Lesson3.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="MDP-Lesson-3:-average-MDP-and-policy-handling">
+<h1>MDP Lesson 3: average MDP and policy handling<a class="headerlink" href="#MDP-Lesson-3:-average-MDP-and-policy-handling" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<p><strong>Import the modules</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.mdp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">md</span>
+</pre></div>
+</div>
+</div>
+<section id="Build-an-average-MDP">
+<h2>Build an average MDP<a class="headerlink" href="#Build-an-average-MDP" title="Link to this heading"></a></h2>
+<section id="A-machine-repair-model">
+<h3>A machine repair model<a class="headerlink" href="#A-machine-repair-model" title="Link to this heading"></a></h3>
+<p>Assume a machine with 4 states:</p>
+<ul class="simple">
+<li><p>0 = new</p></li>
+<li><p>1 = usable with minor deterioration</p></li>
+<li><p>2 = usable with major deterioration</p></li>
+<li><p>3 = unusable</p></li>
+</ul>
+<p>and has 3 actions</p>
+<ul class="simple">
+<li><p>1 = Do nothing: remain as is</p></li>
+<li><p>2 = Tune-up: return to status 1</p></li>
+<li><p>3 = Total repair: return to state 0</p></li>
+</ul>
+<p>Costs depend on the state and the chosen action.</p>
+<ul class="simple">
+<li><p>In state 0 <em>“Do nothing”</em> costs 0, <em>“Tune-up”</em> costs 4000 and <em>“Total Repair”</em> costs 6000</p></li>
+<li><p>In state 1 <em>“Do nothing”</em> costs 1000, <em>“Tune-up”</em> costs 4000 and <em>“Total Repair”</em> costs 6000</p></li>
+<li><p>In state 2 <em>“Do nothing”</em> costs 3000, <em>“Tune-up”</em> costs 4000 and <em>“Total Repair”</em> costs 6000</p></li>
+<li><p>In state 3 <em>“Do nothing”</em> costs 3000, <em>“Tune-up”</em> costs 4000 and <em>“Total Repair”</em> costs 6000</p></li>
+</ul>
+</section>
+<section id="Create-all-objects">
+<h3>Create all objects<a class="headerlink" href="#Create-all-objects" title="Link to this heading"></a></h3>
+<p>Spaces</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dim_SS</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># dimension of the state space</span>
+<span class="n">dim_AS</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># dimension of the action space</span>
+
+<span class="n">stateSpace</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">actionSpace</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Create transition matrices</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># matrix for the a_0 action</span>
+<span class="n">P0</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.875</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">P1</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.875</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.125</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">P2</span> <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.875</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">P2</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">trans</span> <span class="o">=</span> <span class="p">[</span><span class="n">P0</span><span class="p">,</span> <span class="n">P1</span><span class="p">,</span> <span class="n">P2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Create Cost Matrix</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Reward</span>  <span class="o">=</span>  <span class="n">mc</span><span class="o">.</span><span class="n">FullMatrix</span><span class="p">(</span><span class="n">dim_SS</span><span class="p">,</span> <span class="n">dim_AS</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4000</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>Create AverageMDP object. Please note, that AverageMDP is an object with specific implemented algorithms.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;min&quot;</span>
+
+<span class="n">mdp1</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">AverageMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span><span class="n">Reward</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mdp1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="Solve-the-MDP">
+<h3>Solve the MDP<a class="headerlink" href="#Solve-the-MDP" title="Link to this heading"></a></h3>
+<p><strong>Solving with Value Iteration (VI) and Policy Iteration Modified (PIM)</strong></p>
+<p>The VI and PIM methods are available in an <code class="docutils literal notranslate"><span class="pre">AverageMPD</span></code> object used for average criteria MDP (the code is specific for the <code class="docutils literal notranslate"><span class="pre">AverageMDP</span></code> object since algorithms differ from the discounted case and total case).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create and initialize epsilon.</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.00001</span>
+<span class="c1">#create and initialize the maximum number of iterations allowed.</span>
+<span class="n">maxIter</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compute with value Iteration</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">optimum</span> <span class="o">=</span> <span class="n">mdp1</span><span class="o">.</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">optimum</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computation with Policy Iteration modified&quot;</span><span class="p">)</span>
+<span class="n">optimum2</span> <span class="o">=</span> <span class="n">mdp1</span><span class="o">.</span><span class="n">PolicyIterationModified</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Compute with value Iteration
+
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1666.67
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           24571.4   0
+  1           25904.8   0
+  2           28238.1   1
+  3           28904.8   2
+#############################################
+
+
+Computation with Policy Iteration modified
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1666.67
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0            177619   0
+  1            178952   0
+  2            181286   1
+  3            181952   2
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Solving with Relative Value Iteration (RVI)</strong></p>
+<p>It is also possible to solve an Average criteria MDP with the <em>relative Value Iteration</em> algorithm.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computation with relative value iteration&quot;</span><span class="p">)</span>
+<span class="n">optimum3</span> <span class="o">=</span> <span class="n">mdp1</span><span class="o">.</span><span class="n">RelativeValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">optimum3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Computation with relative value iteration
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1666.67
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           7666.67   0
+  1              6000   0
+  2              6000   1
+  3              6000   2
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Policy-(FeedbackSolutionMDP)-handling">
+<h2>Policy (FeedbackSolutionMDP) handling<a class="headerlink" href="#Policy-(FeedbackSolutionMDP)-handling" title="Link to this heading"></a></h2>
+<p>The <em>FeedbackSolutionMDP</em> class is used to represent any deterministic Markov decision rule. A Feedback object stores both a decision rule (<em>action</em> field) and the associated value function (<em>value</em> field). Hence, it stores information about the policy, such as the actions to be taken in each state and the value associated with the policy. It can be manipulated and modified using setter and getter functions.</p>
+<section id="Describing-the-output-of-FeedbackSolutionMDP-in-the-average-case">
+<h3>Describing the output of FeedbackSolutionMDP in the average case<a class="headerlink" href="#Describing-the-output-of-FeedbackSolutionMDP-in-the-average-case" title="Link to this heading"></a></h3>
+<p>The fields of a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> object are filled in, for each state,</p>
+<ul class="simple">
+<li><p>with the index of the state</p></li>
+<li><p>with the bias value</p></li>
+<li><p>with the optimal action</p></li>
+</ul>
+<p>which are calculated by the solution algorithms.</p>
+<p>The average optimal gain is given just before the state-by-state enumeration. This last point is only valid for average criterion MDPs.</p>
+</section>
+<section id="Building-Solution">
+<h3>Building Solution<a class="headerlink" href="#Building-Solution" title="Link to this heading"></a></h3>
+<p>A FeedbackSolution is created during the running of the algorithm and is returned by the resolution methods. But the object can be directly manipulated. This is now described.</p>
+<p><strong>Creating a new Solution object</strong></p>
+<p>We create now a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> with dimension <code class="docutils literal notranslate"><span class="pre">stateSpace.Cardinal()</span></code></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">policy</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">FeedbackSolutionMDP</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<section id="Accessors">
+<h4>Accessors<a class="headerlink" href="#Accessors" title="Link to this heading"></a></h4>
+<p><strong>Defining a given policy (setters)</strong></p>
+<p>The following lines of code define the policy actions for each state. The arguments passed to the <code class="docutils literal notranslate"><span class="pre">setActionIndex</span></code> method are :</p>
+<ul class="simple">
+<li><p>The first argument is the index of the state for which you want to define the action.</p></li>
+<li><p>The second argument is the index of the action you want to assign to this state.</p></li>
+</ul>
+<p>For example: For state 0, the action assigned is action 0.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>It is also possible to put all the values of <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> to zeros by the method <code class="docutils literal notranslate"><span class="pre">resetValues</span></code>. If we now print the variable politicy then the actions will be the ones described above and the values will all be zero.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">policy</span><span class="o">.</span><span class="n">resetValue</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0                 0   0
+  1                 0   0
+  2                 0   1
+  3                 0   2
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Getting the values of a given policy (getters)</strong></p>
+<p>Information about the average value can be retrieved using <code class="docutils literal notranslate"><span class="pre">getAvgCost()</span></code>, as well as information about values using <code class="docutils literal notranslate"><span class="pre">getValueIndex</span></code> or policies using <code class="docutils literal notranslate"><span class="pre">getValuePolicy</span></code>, as illustrated below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting Average Cost of policy&quot;</span><span class="p">,</span><span class="n">policy</span><span class="o">.</span><span class="n">getAvgCost</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting value in 0:&quot;</span><span class="p">,</span> <span class="n">policy</span><span class="o">.</span><span class="n">getValueIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting value in 1:&quot;</span><span class="p">,</span> <span class="n">policy</span><span class="o">.</span><span class="n">getValueIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting value in 2:&quot;</span><span class="p">,</span> <span class="n">policy</span><span class="o">.</span><span class="n">getValueIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Getting value in 3:&quot;</span><span class="p">,</span> <span class="n">policy</span><span class="o">.</span><span class="n">getValueIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Getting Average Cost of policy 0.0
+Getting value in 0: 0.0
+Getting value in 1: 0.0
+Getting value in 2: 0.0
+Getting value in 3: 0.0
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Assessing-a-policy">
+<h3>Assessing a policy<a class="headerlink" href="#Assessing-a-policy" title="Link to this heading"></a></h3>
+<p>A policy can also be evaluated independently of any search for the optimal policy. The policyCost method is used to evaluate a policy whose action values are defined in the action element of a FeedbackPolicy object. The values of the object will be set to 0 at the start of the calculation so that the calculation of the average value of this policy does not depend on the value element.</p>
+<p>Important: the policyCost method is implemented in each MDP object (with an algorithm adapted to the model in each case).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mdp1</span><span class="o">.</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1666.67
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0             26619   0
+  1           27952.4   0
+  2           30285.7   1
+  3           30952.4   2
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Computing average costs of a some given policies</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Define Policy Ra&quot;</span><span class="p">)</span>
+<span class="n">politique</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">FeedbackSolutionMDP</span><span class="p">(</span><span class="n">stateSpace</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print solution Ra&quot;</span><span class="p">)</span>
+<span class="n">mdp1</span><span class="o">.</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">politique</span><span class="p">,</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">politique</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modify the previous Policy and a defining a new policy Rc&quot;</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="n">politique</span><span class="o">.</span><span class="n">resetValue</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print solution of Rc&quot;</span><span class="p">)</span>
+<span class="n">mdp1</span><span class="o">.</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">politique</span><span class="p">,</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">politique</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Define Policy Rd&quot;</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">politique</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Print solution of Rd&quot;</span><span class="p">)</span>
+<span class="n">mdp1</span><span class="o">.</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">politique</span><span class="p">,</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">politique</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Define Policy Ra
+Print solution Ra
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1923.08
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           28396.4   0
+  1             29858   0
+  2           34627.2   0
+  3           32473.4   2
+#############################################
+
+
+Modify the previous Policy and a defining a new policy Rc
+Print solution of Rc
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):          1727.27
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           34628.1   0
+  1           35991.7   0
+  2           38900.8   2
+  3           38900.8   2
+#############################################
+
+
+Define Policy Rd
+Print solution of Rd
+#############################################
+Solution of MDP problem
+Size of the state space: 4
+#############################################
+Solution model: Feedback Stationary Policy
+Average Cost (only for average models):             3000
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           1.5e+06   0
+  1           1.5e+06   2
+  2           1.5e+06   2
+  3           1.5e+06   2
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Structural-Analysis">
+<h2>Structural Analysis<a class="headerlink" href="#Structural-Analysis" title="Link to this heading"></a></h2>
+<p>The marmoteMDP software also integrates a set of functions for processing and studying structural properties of value function or policy as presented in the book <em>Monotonicity in Markov Reward and Decision Chains: Theory and Applications (Foundations and Trends in Stochastic Systems)</em> of G. Koole</p>
+<section id="Structural-analysis-of-the-value">
+<h3>Structural analysis of the value<a class="headerlink" href="#Structural-analysis-of-the-value" title="Link to this heading"></a></h3>
+<p>The structural analysis of a value function is carried out using a <code class="docutils literal notranslate"><span class="pre">PropertiesValue</span></code> object, which is constructed from a state space. This object has two methods (depending on the properties to be checked): <code class="docutils literal notranslate"><span class="pre">Monotonicity</span></code> and <code class="docutils literal notranslate"><span class="pre">Convexity</span></code> which checks the property of the solution given in parameter. These two functions :</p>
+<div class="line-block">
+<div class="line">-<code class="docutils literal notranslate"><span class="pre">Monotonicity</span></code> returns 1 (if the VF is increasing), 0 (VF has no property), -1 (if the VF is decreasing)</div>
+<div class="line">-<code class="docutils literal notranslate"><span class="pre">Convexity</span></code> returns 1 (if the VF is convex), -1 (if the VF is concave), 0 otherwise</div>
+</div>
+<p>Some of the details can be clarified with the methods <code class="docutils literal notranslate"><span class="pre">avoidDetail</span></code> and <code class="docutils literal notranslate"><span class="pre">GetDetail</span></code>, in particular the indices for which the properties are broken.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkValue</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">PropertiesValue</span><span class="p">(</span><span class="n">stateSpace</span><span class="p">)</span>
+<span class="n">checkValue</span><span class="o">.</span><span class="n">avoidDetail</span><span class="p">()</span>
+<span class="n">monotone</span><span class="o">=</span><span class="n">checkValue</span><span class="o">.</span><span class="n">Monotonicity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Printing monotonicity property of value function (1 if increasing -1 if decreasing 0 otherwise) : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">monotone</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verif convexity with details&quot;</span><span class="p">)</span>
+<span class="n">checkValue</span><span class="o">.</span><span class="n">getDetail</span><span class="p">()</span>
+<span class="n">convex</span><span class="o">=</span><span class="n">checkValue</span><span class="o">.</span><span class="n">Convexity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Printing convexity property of value function (1 if convex -1 concave 0 otherwise) : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">convex</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Printing monotonicity property of value function (1 if increasing -1 if decreasing 0 otherwise) : 1
+Verif convexity with details
+Printing convexity property of value function (1 if convex -1 concave 0 otherwise) : 0
+</pre></div></div>
+</div>
+</section>
+<section id="Structural-analysis-of-the-policy">
+<h3>Structural analysis of the policy<a class="headerlink" href="#Structural-analysis-of-the-policy" title="Link to this heading"></a></h3>
+<p>The structural analysis of a property is carried out using a <code class="docutils literal notranslate"><span class="pre">PropertiesValue</span></code> object, which is constructed from a state space. This object has two methods (depending on the properties to be checked): <code class="docutils literal notranslate"><span class="pre">Monotonicity</span></code> or ̀̀<code class="docutils literal notranslate"><span class="pre">sSpol</span></code> for checking is the policy is <em>(s,S)</em>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking Structural Properties of value&quot;</span><span class="p">)</span>
+<span class="n">checkPolicy</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">PropertiesPolicy</span><span class="p">(</span><span class="n">stateSpace</span><span class="p">)</span>
+
+<span class="n">monotone</span><span class="o">=</span><span class="n">checkPolicy</span><span class="o">.</span><span class="n">Monotonicity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PropertiesPolicy::MonotonicityOptimalPolicy=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">monotone</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; (1 if increasing -1 if decreasing 0 otherwise) : &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Checking Structural Properties of value
+PropertiesPolicy::MonotonicityOptimalPolicy=1 (1 if increasing -1 if decreasing 0 otherwise) :
+</pre></div></div>
+</div>
+<p>End of the notebook</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MDP_Lesson2.html" class="btn btn-neutral float-left" title="MDP Lesson 2: additional methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MDP_Lesson4.html" class="btn btn-neutral float-right" title="MDP Lesson 4: Total Reward MDP with two-dimensional state space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

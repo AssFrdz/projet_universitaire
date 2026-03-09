@@ -1,0 +1,1238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Lesson 2: Application to the control of a tandem multi server system &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Downloads" href="../python_downloads.html" />
+    <link rel="prev" title="Application Lesson 1: Application to Mitrani’s hysteresis model" href="App_Lesson1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Application Lesson 2: Application to the control of a tandem multi server system</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#The-model">The model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Build-a-discrete-time-discounted-MDP">Build a discrete time discounted MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Structural-Analysis">Structural Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Application Lesson 2: Application to the control of a tandem multi server system</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/App_Lesson2.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Application-Lesson-2:-Application-to-the-control-of-a-tandem-multi-server-system">
+<h1>Application Lesson 2: Application to the control of a tandem multi server system<a class="headerlink" href="#Application-Lesson-2:-Application-to-the-control-of-a-tandem-multi-server-system" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mco</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.markovchain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.mdp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">md</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<section id="The-model">
+<h2>The model<a class="headerlink" href="#The-model" title="Link to this heading"></a></h2>
+<p>We consider the tandem multi server queue model (below) (credit of the picture [Tournaire 2021]) presented also in [Ohno and Ichiki, 1987], or [Tournaire 2023].</p>
+<p><img alt="a7dac3d7c69e45acb86d75379429db05" src="../_images/TandemQueue.png" /></p>
+<p><strong>Parameters</strong></p>
+<p>Size of the systems: B1 and B2 with B1=B2=B</p>
+<p>Number of servers: K1 and K2 with K1=K2=K</p>
+<div class="line-block">
+<div class="line">Statistics:</div>
+<div class="line">arrival Poisson with rate lambda</div>
+<div class="line">service homogeneous with rate mu1 and mu2</div>
+</div>
+<div class="line-block">
+<div class="line">Costs:</div>
+<div class="line">Instantaneous costs:</div>
+<div class="line">activation cost: <em>Ca</em>, deactivation cost: <em>Cd</em>, reject cost: <em>Cr</em>.</div>
+<div class="line">Rates costs (also called accumulated cost):</div>
+<div class="line">cost per time unit of using a VM: <em>Cs</em>, cost per time unit of holding a request in the system <em>Ch</em>.</div>
+</div>
+<p><strong>Numerical values</strong></p>
+<div class="line-block">
+<div class="line">B=10</div>
+<div class="line">K=5</div>
+<div class="line">lam=5</div>
+<div class="line">mu1=1</div>
+<div class="line">mu2=1</div>
+<div class="line">Ca=1</div>
+<div class="line">Cd=1</div>
+<div class="line">Cr=10</div>
+<div class="line">Cs=2</div>
+<div class="line">Ch=2</div>
+</div>
+<p>Build the model with a python dictionary</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#10</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span> <span class="c1">#10</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;K1&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span> <span class="c1">#5</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;K2&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span> <span class="c1">#5</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;lam&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">5.0</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;mu1&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;mu2&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;Ca&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;Cd&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;Cr&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;Cs&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;Ch&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">model</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;B1&#39;: 3, &#39;B2&#39;: 3, &#39;K1&#39;: 2, &#39;K2&#39;: 2, &#39;lam&#39;: 5.0, &#39;mu1&#39;: 1.0, &#39;mu2&#39;: 1.0, &#39;Ca&#39;: 1, &#39;Cd&#39;: 1, &#39;Cr&#39;: 10, &#39;Cs&#39;: 2, &#39;Ch&#39;: 2, &#39;beta&#39;: 1}
+</pre></div></div>
+</div>
+</section>
+<section id="Build-a-discrete-time-discounted-MDP">
+<h2>Build a discrete time discounted MDP<a class="headerlink" href="#Build-a-discrete-time-discounted-MDP" title="Link to this heading"></a></h2>
+<section id="Build-the-states">
+<h3>Build the states<a class="headerlink" href="#Build-the-states" title="Link to this heading"></a></h3>
+<p>The state is <em>(m1,k1,m2,k2)</em> with m from 0 to B-1 and k from 0 to K-1. An action is <em>(k1,k2)</em> with k from 0 to K-1.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">],</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;K1&#39;</span><span class="p">],</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">],</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;K2&#39;</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+<span class="n">states</span><span class="o">=</span> <span class="n">mco</span><span class="o">.</span><span class="n">MarmoteBox</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">actions</span><span class="o">=</span><span class="n">mco</span><span class="o">.</span><span class="n">MarmoteBox</span><span class="p">([</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;K1&#39;</span><span class="p">],</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;K2&#39;</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of states&quot;</span><span class="p">,</span><span class="n">states</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of actions&quot;</span><span class="p">,</span><span class="n">actions</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;actions&quot;</span><span class="p">,</span><span class="n">actions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[3 2 3 2]
+Number of states 36
+Box( [ 0..2 ] x [ 0..1 ] x [ 0..2 ] x [ 0..1 ] )
+Number of actions 4
+actions Box( [ 0..1 ] x [ 0..1 ] )
+</pre></div></div>
+</div>
+</section>
+<section id="Build-matrices">
+<h3>Build matrices<a class="headerlink" href="#Build-matrices" title="Link to this heading"></a></h3>
+<section id="Transitions-matrices">
+<h4>Transitions matrices<a class="headerlink" href="#Transitions-matrices" title="Link to this heading"></a></h4>
+<p>We begin by defining a function which computes the transition matrix associated with an action such that the action index is: index_action.</p>
+<p>In a state, there is three types of event: arrival in the system, departure of the system, departure of the system 1 and arrival in system 2.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fill_in_matrix</span><span class="p">(</span><span class="n">index_action</span><span class="p">,</span><span class="n">modele</span><span class="p">,</span><span class="n">ssp</span><span class="p">,</span><span class="n">asp</span><span class="p">):</span>
+    <span class="c1"># retrieve the action asscoiated with index</span>
+    <span class="n">action_buf</span> <span class="o">=</span> <span class="n">asp</span><span class="o">.</span><span class="n">DecodeState</span><span class="p">(</span><span class="n">index_action</span><span class="p">)</span>
+    <span class="c1">#*#print(&quot;index action&quot;,index_action,&quot;action&quot;,action_buf)</span>
+    <span class="c1">#define the states</span>
+    <span class="n">etat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">afteraction</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">jump</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># define transition matrix</span>
+    <span class="n">P</span><span class="o">=</span><span class="n">mco</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="n">ssp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+    <span class="c1">#browsing state space</span>
+    <span class="n">ssp</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ssp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+        <span class="c1"># compute the index of the state</span>
+        <span class="n">indexL</span><span class="o">=</span><span class="n">ssp</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="c1"># compute the state after the action</span>
+        <span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">action_buf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">etat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">action_buf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1">#*# print(&quot;####index State=&quot;,k,&quot;State&quot;,etat,&quot;State after action&quot;,afteraction)</span>
+        <span class="c1"># then detail all the possible transitions</span>
+        <span class="c1">## Arrival (increases the number of customer in first coordinate with rate lambda)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="c1">#compute the index of the jump</span>
+        <span class="n">indexC</span><span class="o">=</span><span class="n">ssp</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">jump</span><span class="p">)</span>
+        <span class="c1">#fill in the entry</span>
+        <span class="c1">#*# print(&quot;*Event: Arrival. Index=&quot;,indexC,&quot;Jump State=&quot;,jump,&quot;rate=&quot;,modele[&#39;lam&#39;])</span>
+        <span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexL</span><span class="p">,</span><span class="n">indexC</span><span class="p">,</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;lam&#39;</span><span class="p">])</span>
+        <span class="c1">#</span>
+        <span class="c1">## departure of the first system entry in the second one</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">jump</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="c1">#index of the jump</span>
+        <span class="n">indexC</span><span class="o">=</span><span class="n">ssp</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">jump</span><span class="p">)</span>
+        <span class="c1"># rate of the transition</span>
+        <span class="n">rate</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;mu1&#39;</span><span class="p">]</span>
+        <span class="c1">#fill in the entry</span>
+        <span class="c1">#*# print(&quot;*Event: Departure s1 entry s2. Index=&quot;,indexC,&quot;Jump State=&quot;,jump,&quot;rate=&quot;,rate)</span>
+        <span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexL</span><span class="p">,</span><span class="n">indexC</span><span class="p">,</span><span class="n">rate</span><span class="p">)</span>
+        <span class="c1">#</span>
+        <span class="c1">##departure of the second  system</span>
+        <span class="n">jump</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">jump</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">jump</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">jump</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="c1">#compute the index of the jump</span>
+        <span class="n">indexC</span><span class="o">=</span><span class="n">ssp</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">jump</span><span class="p">)</span>
+        <span class="c1"># compute the rate</span>
+        <span class="n">rate</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">afteraction</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;mu2&#39;</span><span class="p">]</span>
+        <span class="c1">#fill in the entry</span>
+        <span class="c1">#*# print(&quot;*Event: Departure s2. Index=&quot;,indexC,&quot;Jump State=&quot;,jump,&quot;rate=&quot;,rate)</span>
+        <span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexL</span><span class="p">,</span><span class="n">indexC</span><span class="p">,</span><span class="n">rate</span><span class="p">)</span>
+        <span class="c1">#change state</span>
+        <span class="n">ssp</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">P</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Cost-Matrix">
+<h4>Cost Matrix<a class="headerlink" href="#Cost-Matrix" title="Link to this heading"></a></h4>
+<p>We define now a function to fill in the cost matrix.</p>
+<div class="line-block">
+<div class="line">Instantaneous Costs are:</div>
+<div class="line">Costs of activations = <em>max(action1-k1,0) * Ca + max(action2-k2,0) * Ca</em></div>
+<div class="line">Costs of deactivations = <em>max(K1-action1,0) * Cd + max(K2-action2,0) * Cd</em></div>
+<div class="line">rejection cost= <em>Cr * lambda/Lambda(s,a)</em> in states where <em>m1=B</em> added by <em>Cr * action1 mu/Lambda(s,a)</em> in states where <em>m2=B</em>.</div>
+<div class="line"><em>Lambda(s,a)</em> is the total rate. It is equal to <em>lambda + action1 * mu + action2 * mu</em> .</div>
+</div>
+<div class="line-block">
+<div class="line">Accumulated Costs are:</div>
+<div class="line">(number of customers in the system)Ch = <em>(m1+m2)*Ch</em></div>
+<div class="line">(number of activated VM) = <em>(action1+action2)*Cs</em></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fill_in_cost</span><span class="p">(</span><span class="n">modele</span><span class="p">,</span><span class="n">ssp</span><span class="p">,</span><span class="n">asp</span><span class="p">):</span>
+    <span class="n">R</span><span class="o">=</span> <span class="n">mco</span><span class="o">.</span><span class="n">FullMatrix</span><span class="p">(</span><span class="n">ssp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">(),</span><span class="n">asp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+    <span class="c1">#define the states</span>
+    <span class="n">etat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">#define the actions</span>
+    <span class="n">acb</span><span class="o">=</span><span class="n">asp</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+    <span class="n">ssp</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ssp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+        <span class="c1"># compute the index of the state</span>
+        <span class="n">indexL</span><span class="o">=</span><span class="n">ssp</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+        <span class="c1">#*#print(&quot;##State&quot;,etat)</span>
+        <span class="n">asp</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">acb</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">asp</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+            <span class="c1">#*#print(&quot;---Action&quot;,acb,end=&#39;  &#39;)</span>
+            <span class="n">action1</span><span class="o">=</span><span class="n">acb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">action2</span><span class="o">=</span><span class="n">acb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">totalrate</span><span class="o">=</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;lam&#39;</span><span class="p">]</span><span class="o">+</span><span class="n">action1</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;mu1&#39;</span><span class="p">]</span><span class="o">+</span> <span class="n">action2</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;mu2&#39;</span><span class="p">]</span>
+            <span class="n">activationcosts</span><span class="o">=</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Ca&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">action1</span><span class="o">-</span><span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">action2</span><span class="o">-</span><span class="n">etat</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+            <span class="n">deactivationcosts</span><span class="o">=</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Cd&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">etat</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">action1</span><span class="p">)</span><span class="o">+</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">action2</span><span class="o">-</span><span class="n">etat</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+            <span class="n">rejectioncosts</span><span class="o">=</span><span class="mf">0.0</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">rejectioncosts</span><span class="o">+=</span><span class="p">(</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;lam&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Cr&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">totalrate</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">etat</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                <span class="n">rejectioncosts</span><span class="o">+=</span><span class="p">(</span> <span class="nb">min</span><span class="p">(</span><span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">action1</span><span class="p">)</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;mu1&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Cr&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">totalrate</span>
+            <span class="n">instantaneouscosts</span><span class="o">=</span><span class="n">activationcosts</span><span class="o">+</span><span class="n">deactivationcosts</span><span class="o">+</span><span class="n">rejectioncosts</span>
+            <span class="n">accumulatedcosts</span><span class="o">=</span><span class="p">(</span><span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">etat</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Ch&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">action1</span> <span class="o">+</span><span class="n">action2</span><span class="p">)</span><span class="o">*</span><span class="n">modele</span><span class="p">[</span><span class="s1">&#39;Cs&#39;</span><span class="p">]</span>
+            <span class="n">accumulatedcosts</span><span class="o">/=</span><span class="p">(</span><span class="n">totalrate</span><span class="o">+</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">])</span>
+            <span class="c1">#*#print(&quot;Instantaneous=&quot;,instantaneouscosts,&quot; Rejection=&quot;,rejectioncosts,end= &#39; &#39;)</span>
+            <span class="c1">#*#print(&quot;Accumulatedcosts=&quot;,accumulatedcosts)</span>
+            <span class="n">R</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">indexL</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">accumulatedcosts</span><span class="o">+</span><span class="n">instantaneouscosts</span><span class="p">)</span>
+            <span class="n">asp</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">acb</span><span class="p">)</span>
+        <span class="n">ssp</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">R</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Build-the-continuous-time-MDP">
+<h3>Build the continuous time MDP<a class="headerlink" href="#Build-the-continuous-time-MDP" title="Link to this heading"></a></h3>
+<p>Build all the transition matrices</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+
+<span class="n">action_buf</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">actions</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">action_buf</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">actions</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+    <span class="n">trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fill_in_matrix</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">model</span><span class="p">,</span><span class="n">states</span><span class="p">,</span><span class="n">actions</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Matrix kth=&quot;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span> <span class="s2">&quot;filled in&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+---Matrix kth= 0 filled in
+---Matrix kth= 1 filled in
+---Matrix kth= 2 filled in
+---Matrix kth= 3 filled in
+</pre></div></div>
+</div>
+<p>Fill in the costs</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrice of Costs&quot;</span><span class="p">)</span>
+<span class="n">Costs</span><span class="o">=</span><span class="n">fill_in_cost</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">states</span><span class="p">,</span><span class="n">actions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Matrice of Costs
+</pre></div></div>
+</div>
+<p>Build the MDP</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Begining of Building MDP&quot;</span><span class="p">)</span>
+<span class="n">ctmdp</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">ContinuousTimeDiscountedMDP</span><span class="p">(</span><span class="s2">&quot;min&quot;</span><span class="p">,</span><span class="n">states</span><span class="p">,</span><span class="n">actions</span><span class="p">,</span><span class="n">trans</span><span class="p">,</span><span class="n">Costs</span><span class="p">,</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ctmdp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Begining of Building MDP
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:1
+#############################################
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:1
+ContinuousTimeDiscountedMDP (Object at 0000021505FDD350)
+MDP type (discrete,continuous): continuous
+MDP rule (min,max): min
+State space size: 36
+Action space size: 4
+State  dimension: 4
+Action dimension: 2
+#############################################
+Transition matrix per action:
+action: 0
+         0         12 5.000000e+00
+         1         12 5.000000e+00
+         2         14 5.000000e+00
+         3         14 5.000000e+00
+         4         16 5.000000e+00
+         5         16 5.000000e+00
+         6         12 5.000000e+00
+         7         12 5.000000e+00
+         8         14 5.000000e+00
+         9         14 5.000000e+00
+        10         16 5.000000e+00
+        11         16 5.000000e+00
+        12         24 5.000000e+00
+        13         24 5.000000e+00
+        14         26 5.000000e+00
+        15         26 5.000000e+00
+        16         28 5.000000e+00
+        17         28 5.000000e+00
+        18         24 5.000000e+00
+        19         24 5.000000e+00
+        20         26 5.000000e+00
+        21         26 5.000000e+00
+        22         28 5.000000e+00
+        23         28 5.000000e+00
+        24         24 5.000000e+00
+        25         24 5.000000e+00
+        26         26 5.000000e+00
+        27         26 5.000000e+00
+        28         28 5.000000e+00
+        29         28 5.000000e+00
+        30         24 5.000000e+00
+        31         24 5.000000e+00
+        32         26 5.000000e+00
+        33         26 5.000000e+00
+        34         28 5.000000e+00
+        35         28 5.000000e+00
+
+action: 1
+         0         13 5.000000e+00
+         1         13 5.000000e+00
+         2         15 5.000000e+00
+         2          1 1.000000e+00
+         3         15 5.000000e+00
+         3          1 1.000000e+00
+         4         17 5.000000e+00
+         4          3 1.000000e+00
+         5         17 5.000000e+00
+         5          3 1.000000e+00
+         6         13 5.000000e+00
+         7         13 5.000000e+00
+         8         15 5.000000e+00
+         8          1 1.000000e+00
+         9         15 5.000000e+00
+         9          1 1.000000e+00
+        10         17 5.000000e+00
+        10          3 1.000000e+00
+        11         17 5.000000e+00
+        11          3 1.000000e+00
+        12         25 5.000000e+00
+        13         25 5.000000e+00
+        14         27 5.000000e+00
+        14         13 1.000000e+00
+        15         27 5.000000e+00
+        15         13 1.000000e+00
+        16         29 5.000000e+00
+        16         15 1.000000e+00
+        17         29 5.000000e+00
+        17         15 1.000000e+00
+        18         25 5.000000e+00
+        19         25 5.000000e+00
+        20         27 5.000000e+00
+        20         13 1.000000e+00
+        21         27 5.000000e+00
+        21         13 1.000000e+00
+        22         29 5.000000e+00
+        22         15 1.000000e+00
+        23         29 5.000000e+00
+        23         15 1.000000e+00
+        24         25 5.000000e+00
+        25         25 5.000000e+00
+        26         27 5.000000e+00
+        26         25 1.000000e+00
+        27         27 5.000000e+00
+        27         25 1.000000e+00
+        28         29 5.000000e+00
+        28         27 1.000000e+00
+        29         29 5.000000e+00
+        29         27 1.000000e+00
+        30         25 5.000000e+00
+        31         25 5.000000e+00
+        32         27 5.000000e+00
+        32         25 1.000000e+00
+        33         27 5.000000e+00
+        33         25 1.000000e+00
+        34         29 5.000000e+00
+        34         27 1.000000e+00
+        35         29 5.000000e+00
+        35         27 1.000000e+00
+
+action: 2
+         0         18 5.000000e+00
+         1         18 5.000000e+00
+         2         20 5.000000e+00
+         3         20 5.000000e+00
+         4         22 5.000000e+00
+         5         22 5.000000e+00
+         6         18 5.000000e+00
+         7         18 5.000000e+00
+         8         20 5.000000e+00
+         9         20 5.000000e+00
+        10         22 5.000000e+00
+        11         22 5.000000e+00
+        12         30 5.000000e+00
+        12          8 1.000000e+00
+        13         30 5.000000e+00
+        13          8 1.000000e+00
+        14         32 5.000000e+00
+        14         10 1.000000e+00
+        15         32 5.000000e+00
+        15         10 1.000000e+00
+        16         34 5.000000e+00
+        16         10 1.000000e+00
+        17         34 5.000000e+00
+        17         10 1.000000e+00
+        18         30 5.000000e+00
+        18          8 1.000000e+00
+        19         30 5.000000e+00
+        19          8 1.000000e+00
+        20         32 5.000000e+00
+        20         10 1.000000e+00
+        21         32 5.000000e+00
+        21         10 1.000000e+00
+        22         34 5.000000e+00
+        22         10 1.000000e+00
+        23         34 5.000000e+00
+        23         10 1.000000e+00
+        24         30 5.000000e+00
+        24         20 1.000000e+00
+        25         30 5.000000e+00
+        25         20 1.000000e+00
+        26         32 5.000000e+00
+        26         22 1.000000e+00
+        27         32 5.000000e+00
+        27         22 1.000000e+00
+        28         34 5.000000e+00
+        28         22 1.000000e+00
+        29         34 5.000000e+00
+        29         22 1.000000e+00
+        30         30 5.000000e+00
+        30         20 1.000000e+00
+        31         30 5.000000e+00
+        31         20 1.000000e+00
+        32         32 5.000000e+00
+        32         22 1.000000e+00
+        33         32 5.000000e+00
+        33         22 1.000000e+00
+        34         34 5.000000e+00
+        34         22 1.000000e+00
+        35         34 5.000000e+00
+        35         22 1.000000e+00
+
+action: 3
+         0         19 5.000000e+00
+         1         19 5.000000e+00
+         2         21 5.000000e+00
+         2          7 1.000000e+00
+         3         21 5.000000e+00
+         3          7 1.000000e+00
+         4         23 5.000000e+00
+         4          9 1.000000e+00
+         5         23 5.000000e+00
+         5          9 1.000000e+00
+         6         19 5.000000e+00
+         7         19 5.000000e+00
+         8         21 5.000000e+00
+         8          7 1.000000e+00
+         9         21 5.000000e+00
+         9          7 1.000000e+00
+        10         23 5.000000e+00
+        10          9 1.000000e+00
+        11         23 5.000000e+00
+        11          9 1.000000e+00
+        12         31 5.000000e+00
+        12          9 1.000000e+00
+        13         31 5.000000e+00
+        13          9 1.000000e+00
+        14         33 5.000000e+00
+        14         11 1.000000e+00
+        14         19 1.000000e+00
+        15         33 5.000000e+00
+        15         11 1.000000e+00
+        15         19 1.000000e+00
+        16         35 5.000000e+00
+        16         11 1.000000e+00
+        16         21 1.000000e+00
+        17         35 5.000000e+00
+        17         11 1.000000e+00
+        17         21 1.000000e+00
+        18         31 5.000000e+00
+        18          9 1.000000e+00
+        19         31 5.000000e+00
+        19          9 1.000000e+00
+        20         33 5.000000e+00
+        20         11 1.000000e+00
+        20         19 1.000000e+00
+        21         33 5.000000e+00
+        21         11 1.000000e+00
+        21         19 1.000000e+00
+        22         35 5.000000e+00
+        22         11 1.000000e+00
+        22         21 1.000000e+00
+        23         35 5.000000e+00
+        23         11 1.000000e+00
+        23         21 1.000000e+00
+        24         31 5.000000e+00
+        24         21 1.000000e+00
+        25         31 5.000000e+00
+        25         21 1.000000e+00
+        26         33 5.000000e+00
+        26         23 1.000000e+00
+        26         31 1.000000e+00
+        27         33 5.000000e+00
+        27         23 1.000000e+00
+        27         31 1.000000e+00
+        28         35 5.000000e+00
+        28         23 1.000000e+00
+        28         33 1.000000e+00
+        29         35 5.000000e+00
+        29         23 1.000000e+00
+        29         33 1.000000e+00
+        30         31 5.000000e+00
+        30         21 1.000000e+00
+        31         31 5.000000e+00
+        31         21 1.000000e+00
+        32         33 5.000000e+00
+        32         23 1.000000e+00
+        32         31 1.000000e+00
+        33         33 5.000000e+00
+        33         23 1.000000e+00
+        33         31 1.000000e+00
+        34         35 5.000000e+00
+        34         23 1.000000e+00
+        34         33 1.000000e+00
+        35         35 5.000000e+00
+        35         23 1.000000e+00
+        35         33 1.000000e+00
+
+#############################################
+Reward Matrix (state,action):
+         0          0 0.000000e+00
+         0          1 2.285714e+00
+         0          2 1.285714e+00
+         0          3 3.500000e+00
+         1          0 0.000000e+00
+         1          1 2.857143e-01
+         1          2 1.285714e+00
+         1          3 1.500000e+00
+         2          0 3.333333e-01
+         2          1 2.571429e+00
+         2          2 1.571429e+00
+         2          3 3.750000e+00
+         3          0 3.333333e-01
+         3          1 5.714286e-01
+         3          2 1.571429e+00
+         3          3 1.750000e+00
+         4          0 6.666667e-01
+         4          1 2.857143e+00
+         4          2 1.857143e+00
+         4          3 4.000000e+00
+         5          0 6.666667e-01
+         5          1 8.571429e-01
+         5          2 1.857143e+00
+         5          3 2.000000e+00
+         6          0 1.000000e+00
+         6          1 3.285714e+00
+         6          2 2.857143e-01
+         6          3 2.500000e+00
+         7          0 1.000000e+00
+         7          1 1.285714e+00
+         7          2 2.857143e-01
+         7          3 5.000000e-01
+         8          0 1.333333e+00
+         8          1 3.571429e+00
+         8          2 5.714286e-01
+         8          3 2.750000e+00
+         9          0 1.333333e+00
+         9          1 1.571429e+00
+         9          2 5.714286e-01
+         9          3 7.500000e-01
+        10          0 1.666667e+00
+        10          1 3.857143e+00
+        10          2 8.571429e-01
+        10          3 3.000000e+00
+        11          0 1.666667e+00
+        11          1 1.857143e+00
+        11          2 8.571429e-01
+        11          3 1.000000e+00
+        12          0 3.333333e-01
+        12          1 2.571429e+00
+        12          2 1.571429e+00
+        12          3 3.750000e+00
+        13          0 3.333333e-01
+        13          1 5.714286e-01
+        13          2 1.571429e+00
+        13          3 1.750000e+00
+        14          0 6.666667e-01
+        14          1 2.857143e+00
+        14          2 1.857143e+00
+        14          3 4.000000e+00
+        15          0 6.666667e-01
+        15          1 8.571429e-01
+        15          2 1.857143e+00
+        15          3 2.000000e+00
+        16          0 1.000000e+00
+        16          1 3.142857e+00
+        16          2 3.809524e+00
+        16          3 5.678571e+00
+        17          0 1.000000e+00
+        17          1 1.142857e+00
+        17          2 3.809524e+00
+        17          3 3.678571e+00
+        18          0 1.333333e+00
+        18          1 3.571429e+00
+        18          2 5.714286e-01
+        18          3 2.750000e+00
+        19          0 1.333333e+00
+        19          1 1.571429e+00
+        19          2 5.714286e-01
+        19          3 7.500000e-01
+        20          0 1.666667e+00
+        20          1 3.857143e+00
+        20          2 8.571429e-01
+        20          3 3.000000e+00
+        21          0 1.666667e+00
+        21          1 1.857143e+00
+        21          2 8.571429e-01
+        21          3 1.000000e+00
+        22          0 2.000000e+00
+        22          1 4.142857e+00
+        22          2 2.809524e+00
+        22          3 4.678571e+00
+        23          0 2.000000e+00
+        23          1 2.142857e+00
+        23          2 2.809524e+00
+        23          3 2.678571e+00
+        24          0 1.066667e+01
+        24          1 1.119048e+01
+        24          2 1.019048e+01
+        24          3 1.114286e+01
+        25          0 1.066667e+01
+        25          1 9.190476e+00
+        25          2 1.019048e+01
+        25          3 9.142857e+00
+        26          0 1.100000e+01
+        26          1 1.147619e+01
+        26          2 1.047619e+01
+        26          3 1.139286e+01
+        27          0 1.100000e+01
+        27          1 9.476190e+00
+        27          2 1.047619e+01
+        27          3 9.392857e+00
+        28          0 1.133333e+01
+        28          1 1.176190e+01
+        28          2 1.242857e+01
+        28          3 1.307143e+01
+        29          0 1.133333e+01
+        29          1 9.761905e+00
+        29          2 1.242857e+01
+        29          3 1.107143e+01
+        30          0 1.166667e+01
+        30          1 1.219048e+01
+        30          2 9.190476e+00
+        30          3 1.014286e+01
+        31          0 1.166667e+01
+        31          1 1.019048e+01
+        31          2 9.190476e+00
+        31          3 8.142857e+00
+        32          0 1.200000e+01
+        32          1 1.247619e+01
+        32          2 9.476190e+00
+        32          3 1.039286e+01
+        33          0 1.200000e+01
+        33          1 1.047619e+01
+        33          2 9.476190e+00
+        33          3 8.392857e+00
+        34          0 1.233333e+01
+        34          1 1.276190e+01
+        34          2 1.142857e+01
+        34          3 1.207143e+01
+        35          0 1.233333e+01
+        35          1 1.076190e+01
+        35          2 1.142857e+01
+        35          3 1.007143e+01
+
+#############################################
+
+
+</pre></div></div>
+</div>
+<p>Uniformization of the MDP. After uniformization the MDP is a discrete time discounted MDP.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctmdp</span><span class="o">.</span><span class="n">UniformizeMDP</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rate of Uniformization&quot;</span><span class="p">,</span><span class="n">ctmdp</span><span class="o">.</span><span class="n">getMaximumRate</span><span class="p">())</span>
+<span class="c1">#*# print(ctmdp)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rate of Uniformization 7.0
+</pre></div></div>
+</div>
+</section>
+<section id="Solve-the-MDP">
+<h3>Solve the MDP<a class="headerlink" href="#Solve-the-MDP" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span><span class="o">=</span><span class="n">ctmdp</span><span class="o">.</span><span class="n">ValueIteration</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 36
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           20.2621   0
+  1            19.813   1
+  2           23.6915   1
+  3           22.7071   1
+  4           26.9033   1
+  5            25.919   1
+  6            20.073   2
+  7           19.5335   3
+  8            23.355   3
+  9           22.3706   3
+ 10           26.7718   3
+ 11           25.7874   3
+ 12           24.3154   0
+ 13           23.6318   1
+ 14           28.6189   3
+ 15           27.4345   1
+ 16           32.4679   1
+ 17           31.1554   1
+ 18           23.9438   2
+ 19            23.188   3
+ 20           28.0447   3
+ 21           26.8963   3
+ 22           32.0885   3
+ 23           30.9401   3
+ 24           28.9497   3
+ 25           27.9654   3
+ 26           34.0438   3
+ 27           32.8953   3
+ 28           38.2301   3
+ 29           37.0816   3
+ 30           28.4575   3
+ 31           27.4732   3
+ 32           33.4696   3
+ 33           32.3211   3
+ 34           37.6559   3
+ 35           36.5074   3
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Structural-Analysis">
+<h2>Structural Analysis<a class="headerlink" href="#Structural-Analysis" title="Link to this heading"></a></h2>
+<p>The structural analysis is mainly related to the policy handling. In what follow we :</p>
+<ol class="arabic simple">
+<li><p>Check property of the MDP by building a Markov Chain Associated with a policy</p></li>
+<li><p>Check property of the value function</p></li>
+</ol>
+<section id="Check-property-using-Markov-Chain-analysis">
+<h3>Check property using Markov Chain analysis<a class="headerlink" href="#Check-property-using-Markov-Chain-analysis" title="Link to this heading"></a></h3>
+<section id="Check-if-the-MDP-is-%22multichain%22">
+<h4>Check if the MDP is “multichain”<a class="headerlink" href="#Check-if-the-MDP-is-%22multichain%22" title="Link to this heading"></a></h4>
+<p>Actually the multichain property is useless for discounted criteria and is solely valid for average multichain criteria. This is presented here for an example purpose.</p>
+<p>To assess the property, we build a special policy</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">policy</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">FeedbackSolutionMDP</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<p>Now we fill-in policy. The policy is defined as foolows: in any states such that the number of customer is less than 2 the server si activated and deactivated otherwise.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">etat</span><span class="o">=</span><span class="n">states</span><span class="o">.</span><span class="n">StateBuffer</span><span class="p">()</span>
+<span class="n">states</span><span class="o">.</span><span class="n">FirstState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">etat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">etat</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">==</span><span class="p">(</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;B2&#39;</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">):</span>
+        <span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">policy</span><span class="o">.</span><span class="n">setActionIndex</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">states</span><span class="o">.</span><span class="n">NextState</span><span class="p">(</span><span class="n">etat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 36
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0                 0   1
+  1                 0   1
+  2                 0   1
+  3                 0   1
+  4                 0   0
+  5                 0   0
+  6                 0   1
+  7                 0   1
+  8                 0   1
+  9                 0   1
+ 10                 0   0
+ 11                 0   0
+ 12                 0   1
+ 13                 0   1
+ 14                 0   1
+ 15                 0   1
+ 16                 0   0
+ 17                 0   0
+ 18                 0   1
+ 19                 0   1
+ 20                 0   1
+ 21                 0   1
+ 22                 0   0
+ 23                 0   0
+ 24                 0   0
+ 25                 0   0
+ 26                 0   0
+ 27                 0   0
+ 28                 0   0
+ 29                 0   0
+ 30                 0   0
+ 31                 0   0
+ 32                 0   0
+ 33                 0   0
+ 34                 0   0
+ 35                 0   0
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Build a Markov Chain from a policy</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mat</span><span class="o">=</span><span class="n">ctmdp</span><span class="o">.</span><span class="n">GetChain</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="n">Mat</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">mco</span><span class="o">.</span><span class="n">DISCRETE</span><span class="p">)</span>
+<span class="c1">#*# print(Mat)</span>
+
+<span class="n">initial</span> <span class="o">=</span> <span class="n">mco</span><span class="o">.</span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">states</span><span class="o">.</span><span class="n">Cardinal</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Making the chain</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chaine</span> <span class="o">=</span> <span class="n">mch</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">Mat</span> <span class="p">)</span>
+<span class="n">chaine</span><span class="o">.</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="n">chaine</span><span class="o">.</span><span class="n">set_model_name</span><span class="p">(</span> <span class="s2">&quot;Chain issued from the MDP&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Analysis of the transition matrix</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mat</span><span class="o">.</span><span class="n">Diagnose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Evaluate the policy</strong></p>
+<p>Now we can evaluate the policy by the way of the <code class="docutils literal notranslate"><span class="pre">PolicyCost</span></code> method</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ctmdp</span><span class="o">.</span><span class="n">PolicyCost</span><span class="p">(</span><span class="n">policy</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 36
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           26.7558   1
+  1            25.912   1
+  2           34.3058   1
+  3           33.3215   1
+  4           37.1708   0
+  5           37.1708   0
+  6           27.1776   1
+  7           26.3339   1
+  8            34.798   1
+  9           33.8136   1
+ 10            37.745   0
+ 11            37.745   0
+ 12           32.0988   1
+ 13           30.9503   1
+ 14            42.387   1
+ 15           41.0745   1
+ 16           44.1465   0
+ 17           44.1465   0
+ 18            32.673   1
+ 19           31.5245   1
+ 20           43.0433   1
+ 21           41.7308   1
+ 22           44.9121   0
+ 23           44.9121   0
+ 24           36.7468   0
+ 25           36.7472   0
+ 26           50.5268   0
+ 27           50.5274   0
+ 28            52.058   0
+ 29           52.0585   0
+ 30           37.3214   0
+ 31           37.3214   0
+ 32            51.293   0
+ 33            51.293   0
+ 34           52.8242   0
+ 35           52.8242   0
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Check-if-the-value-function-has-structural-property-(convex,monotone)">
+<h3>Check if the value function has structural property (convex,monotone)<a class="headerlink" href="#Check-if-the-value-function-has-structural-property-(convex,monotone)" title="Link to this heading"></a></h3>
+<p>This is done by building a specific object <code class="docutils literal notranslate"><span class="pre">PropertiesValue</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkValue</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">PropertiesValue</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+<span class="n">checkValue</span><span class="o">.</span><span class="n">avoidDetail</span><span class="p">()</span>
+<span class="n">monotonicity</span><span class="o">=</span><span class="n">checkValue</span><span class="o">.</span><span class="n">Monotonicity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Printing monotonicity property of value function (1 if increasing -1 if decreasing 0 otherwise) : &quot;</span>\
+      <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">monotonicity</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking convexity&quot;</span><span class="p">)</span>
+<span class="n">convexity</span><span class="o">=</span><span class="n">checkValue</span><span class="o">.</span><span class="n">Convexity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Printing convexity property of value function (1 if convex -1 concave 0 otherwise) : &quot;</span> <span class="o">+</span> \
+      <span class="nb">str</span><span class="p">(</span><span class="n">convexity</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Printing monotonicity property of value function (1 if increasing -1 if decreasing 0 otherwise) : 0
+Checking convexity
+Printing convexity property of value function (1 if convex -1 concave 0 otherwise) : 0
+</pre></div></div>
+</div>
+<p>The analysis can be made dimension by dimension. Now we check the monotonicty of the first dimension by letting vary the entries with index 0 and keeping the other dimensions fixed.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">monotonicity</span><span class="o">=</span><span class="n">checkValue</span><span class="o">.</span><span class="n">MonotonicityByDim</span><span class="p">(</span><span class="n">optimum</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Following dimension 0 monotonicity is&quot;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">monotonicity</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Following dimension 0 monotonicity is 1
+</pre></div></div>
+</div>
+</section>
+<section id="Check-if-the-optimal-policy-has-structural-property">
+<h3>Check if the optimal policy has structural property<a class="headerlink" href="#Check-if-the-optimal-policy-has-structural-property" title="Link to this heading"></a></h3>
+<p>The structural analysis of a policy property is carried out using a <code class="docutils literal notranslate"><span class="pre">PropertiesValue</span></code> object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking Structural Properties of value&quot;</span><span class="p">)</span>
+<span class="n">checkPolicy</span> <span class="o">=</span>  <span class="n">md</span><span class="o">.</span><span class="n">PropertiesPolicy</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+
+<span class="n">monotonicity</span><span class="o">=</span><span class="n">checkPolicy</span><span class="o">.</span><span class="n">Monotonicity</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PropertiesPolicy::MonotonicityOptimalPolicy=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">monotonicity</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Checking Structural Properties of value
+PropertiesPolicy::MonotonicityOptimalPolicy=0
+</pre></div></div>
+</div>
+<p>End</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="App_Lesson1.html" class="btn btn-neutral float-left" title="Application Lesson 1: Application to Mitrani’s hysteresis model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../python_downloads.html" class="btn btn-neutral float-right" title="Downloads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

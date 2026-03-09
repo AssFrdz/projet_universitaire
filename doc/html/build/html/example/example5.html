@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example 5 &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example 6" href="example6.html" />
+    <link rel="prev" title="Example 4" href="example4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example1.html">Example 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example2.html">Example 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example3.html">Example 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example4.html">Example 4</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example 5</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks-performed">Tasks performed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="example6.html">Example 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example7.html">Example 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example10.html">Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP10.html">MDP Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP11.html">MDP Example 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP21.html">MDP Example 21</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP31.html">MDP Example 31</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP40.html">MDP Example 40</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Example 5</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/example/example5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-5">
+<h1>Example 5<a class="headerlink" href="#example-5" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>Example that creates a 3x3 Markov chain then tests several methods to compute the same result: its stationary distribution.
+Usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>example5
+</pre></div>
+</div>
+</section>
+<section id="tasks-performed">
+<h2>Tasks performed<a class="headerlink" href="#tasks-performed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>create a state space with 3 states, using the <code class="docutils literal notranslate"><span class="pre">MarmoteInterval</span></code> object;</p></li>
+<li><p>create an <code class="docutils literal notranslate"><span class="pre">UniformDistribution</span></code> object, and use it to draw initial distribution at random;</p></li>
+<li><p>create a <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code> object with the state space and the initial distribution, and write it to the standard output;</p></li>
+<li><p>create a transition matrix for the chain, and associate the matrix to the chain with the <code class="docutils literal notranslate"><span class="pre">set_generator()</span></code> method;</p></li>
+<li><p>use three methods to compute the stationary distribution of the chain:</p>
+<ul>
+<li><p>the default method <code class="docutils literal notranslate"><span class="pre">StationaryDistribution()</span></code>;</p></li>
+<li><p>the power method with a maximal number of iterations and a tolerance, starting from the initial distribution;</p></li>
+<li><p>the RLGL (red light green light) method, also with a maximal number of iterations and a tolerance.</p></li>
+</ul>
+</li>
+<li><p>write the resulting distributions to the standard output;</p></li>
+<li><p>compute the distance between two of the resulting distributions, using the L1 norm;</p></li>
+<li><p>check the (approximate) invariance of the distribution obtained with RLGL by:</p>
+<ul>
+<li><p>computing the one-step transient distribution with this RLGL distribution as initial distribution;</p></li>
+<li><p>computing the L1 distance between the result and the RLGL distribution.</p></li>
+</ul>
+</li>
+<li><p>test, as alternative, the computation of a transient distribution by:</p>
+<ul>
+<li><p>computing the transient distribution after 100 steps from the same initial distribution;</p></li>
+<li><p>computing the L1 distance between the result and the distribution obtained with the power method.</p></li>
+</ul>
+</li>
+<li><p>cleanup.</p></li>
+</ul>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Example that creates a 3x3 Markov chain then tests several methods for the</span>
+<span class="c1">// same result.</span>
+<span class="c1">//</span>
+<span class="c1">// Usage: example5</span>
+<span class="c1">//</span>
+
+<span class="c1">// Include necessary header files to use marmoteCore and other functonalities.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteDiscreteDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteUniformDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteInterval.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmotePolicy.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteSparseMatrix.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="c1">// The application code devised for testing the input/output files of Markov chains</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// In this model:</span>
+<span class="w">    </span><span class="c1">// state 0 -&gt; marmote is in first mountain,</span>
+<span class="w">    </span><span class="c1">// state 1 -&gt; marmote is in second mountain,</span>
+<span class="w">    </span><span class="c1">// state 2 -&gt; marmote is in third mountain .. etc ..</span>
+
+<span class="w">    </span><span class="c1">// Creating the state space of size 3.</span>
+<span class="w">    </span><span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">states</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">  	</span><span class="c1">//Creating the initial distribution vector of size 3.</span>
+<span class="w">  	</span><span class="kt">double</span><span class="w"> </span><span class="n">probas</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="n">marmote</span><span class="o">::</span><span class="n">random</span><span class="o">::</span><span class="n">setRandomSeed</span><span class="p">();</span>
+
+<span class="w">  	</span><span class="c1">// Filling the initial distribution vector using a uniform distribution</span>
+<span class="w">	</span><span class="c1">// to generate random probabilities.	</span>
+<span class="w">  	</span><span class="n">UniformDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">initialRandom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="n">probas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initialRandom</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">();</span>
+<span class="w">    </span><span class="n">probas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initialRandom</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">();</span>
+<span class="w">	</span><span class="n">probas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initialRandom</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">();</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">probas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">probas</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="n">probas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">	</span><span class="n">probas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">	</span><span class="n">probas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">	</span>
+<span class="w">  	</span><span class="c1">// Create a discrete distribution for the three states.</span>
+<span class="w">    </span><span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">initial1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">probas</span><span class="p">);</span>
+<span class="w">    </span><span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">initial2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">states</span><span class="p">,</span><span class="n">probas</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">  	</span><span class="c1">// Create a discrete-time Markov chain of size 3.</span>
+<span class="w">    </span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">states</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">(),</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">  	</span><span class="c1">// Assigning created distribution to the chain.</span>
+<span class="w">  	</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial1</span><span class="p">);</span>
+
+<span class="w">  	</span><span class="c1">// Creating the transition matrix of size 3*3.</span>
+<span class="w">  	</span><span class="n">SparseMatrix</span><span class="w"> </span><span class="o">*</span><span class="n">P</span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="w">  	</span><span class="c1">// Add entries to the transition matrix.</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">P</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">);</span>
+
+<span class="w">  	</span><span class="c1">// Assign the transition matrix to the chain. </span>
+<span class="w">  	</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_generator</span><span class="p">(</span><span class="n">P</span><span class="p">);</span>
+<span class="w"> </span>
+
+<span class="w">  	</span><span class="c1">// Creating a DiscreteDistribution object containing the stationary distribution</span>
+<span class="w">	</span><span class="c1">// of the chain.</span>
+<span class="w">  	</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">staDis1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">StationaryDistribution</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Creating an other DiscreteDistribution containing the stationnary distribution</span>
+<span class="w">	</span><span class="c1">// computed with an other method</span>
+<span class="w">	</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">staDis2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">StationaryDistributionPower</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mf">0.00001</span><span class="p">,</span><span class="n">initial1</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Creating an other DiscreteDistribution containing the stationnary distribution</span>
+<span class="w">	</span><span class="c1">// computed with the RLGL method</span>
+<span class="w">	</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">staDis3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">StationaryDistributionRLGL</span><span class="p">(</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="mf">0.00000001</span><span class="p">,</span><span class="n">initial1</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">  	</span><span class="c1">// Write results to the terminal stdout.</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Initial probability</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">initial1</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Markov chain</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Stationary distribution #1 with iterative method</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">staDis1</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Stationary distribution #2 with power method</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">staDis2</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Stationary distribution RLGL method</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">staDis3</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Distance between the Power and the RLGL methods = %e</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="w"> </span><span class="n">staDis3</span><span class="p">,</span><span class="w"> </span><span class="n">staDis2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Checking invariance of the stationary distribution</span>
+<span class="w">	</span><span class="c1">// In order to do that, we set the computed stationary distribution as initial</span>
+<span class="w">	</span><span class="c1">// distribution, then compute the one-step transient probability.</span>
+<span class="w">	</span><span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">staDis2bis</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">DiscreteDistribution</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">staDis2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">staDis2bis</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">dis3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Checking invariance of distribution #2: one-step transition is:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dis3</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# L1 distance with distribution #2:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;d = %e</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="w"> </span><span class="n">dis3</span><span class="p">,</span><span class="w"> </span><span class="n">staDis2bis</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Comparing stationary distribution with transient distribution after a &quot;large&quot;</span>
+<span class="w">	</span><span class="c1">// number of steps (100) from some random initial distribution</span>
+<span class="w">	</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial2</span><span class="p">);</span>
+<span class="w">	</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">dis4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# Transient distribution after 100 steps&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; from the random initial distribution</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dis4</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;# L1 distance with distribution #2:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;d = %e</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="w"> </span><span class="n">dis4</span><span class="p">,</span><span class="w"> </span><span class="n">staDis2bis</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Cleanup the chain and distribution objects</span>
+<span class="w">        </span><span class="k">delete</span><span class="w"> </span><span class="n">states</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">initialRandom</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">initial1</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">initial2</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span><span class="w"> </span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">staDis1</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">staDis2</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// Deletion of staDis2bis is not needed because this is a castof staDis2</span>
+<span class="w">	</span><span class="c1">// delete staDis2bis;</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">staDis3</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">dis3</span><span class="p">;</span>
+<span class="w">	</span><span class="k">delete</span><span class="w"> </span><span class="n">dis4</span><span class="p">;</span>
+
+<span class="w">	</span><span class="c1">// Exit with OK code</span>
+<span class="w">  	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Link to this heading"></a></h2>
+<p>The source file is <a class="reference download internal" download="" href="../_downloads/83c3d73ca7876d111b729aece3782dd5/example5.cpp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example4.html" class="btn btn-neutral float-left" title="Example 4" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example6.html" class="btn btn-neutral float-right" title="Example 6" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

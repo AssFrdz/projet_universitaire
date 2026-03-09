@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP Lesson 1: discounted MDP &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MDP Lesson 2: additional methods" href="MDP_Lesson2.html" />
+    <link rel="prev" title="Lesson 5: Predefined Markov Chains" href="Lesson5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MDP Lesson 1: discounted MDP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Using-the-library">Using the library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Build-a-simple-MDP">Build a simple MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Solving-the-MDP">Solving the MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#About-the-SolutionMDP-object">About the SolutionMDP object</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">MDP Lesson 1: discounted MDP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/MDP_Lesson1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="MDP-Lesson-1:-discounted-MDP">
+<h1>MDP Lesson 1: discounted MDP<a class="headerlink" href="#MDP-Lesson-1:-discounted-MDP" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<section id="Using-the-library">
+<h2>Using the library<a class="headerlink" href="#Using-the-library" title="Link to this heading"></a></h2>
+<p><strong>Import the modules</strong></p>
+<p>The following commands allows to import the modules</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.mdp</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mmdp</span>
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">It is necessary to import the modules <em>marmote.core</em> and <em>marmote.mdp</em> from <em>pyMarmote</em> library.</div>
+<div class="line">Hence <em>marmote.core</em> handles the basic objects (<em>Sets</em> (very similar to tensors), <em>distributions</em>, <em>matrices</em>,…)</div>
+<div class="line">Hence <em>marmote.mdp</em> handles the objects for Markov Decision Processes.</div>
+</div>
+<p>In this first lesson, we show how to make and how to solve a simple infinite-horizon discounted criteria MDP.</p>
+</section>
+<section id="Build-a-simple-MDP">
+<h2>Build a simple MDP<a class="headerlink" href="#Build-a-simple-MDP" title="Link to this heading"></a></h2>
+<section id="Reminders-about-MDP">
+<h3>Reminders about MDP<a class="headerlink" href="#Reminders-about-MDP" title="Link to this heading"></a></h3>
+<p>Formally a MDP is a tuple <em>(S,A,P_a,R)</em> where</p>
+<ul class="simple">
+<li><p>S is the state space</p></li>
+<li><p>A is the action space</p></li>
+<li><p>P_a is a collection of transition matrices. A matrix for each action</p></li>
+<li><p>R is a reward (or cost) matrix</p></li>
+</ul>
+<section id="Description-of-the-exemple-implemented-here">
+<h4>Description of the exemple implemented here<a class="headerlink" href="#Description-of-the-exemple-implemented-here" title="Link to this heading"></a></h4>
+<p>We assume a simple model with two states x1=0 and x2=1 and in each state: two actions a1=0 and a2=1.</p>
+<p>The reward matrix is:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>4.5</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>-1.5</p></td>
+<td><p>3.0</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">where <em>r(x,a)</em> is the entry with row coordinate <span class="math notranslate nohighlight">\(x\)</span> and column coordinate <span class="math notranslate nohighlight">\(a\)</span>.</div>
+<div class="line">The entry <em>r(x,a)</em> represents the reward when in state <em>x</em> action <em>a</em> is performed.</div>
+</div>
+<p>The transition matrices are :</p>
+<p>Transition matrix of the action 0:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>0.6</p></td>
+<td><p>0.4</p></td>
+</tr>
+<tr class="row-even"><td><p>0.5</p></td>
+<td><p>0.5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Transition matrix of the action 1:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>0.2</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-even"><td><p>0.7</p></td>
+<td><p>0.3</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="Elements-of-a-MDP-object">
+<h3>Elements of a MDP object<a class="headerlink" href="#Elements-of-a-MDP-object" title="Link to this heading"></a></h3>
+<section id="Attributes-of-the-object">
+<h4>Attributes of the object<a class="headerlink" href="#Attributes-of-the-object" title="Link to this heading"></a></h4>
+<p>A MDP in marmote is an object that receives (at least) four important attributes</p>
+<ol class="arabic simple">
+<li><p>The <em>state space</em> that is a <em>MarmoteSet</em> object (an object to deal with Sets).
+The simplest <em>MarmoteSet</em> object is the object <em>MarmoteInterval</em>. Here we use a <em>MarmoteInterval</em> for the state space.</p></li>
+<li><p>The action space is also a <em>MarmoteSet</em> object. In our case also a <em>MarmoteInterval</em> object.</p></li>
+<li><p>A <em>list</em> of transition structures.
+Each entry in the list corresponds with a <em>TransitionStructure</em> associated with a given action.</p></li>
+</ol>
+<ul class="simple">
+<li><p>The <em>TransitionStructure</em> at the <em>a</em>-th entry of the list is the <em>TransitionStructure</em> associated with the action whose index is <em>a</em>.</p></li>
+<li><p>A <em>TransitionStructure</em> describes the probability transition to move from a state <em>i</em> into state <em>j</em>.</p></li>
+<li><p>The <em>TransitionStructure</em> can be a <em>FullMatrix</em> or a <em>SparseMatrix</em>. Here the <em>(i,j)</em> entry of a matrix gives the probability to move from state with index <em>i</em> to state with index <em>j</em>.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>a reward (or cost).
+This is a TransitionStructure (preferably a FullMatrix) in which the cost for an action <em>a</em> in a state <em>x</em> is defined. Rows are used for indexes of states and columns are used for indexes of action. Hence the entry with indexes <em>(x,a)</em> represents the cost of action of index <em>a</em> in state of index <em>x</em>;</p></li>
+</ol>
+</section>
+<section id="How-to-build-the-DiscountedMDP-object">
+<h4>How to build the DiscountedMDP object<a class="headerlink" href="#How-to-build-the-DiscountedMDP-object" title="Link to this heading"></a></h4>
+<p><strong>Create state space and action space</strong></p>
+<p>Here we define two objects <code class="docutils literal notranslate"><span class="pre">MarmoteInterval</span></code> for state and action spaces. The two following lines define two intervals going from 0 to 1.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actionSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">stateSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Storing matrices</strong></p>
+<div class="line-block">
+<div class="line">A <code class="docutils literal notranslate"><span class="pre">list</span></code> is used to store all transition matrices.</div>
+<div class="line">The number of matrices should correspond with the size of the action space.</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Build transition matrices</strong></p>
+<p>Now, we create P0 an object <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> with size 2x2. The P0 matrix is a transition matrix.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P0</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">The command to initialize an entry is <code class="docutils literal notranslate"><span class="pre">setEntry</span></code> with syntax <code class="docutils literal notranslate"><span class="pre">setEntry(row,column,value)</span></code></div>
+<div class="line">Hence: the command <code class="docutils literal notranslate"><span class="pre">P0.setEntry(0,0,0.6)</span></code> assigns the value 0.6 to the entry of index (0, 0) of P0.</div>
+</div>
+<p>Now, we define 4 non null entries to P0 matrix.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">P0</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>Then one prints the matrix</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matrix&quot;</span><span class="p">,</span><span class="n">P0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Matrix [[6.000000e-01, 4.000000e-01],
+ [5.000000e-01, 5.000000e-01]]
+
+</pre></div></div>
+</div>
+<p>The next instruction assigns the matrix P0 to the index 0 coordinate of the <code class="docutils literal notranslate"><span class="pre">trans</span></code> list, which means that the transition matrix for the action a0 is now stored at index 0 of the <code class="docutils literal notranslate"><span class="pre">trans</span></code> list.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We now add a new <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code>. Note that a <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> is an object of <em>marmote.core</em>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">P1</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">P1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Build reward matrix</strong></p>
+<p>We create a <code class="docutils literal notranslate"><span class="pre">FullMatrix</span></code>object with size 2x2. This matrix is used for storing the rewards associated with each couple (state,action).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Reward</span>  <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">FullMatrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The following lines add non-zero values to the matrix <em>Reward</em>. More precisely:</p>
+<ul class="simple">
+<li><p>The first line adds the value 4.5 to position (0, 0) in the matrix.</p></li>
+<li><p>The second line adds the value 2 to position (1, 1) in the matrix.</p></li>
+<li><p>The third line adds the value -1.5 to position (1, 0) in the matrix.</p></li>
+<li><p>The fourth line adds the value 3 to position (1, 1) in the matrix.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">Reward</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p><strong>Additional parameters of the discounted MDP</strong></p>
+<p>Two additional parameters should be entered : <em>beta</em> and <em>critere</em></p>
+<ul class="simple">
+<li><p><em>beta</em> is the discount factor for incorporating future values.</p></li>
+<li><p><em>critère</em> indicates the optimisation criterion, which is either maximisation (<em>“max”</em>) or minimisation (<em>“min”</em>).</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;max&quot;</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Build a discounted MDP</strong></p>
+<p>We now construct a <code class="docutils literal notranslate"><span class="pre">DiscountedMDP</span></code> object using the constructor, to which we pass the parameters defined in this page. Parameters of a <code class="docutils literal notranslate"><span class="pre">DiscountedMDP</span></code> are:</p>
+<ul class="simple">
+<li><p><em>criterion</em> either <em>min</em> or <em>max</em></p></li>
+<li><p>an object that encodes the state space</p></li>
+<li><p>an object that encodes the action space</p></li>
+<li><p>a list of TransitionStructure</p></li>
+<li><p>a reward</p></li>
+<li><p>the discount factor</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span> <span class="o">=</span> <span class="n">mmdp</span><span class="o">.</span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">Reward</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now one prints the MDP. This is used to display the various components of the MDP, such as state and action spaces, transition matrices and reward.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mdp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+#############################################
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+DiscountedMDP (Object at 0000022846972000)
+MDP type (discrete,continuous): discrete
+MDP rule (min,max): max
+State space size: 2
+Action space size: 2
+State  dimension: 1
+Action dimension: 1
+#############################################
+Transition matrix per action:
+action: 0
+         0          0 6.000000e-01
+         0          1 4.000000e-01
+         1          0 5.000000e-01
+         1          1 5.000000e-01
+
+action: 1
+         0          0 2.000000e-01
+         0          1 8.000000e-01
+         1          0 7.000000e-01
+         1          1 3.000000e-01
+
+#############################################
+Reward Matrix (state,action):
+         0          0 4.500000e+00
+         0          1 2.000000e+00
+         1          0 -1.500000e+00
+         1          1 3.000000e+00
+
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="Solving-the-MDP">
+<h2>Solving the MDP<a class="headerlink" href="#Solving-the-MDP" title="Link to this heading"></a></h2>
+<section id="List-of-solution-methods">
+<h3>List of solution methods<a class="headerlink" href="#List-of-solution-methods" title="Link to this heading"></a></h3>
+<p>We list here the different methods implemented to solve discounted Markov Decision processes. Detail of the methods can be found in the literature. All these methods return a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> object.</p>
+<ol class="arabic simple">
+<li><p>method <em>Value Iteration</em> method name <code class="docutils literal notranslate"><span class="pre">ValueIteration</span></code></p></li>
+<li><p>method <em>Value Iteration using Gauss Seidel</em> method name <code class="docutils literal notranslate"><span class="pre">ValueIterationGS</span></code></p></li>
+<li><p>method Value Iteration with a given value function for initiate the process method name <code class="docutils literal notranslate"><span class="pre">ValueIterationInit</span></code></p></li>
+<li><p>method Policy Iteration Modified method name <code class="docutils literal notranslate"><span class="pre">PolicyIterationModified</span></code></p></li>
+<li><p>method Policy Iteration Modified with Gauss Seidel method name <code class="docutils literal notranslate"><span class="pre">PolicyIterationModifiedGS</span></code></p></li>
+</ol>
+</section>
+<section id="Running-a-solution-method">
+<h3>Running a solution method<a class="headerlink" href="#Running-a-solution-method" title="Link to this heading"></a></h3>
+<p><strong>Value-iteration</strong></p>
+<p>Parameters:</p>
+<ol class="arabic simple">
+<li><p><em>epsilon</em> a precision threshold used to determine the convergence of the algorithm. The algorithm continues to iterate as long as the maximal difference between the new values and the old values in a state is greater than epsilon.</p></li>
+<li><p><em>maxIter</em> gives the maximal number of authorized iterations.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.00001</span>
+<span class="n">maxIter</span> <span class="o">=</span> <span class="mi">700</span>
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">To run a resolution by iterating the value. In order to find both the optimal policy and the optimal value in each of the states. The method returns a stationary solution.</div>
+<div class="line">The function returns a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> object.</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let us display the optimal solution of the Markov Decision Process.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">optimum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 2
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0            79.589   0
+  1           78.2192   1
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Gauss Seidel Value Iteration</strong></p>
+<p>The next line performs ten iterations of the value on the MDP to find the optimal policy and the optimal value of the states, but now using the Gauss-Seidel improvement for evaluating the value in a state.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum2</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">ValueIterationGS</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 2
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           38.9873   0
+  1           39.3571   1
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Value Iteration Init</strong></p>
+<p>It is also possible to choose which value function will be used to start the value iteration process. To do this, one should enter a third parameter, which is an <code class="docutils literal notranslate"><span class="pre">FeedbackSolution</span></code> object whose <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute will be used (see later for details about <code class="docutils literal notranslate"><span class="pre">FeedbackSolution</span></code>) to initiate the process.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum3</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">ValueIterationInit</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="n">optimum2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimum 3&quot;</span><span class="p">,</span><span class="n">optimum3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Optimum 3 #############################################
+Solution of MDP problem
+Size of the state space: 2
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           79.5876   0
+  1           78.2178   1
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Policy Iteration Modified</strong></p>
+<div class="line-block">
+<div class="line">In a policy-based approach, it is possible to evaluate a policy with a given precision that is not the same as the precision used to stop the process.</div>
+<div class="line">Please note that there is no implementation of the <em>Policy Iteration</em> algorithm. It has been chosen instead to implement the variant called <em>Policy Iteration Modified</em> in the book of Puterman.</div>
+<div class="line">Thus, <em>Policy Iteration Modified</em> the third and fourth parameters will be the precision with which a policy will be evaluated and the maximum number of iterations allowed to approach the value.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum4</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">PolicyIterationModified</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimum4&quot;</span><span class="p">,</span><span class="n">optimum4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+optimum4 #############################################
+Solution of MDP problem
+Size of the state space: 2
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0            79.589   0
+  1           78.2192   1
+#############################################
+
+
+</pre></div></div>
+</div>
+<p><strong>Printing Information during the solving process</strong></p>
+<p>The log system allows the printing of internal information during the solving methods such as the number of iterations performed and the precision reached.</p>
+<p><strong>Policy Iteration Modified with Gauss Seidel</strong></p>
+<p>The policy Iteration method can use (as described in Puterman’s book) a Gauss Seidel evaluation. Please note that Policy Iteration Modified With Gauss Seidel Evaluation is not proven for all criteria (but for the disounted criteria it is).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum5</span> <span class="o">=</span> <span class="n">mdp</span><span class="o">.</span><span class="n">PolicyIterationModifiedGS</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;last test&quot;</span><span class="p">,</span><span class="n">optimum5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+last test #############################################
+Solution of MDP problem
+Size of the state space: 2
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0            79.589   0
+  1           78.2192   1
+#############################################
+
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="About-the-SolutionMDP-object">
+<h2>About the SolutionMDP object<a class="headerlink" href="#About-the-SolutionMDP-object" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The solution is stored with a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> object. This object has attributes that store a value and an action for each state.</div>
+<div class="line">The printing of a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code> gives first information about the policy. The information for all the states in the state space is then displayed. All the information for a state is shown on one line, starting with the state index, the state value and the action associated with the value.</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lesson5.html" class="btn btn-neutral float-left" title="Lesson 5: Predefined Markov Chains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MDP_Lesson2.html" class="btn btn-neutral float-right" title="MDP Lesson 2: additional methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

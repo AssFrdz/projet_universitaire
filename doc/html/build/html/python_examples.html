@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Tutorial and Examples &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=51ad5368"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lesson 1: making Markov chains" href="pytutos/Lesson1.html" />
+    <link rel="prev" title="Python API" href="python_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytutos/App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="python_api.html">Python API</a></li>
+      <li class="breadcrumb-item active">Python Tutorial and Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/python_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-tutorial-and-examples">
+<h1>Python Tutorial and Examples<a class="headerlink" href="#python-tutorial-and-examples" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound" id="python-tutorials-examples-toc">
+</div>
+<p><strong>Markov Chain Lessons</strong></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="./pytutos/Lesson1.html">Lesson 1 :</a>  making Markov chains</p></li>
+<li><p><a class="reference external" href="./pytutos/Lesson2.html">Lesson 2:</a>  solving Markov chains</p></li>
+<li><p><a class="reference external" href="./pytutos/Lesson3.html">Lesson 3:</a>  working with state spaces</p></li>
+<li><p><a class="reference internal" href="pytutos/Lesson4.html"><span class="doc">Lesson 4:</span></a>  working with Distributions</p></li>
+<li><p><a class="reference internal" href="pytutos/Lesson5.html"><span class="doc">Lesson 5:</span></a>  predefined Markov Chains</p></li>
+</ol>
+<p><strong>Markov Decision Process Lessons</strong></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="./pytutos/MDP_Lesson1.html">MDP Lesson 1:</a>  discounted MDP</p></li>
+<li><p><a class="reference external" href="./pytutos/MDP_Lesson2.html">MDP Lesson 2:</a> additional methods for discounted models</p></li>
+<li><p><a class="reference external" href="./pytutos/MDP_Lesson3.html">MDP Lesson 3:</a> average MDP and manipulating policies</p></li>
+<li><p><a class="reference external" href="./pytutos/MDP_Lesson4.html">MDP Lesson 4:</a> Total Reward MDP and manipulating two-dimensional state space</p></li>
+</ol>
+<p><strong>Application Lessons</strong></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="./pytutos/App_Lesson1.html">Application Lesson 1: (Markov Chain)</a> Application to Mitrani’s hysteresis model</p></li>
+<li><p><a class="reference external" href="./pytutos/App_Lesson2.html">Application Lesson 2: (Markov Decision Process)</a> Application to the control of a tandem multi server system</p></li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_api.html" class="btn btn-neutral float-left" title="Python API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytutos/Lesson1.html" class="btn btn-neutral float-right" title="Lesson 1: making Markov chains" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

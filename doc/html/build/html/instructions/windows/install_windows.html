@@ -1,0 +1,205 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marmote install with conda on MS Windows &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Marmote install with conda on MacOS" href="../macos/install_macos.html" />
+    <link rel="prev" title="Marmote install with conda on Linux" href="../linux/install_linux.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../build_instructions.html">Install and run instructions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../build_instructions.html#principle-of-the-software">Principle of the software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../build_instructions.html#versions-and-prerequisites">Versions and prerequisites</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../build_instructions.html#platform-specific-instructions">Platform-specific instructions</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../build_instructions.html#install-marmote">Install Marmote</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../linux/install_linux.html">Linux</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../macos/install_macos.html">MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../build_instructions.html#compile-c-files-and-run">Compile C++ Files and run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../build_instructions.html#run-python-files">Run python Files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../build_instructions.html#in-case-of-problems">In case of problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../build_instructions.html">Install and run instructions</a></li>
+      <li class="breadcrumb-item active">Marmote install with conda on MS Windows</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/instructions/windows/install_windows.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="marmote-install-with-conda-on-ms-windows">
+<h1>Marmote install with conda on MS Windows<a class="headerlink" href="#marmote-install-with-conda-on-ms-windows" title="Link to this heading"></a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>Before installing <code class="docutils literal notranslate"><span class="pre">Marmote</span></code> you will need to install a <strong>conda distribution</strong> . You can :</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>install Conda with  <code class="docutils literal notranslate"><span class="pre">miniconda</span></code> from: <a href="https://conda.io/miniconda.html" target="_blank">Anaconda's website</a></dt><dd><ul>
+<li><p>you will need to create an account for this,</p></li>
+<li><p>follow carrefully the installation instructions of miniconda,</p></li>
+<li><p>this solution could have <strong>licensing restrictions for commercial uses</strong>,</p></li>
+<li><p>Installing miniconda is not required if <code class="docutils literal notranslate"><span class="pre">Anaconda</span></code> is previously  installed.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>install Conda with <code class="docutils literal notranslate"><span class="pre">miniforge</span></code> from <a href="https://github.com/conda-forge/miniforge" target="_blank">Miniforge Repository</a></dt><dd><ul>
+<li><p>you will need to follow carrefully the installation instructions,</p></li>
+<li><p>this solution has <strong>No licensing restrictions for commercial uses</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="installation-of-conda-packages">
+<h2>Installation of conda packages<a class="headerlink" href="#installation-of-conda-packages" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The following installation steps should be executed in a <em>conda prompt</em> window:</div>
+<div class="line">to this end open an <code class="docutils literal notranslate"><span class="pre">anaconda</span> <span class="pre">prompt</span></code> in the start menu.</div>
+</div>
+<section id="creating-the-virtual-runtime-environment">
+<h3>Creating the virtual runtime environment<a class="headerlink" href="#creating-the-virtual-runtime-environment" title="Link to this heading"></a></h3>
+<p>The next step is to create the conda environment (called <em>marmote-use</em>) and to activate it.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>marmote-use
+$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>marmote-use
+</pre></div>
+</div>
+</section>
+<section id="checking-the-prerequisites">
+<h3>Checking the prerequisites<a class="headerlink" href="#checking-the-prerequisites" title="Link to this heading"></a></h3>
+<p>You can check the required version of <a class="reference internal" href="../../build_instructions.html"><span class="doc">prerequisites</span></a>, when the environment <em>marmote-use</em> is activated, by typing</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>list
+</pre></div>
+</div>
+<p>which returns the list of the installed packages and their versions.</p>
+<p>When it is necessary to modify the version of installed libraries, or install new libraries,
+use the <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code> instruction. Below is an example which modifies the versions of python and numpy
+in the conda environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>marmote-use<span class="w">   </span><span class="c1"># If the environnement marmote-use is not activated</span>
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.XX<span class="w"> </span><span class="nv">numpy</span><span class="o">=</span>Y.ZZ
+</pre></div>
+</div>
+</section>
+<section id="install-the-library">
+<h3>Install the library<a class="headerlink" href="#install-the-library" title="Link to this heading"></a></h3>
+<p>In order to install the library in the conda environment it is necessary to specify the channels and the minimal packages on the command line.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>marmote-use<span class="w">   </span><span class="c1"># If the environnement marmote-use is not activated</span>
+$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>marmote<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>marmote
+</pre></div>
+</div>
+</section>
+<section id="checking-the-installation">
+<h3>Checking the installation<a class="headerlink" href="#checking-the-installation" title="Link to this heading"></a></h3>
+<p>In the shell window, type</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>marmote-use<span class="w"> </span><span class="c1"># If the environnement marmote-use is not activated</span>
+$<span class="w"> </span>conda<span class="w"> </span>list
+</pre></div>
+</div>
+<p>In the list, find the name <code class="docutils literal notranslate"><span class="pre">marmote</span></code> and check the version. If the name does not appear the software is not installed. If the version is not the latest available, then some dependencies were missing.
+Try to identify and fix them.</p>
+<p>If both name and version are correct, you are ready to program!</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../linux/install_linux.html" class="btn btn-neutral float-left" title="Marmote install with conda on Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../macos/install_macos.html" class="btn btn-neutral float-right" title="Marmote install with conda on MacOS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

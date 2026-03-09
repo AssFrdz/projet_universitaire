@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example 4 &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example 5" href="example5.html" />
+    <link rel="prev" title="Example 3" href="example3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example1.html">Example 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example2.html">Example 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example3.html">Example 3</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Example 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks-performed">Tasks performed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code">Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="example5.html">Example 5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example6.html">Example 6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example7.html">Example 7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="example10.html">Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP10.html">MDP Example 10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP11.html">MDP Example 11</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP21.html">MDP Example 21</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP31.html">MDP Example 31</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exampleMDP40.html">MDP Example 40</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Example 4</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/example/example4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-4">
+<h1>Example 4<a class="headerlink" href="#example-4" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>Example that reads a Markov chains from files then outputs them
+to other files. Two possibilities are illustrated: either export the whole Markov chains, either only their generators.
+Usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>example4
+</pre></div>
+</div>
+</section>
+<section id="tasks-performed">
+<h2>Tasks performed<a class="headerlink" href="#tasks-performed" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>create two Markov Chain objects, by reading their entries from files with the MCL format</p></li>
+<li><p>write these two Markov chains in files, still with the MCL format: this uses the member function “Write()” of MarmoteMarkovChain objects</p></li>
+<li><p>write just the generators of these Markov chains: this uses the member function “Store()” of MarmoteTransitionStructure objects</p></li>
+<li><p>cleanup</p></li>
+</ul>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Example that reads Markov chains from files then outputs them</span>
+<span class="c1">// to other files: either as whole Markov chains, either only their generators.</span>
+<span class="c1">//</span>
+<span class="c1">// Usage: example4</span>
+<span class="c1">//</span>
+
+<span class="c1">// Include necessary header files to use marmoteCore and other functonalities.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteDiscreteDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteSparseMatrix.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;marmoteLog.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+
+<span class="c1">// The application code devised for testing the input/output files of Markov chains</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Set up the logging system</span>
+<span class="w">    </span><span class="n">marmote</span><span class="o">::</span><span class="n">log</span><span class="o">::</span><span class="n">initialize</span><span class="p">(</span><span class="n">marmote</span><span class="o">::</span><span class="n">log</span><span class="o">::</span><span class="n">messageOnly</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Construct two Markov chains from the external input files with Ers format:</span>
+<span class="w">    </span><span class="c1">// IO_example_in1.mcl and IO_example_in2.mcl.</span>
+<span class="w">    </span><span class="c1">// Specification of the constructor that is used:</span>
+<span class="w">    </span><span class="c1">// MarkovChain( format, param[], nbreParam, modelName )</span>
+<span class="w">    </span><span class="c1">// @param format: he format in which the model is specified</span>
+<span class="w">    </span><span class="c1">// @param param[]: parameter list</span>
+<span class="w">    </span><span class="c1">// @param nbreParam: size of param[].</span>
+<span class="w">    </span><span class="c1">// @param modelName: name of the model, typically prefix of files.</span>
+<span class="w">    </span><span class="c1">// @return: a markovChain object.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;IO_example_in1&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;IO_example_in2&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="s">&quot;Ers&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="n">name1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="s">&quot;Ers&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="n">name2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Print the constructed chains to the stdout (to make sure they are well constructed).</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;####################################&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Constructed Chains:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Example1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name1</span><span class="o">+</span><span class="s">&quot;.mcl&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;####################################&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Example2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name2</span><span class="o">+</span><span class="s">&quot;.mcl&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;####################################&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Write both chains to external Ers output files: respectively</span>
+<span class="w">    </span><span class="c1">// IO_example_out1.mcl and IO_example_out2.mcl using the method &quot;write(format,model_name)&quot;.</span>
+<span class="w">    </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">Store</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;IO_example_out1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;&lt; std::endl;</span>
+<span class="w">    </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">Store</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;IO_example_out2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;&lt; std::endl;</span>
+
+<span class="w">    </span><span class="c1">// Write both transition matrices to external Marmote output files:</span>
+<span class="w">    </span><span class="c1">// IO_example_mat1 and IO_example_mat2 using the method &quot;Store( modelName, format )&quot;.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Store</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;IO_example_mat1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Chain 1 has no generator&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Store</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;IO_example_mat2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_MARMOTE</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Chain 2 has no generator.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Now both output files are created, we destruct the chains to free the</span>
+<span class="w">    </span><span class="c1">// allocated memory. Deleting the chains will delete the generators.</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="n">c2</span><span class="p">;</span>
+<span class="w">  </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<p>The output of the program depends on whether the data files <code class="docutils literal notranslate"><span class="pre">IO_example_in1.mcl</span></code> and <code class="docutils literal notranslate"><span class="pre">IO_example_in2.mcl</span></code> are available or not in the directory from which the program is exececuted. The first case is the “normal output”. The second one is the “error output”.</p>
+<section id="normal-output">
+<h3>Normal output<a class="headerlink" href="#normal-output" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">####################################</span>
+Constructed<span class="w"> </span>Chains:
+Example1:<span class="w"> </span>IO_example_in1.mcl
+discrete<span class="w"> </span>sparse
+<span class="m">8</span>
+<span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>.000000e-01
+<span class="m">0</span><span class="w">          </span><span class="m">1</span><span class="w"> </span><span class="m">8</span>.000000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">1</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">3</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">2</span><span class="w">          </span><span class="m">0</span><span class="w"> </span><span class="m">6</span>.000000e-01
+<span class="m">2</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">3</span><span class="w"> </span><span class="m">2</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>.500000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">1</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">7</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">5</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>.000000e+00
+<span class="m">6</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">5</span>.000000e-01
+<span class="m">6</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">5</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">2</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">2</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">7</span><span class="w"> </span><span class="m">2</span>.000000e-01
+stop
+<span class="c1">####################################</span>
+Example2:<span class="w"> </span>IO_example_in2.mcl
+discrete<span class="w"> </span>sparse
+<span class="m">10</span>
+<span class="m">0</span><span class="w">          </span><span class="m">0</span><span class="w"> </span><span class="m">6</span>.000000e-01
+<span class="m">0</span><span class="w">          </span><span class="m">1</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">0</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">1</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">2</span><span class="w">          </span><span class="m">1</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">2</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">2</span><span class="w">          </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">3</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">3</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">3</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">4</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">5</span><span class="w">          </span><span class="m">4</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">5</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">5</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">6</span><span class="w">          </span><span class="m">5</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">6</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">6</span><span class="w">          </span><span class="m">7</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">6</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">7</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">7</span><span class="w">          </span><span class="m">8</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">8</span><span class="w">          </span><span class="m">7</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">8</span><span class="w">          </span><span class="m">8</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">8</span><span class="w">          </span><span class="m">9</span><span class="w"> </span><span class="m">4</span>.000000e-01
+<span class="m">9</span><span class="w">          </span><span class="m">8</span><span class="w"> </span><span class="m">3</span>.000000e-01
+<span class="m">9</span><span class="w">          </span><span class="m">9</span><span class="w"> </span><span class="m">7</span>.000000e-01
+stop
+<span class="c1">####################################</span>
+</pre></div>
+</div>
+</section>
+<section id="files-produced">
+<h3>Files produced<a class="headerlink" href="#files-produced" title="Link to this heading"></a></h3>
+<p>The normal execution produces 4 files:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IO_example_out1.mcl and IO_example_out1.mcl, containing the two chains in MCL format. They should be identical to IO_example_in1.mcl and IO_example_in2.mcl, respectively</p></li>
+<li><p>IO_example_mat1.mmt</p></li>
+<li><p>IO_example_chain2.gen.mmt</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="error-output">
+<h3>Error output<a class="headerlink" href="#error-output" title="Link to this heading"></a></h3>
+<p>When the input files are not present in the directory where example4 is executed, the output is the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>========= MARMOTE LOGGER IS INITIALIZED ==========
+Error in MarkovChain: could not open input file IO_example_in1.mcl. Generator not initialized.
+Error in MarkovChain: could not open input file IO_example_in2.mcl. Generator not initialized.
+####################################
+Constructed Chains:
+Example1: IO_example_in1.mcl
+Error in MarkovChain::Write(): chain has no generator. Skipped.
+####################################
+Example2: IO_example_in2.mcl
+Error in MarkovChain::Write(): chain has no generator. Skipped.
+####################################
+Error in MarkovChain::Write(): chain has no generator. Skipped.
+Error in MarkovChain::Write(): chain has no generator. Skipped.
+Chain 1 has no generator
+Chain 2 has no generator.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="download">
+<h2>Download<a class="headerlink" href="#download" title="Link to this heading"></a></h2>
+<p>The source file is <a class="reference download internal" download="" href="../_downloads/6923c373e787c11247d53d15f271e128/example4.cpp"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.
+The input files are: <a class="reference download internal" download="" href="../_downloads/69be78769adfc9bf115af48979eb6b91/IO_example_in1.mcl"><code class="xref download docutils literal notranslate"><span class="pre">IO_example_in1.mcl</span></code></a> and <a class="reference download internal" download="" href="../_downloads/379632f2c5084b6153b1cd8f1ce73503/IO_example_in2.mcl"><code class="xref download docutils literal notranslate"><span class="pre">IO_example_in2.mcl</span></code></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example3.html" class="btn btn-neutral float-left" title="Example 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example5.html" class="btn btn-neutral float-right" title="Example 5" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

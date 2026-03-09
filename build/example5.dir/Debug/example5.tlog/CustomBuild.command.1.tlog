@@ -1,0 +1,10 @@
+^C:\USERS\ASSIA\DOCUMENTS\PROJET_UNIV\DOSSIER 2\PROJECT-ROOT\XPL\CMAKELISTS.TXT
+setlocal
+C:\Users\assia\miniconda3\envs\marmote-use\Library\bin\cmake.exe "-SC:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl" "-BC:/Users/assia/Documents/projet_univ/dossier 2/project-root/build" --check-stamp-file "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

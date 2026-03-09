@@ -1,0 +1,54 @@
+# This Cmake file is for
+# compiling all CPP examples
+#
+# Remark: you must download first the archive (zip/tar) of these examples
+# on the web page : https://marmote.gitlabpages.inria.fr/marmote/cpp_downloads.html
+#
+
+cmake_minimum_required(VERSION 3.17)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+#
+# Building all the Marmote examples
+#
+foreach( EXAMPLE_NUMBER IN ITEMS 1 2 3 4 5 6 7 )
+    set(PROJ_N "example")
+    string(APPEND PROJ_N ${EXAMPLE_NUMBER})
+    set(PROJ_MAIN "example")
+    string(APPEND PROJ_MAIN ${EXAMPLE_NUMBER}.cpp)
+    message( "Building project ${PROJ_N} from source ${PROJ_MAIN}" )
+    project(${PROJ_N})
+    find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+    add_executable(${PROJECT_NAME} ${PROJ_MAIN})
+    target_link_libraries(${PROJECT_NAME} PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+endforeach()
+
+#
+# Building the MarmoteMDP examples
+#
+foreach( EXAMPLE_NUMBER IN ITEMS 10 11 20 21 22 30 31 40)
+    set(PROJ_N "exampleMDP")
+    string(APPEND PROJ_N ${EXAMPLE_NUMBER})
+    set(PROJ_MAIN "exampleMDP")
+    string(APPEND PROJ_MAIN ${EXAMPLE_NUMBER}.cpp)
+    message( "Building project ${PROJ_N} from source ${PROJ_MAIN}" )
+    project(${PROJ_N})
+    find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+    add_executable(${PROJECT_NAME} ${PROJ_MAIN})
+    target_link_libraries(${PROJECT_NAME} PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+endforeach()
+
+
+#
+# For compiling a new example of project my_project with source code my_cpp
+# uncomment and adapt the following lines
+#
+# message("Building project my_project from source my_cpp" )
+# project(my_project)
+# find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+# add_executable(my_project my_cpp)
+# target_link_libraries(my_project PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+#
+

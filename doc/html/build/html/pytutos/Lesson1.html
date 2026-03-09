@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 1: making Markov chains &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 2: solving Markov chains" href="Lesson2.html" />
+    <link rel="prev" title="Python Tutorial and Examples" href="../python_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../python_examples.html">Python tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lesson 1: making Markov chains</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#First-example:-a-discrete-time-Markov-chain-with-3-states">First example: a discrete-time Markov chain with 3 states</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Second-example-with-a-continuous-time-Markov-chain">Second example with a continuous-time Markov chain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Transformation-of-Markov-chains">Transformation of Markov chains</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson1.html">Application Lesson 1: Application to Mitrani’s hysteresis model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="App_Lesson2.html">Application Lesson 2: Application to the control of a tandem multi server system</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../python_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../python_api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="../python_examples.html">Python Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Lesson 1: making Markov chains</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pytutos/Lesson1.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-1:-making-Markov-chains">
+<h1>Lesson 1: making Markov chains<a class="headerlink" href="#Lesson-1:-making-Markov-chains" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marmote.markovchain</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mmc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<p>A Markov Chain is composed of</p>
+<ul class="simple">
+<li><p>a <strong>state space</strong></p></li>
+<li><p>a <strong>transition structure</strong> (probability matrix or infinitesimal generator)</p></li>
+<li><p>an <strong>initial distribution</strong> of the state</p></li>
+</ul>
+<p>In this first lesson, we show various ways of creating such objects. We will in particular highlight <em>transition structures</em> and the class <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code>.</p>
+<section id="First-example:-a-discrete-time-Markov-chain-with-3-states">
+<h2>First example: a discrete-time Markov chain with 3 states<a class="headerlink" href="#First-example:-a-discrete-time-Markov-chain-with-3-states" title="Link to this heading"></a></h2>
+<section id="State-space">
+<h3>State space<a class="headerlink" href="#State-space" title="Link to this heading"></a></h3>
+<p>We first create a state space as vector of state indices. The size <code class="docutils literal notranslate"><span class="pre">n</span></code> of this vector is needed in the following.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">states</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Transition-structure">
+<h3>Transition structure<a class="headerlink" href="#Transition-structure" title="Link to this heading"></a></h3>
+<p>Now create the transition structure and enter values. Two objects are available for this: <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> and <code class="docutils literal notranslate"><span class="pre">FullMatrix</span></code>. Let us start with a <code class="docutils literal notranslate"><span class="pre">FullMatrix</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">FullMatrix</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Marmote</span></code> has to know if this is a discrete-time or continuous-time transition structure.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">DISCRETE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now fill the values in. Two method are available for this: <code class="docutils literal notranslate"><span class="pre">setEntry</span></code> and <code class="docutils literal notranslate"><span class="pre">addToEntry</span></code>. Both have parameters <code class="docutils literal notranslate"><span class="pre">(row,column,value)</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">P</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>We inspect the result.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[2.500000e-01, 5.000000e-01, 2.500000e-01],
+ [4.000000e-01, 2.000000e-01, 4.000000e-01],
+ [4.000000e-01, 3.000000e-01, 3.000000e-01]]
+
+</pre></div></div>
+</div>
+</section>
+<section id="Initial-distribution">
+<h3>Initial distribution<a class="headerlink" href="#Initial-distribution" title="Link to this heading"></a></h3>
+<p>Distributions exist as objects in <code class="docutils literal notranslate"><span class="pre">Marmote</span></code>. The most common one is <code class="docutils literal notranslate"><span class="pre">DiscreteDistribution</span></code> which represents general distributions on discrete state spaces. It can be constructed from two arrays:</p>
+<ul class="simple">
+<li><p>the state space array (already defined above)</p></li>
+<li><p>the array of probabilities of these states</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">initial_prob</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Inspecting the object</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">initial</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete distribution values { 0 1 2 } probas {      0.2      0.2      0.6 }
+</pre></div></div>
+</div>
+<p>We will show more about <code class="docutils literal notranslate"><span class="pre">Distribution</span></code> objects in Lesson3.</p>
+</section>
+<section id="The-Markov-chain">
+<h3>The Markov chain<a class="headerlink" href="#The-Markov-chain" title="Link to this heading"></a></h3>
+<p>The object of type <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code> is created directly from the generator (probability transition matrix). Then other (optional) features are specified:</p>
+<ul class="simple">
+<li><p>the initial distribution</p></li>
+<li><p>the name of the Markov chain model</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">=</span> <span class="n">mmc</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">P</span> <span class="p">)</span>
+<span class="n">c1</span><span class="o">.</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="n">c1</span><span class="o">.</span><span class="n">set_model_name</span><span class="p">(</span> <span class="s2">&quot;Demo_Discrete&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Printing the Markov chain. Several formats are available. This one is the default <code class="docutils literal notranslate"><span class="pre">Marmote</span></code> format (it is adapted to sparse matrices). It lists:</p>
+<ul class="simple">
+<li><p>the generator (probability transition matrix or infinitesimal generator)</p></li>
+<li><p>the initial distribution</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete-type Markov Chain
+ - on state space Interval( 0..2 )
+ - size 3
+ - generator of type FullMatrix
+ - with initial distribution Discrete distribution values { 0 1 2 } probas {      0.2      0.2      0.6 }
+
+</pre></div></div>
+</div>
+<p>The characteristics of the object can be inspected.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">type</span><span class="p">(),</span> <span class="s2">&quot; = &quot;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">DISCRETE</span> <span class="p">)</span>             <span class="c1"># The type of the chain (DISCRETE or CONTINUOUS) as a numerical representation</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">state_space_size</span><span class="p">()</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">model_name</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0  =  0
+3
+Demo_Discrete
+</pre></div></div>
+</div>
+</section>
+<section id="Input/Output-of-Markov-Chains-and-transition-structures">
+<h3>Input/Output of Markov Chains and transition structures<a class="headerlink" href="#Input/Output-of-Markov-Chains-and-transition-structures" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Marmote</span></code> support the export of these objects in a variety of formats.</p>
+<p>Few languages have a format for Markov chains, but many have one for matrices.</p>
+<p>For instance: with the Matlab format for sparse matrices, the numpy format, the R format and the Maple format.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">mc</span><span class="o">.</span><span class="n">FORMAT_MATLAB_SPARSE</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+theRows = [ 0 0 0 1 1 1 2 2 2]&#39;;
+theColumns = [ 0 1 2 0 1 2 0 1 2]&#39;;
+theValues = [         0.25          0.5         0.25          0.4          0.2          0.4          0.4          0.3          0.3]&#39;;
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">mc</span><span class="o">.</span><span class="n">FORMAT_NUMPY</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=np.array([
+[0.25, 0.5, 0.25],
+[0.4, 0.2, 0.4],
+[0.4, 0.3, 0.3]
+], dtype=float)
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">mc</span><span class="o">.</span><span class="n">FORMAT_R</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=matrix(c(0.25, 0.5, 0.25, 0.4, 0.2, 0.4, 0.4, 0.3, 0.3), nrow=3, byrow=TRUE)
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c1</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span> <span class="n">mc</span><span class="o">.</span><span class="n">FORMAT_MAPLE</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+_matrix := Matrix( 3, 3, {
+(1, 1)=2.500000e-01,
+(1, 2)=5.000000e-01,
+(1, 3)=2.500000e-01,
+(2, 1)=4.000000e-01,
+(2, 2)=2.000000e-01,
+(2, 3)=4.000000e-01,
+(3, 1)=4.000000e-01,
+(3, 2)=3.000000e-01,
+(3, 3)=3.000000e-01
+}, storage=rectangular):
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="Second-example-with-a-continuous-time-Markov-chain">
+<h2>Second example with a continuous-time Markov chain<a class="headerlink" href="#Second-example-with-a-continuous-time-Markov-chain" title="Link to this heading"></a></h2>
+<p>Creating a continuous-time chain, this time with a <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> as transition stucture support.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">CONTINUOUS</span><span class="p">)</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">Q</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">Q</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">Q</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">Q</span><span class="o">.</span><span class="n">setEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">Q</span><span class="o">.</span><span class="n">addToEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[-1.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00],
+ [1.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00],
+ [1.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00],
+ [1.000000e+00, 0.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00],
+ [1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00],
+ [1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, -1.000000e+00]]
+
+</pre></div></div>
+</div>
+<p>Creation of the Markov chain object</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2</span> <span class="o">=</span> <span class="n">mmc</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">Q</span> <span class="p">)</span>
+<span class="n">c2</span><span class="o">.</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="n">c2</span><span class="o">.</span><span class="n">set_model_name</span><span class="p">(</span> <span class="s2">&quot;Demo_Continuous&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Inspection of its features</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">c2</span><span class="o">.</span><span class="n">type</span><span class="p">(),</span> <span class="s2">&quot; = &quot;</span><span class="p">,</span> <span class="n">mc</span><span class="o">.</span><span class="n">CONTINUOUS</span> <span class="p">)</span>             <span class="c1"># The type of the chain (DISCRETE or CONTINUOUS) as a numerical representation</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">c2</span><span class="o">.</span><span class="n">state_space_size</span><span class="p">()</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">c2</span><span class="o">.</span><span class="n">model_name</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1  =  1
+6
+Demo_Continuous
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">className</span><span class="p">()</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">Q2</span><span class="o">.</span><span class="n">className</span><span class="p">()</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">Q2</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SparseMatrix
+         0          1 1.000000e+00
+         0          0 -1.000000e+00
+         1          0 1.000000e+00
+         1          1 -2.000000e+00
+         1          2 1.000000e+00
+         2          0 1.000000e+00
+         2          2 -2.000000e+00
+         2          3 1.000000e+00
+         3          0 1.000000e+00
+         3          3 -2.000000e+00
+         3          4 1.000000e+00
+         4          0 1.000000e+00
+         4          4 -2.000000e+00
+         4          5 1.000000e+00
+         5          0 1.000000e+00
+         5          5 -1.000000e+00
+
+</pre></div></div>
+</div>
+</section>
+<section id="Transformation-of-Markov-chains">
+<h2>Transformation of Markov chains<a class="headerlink" href="#Transformation-of-Markov-chains" title="Link to this heading"></a></h2>
+<p>There are two well-known ways to transform continuous-time chains into discrete-time ones: <strong>uniformization</strong> and <strong>embedding</strong>. Both are implemented in Marmote.</p>
+<section id="Uniformization">
+<h3>Uniformization<a class="headerlink" href="#Uniformization" title="Link to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2uni</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">Uniformize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c2uni</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete-type Markov Chain
+ - on state space Interval( 0..5 )
+ - size 6
+ - generator of type SparseMatrix
+ - unspecified initial distribution
+
+</pre></div></div>
+</div>
+</section>
+<section id="About-the-uniformization-factor.">
+<h3>About the uniformization factor.<a class="headerlink" href="#About-the-uniformization-factor." title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code> method <code class="docutils literal notranslate"><span class="pre">Uniformize</span></code> has no parameter: the uniformization factor is automatically chosen, as small as possible.</p>
+<p>In some cases, a finer control is needed. This can be done via the <code class="docutils literal notranslate"><span class="pre">TransitionStructure</span></code> objects.</p>
+<p>First inspect the uniformization rate chosen:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2uni</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">uniformization_rate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2.0
+</pre></div></div>
+</div>
+<p>Redo uniformization with a larger rate.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2uni2</span> <span class="o">=</span> <span class="n">mmc</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">c2</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">Uniformize</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mc</span><span class="o">.</span><span class="n">setInoutFormatPolicy</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">FORMAT_NUMPY</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c2uni2</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Unif rate = &quot;</span><span class="p">,</span> <span class="n">c2uni2</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">uniformization_rate</span><span class="p">()</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=np.array([
+[0.75, 0.25, 0, 0, 0, 0],
+[0.25, 0.5, 0.25, 0, 0, 0],
+[0.25, 0, 0.5, 0.25, 0, 0],
+[0.25, 0, 0, 0.5, 0.25, 0],
+[0.25, 0, 0, 0, 0.5, 0.25],
+[0.25, 0, 0, 0, 0, 0.75]
+], dtype=float)
+
+Unif rate =  4.0
+</pre></div></div>
+</div>
+</section>
+<section id="Embedding">
+<h3>Embedding<a class="headerlink" href="#Embedding" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2embed</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">Embed</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c2embed</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mc_matrix=np.array([
+[0, 1, 0, 0, 0, 0],
+[0.5, 0, 0.5, 0, 0, 0],
+[0.5, 0, 0, 0.5, 0, 0],
+[0.5, 0, 0, 0, 0.5, 0],
+[0.5, 0, 0, 0, 0, 0.5],
+[1, 0, 0, 0, 0, 0]
+], dtype=float)
+
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../python_examples.html" class="btn btn-neutral float-left" title="Python Tutorial and Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lesson2.html" class="btn btn-neutral float-right" title="Lesson 2: solving Markov chains" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
