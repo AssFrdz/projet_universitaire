@@ -16,7 +16,7 @@ It  copies C++ files into the 'media' directory and modifying a Cmakelist.txt fi
 list1 = [1, 2, 3, 4, 5, 6, 7, 10] #MC CPP files to transfer - "-1" is used to deactivate some examples
 list2 = [10, 11, 21, 31, 40]      #MDP CPP files to transfer
 # correspondence between numbers and names of the examples
-correspondig_directory=['example1','example2','example3','example4', 
+corresponding_directory=['example1','example2','example3','example4', 
         'example5','example6','example7','example10', 
 	'exampleMDP10', 'exampleMDP11','exampleMDP21','exampleMDP31','exampleMDP40']
 corresponding_executable=['example1.exe','example2.exe','example3.exe','example4_bin.exe',
@@ -112,11 +112,11 @@ def generate_exampleMDP_res_files(prefix, num_list, example_format):
 			print(f"File {subdirectory} not found")
 
 
-def copy_example_files(correspondig_directory, num_list, example_format, destination_dir):
+def copy_example_files(corresponding_directory, num_list, example_format, destination_dir):
 	"""
 	 Function to copy exampleX.cpp files
 	 
-	:param correspondig_directory list in which at entry i twe found the name of the example
+	:param corresponding_directory list in which at entry i twe found the name of the example
 	:param num_list list of numbers of selected examples
 	:param example_format prefix that we want to give to examples names
 	:param destination_dir directory in which the files should be copied 
@@ -124,7 +124,7 @@ def copy_example_files(correspondig_directory, num_list, example_format, destina
 	idx = 0
 	for num in num_list:
 		print(num)
-		subdir = correspondig_directory[idx]
+		subdir = corresponding_directory[idx]
 		#print("subdir",subdir)
 		example_file = example_format.format(num)
 		source_file = os.path.join(subdir, example_file)
@@ -157,18 +157,18 @@ def copy_exampleMDP_files(prefix, num_list, example_format,destination_dir):
 		else:
 			print(f"File {source_file} not found")
 
-def copy_example_res_files(correspondig_directory, num_list, example_format, destination_dir):
+def copy_example_res_files(corresponding_directory, num_list, example_format, destination_dir):
 	"""
 	 Function to copy exampleX.res and exampleX.cmd files
 	 
-	:param correspondig_directory list in which at entry i twe found the name of the example
+	:param corresponding_directory list in which at entry i twe found the name of the example
 	:param num_list selected list of selected examples
 	:param example_format prefix that we want to give to examples names
 	:param destination_dir directory in which the files should be copied 
 	"""
 	for num in num_list:
 		#print(num)
-		subdir = correspondig_directory[(num-1)]
+		subdir = corresponding_directory[(num-1)]
 		#print("subdir",subdir)
 		example_file = example_format.format(num)
 		if os.path.exists(example_file):
@@ -252,21 +252,14 @@ def list_and_test(dir, message):
 
 #################""
 #main code
-"""
-We expect to run the script from ../script directory
-in working directory ../doc/html/source/
-to run the file
-python ../../../scripts/doc_copyExamples.py
-If we are not in the direct directory
-position="../doc/html/source/"        
-os.chdir(position)
-"""
 
-### SECURITE : 
-### Fais référence au même point de sécurité que python
-### l'exécution du script depuis un répertoire précis, doc/html/scripts
-### on simule l'exécution du script avant son lancement réel pour s'assurer qu'il n'y a pas de bug
-### grâce au --dry_run
+
+"""
+assia
+On veut exécuter le script depuis un répertoire précis, doc/html/scripts
+on simule l'exécution du script avant son lancement réel pour s'assurer qu'il n'y a pas de bug
+grâce au --dry_run
+"""
 
 args = sys.argv
 generate_only = False
@@ -281,27 +274,54 @@ if ( len(args) > 1 ):
 	elif ( args[1] == "-n" ) or ( args[1] == "--dry_run" ):
 		dry_run = True
 
-# ajout assia : vérification de répertoire
 
-# récupérer le répertoire actuel
-current_directory = os.getcwd()
-print(f"Working directory is : {current_directory}")
-# arrêter si pas dans source, scripts, ou marmote
-current_name = os.path.basename(current_directory)
-if(current_name=="scripts"):
-	position=os.path.join("..","doc","html","source")
-	os.chdir(position)
-	print("Change directory in : ",os.getcwd())
-elif (current_name=="marmote"):
-	position=os.path.join("doc","html","source")
-	os.chdir(position)
-	print("Change directory in : ",os.getcwd())
-elif (current_name=="source"):
-	print("No directory change",os.getcwd())
+"""
+We expect to run the script from ../script directory
+in working directory ../doc/html/source/
+to run the file
+python ../../../scripts/doc_copyExamples.py
+If we are not in the direct directory
+position="../doc/html/source/"        
+os.chdir(position)
+"""
+
+"""
+We expect to run the script from ../script directory
+in working directory ../doc/html/source/
+If we are not in the direct directory
+position="../doc/html/source/"        
+os.chdir(position)
+---
+Si on n'est pas dans un dossier du projet, on quitte
+Si on se trouve dans source, on poursuit le script
+Sinon, on remonte jusqu'à la racine project-root (à remplacer) 
+Puis on redirige vers doc/html/source
+"""
+
+#Test if we are in the correct directory
+# get the absolute path
+root_dir = os.path.abspath(os.path.join(__file__, '..',".."))
+print(f"root {root_dir}")
+
+# Get the current working directory path
+current_directory=os.getcwd()
+
+if("project-root" in current_directory):
+	if(os.path.basename(current_directory)=="source"):
+		print("No directory change needed",os.getcwd())
+	else:
+		print("Unexpected working directory. Redirecting to the correct location...")
+		while(os.path.basename(os.getcwd())!="project-root"):
+			print("Moving up...",os.getcwd())
+			os.chdir("..")
+		
+		path = os.path.join("doc","html","source")
+		os.chdir(path)
+		print("Redirection completed successfully : ",os.getcwd())
+
 else:
-	print("Wrong working directory. Program stops")
+	print("Wrong directory. Program stops")
 	sys.exit()
-
 
 # Directories paths
 print("Beginning of script")
@@ -330,7 +350,7 @@ os.chdir(source_dir)
 
 print("2. Beginning of copying source file")
 # Copy exampleJ.cpp files
-copy_example_files(correspondig_directory, list1, 'example{}.cpp', destination)
+copy_example_files(corresponding_directory, list1, 'example{}.cpp', destination)
 # Copy exampleMDP.cpp files
 copy_exampleMDP_files('exampleMDP', list2, 'exampleMDP{}.cpp', destination)
 
@@ -342,14 +362,13 @@ generate_exampleMDP_res_files('exampleMDP', list2, 'exampleMDP{}')
 	
 print("4. Copying res",os.getcwd())
 # Copy exampleJ.res files
-copy_example_res_files(correspondig_directory, list1, 'example{}.res',destination)
+copy_example_res_files(corresponding_directory, list1, 'example{}.res',destination)
 # Copy exampleJ.cmd files
-copy_example_res_files(correspondig_directory, list1, 'example{}.cmd',destination)
+copy_example_res_files(corresponding_directory, list1, 'example{}.cmd',destination)
 # Copy exampleMDP.res files
 copy_exampleMDP_res_files(list2, 'exampleMDP{}.res',destination)
 
 
-# ajout assia
 if generate_only:
 	# Skip the CMake part
 	print("Generate only: skip step 5 (generate cmake)")
