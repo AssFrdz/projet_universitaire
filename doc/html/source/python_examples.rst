@@ -31,9 +31,9 @@ Python Tutorial and Examples
 
 3. `Lesson 3:  <./pytutos/Lesson3.html>`_  working with state spaces
 
-4. `Lesson 4:  <./pytutos/Lesson4.ipynb>`_  working with Distributions
+4. `Lesson 4:  <./pytutos/Lesson4.html>`_  working with Distributions
 
-5. `Lesson 5:  <./pytutos/Lesson5.ipynb>`_  predefined Markov Chains
+5. `Lesson 5:  <./pytutos/Lesson5.html>`_  predefined Markov Chains
 
 
 **Markov Decision Process Lessons**

@@ -4,6 +4,7 @@ import shutil
 import zipfile
 import re  #for regular expression handling
 import argparse # to dry-run
+from dotenv import load_dotenv
 
 import nbformat
 from nbformat.v4 import new_code_cell, new_markdown_cell
@@ -83,6 +84,9 @@ def add_cells_condacolab(notebook_path):
 	
 	# Create the cells
 	cell_text1 = new_markdown_cell(source=titre)
+	
+
+	# Install condacolab then conda 
 	cell_text2 = new_markdown_cell(source="## Install marmote on conda")
 	cell_text3 = new_markdown_cell(source="To install `condacolab` ")
 	cell_code4 = new_code_cell(source="!pip install -q condacolab\nimport condacolab\ncondacolab.install()\n!conda --version")
@@ -90,6 +94,31 @@ def add_cells_condacolab(notebook_path):
 	cell_code6 = new_code_cell(source="!conda install -c marmote -c conda-forge marmote")
 	cell_text7 = new_markdown_cell(source="You can now use marmote")
 	
+	# Verify the effective installation of conda 
+	cell_text8 = new_markdown_cell(source="## Verify if marmote is well installed")
+	cell_text9 = new_code_cell(source="try:\n" \
+	"import marmote\n" \
+	"	print('Marmote is well installed')\n"\
+	"except Exception as e:\n" \
+	"	print('Marmote is not available.')\n" \
+	"	print(e)")
+
+	# Follow this fallback installation process if an exception is raised
+	cell_text10 = new_markdown_cell(source="If Marmote isn't available, execute the cell below.")
+	cell_text11 = new_markdown_cell(source="Then restart the runtime and rerun the installation cells above.")
+	cell_text12 = new_code_cell(source=
+		"!pip uninstall numpy thinc spacy -y\n"
+		"!pip uninstall numpy -y\n"
+		"!pip install -qq numpy==1.26.4\n"
+		"import numpy as np\n"
+		"if int(np.__version__[0]) > 1:\n"
+		"    import os\n"
+		"    os.kill(os.getpid(), 9)\n"
+	)
+
+
+
+
 	# Insert the cells at the beginning of the notebook
 	notebook["cells"] = [
 		cell_text1,
@@ -99,13 +128,16 @@ def add_cells_condacolab(notebook_path):
 		cell_text5,
 		cell_code6,
 		cell_text7,
+		cell_text8,
+		cell_text9,
+		cell_text10,
+		cell_text11,
+		cell_text12
 	] + notebook["cells"]
 	
 	# Save the modified notebook
 	with open(notebook_path, "w", encoding="utf-8") as f:
 		nbformat.write(notebook, f)
-
-
 
 def creating_colab_archive(archivename,directory):
 	"""
@@ -160,14 +192,13 @@ def replace_images_colab(notebook_path):
 	---
 	protection s'il ne s'agit pas de condacolab, pas de remplacement possible,sinon on utilise les img de l'inria
 	"""
-	
+
 	url_marmote='https://marmote.gitlabpages.inria.fr/marmote/_images/'
 	
 	if not notebook_path.endswith("_colab.ipynb"):
 		print("Error in replace images colab: not a colab notebook")
 		return
 	
-
 	with open(notebook_path, "r", encoding="utf-8") as f:
 		notebook = nbformat.read(f, as_version=4)
 
@@ -192,7 +223,7 @@ def replace_images_colab(notebook_path):
 def replace_images_colab_directory(directory):
 	"""
 	Modifies the whole notebooks (for condacolab) of a directory
-	
+
 	:param directory where are the notebooks
 	---
 	mêmes actions que précédemment, pr tout un dossier cette fois
@@ -201,7 +232,7 @@ def replace_images_colab_directory(directory):
 	# Iterate through all files in the directory
 	for filename in os.listdir(directory):
 		if filename.endswith(".ipynb"): 
-			notebook_path = os.path.join(notebooks_d, filename)
+			notebook_path = os.path.join(directory, filename)
 			replace_images_colab(notebook_path)
 	print(" -Notebooks modified with images for colab")
 
@@ -209,7 +240,7 @@ def replace_images_colab_directory(directory):
 def creating_cpp_archive(archivename,source,destination):
 	"""
 	Create cpp archive
-
+	
 	:param archivename of the archive
 	:param source peth of the source directory
 	:param directory where are the files to be archived
@@ -266,7 +297,7 @@ def creating_nb_archive(archivename,source,destination):
 		zipf.close()
 	print(" -Archive", archivename, "created from:",source)
 	# Move the ZIP archive to the destination directory
-	shutil.move(archivename, os.path.join(destination_directory, archive))
+	shutil.move(archivename, os.path.join(destination, archivename))
 	print(" -Archive", archivename,"moved in:",destination)
 	
 
@@ -340,168 +371,14 @@ def creating_pythonFiles(source_directory,archive_name_py,destination_directory_
 		os.remove(nb_file)
 	print(" -Notebooks files deleted from: ",source_directory)
 
-	
-
-#################""
-#main code
-
-"""
-assia
-We allow the script to run in dry‑run mode,
-so it can verify whether the required files are correctly detected.
-We also warn the user about the directory location constraints.
-"""
-args = sys.argv
-generate_only = False
-dry_run = False
-if ( len(args) > 1 ):
-	if ( args[1] == "-h" ) or ( args[1] == "--help" ):
-		print(f"Usage: {args[0]} [-h|--help] [-n|--dry_run]")
-		print("\tThis script is to be stored in .../scripts\n\tand is to be run from directory .../doc/html/source")
-		sys.exit(0)
-	elif ( args[1] == "-n" ) or ( args[1] == "--dry_run" ):
-		dry_run = True
-
-"""
-We expect to run the script from ../script directory
-in working directory ../doc/html/source/
-If we are not in the direct directory
-position="../doc/html/source/"        
-os.chdir(position)
----
-assia
-Si on n'est pas dans un dossier du projet, on quitte
-Si on se trouve dans source, on poursuit le script
-Sinon, on remonte jusqu'à la racine project-root (à remplacer) 
-Puis on redirige vers doc/html/source
-"""
-
-#Test if we are in the correct directory
-# get the absolute path
-root_dir = os.path.abspath(os.path.join(__file__, '..',".."))
-print(f"root {root_dir}")
-
-# Get the current working directory path
-current_directory=os.getcwd()
-
-if("project-root" in current_directory):
-	if(os.path.basename(current_directory)=="source"):
-		print("No directory change needed",os.getcwd())
+# assia : ajout list and test
+def list_and_test(dir, message):
+	print(message,'=',dir,'',end='')
+	if os.access(dir,os.F_OK):
+		print("[Exists]")
 	else:
-		print("Unexpected working directory. Redirecting to the correct location...")
-		while(os.path.basename(os.getcwd())!="project-root"):
-			print("Moving up...",os.getcwd())
-			os.chdir("..")
-		
-		path = os.path.join("doc","html","source")
-		os.chdir(path)
-		print("Redirection completed successfully : ",os.getcwd())
-
-else:
-	print("Wrong directory. Program stops")
-	sys.exit()
+		print("[Does not exist]")
 	
-current_directory=os.getcwd()
-print("Manage working directories and source directories")
-#create and test the directory
-source_d = os.path.join(current_directory,"pytutos")
-notebooks_d = os.path.join(current_directory,"pytutos_colab")
-# Get the directory where cpp are 
-examples_directory = os.path.join(current_directory,'media')
 
-"""On vérifie que les dossiers pytutos et pytutos_collab, 
-on récupère le dossier média avec les fichiers cpp"""
+ 
 
-if (not os.path.exists(source_d)):
-	print("No source directory for Notebooks. Stop the programm")
-	sys.exit()
-
-if (not os.path.exists(examples_directory)):
-	print("No source directory for cpp files. Stop the programm")
-	sys.exit()
-
-if (not os.path.exists(notebooks_d)):
-	os.makedirs(notebooks_d, exist_ok=True)
-
-# ajout assia : dry-run
-if dry_run:
-	print("Dry run : not executing archive/copy instructions")
-
-print("1 - Generate Notebook for colab")
-#copy and rename the file
-copy_rename_notebooks(source_d,notebooks_d)
-# go in directory source
-os.chdir(current_directory)
-# Call the function to add cells to all notebooks in the directory
-add_cells_condacolab_directory(notebooks_d)
-print("1 - Updating image links Colab")
-# go in directory source
-os.chdir(current_directory)
-# Call the function to replace images in all notebooks in the directory
-replace_images_colab_directory(notebooks_d)
-name="all_notebooks_colab"
-creating_colab_archive(name,notebooks_d)
-destination=os.path.join(current_directory,"instructions","all_nb_colab")
-if (not os.path.exists(destination)):
-	os.makedirs(destination, exist_ok=True)
-
-### on crée les notebooks en condacolab a partir des notebook classiques et on cree le zip que lon met ds instructions/all_nb_colab
-### condacolab = preparer des formats utilisables dans Google Colab, en mettant les entêtes conda permettant lexécution
-### car Ggl Colab n'intègre pas directement conda
-
-
-moving_cleaning_colab_archive(name,notebooks_d,destination)
-
-
-print("2 - Generate cpp archive")
-# go in directory : "source"
-os.chdir(current_directory)
-# give the name of the archive
-name="all_examples"
-#manage destination directory
-destination=os.path.join(current_directory,"instructions","all_ex")
-# Ensure the destination directory exists
-os.makedirs(destination, exist_ok=True)
-creating_cpp_archive(name,examples_directory,destination)
-### on cree le zip nommé all_examples avec les fichiers cpp 
-
-print("3 - Generate nb archive")
-# go in directory : "source"
-os.chdir(current_directory)
-#manage destination directory
-destination_directory = os.path.join(current_directory,"instructions","all_nb")
-# Name of the archive
-archive = 'all_notebooks.zip'  
-# Ensure the destination directory exists
-os.makedirs(destination, exist_ok=True)
-creating_nb_archive(archive,source_d,destination_directory)
-
-
-
-### on crée l'archive de notebooks
-
-print("4 - Generate python Files archive")
-os.chdir(current_directory)
-#copy notebooks
-copy_notebooks(source_d,notebooks_d)
-# Destination directory for Python files
-destination_directory_pyex = os.path.join(current_directory,'instructions','all_pyex')  
-# Ensure the destination directory exists
-os.makedirs(destination_directory_pyex, exist_ok=True)
-# Name of the archive for Python files
-archive_name = 'all_pythons.zip'  
-creating_pythonFiles(notebooks_d,archive_name,destination_directory_pyex)
-
-### on crée l'archive de fichiers pythons
-
-#delete the temporary pytutos_colab
-os.chdir(current_directory)
-try: 
-	os.rmdir(notebooks_d)
-	print("Directory",notebooks_d,"deleted")
-except OSError as e:
-    # If it fails, inform the user.
-    print("Error: %s - %s." % (e.filename, e.strerror))
-	
-### on supprime les fichiers collab
-	

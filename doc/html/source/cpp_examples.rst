@@ -15,11 +15,13 @@ C++ Tutorial and Examples
    example/example6
    example/example7
    example/example10
-   example/exampleMDP10
-   example/exampleMDP11
-   example/exampleMDP21
-   example/exampleMDP31
-   example/exampleMDP40
+   cpptutos/exampleMDP10.ipynb
+   cpptutos/exampleMDP11.ipynb
+   cpptutos/exampleMDP21.ipynb
+   cpptutos/exampleMDP31.ipynb
+   cpptutos/exampleMDP40.ipynb
+
+   
 
 The following examples show elementary manipulations of Marmote objects:
 
@@ -37,8 +39,17 @@ The following examples show how to use more advanced Marmote objects:
 
 The following examples to manipulate Markov Decision Process are provided:
 
-* :doc:`ExampleMDP 10: <./example/exampleMDP10>` create a discounted MDP object and describes the generalities about the MDP modelling. It also contains a short presentation of the MDP solver.
-* :doc:`ExampleMDP 11: <./example/exampleMDP11>` create a discounted MDP and illustrate the way to get the same action set for any state. 
-* :doc:`ExampleMDP 21: <./example/exampleMDP21>` create an average MDP and illustrate the way to evaluate a policy.
-* :doc:`ExampleMDP 31: <./example/exampleMDP31>` create an total Cost MDP for computing the well known SSP *four room* and illustrate how to manipulate a **multidimensionnal state space**.
-* :doc:`ExampleMDP 40: <./example/exampleMDP40>` create a finite horizon MDP given by Puterman in his book.
+* :doc:`ExampleMDP 10: <./cpptutos/exampleMDP10.ipynb>` create a discounted MDP object and describes the generalities about the MDP modelling. It also contains a short presentation of the MDP solver.
+* :doc:`ExampleMDP 11: <./cpptutos/exampleMDP11.ipynb>` create a discounted MDP and illustrate the way to get the same action set for any state. 
+* :doc:`ExampleMDP 21: <./cpptutos/exampleMDP21.ipynb>` create an average MDP and illustrate the way to evaluate a policy.
+* :doc:`ExampleMDP 31: <./cpptutos/exampleMDP31.ipynb>` create an total Cost MDP for computing the well known SSP *four room* and illustrate how to manipulate a **multidimensionnal state space**.
+* :doc:`ExampleMDP 40: <./cpptutos/exampleMDP40.ipynb>` create a finite horizon MDP given by Puterman in his book.
+
+
+1. `MDP Lesson 1: <./pytutos/MDP_Lesson1.html>`_  discounted MDP
+
+2. `MDP Lesson 2: <./pytutos/MDP_Lesson2.html>`_ additional methods for discounted models
+
+3. `MDP Lesson 3: <./pytutos/MDP_Lesson3.html>`_ average MDP and manipulating policies
+
+4. `MDP Lesson 4: <./pytutos/MDP_Lesson4.html>`_ Total Reward MDP and manipulating two-dimensional state space
