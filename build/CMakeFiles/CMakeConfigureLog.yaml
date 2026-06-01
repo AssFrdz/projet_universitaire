@@ -4,18 +4,18 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
       - "CMakeLists.txt:2 (project)"
     message: |
       The system is: Windows - 10.0.26200 - AMD64
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     mode: "file"
     variable: "src_in"
@@ -31,16 +31,24 @@ events:
     names:
       - "CMakeCCompilerId.c.in"
     candidate_directories:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/"
-    found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/"
+    found: "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -86,12 +94,14 @@ events:
         - "C:\\Users\\assia\\Documents\\flutter_first-app\\flutter\\bin"
         - "C:\\apache-maven-3.9.11\\bin"
         - "C:\\Users\\assia\\AppData\\Local\\Python\\bin"
+      ENV{INCLUDE}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\include"
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
@@ -102,7 +112,7 @@ events:
       The output was:
       0
       Version MSBuild 18.0.5+e22287bf1 pour .NET Framework
-      La g├®n├®ration a d├®marr├® 06/04/2026 15:02:27.
+      La g├®n├®ration a d├®marr├® 06/05/2026 10:02:33.
       
       Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\4.2.3\\CompilerIdC\\CompilerIdC.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
       PrepareForBuild:
@@ -131,7 +141,7 @@ events:
           0 Avertissement(s)
           0 Erreur(s)
       
-      Temps ├®coul├® 00:00:00.88
+      Temps ├®coul├® 00:00:02.36
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -144,10 +154,10 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "_CMAKE_TOOL_WITH_PATH"
@@ -164,12 +174,18 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -204,7 +220,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -213,13 +229,21 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
     found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -268,10 +292,10 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "_CMAKE_TOOL_WITH_PATH"
@@ -288,12 +312,18 @@ events:
       - "lld-link"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -328,7 +358,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -337,24 +367,42 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link"
-      - "C:/Users/assia/miniconda3/lld-link.com"
-      - "C:/Users/assia/miniconda3/lld-link.exe"
-      - "C:/Users/assia/miniconda3/lld-link"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link.com"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link"
-      - "C:/Users/assia/miniconda3/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link"
       - "C:/Users/assia/miniconda3/condabin/lld-link.com"
       - "C:/Users/assia/miniconda3/condabin/lld-link.exe"
       - "C:/Users/assia/miniconda3/condabin/lld-link"
@@ -457,9 +505,9 @@ events:
       - "C:/Android/Sdk/emulator/lld-link.com"
       - "C:/Android/Sdk/emulator/lld-link.exe"
       - "C:/Android/Sdk/emulator/lld-link"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link.com"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link.exe"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link.com"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link.exe"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link"
       - "C:/gradle-7.3.3/bin/lld-link.com"
       - "C:/gradle-7.3.3/bin/lld-link.exe"
       - "C:/gradle-7.3.3/bin/lld-link"
@@ -474,13 +522,21 @@ events:
       - "C:/Users/assia/AppData/Local/Python/bin/lld-link"
     found: false
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -529,8 +585,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "CMAKE_LINKER"
@@ -547,12 +603,18 @@ events:
       - "link"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -587,7 +649,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -596,13 +658,21 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.com"
     found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/link.exe"
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -651,8 +721,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "CMAKE_MT"
@@ -669,12 +739,18 @@ events:
       - "mt"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -709,7 +785,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -718,24 +794,42 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.com"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt.exe"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/mt"
-      - "C:/Users/assia/miniconda3/mt.com"
-      - "C:/Users/assia/miniconda3/mt.exe"
-      - "C:/Users/assia/miniconda3/mt"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/mt.com"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/mt.exe"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/mt"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/mt.com"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/mt.exe"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/mt"
-      - "C:/Users/assia/miniconda3/Library/bin/mt.com"
-      - "C:/Users/assia/miniconda3/Library/bin/mt.exe"
-      - "C:/Users/assia/miniconda3/Library/bin/mt"
-      - "C:/Users/assia/miniconda3/Scripts/mt.com"
-      - "C:/Users/assia/miniconda3/Scripts/mt.exe"
-      - "C:/Users/assia/miniconda3/Scripts/mt"
-      - "C:/Users/assia/miniconda3/bin/mt.com"
-      - "C:/Users/assia/miniconda3/bin/mt.exe"
-      - "C:/Users/assia/miniconda3/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/mt"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/mt.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/mt.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/mt"
       - "C:/Users/assia/miniconda3/condabin/mt.com"
       - "C:/Users/assia/miniconda3/condabin/mt.exe"
       - "C:/Users/assia/miniconda3/condabin/mt"
@@ -838,9 +932,9 @@ events:
       - "C:/Android/Sdk/emulator/mt.com"
       - "C:/Android/Sdk/emulator/mt.exe"
       - "C:/Android/Sdk/emulator/mt"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/mt.com"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/mt.exe"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/mt"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/mt.com"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/mt.exe"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/mt"
       - "C:/gradle-7.3.3/bin/mt.com"
       - "C:/gradle-7.3.3/bin/mt.exe"
       - "C:/gradle-7.3.3/bin/mt"
@@ -855,13 +949,21 @@ events:
       - "C:/Users/assia/AppData/Local/Python/bin/mt"
     found: false
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -910,8 +1012,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "CMAKE_AR"
@@ -928,12 +1030,18 @@ events:
       - "lib"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -968,7 +1076,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -977,13 +1085,21 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.com"
     found: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lib.exe"
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -1032,11 +1148,11 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     mode: "file"
     variable: "src_in"
@@ -1052,16 +1168,24 @@ events:
     names:
       - "CMakeCXXCompilerId.cpp.in"
     candidate_directories:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/"
-    found: "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/"
+    found: "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -1107,12 +1231,14 @@ events:
         - "C:\\Users\\assia\\Documents\\flutter_first-app\\flutter\\bin"
         - "C:\\apache-maven-3.9.11\\bin"
         - "C:\\Users\\assia\\AppData\\Local\\Python\\bin"
+      ENV{INCLUDE}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\include"
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
@@ -1123,7 +1249,7 @@ events:
       The output was:
       0
       Version MSBuild 18.0.5+e22287bf1 pour .NET Framework
-      La g├®n├®ration a d├®marr├® 06/04/2026 15:02:28.
+      La g├®n├®ration a d├®marr├® 06/05/2026 10:02:37.
       
       Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\4.2.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
       PrepareForBuild:
@@ -1152,7 +1278,7 @@ events:
           0 Avertissement(s)
           0 Erreur(s)
       
-      Temps ├®coul├® 00:00:00.88
+      Temps ├®coul├® 00:00:01.05
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -1165,10 +1291,10 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "_CMAKE_TOOL_WITH_PATH"
@@ -1185,12 +1311,18 @@ events:
       - "lld-link"
     candidate_directories:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/"
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -1225,7 +1357,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -1234,24 +1366,42 @@ events:
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.com"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link.exe"
       - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64/lld-link"
-      - "C:/Users/assia/miniconda3/lld-link.com"
-      - "C:/Users/assia/miniconda3/lld-link.exe"
-      - "C:/Users/assia/miniconda3/lld-link"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Library/bin/lld-link"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link.com"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link.exe"
-      - "C:/Users/assia/miniconda3/Scripts/lld-link"
-      - "C:/Users/assia/miniconda3/bin/lld-link.com"
-      - "C:/Users/assia/miniconda3/bin/lld-link.exe"
-      - "C:/Users/assia/miniconda3/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/lld-link"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/lld-link"
       - "C:/Users/assia/miniconda3/condabin/lld-link.com"
       - "C:/Users/assia/miniconda3/condabin/lld-link.exe"
       - "C:/Users/assia/miniconda3/condabin/lld-link"
@@ -1354,9 +1504,9 @@ events:
       - "C:/Android/Sdk/emulator/lld-link.com"
       - "C:/Android/Sdk/emulator/lld-link.exe"
       - "C:/Android/Sdk/emulator/lld-link"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link.com"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link.exe"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/lld-link"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link.com"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link.exe"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/lld-link"
       - "C:/gradle-7.3.3/bin/lld-link.com"
       - "C:/gradle-7.3.3/bin/lld-link.exe"
       - "C:/gradle-7.3.3/bin/lld-link"
@@ -1371,13 +1521,21 @@ events:
       - "C:/Users/assia/AppData/Local/Python/bin/lld-link"
     found: false
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -1426,11 +1584,11 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:580 (enable_language)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:553 (__windows_compiler_msvc_enable_rc)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeCInformation.cmake:48 (include)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineRCCompiler.cmake:40 (find_program)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:580 (enable_language)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake:553 (__windows_compiler_msvc_enable_rc)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/Platform/Windows-MSVC-C.cmake:5 (__windows_compiler_msvc)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeCInformation.cmake:48 (include)"
       - "CMakeLists.txt:2 (project)"
     mode: "program"
     variable: "CMAKE_RC_COMPILER"
@@ -1446,12 +1604,21 @@ events:
     names:
       - "rc"
     candidate_directories:
-      - "C:/Users/assia/miniconda3/"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/"
-      - "C:/Users/assia/miniconda3/Library/bin/"
-      - "C:/Users/assia/miniconda3/Scripts/"
-      - "C:/Users/assia/miniconda3/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/sbin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/"
       - "C:/Users/assia/miniconda3/condabin/"
       - "C:/Program Files/Common Files/Oracle/Java/javapath/"
       - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
@@ -1486,7 +1653,7 @@ events:
       - "C:/Android/Sdk/cmdline-tools/latest/bin/"
       - "C:/Android/Sdk/platform-tools/"
       - "C:/Android/Sdk/emulator/"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/"
       - "C:/gradle-7.3.3/bin/"
       - "C:/Users/assia/Documents/flutter_first-app/flutter/bin/"
       - "C:/apache-maven-3.9.11/bin/"
@@ -1497,31 +1664,55 @@ events:
       - "C:/Program Files (x86)/bin/"
       - "C:/Program Files (x86)/sbin/"
       - "C:/Program Files (x86)/"
-      - "C:/Program Files/CMake/bin/"
-      - "C:/Program Files/CMake/sbin/"
-      - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/xpl_examples/bin/"
-      - "C:/Program Files (x86)/xpl_examples/sbin/"
-      - "C:/Program Files (x86)/xpl_examples/"
+      - "C:/Program Files/xpl_examples/bin/"
+      - "C:/Program Files/xpl_examples/sbin/"
+      - "C:/Program Files/xpl_examples/"
     searched_directories:
-      - "C:/Users/assia/miniconda3/rc.com"
-      - "C:/Users/assia/miniconda3/rc.exe"
-      - "C:/Users/assia/miniconda3/rc"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/rc.com"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/rc.exe"
-      - "C:/Users/assia/miniconda3/Library/mingw-w64/bin/rc"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/rc.com"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/rc.exe"
-      - "C:/Users/assia/miniconda3/Library/usr/bin/rc"
-      - "C:/Users/assia/miniconda3/Library/bin/rc.com"
-      - "C:/Users/assia/miniconda3/Library/bin/rc.exe"
-      - "C:/Users/assia/miniconda3/Library/bin/rc"
-      - "C:/Users/assia/miniconda3/Scripts/rc.com"
-      - "C:/Users/assia/miniconda3/Scripts/rc.exe"
-      - "C:/Users/assia/miniconda3/Scripts/rc"
-      - "C:/Users/assia/miniconda3/bin/rc.com"
-      - "C:/Users/assia/miniconda3/bin/rc.exe"
-      - "C:/Users/assia/miniconda3/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/sbin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/sbin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/sbin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/mingw-w64/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/usr/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Library/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/Scripts/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-1-3-0-env/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/mingw-w64/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/usr/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/bin/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Scripts/rc"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/rc.com"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/rc.exe"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/bin/rc"
       - "C:/Users/assia/miniconda3/condabin/rc.com"
       - "C:/Users/assia/miniconda3/condabin/rc.exe"
       - "C:/Users/assia/miniconda3/condabin/rc"
@@ -1624,9 +1815,9 @@ events:
       - "C:/Android/Sdk/emulator/rc.com"
       - "C:/Android/Sdk/emulator/rc.exe"
       - "C:/Android/Sdk/emulator/rc"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/rc.com"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/rc.exe"
-      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/%JAVA__17%/bin/rc"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/rc.com"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/rc.exe"
+      - "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/xpl/%JAVA__17%/bin/rc"
       - "C:/gradle-7.3.3/bin/rc.com"
       - "C:/gradle-7.3.3/bin/rc.exe"
       - "C:/gradle-7.3.3/bin/rc"
@@ -1657,33 +1848,32 @@ events:
       - "C:/Program Files (x86)/rc.com"
       - "C:/Program Files (x86)/rc.exe"
       - "C:/Program Files (x86)/rc"
-      - "C:/Program Files/CMake/bin/rc.com"
-      - "C:/Program Files/CMake/bin/rc.exe"
-      - "C:/Program Files/CMake/bin/rc"
-      - "C:/Program Files/CMake/sbin/rc.com"
-      - "C:/Program Files/CMake/sbin/rc.exe"
-      - "C:/Program Files/CMake/sbin/rc"
-      - "C:/Program Files/CMake/rc.com"
-      - "C:/Program Files/CMake/rc.exe"
-      - "C:/Program Files/CMake/rc"
-      - "C:/Program Files (x86)/xpl_examples/bin/rc.com"
-      - "C:/Program Files (x86)/xpl_examples/bin/rc.exe"
-      - "C:/Program Files (x86)/xpl_examples/bin/rc"
-      - "C:/Program Files (x86)/xpl_examples/sbin/rc.com"
-      - "C:/Program Files (x86)/xpl_examples/sbin/rc.exe"
-      - "C:/Program Files (x86)/xpl_examples/sbin/rc"
-      - "C:/Program Files (x86)/xpl_examples/rc.com"
-      - "C:/Program Files (x86)/xpl_examples/rc.exe"
-      - "C:/Program Files (x86)/xpl_examples/rc"
+      - "C:/Program Files/xpl_examples/bin/rc.com"
+      - "C:/Program Files/xpl_examples/bin/rc.exe"
+      - "C:/Program Files/xpl_examples/bin/rc"
+      - "C:/Program Files/xpl_examples/sbin/rc.com"
+      - "C:/Program Files/xpl_examples/sbin/rc.exe"
+      - "C:/Program Files/xpl_examples/sbin/rc"
+      - "C:/Program Files/xpl_examples/rc.com"
+      - "C:/Program Files/xpl_examples/rc.exe"
+      - "C:/Program Files/xpl_examples/rc"
     found: false
     search_context:
+      ENV{CMAKE_PREFIX_PATH}:
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library"
       ENV{PATH}:
-        - "C:\\Users\\assia\\miniconda3"
-        - "C:\\Users\\assia\\miniconda3\\Library\\mingw-w64\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\usr\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Library\\bin"
-        - "C:\\Users\\assia\\miniconda3\\Scripts"
-        - "C:\\Users\\assia\\miniconda3\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-1-3-0-env\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\mingw-w64\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\usr\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\bin"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Scripts"
+        - "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\bin"
         - "C:\\Users\\assia\\miniconda3\\condabin"
         - "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath"
         - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
@@ -1729,23 +1919,23 @@ events:
         - "C:\\Users\\assia\\Documents\\flutter_first-app\\flutter\\bin"
         - "C:\\apache-maven-3.9.11\\bin"
         - "C:\\Users\\assia\\AppData\\Local\\Python\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/xpl_examples"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files/xpl_examples"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
-        - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/xpl_examples"
+        - "C:/Users/assia/miniconda3/envs/marmote-use/Library"
+        - "C:/Program Files/xpl_examples"
   -
     kind: "try_compile-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-2eq5vx"
-      binary: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-2eq5vx"
+      source: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-ck0fse"
+      binary: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-ck0fse"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
       CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1754,46 +1944,46 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-2eq5vx'
+        Change Dir: 'C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-ck0fse'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_6ce1b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_183d8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         Version MSBuild 18.0.5+e22287bf1 pour .NET Framework
-        La g├®n├®ration a d├®marr├® 06/04/2026 15:02:30.
+        La g├®n├®ration a d├®marr├® 06/05/2026 10:02:39.
         
-        Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2eq5vx\\cmTC_6ce1b.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+        Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ck0fse\\cmTC_183d8.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Cr├®ation du r├®pertoire "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2eq5vx\\Debug\\".
-          Cr├®ation du r├®pertoire "cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.tlog\\".
+          Cr├®ation du r├®pertoire "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ck0fse\\Debug\\".
+          Cr├®ation du r├®pertoire "cmTC_183d8.dir\\Debug\\cmTC_183d8.tlog\\".
         InitializeBuildStatus:
-          Cr├®ation de "cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
-          Mise ├á jour de l'horodatage "cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.tlog\\unsuccessfulbuild".
+          Cr├®ation de "cmTC_183d8.dir\\Debug\\cmTC_183d8.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+          Mise ├á jour de l'horodatage "cmTC_183d8.dir\\Debug\\cmTC_183d8.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_6ce1b.dir\\Debug\\\\" /Fd"cmTC_6ce1b.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_183d8.dir\\Debug\\\\" /Fd"cmTC_183d8.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           Compilateur d'optimisation Microsoft (R) C/C++ version┬á19.50.35723 pour x64
           Copyright (C) Microsoft Corporation. Tous droits r├®serv├®s.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_6ce1b.dir\\Debug\\\\" /Fd"cmTC_6ce1b.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_183d8.dir\\Debug\\\\" /Fd"cmTC_183d8.dir\\Debug\\vc145.pdb" /external:W3 /TC /errorReport:queue "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2eq5vx\\Debug\\cmTC_6ce1b.exe" /INCREMENTAL /ILK:"cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-2eq5vx/Debug/cmTC_6ce1b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-2eq5vx/Debug/cmTC_6ce1b.lib" /MACHINE:X64  /machine:x64 cmTC_6ce1b.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_6ce1b.vcxproj -> C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2eq5vx\\Debug\\cmTC_6ce1b.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ck0fse\\Debug\\cmTC_183d8.exe" /INCREMENTAL /ILK:"cmTC_183d8.dir\\Debug\\cmTC_183d8.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-ck0fse/Debug/cmTC_183d8.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-ck0fse/Debug/cmTC_183d8.lib" /MACHINE:X64  /machine:x64 cmTC_183d8.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_183d8.vcxproj -> C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ck0fse\\Debug\\cmTC_183d8.exe
         FinalizeBuildStatus:
-          Suppression du fichier "cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.tlog\\unsuccessfulbuild".
-          Mise ├á jour de l'horodatage "cmTC_6ce1b.dir\\Debug\\cmTC_6ce1b.tlog\\cmTC_6ce1b.lastbuildstate".
-        G├®n├®ration du projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-2eq5vx\\cmTC_6ce1b.vcxproj" termin├®e (cibles par d├®faut).
+          Suppression du fichier "cmTC_183d8.dir\\Debug\\cmTC_183d8.tlog\\unsuccessfulbuild".
+          Mise ├á jour de l'horodatage "cmTC_183d8.dir\\Debug\\cmTC_183d8.tlog\\cmTC_183d8.lastbuildstate".
+        G├®n├®ration du projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ck0fse\\cmTC_183d8.vcxproj" termin├®e (cibles par d├®faut).
         
         La g├®n├®ration a r├®ussi.
             0 Avertissement(s)
             0 Erreur(s)
         
-        Temps ├®coul├® 00:00:00.81
+        Temps ├®coul├® 00:00:00.93
         
       exitCode: 0
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Parsed C implicit link information:
@@ -1809,9 +1999,9 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Running the C compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/HostX64/x64/link.exe" "-v"
@@ -1820,14 +2010,14 @@ events:
   -
     kind: "try_compile-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-rtamgq"
-      binary: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-rtamgq"
+      source: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-eljcxc"
+      binary: "C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-eljcxc"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1837,46 +2027,46 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-rtamgq'
+        Change Dir: 'C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-eljcxc'
         
-        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_69fba.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
+        Run Build Command(s): "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a83f7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=18.0 /v:n
         Version MSBuild 18.0.5+e22287bf1 pour .NET Framework
-        La g├®n├®ration a d├®marr├® 06/04/2026 15:02:31.
+        La g├®n├®ration a d├®marr├® 06/05/2026 10:02:41.
         
-        Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rtamgq\\cmTC_69fba.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+        Projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eljcxc\\cmTC_a83f7.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
         PrepareForBuild:
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Cr├®ation du r├®pertoire "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rtamgq\\Debug\\".
-          Cr├®ation du r├®pertoire "cmTC_69fba.dir\\Debug\\cmTC_69fba.tlog\\".
+          Cr├®ation du r├®pertoire "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eljcxc\\Debug\\".
+          Cr├®ation du r├®pertoire "cmTC_a83f7.dir\\Debug\\cmTC_a83f7.tlog\\".
         InitializeBuildStatus:
-          Cr├®ation de "cmTC_69fba.dir\\Debug\\cmTC_69fba.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
-          Mise ├á jour de l'horodatage "cmTC_69fba.dir\\Debug\\cmTC_69fba.tlog\\unsuccessfulbuild".
+          Cr├®ation de "cmTC_a83f7.dir\\Debug\\cmTC_a83f7.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+          Mise ├á jour de l'horodatage "cmTC_a83f7.dir\\Debug\\cmTC_a83f7.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_69fba.dir\\Debug\\\\" /Fd"cmTC_69fba.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_a83f7.dir\\Debug\\\\" /Fd"cmTC_a83f7.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           Compilateur d'optimisation Microsoft (R) C/C++ version┬á19.50.35723 pour x64
           Copyright (C) Microsoft Corporation. Tous droits r├®serv├®s.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_69fba.dir\\Debug\\\\" /Fd"cmTC_69fba.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GR /Fo"cmTC_a83f7.dir\\Debug\\\\" /Fd"cmTC_a83f7.dir\\Debug\\vc145.pdb" /external:W3 /TP /errorReport:queue "C:\\Users\\assia\\miniconda3\\envs\\marmote-use\\Library\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rtamgq\\Debug\\cmTC_69fba.exe" /INCREMENTAL /ILK:"cmTC_69fba.dir\\Debug\\cmTC_69fba.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-rtamgq/Debug/cmTC_69fba.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-rtamgq/Debug/cmTC_69fba.lib" /MACHINE:X64  /machine:x64 cmTC_69fba.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_69fba.vcxproj -> C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rtamgq\\Debug\\cmTC_69fba.exe
+          C:\\Program Files (x86)\\Microsoft Visual Studio\\18\\BuildTools\\VC\\Tools\\MSVC\\14.50.35717\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eljcxc\\Debug\\cmTC_a83f7.exe" /INCREMENTAL /ILK:"cmTC_a83f7.dir\\Debug\\cmTC_a83f7.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-eljcxc/Debug/cmTC_a83f7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Users/assia/Documents/projet_univ/dossier 2/project-root/build/CMakeFiles/CMakeScratch/TryCompile-eljcxc/Debug/cmTC_a83f7.lib" /MACHINE:X64  /machine:x64 cmTC_a83f7.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_a83f7.vcxproj -> C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eljcxc\\Debug\\cmTC_a83f7.exe
         FinalizeBuildStatus:
-          Suppression du fichier "cmTC_69fba.dir\\Debug\\cmTC_69fba.tlog\\unsuccessfulbuild".
-          Mise ├á jour de l'horodatage "cmTC_69fba.dir\\Debug\\cmTC_69fba.tlog\\cmTC_69fba.lastbuildstate".
-        G├®n├®ration du projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rtamgq\\cmTC_69fba.vcxproj" termin├®e (cibles par d├®faut).
+          Suppression du fichier "cmTC_a83f7.dir\\Debug\\cmTC_a83f7.tlog\\unsuccessfulbuild".
+          Mise ├á jour de l'horodatage "cmTC_a83f7.dir\\Debug\\cmTC_a83f7.tlog\\cmTC_a83f7.lastbuildstate".
+        G├®n├®ration du projet "C:\\Users\\assia\\Documents\\projet_univ\\dossier 2\\project-root\\build\\CMakeFiles\\CMakeScratch\\TryCompile-eljcxc\\cmTC_a83f7.vcxproj" termin├®e (cibles par d├®faut).
         
         La g├®n├®ration a r├®ussi.
             0 Avertissement(s)
             0 Erreur(s)
         
-        Temps ├®coul├® 00:00:00.84
+        Temps ├®coul├® 00:00:01.26
         
       exitCode: 0
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Parsed CXX implicit link information:
@@ -1892,9 +2082,9 @@ events:
   -
     kind: "message-v1"
     backtrace:
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
-      - "C:/Program Files/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Users/assia/miniconda3/envs/marmote-use/Library/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
       - "CMakeLists.txt:2 (project)"
     message: |
       Running the CXX compiler's linker: "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/bin/HostX64/x64/link.exe" "-v"

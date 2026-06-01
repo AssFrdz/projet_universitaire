@@ -11,53 +11,33 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #
-# Verifying conda 
-#
-if(NOT DEFINED ENV{CONDA_PREFIX})
-    message(FATAL_ERROR "CONDA_PREFIX not set. Active l'environnement conda avant CMake.")
-endif()
-
-#
-# Marmote path, compatible with Linux, MacOs and Windows
-#
-set(MAR_INC "$ENV{CONDA_PREFIX}/Library/include")
-set(MAR_LIB "$ENV{CONDA_PREFIX}/Library/lib")
-
-include_directories(
-    "${MAR_INC}"
-    "${MAR_INC}/marmoteCore"
-    "${MAR_INC}/marmoteMarkovChain"
-    "${MAR_INC}/marmoteMDP"
-    "${MAR_INC}/marmoteLog"
-)
-
-link_directories("${MAR_LIB}")
-
-
-#
 # Building all the Marmote examples
 #
 foreach( EXAMPLE_NUMBER IN ITEMS 1 2 3 4 5 6 7 10 )
-    set(PROJ_N "example${EXAMPLE_NUMBER}")
-    set(PROJ_MAIN "example${EXAMPLE_NUMBER}/example${EXAMPLE_NUMBER}.cpp")
-
-    message("Building project ${PROJ_N} from source ${PROJ_MAIN}")
-
-    add_executable(${PROJ_N} ${PROJ_MAIN})
-    target_link_libraries(${PROJ_N} PRIVATE marmoteCore marmoteMarkovChain marmoteMDP)
+    set(PROJ_N "example")
+    string(APPEND PROJ_N ${EXAMPLE_NUMBER})
+    set(PROJ_MAIN "example")
+    string(APPEND PROJ_MAIN ${EXAMPLE_NUMBER}.cpp)
+    message( "Building project ${PROJ_N} from source ${PROJ_MAIN}" )
+    project(${PROJ_N})
+    find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+    add_executable(${PROJECT_NAME} ${PROJ_MAIN})
+    target_link_libraries(${PROJECT_NAME} PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
 endforeach()
 
 #
 # Building the MarmoteMDP examples
 #
 foreach( EXAMPLE_NUMBER IN ITEMS 10 11 21 31 40 )
-    set(PROJ_N "exampleMDP${EXAMPLE_NUMBER}")
-    set(PROJ_MAIN "exampleMDP${EXAMPLE_NUMBER}/exampleMDP${EXAMPLE_NUMBER}.cpp")
-
-    message("Building project ${PROJ_N} from source ${PROJ_MAIN}")
-
-    add_executable(${PROJ_N} ${PROJ_MAIN})
-    target_link_libraries(${PROJ_N} PRIVATE marmoteCore marmoteMarkovChain marmoteMDP)
+    set(PROJ_N "exampleMDP")
+    string(APPEND PROJ_N ${EXAMPLE_NUMBER})
+    set(PROJ_MAIN "exampleMDP")
+    string(APPEND PROJ_MAIN ${EXAMPLE_NUMBER}.cpp)
+    message( "Building project ${PROJ_N} from source ${PROJ_MAIN}" )
+    project(${PROJ_N})
+    find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+    add_executable(${PROJECT_NAME} ${PROJ_MAIN})
+    target_link_libraries(${PROJECT_NAME} PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
 endforeach()
 
 
@@ -65,12 +45,10 @@ endforeach()
 # For compiling a new example of project my_project with source code my_cpp
 # uncomment and adapt the following lines
 #
-# message("Building project my_project from source my_cpp")
+# message("Building project my_project from source my_cpp" )
+# project(my_project)
+# find_package(marmote REQUIRED COMPONENTS marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
+# add_executable(my_project my_cpp)
+# target_link_libraries(my_project PUBLIC marmoteCore marmoteLog marmoteMarkovChain marmoteMDP)
 #
-# set(PROJ_N "my_project")
-# set(PROJ_MAIN "my_cpp.cpp")
-#
-# add_executable(${PROJ_N} ${PROJ_MAIN})
-# target_link_libraries(${PROJ_N} PRIVATE marmoteCore marmoteMarkovChain marmoteMDP)
-
 

@@ -6,7 +6,7 @@ Principle of the software
 -------------------------
 
 Marmote consists of a C++ library and its wrapping to Python. 
-Programming in either language is made easier using the following technogies:
+Programming in either language is made easier using the following technologies:
 
 1. **Conda** is used to create execution environments which are consistent
    with the chosen version of Marmote.

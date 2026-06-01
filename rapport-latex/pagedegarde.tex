@@ -1,0 +1,35 @@
+\makeatletter
+
+\newcommand{\@datedebut}{}
+\newcommand{\@datefin}{}
+\newcommand{\@membrea}{}
+
+\newcommand{\datedebut}[1]{\gdef\@datedebut{#1}}
+\newcommand{\datefin}[1]{\gdef\@datefin{#1}}
+\newcommand{\membrea}[1]{\gdef\@membrea{#1}}
+
+\newcommand{\pagedegarde}{
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+
+    {\Large Université Paris-Est Créteil\par}
+    \vspace{0.5cm}
+    {\large Licence MIAGE\par}
+    \vspace{2cm}
+
+    {\Huge\bfseries \@title\par}
+    \vspace{2cm}
+
+    \begin{tabular}{>{\bfseries}l l}
+      Student: & \@membrea \\
+      Start date: & \@datedebut \\
+      End date: & \@datefin \\
+    \end{tabular}
+
+    \vfill
+    {\large Academic year 2025--2026\par}
+  \end{titlepage}
+}
+
+\makeatother

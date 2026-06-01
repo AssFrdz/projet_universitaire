@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<BuildType Name="MinSizeRel"/>
+		<BuildType Name="RelWithDebInfo"/>
+		<Platform Name="x64"/>
+	</Configurations>
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a5092b90-4659-3a9c-ae40-8effe002f7d1" DefaultStartup="true">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="example1.vcxproj"/>
+		<BuildDependency Project="example10.vcxproj"/>
+		<BuildDependency Project="example2.vcxproj"/>
+		<BuildDependency Project="example3.vcxproj"/>
+		<BuildDependency Project="example4_bin.vcxproj"/>
+		<BuildDependency Project="example5.vcxproj"/>
+		<BuildDependency Project="example6.vcxproj"/>
+		<BuildDependency Project="example7.vcxproj"/>
+		<BuildDependency Project="exampleMDP10.vcxproj"/>
+		<BuildDependency Project="exampleMDP11.vcxproj"/>
+		<BuildDependency Project="exampleMDP21.vcxproj"/>
+		<BuildDependency Project="exampleMDP31.vcxproj"/>
+		<BuildDependency Project="exampleMDP40.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="291037eb-1cd7-31a0-8028-0556c6c9f7a1"/>
+	<Project Path="example1.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b0cdd6ac-d38a-3170-9a7a-8e3e16b02cc5">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example10.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="895d0d5b-c83f-34ac-a380-c5c72db50d77">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example2.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="33105ea2-fba5-3624-80f4-4c71fd1249a8">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example3.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="e3d21450-9acb-386a-8f2e-c11c12520271">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example4_bin.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="5d0584a7-4293-385d-a2d2-0bc68d6bd48a">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example5.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f85a7a73-e915-3eb4-a846-7e54b9b9c0d5">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example6.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b2e93403-9be1-312d-90ee-41a6e254c91a">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="example7.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0e9f6b2c-6f2e-3f9d-8ae7-026d311d40c4">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="exampleMDP10.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="265a00e7-5abf-3f69-a29e-d81291491e9f">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="exampleMDP11.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="13cee23b-b16f-37a0-9d75-4d16ac1c2ae4">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="exampleMDP21.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="8a3c26e4-d291-3e44-9b14-1e9f13a43c83">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="exampleMDP31.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="f5d1ba14-e54a-3828-828e-2d70f278b437">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="exampleMDP40.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b5e3dd54-75cd-3e26-af48-81d4e7a2ae63">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+</Solution>

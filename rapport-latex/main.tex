@@ -1,0 +1,597 @@
+\documentclass[a4paper,12pt,twoside]{article}
+\UseRawInputEncoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{ae,aecompl}
+\usepackage[top=2.5cm,bottom=2cm,left=3cm,right=2.5cm,headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{cite}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+
+\graphicspath{{figures/}{../doc/html/source/_images/}{../doc/html/build/html/_images/}{../doc/html/source/pytutos/}}
+
+\newcommand{\missingfigurebox}[1]{%
+  \setlength{\fboxsep}{8pt}%
+  \fbox{\begin{minipage}{0.85\textwidth}\centering\textbf{Figure manquante}\\#1\end{minipage}}%
+}
+
+\let\stdincludegraphics\includegraphics
+\newcommand{\safeincludegraphics}[2][]{%
+  \IfFileExists{#2}{\stdincludegraphics[#1]{#2}}{\missingfigurebox{#2}}%
+}
+
+\definecolor{scccolor}{RGB}{255,0,0}
+\definecolor{sparsematrixcolor}{RGB}{0,0,255}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.25,0.5,0.75}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+
+\lstdefinestyle{sccstyle}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10},
+  commentstyle=\color{gray}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=tb,
+  columns=fullflexible,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{scccolor}{$\hookrightarrow$}\space},
+  showstringspaces=false,
+  moredelim=**[is][\color{scccolor}]{RR}{RR},
+  moredelim=**[is][\color{sparsematrixcolor}]{BB}{BB}
+}
+
+\lstdefinestyle{manuelautodoc}{
+    backgroundcolor=\color{white},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeblue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=manuelautodoc}
+
+\input{pagedegarde}
+
+\title{Rapport de Projet Universitaire \\ Licence MIAGE}
+\datedebut{12 février 2026}
+\datefin{1 juin 2026}
+\membrea{FERRADJ Assia}
+
+\begin{document}
+
+\pagedegarde
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Contexte du projet}
+
+Dans le cadre de ma Licence MIAGE, j'ai réalisé un projet long autour de la librairie scientifique \textbf{Marmote} (\emph{MARkovian MOdelling Tools and Environments}). Marmote est une bibliothèque dédiée à la modélisation et à la résolution de modèles de Markov à variables discrètes. Elle propose une API C++ et une API Python, cette dernière encapsulant les objets C++ afin de simplifier leur utilisation dans des notebooks scientifiques.
+
+Le projet s'inscrit dans un contexte à la fois académique et applicatif. D'un côté, il s'agissait de comprendre une base logicielle déjà existante, utilisée pour produire une documentation scientifique. De l'autre, il fallait faire évoluer cette base sans rompre le workflow de génération déjà en place. L'enjeu n'était donc pas seulement de produire du nouveau contenu, mais surtout de rendre ce contenu cohérent, automatisable et maintenable.
+
+Le site Marmote est généré avec \textbf{Sphinx}. Les exemples Python et C++ y sont présentés sous forme de pages HTML, de fichiers sources téléchargeables et d'archives. Avant la génération du site, plusieurs scripts Python préparent les ressources : copie des exemples C++, production des fichiers \texttt{.res} et \texttt{.cmd}, préparation de notebooks, génération d'archives, mise à jour de fichiers \texttt{CMakeLists.txt}, etc. C'est cette chaîne de préparation qui a constitué le cœur du travail.
+
+\subsection*{Organisation du travail}
+
+Le projet a été mené de manière itérative, en lien régulier avec mon enseignant encadrant. Les réunions de suivi permettaient de présenter les tâches réalisées, de faire le point sur les blocages techniques, puis de définir les priorités suivantes. Cette organisation progressive a été particulièrement utile car les difficultés rencontrées étaient souvent très concrètes : erreurs de chemins, dépendances absentes, comportements différents entre Windows et Linux, incohérences entre la documentation et l'implémentation réelle, ou encore instabilité du kernel C++.
+
+Au fil des échanges, le travail a donc pris une double dimension :
+\begin{itemize}
+    \item une dimension de \textbf{maintenance logicielle}, visant à stabiliser un flot d'exécution existant ;
+    \item une dimension de \textbf{production documentaire}, visant à intégrer des notebooks C++ dans un site déjà structuré autour des notebooks Python.
+\end{itemize}
+
+\subsection*{État initial du workflow}
+
+Au départ, les ressources Python et C++ étaient préparées par des chemins différents. Les exemples C++ étaient compilés et exécutés afin de produire les sorties associées, tandis que les notebooks Python étaient préparés séparément pour la documentation et pour Google Colab.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.9\textwidth]{workflow_base.png}
+    \caption{Workflow initial de préparation des ressources de documentation.}
+\end{figure}
+
+Dans ce schéma, les scripts \texttt{doc\_copyExamples.py} et \texttt{doc\_generateArchives.py} jouaient déjà un rôle central, mais l'ensemble restait fragmenté. Les notebooks C++ n'étaient pas encore intégrés comme une composante standard de la documentation, et les étapes de génération n'étaient pas assez mutualisées.
+
+\subsection*{Objectif général}
+
+L'objectif général du projet était de faire évoluer cette organisation vers un workflow plus unifié, capable de traiter à la fois :
+\begin{itemize}
+    \item les exemples C++ compilés ;
+    \item les notebooks Python ;
+    \item les notebooks C++ pour Xeus-cling ;
+    \item les archives téléchargeables de la documentation.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.9\textwidth]{workflow_cible.png}
+    \caption{Workflow cible avec intégration des notebooks C++ et d'un script global.}
+\end{figure}
+
+Les objectifs opérationnels peuvent être résumés ainsi :
+\begin{itemize}
+    \item corriger et stabiliser les \emph{issues} existantes dans les scripts ;
+    \item fiabiliser les répertoires, chemins et binaires utilisés ;
+    \item intégrer les notebooks C++ dans la documentation ;
+    \item générer des exports C++ cohérents à partir des notebooks ;
+    \item améliorer la lisibilité de la documentation générée ;
+    \item sécuriser les scripts avec des contrôles de contexte et des modes de simulation.
+\end{itemize}
+
+La problématique qui a guidé l'ensemble du travail est donc la suivante :
+
+\medskip
+\textbf{Comment intégrer des notebooks Jupyter en C++ dans un workflow de documentation scientifique existant, tout en conservant un fonctionnement fiable, automatisable et maintenable ?}
+
+\section{Descriptif des missions}
+
+Le projet a été structuré autour de quatre grandes missions complémentaires : la stabilisation du workflow, la préparation des environnements, l'intégration des notebooks C++, puis l'amélioration de la publication documentaire.
+
+\subsection{Stabilisation du workflow et de l'arborescence}
+
+Une première mission a consisté à clarifier l'arborescence du projet et à vérifier que chaque dossier remplissait bien son rôle dans la chaîne de génération.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.88\textwidth}
+\begin{verbatim}
+PROJECT-ROOT
+├── build
+├── doc
+│   └── html
+│       ├── build
+│       └── source
+├── scripts
+└── xpl
+\end{verbatim}
+\end{minipage}
+\caption{Arborescence principale du projet.}
+\end{figure}
+
+Les rôles principaux sont les suivants :
+\begin{itemize}
+    \item \textbf{xpl} contient les exemples C++ officiels ;
+    \item \textbf{build} contient les binaires compilés et le contexte de compilation ;
+    \item \textbf{doc/html/source} contient les sources Sphinx, les notebooks et les ressources ;
+    \item \textbf{doc/html/build} contient les pages HTML générées ;
+    \item \textbf{scripts} contient les scripts Python qui préparent les ressources avant la génération de la documentation.
+\end{itemize}
+
+Cette phase a mis en évidence plusieurs points faibles :
+\begin{itemize}
+    \item des chemins attendus mais absents lors de certains tests ;
+    \item des noms d'exécutables qui ne correspondaient pas aux binaires réellement produits ;
+    \item des incohérences entre les sources présentes dans \texttt{xpl}, les fichiers copiés dans \texttt{media} et les références utilisées par les scripts.
+\end{itemize}
+
+\subsection{Préparation des environnements de travail}
+
+Le projet mobilise plusieurs environnements techniques :
+\begin{itemize}
+    \item un environnement Python pour Sphinx et les scripts de génération ;
+    \item un environnement Marmote pour exécuter les exemples et préparer les ressources ;
+    \item un environnement Conda dédié à Xeus-cling pour les notebooks C++ ;
+    \item WSL, utilisé pour contourner les limites de Windows sur le support de Xeus-cling.
+\end{itemize}
+
+Cette partie du travail n'était pas seulement une mise en place technique : elle conditionnait aussi la reproductibilité des notebooks et la capacité à reconstruire la documentation de bout en bout.
+
+\subsection{Intégration des notebooks C++}
+
+L'une des missions centrales a été la création d'une version C++ des notebooks, parallèle à la partie Python déjà présente dans la documentation. L'objectif n'était pas simplement de convertir du code C++ en notebook, mais de proposer un support pédagogique cohérent avec les leçons Python :
+\begin{itemize}
+    \item mêmes sections et mêmes titres ;
+    \item mêmes explications textuelles ;
+    \item même ordre de construction des modèles ;
+    \item sorties affichées de manière comparable, ou adaptées lorsque les API diffèrent.
+\end{itemize}
+
+Cette mission a demandé de s'appuyer à la fois sur les notebooks Python (\texttt{pytutos/}) et sur les exemples C++ officiels (\texttt{xpl/}), avec un travail de réécriture pour résoudre les écarts entre la documentation théorique et l'implémentation réelle.
+
+\subsection{Publication et qualité documentaire}
+
+Enfin, une dernière mission a porté sur la qualité de la documentation produite :
+\begin{itemize}
+    \item génération correcte des pages Sphinx ;
+    \item mise à jour des index C++ ;
+    \item masquage des cellules techniques non pédagogiques ;
+    \item réduction des sorties trop volumineuses dans les notebooks ;
+    \item production d'archives cohérentes pour le téléchargement des notebooks et fichiers C++.
+\end{itemize}
+
+Cette phase a été essentielle pour rendre le dépôt réellement livrable, au sens où les contenus générés sont exploitables à la fois par un lecteur de la documentation et par un développeur souhaitant récupérer les ressources.
+
+\section{Réalisation des missions}
+
+\subsection{Correction des problèmes de structure et de chemins}
+
+La première étape concrète a consisté à reconstruire un cadre d'exécution fiable. Plusieurs erreurs initiales provenaient d'un écart entre l'arborescence supposée par les scripts et l'arborescence réelle du projet. Certains dossiers attendus n'étaient pas présents lors des premiers tests, tandis que des noms d'exécutables ou de répertoires ne correspondaient pas aux fichiers produits.
+
+Le travail a donc porté sur :
+\begin{itemize}
+    \item la vérification des dossiers \texttt{xpl}, \texttt{build/bin}, \texttt{doc/html/source/media} et \texttt{instructions} ;
+    \item le réalignement des tableaux de correspondance entre exemples, exécutables et paramètres ;
+    \item la remise en cohérence des dossiers utilisés pour copier, zipper et publier les ressources.
+\end{itemize}
+
+Cette phase a permis de remettre en état le flux de base : compilation des exemples, exécution des binaires, génération des fichiers de sortie, copie vers la documentation et création des archives associées.
+
+\subsection{Sécurisation des scripts}
+
+\subsubsection{Contrôle du contexte d'exécution}
+
+L'un des apports les plus utiles du projet a été la sécurisation du contexte d'exécution. Les scripts ne doivent pas être lancés depuis n'importe quel répertoire, car ils manipulent des chemins relatifs, déplacent des fichiers et mettent à jour des archives. Une exécution au mauvais endroit peut donc produire des effets de bord importants.
+
+J'ai ajouté puis consolidé une logique de contrôle du répertoire courant. Si le script est lancé depuis un sous-répertoire du projet, il remonte à la racine puis redirige automatiquement vers \texttt{doc/html/source}. Si le contexte est incohérent, le script s'arrête.
+
+\subsubsection{Mode \texttt{dry\_run}}
+
+Le mode \texttt{dry\_run} a été généralisé pour permettre de tester le workflow sans provoquer de copies, suppressions ou déplacements réels. Cette possibilité a joué un rôle important dans le diagnostic des erreurs de chemins, dans la mise au point du script global et dans la vérification des enchaînements d'étapes.
+
+\subsubsection{Exécution des commandes externes}
+
+La partie la plus sensible de \texttt{doc\_copyExamples.py} concerne l'exécution des binaires générés. Ce point a été revu pour :
+\begin{itemize}
+    \item réaligner les noms d'exécutables réellement produits sur Windows, avec le suffixe \texttt{.exe} ;
+    \item éviter les appels à des binaires inexistants ;
+    \item traiter explicitement le cas particulier de \texttt{example4}, où le dossier de données et l'exécutable introduisaient une ambiguïté ;
+    \item sécuriser l'appel de commandes externes via \texttt{subprocess.run(..., capture\_output=True)}.
+\end{itemize}
+
+\subsection{Création d'un script global de génération}
+
+À mesure que les scripts se stabilisaient, il est devenu pertinent de disposer d'un point d'entrée unique. Nous avons donc consolidé la logique de génération autour de \texttt{total.py}.
+
+Ce script global reprend désormais les étapes principales de génération d'archives et de copie d'exemples. Il mutualise également plusieurs comportements auparavant dispersés :
+\begin{itemize}
+    \item le parsing des arguments ;
+    \item la gestion du mode \texttt{dry\_run} ;
+    \item la redirection vers le bon répertoire ;
+    \item la vérification de l'existence des dossiers attendus ;
+    \item l'appel aux fonctions de préparation des notebooks et des exemples.
+\end{itemize}
+
+Dans la pratique, ce script constitue l'ossature du nouveau workflow : il centralise l'exécution, rend les étapes plus lisibles et évite de relancer séparément plusieurs scripts avec des contextes différents.
+
+\subsection{Préparation des notebooks Python et des variantes Colab}
+
+Le script \texttt{doc\_generateArchives.py} était déjà chargé de préparer les notebooks Python, mais il a été enrichi et corrigé pour mieux s'intégrer au nouveau flux.
+
+Les traitements effectués sont les suivants :
+\begin{itemize}
+    \item copie et renommage des notebooks ;
+    \item ajout automatique des cellules d'installation pour Colab ;
+    \item insertion de cellules de vérification de l'installation de Marmote ;
+    \item ajout d'un \emph{fallback} sur \texttt{sys.path} lorsque nécessaire ;
+    \item remplacement des images locales par des URL adaptées pour Colab ;
+    \item génération des archives \texttt{all\_notebooks.zip}, \texttt{all\_notebooks\_colab.zip} et \texttt{all\_pythons.zip}.
+\end{itemize}
+
+Cette partie a également demandé quelques corrections de destination, notamment pour les répertoires d'archives Python, afin d'éviter des déplacements vers des dossiers inexistants.
+
+\subsection{Intégration des notebooks C++ avec Xeus-cling}
+
+\subsubsection{Choix de l'environnement}
+
+La question du support C++ dans Jupyter a constitué un point structurant du projet. En théorie, plusieurs solutions existent, mais pour Marmote, la plus adaptée est Xeus-cling. En revanche, sa mise en œuvre sous Windows reste délicate. Les noyaux et dépendances sont beaucoup plus faciles à obtenir sous Linux via \texttt{conda-forge}, d'où le choix de travailler avec WSL pour la partie notebook C++.
+
+Le workflow retenu est donc le suivant :
+\begin{itemize}
+    \item création d'un environnement \texttt{xeus-cpp-env} ;
+    \item installation de \texttt{jupyterlab}, \texttt{xeus-cling} et \texttt{marmote} ;
+    \item lancement de JupyterLab depuis WSL ;
+    \item utilisation du kernel \texttt{xcpp17} ou équivalent.
+\end{itemize}
+
+\subsubsection{Construction des notebooks C++}
+
+Les notebooks C++ n'ont pas été créés comme de simples copies des exemples \texttt{xpl}. Ils ont été reconstruits pour suivre la pédagogie des notebooks Python. Cela a conduit à :
+\begin{itemize}
+    \item créer des cellules Markdown explicatives, comme dans les \texttt{pytutos} ;
+    \item séparer les cellules techniques des cellules réellement pédagogiques ;
+    \item structurer les leçons en sections comparables aux leçons Python ;
+    \item ajuster les affichages et les sorties pour éviter l'effet ``dump technique''.
+\end{itemize}
+
+Dans les notebooks C++, les cellules de configuration Xeus-cling sont désormais placées dans des cellules cachées, via des tags du type \texttt{hide-cell} ou \texttt{nbsphinx-hidden}, tandis que les \texttt{\#include} utiles à la compréhension restent visibles lorsque cela a du sens d'un point de vue pédagogique.
+
+\subsubsection{Transcription des exemples et couverture des notebooks}
+
+Les notebooks C++ générés couvrent désormais les leçons communes entre \texttt{pytutos} et \texttt{xpl}, ainsi que des exemples supplémentaires nécessaires pour homogénéiser l'ensemble côté C++. Le travail a notamment porté sur :
+\begin{itemize}
+    \item les leçons Markov Chain (\texttt{Lesson1} à \texttt{Lesson7}, puis \texttt{Lesson10}) ;
+    \item les leçons MDP (\texttt{MDP\_Lesson1} à \texttt{MDP\_Lesson5}) ;
+    \item les leçons d'application (\texttt{App\_Lesson1} et \texttt{App\_Lesson2}).
+\end{itemize}
+
+Une attention particulière a été portée à la cohérence entre le nommage des notebooks, les correspondances avec les exemples officiels C++ et les entrées présentes dans \texttt{cpp\_examples.rst}.
+
+\subsection{Résolution des incohérences entre la documentation et le code réel}
+
+L'intégration des notebooks C++ a mis en évidence plusieurs décalages entre la documentation Marmote et l'implémentation réellement utilisable dans le kernel C++.
+
+Parmi les cas les plus marquants :
+\begin{itemize}
+    \item l'ancienne fonction \texttt{solpol} n'existe plus ;
+    \item \texttt{writeSolution()} ne fonctionnait pas dans notre contexte, alors que des variantes \texttt{writeSolutionByDim\#()} ou des accès directs à la solution étaient nécessaires ;
+    \item certaines surcharges de fonctions devenaient ambiguës dans Cling ;
+    \item certains opérateurs d'affichage supposés disponibles dans les exemples ne l'étaient pas réellement dans les notebooks.
+\end{itemize}
+
+Cela a conduit à une série de corrections ciblées :
+\begin{itemize}
+    \item renommage de variables ambiguës comme \texttt{beta} pour éviter les conflits avec la bibliothèque standard ;
+    \item désambiguïsation de fonctions comme \texttt{SimulateHittingTime} ;
+    \item qualification explicite de symboles liés à \texttt{marmote::stateWritePolicy()} ;
+    \item remplacement de certains affichages par \texttt{toString(...)} ou par des appels plus robustes ;
+    \item adaptation des démonstrations lorsque certaines fonctions, comme \texttt{Embed()}, n'étaient pas disponibles sur les cas infinis.
+\end{itemize}
+
+Ces corrections n'ont pas seulement permis de ``faire marcher'' les notebooks : elles ont aussi mis en évidence la nécessité d'écrire une documentation fidèle au comportement réel de l'API.
+
+\subsection{Stabilisation des kernels et nettoyage des sorties}
+
+Les notebooks C++ se sont révélés plus sensibles que les notebooks Python, notamment parce qu'une cellule réexécutée hors ordre peut laisser des pointeurs invalides en mémoire. Plusieurs noyaux mouraient à cause de ce type de situation, en particulier dans des notebooks manipulant des structures de données ou des objets Marmote libérés explicitement.
+
+Pour réduire ce risque, nous avons :
+\begin{itemize}
+    \item réécrit certaines cellules de nettoyage pour remettre les pointeurs à \texttt{nullptr} ;
+    \item remplacé certaines lambdas par de vraies fonctions plus stables dans Xeus-cling ;
+    \item ajouté des contrôles défensifs avant certains appels ;
+    \item adapté plusieurs notebooks (\texttt{Lesson6}, \texttt{Lesson7}, \texttt{Lesson5}, etc.) pour éviter des comportements trop fragiles.
+\end{itemize}
+
+Dans le même esprit, les sorties affichées ont été revues. Les notebooks Python de référence ne montrent pas systématiquement tous les dumps ou toutes les traces d'exécution. Nous avons donc aligné les notebooks C++ sur cette logique : seules les sorties réellement pédagogiques sont conservées visibles, tandis que les sorties massives ou secondaires sont cachées.
+
+\subsection{Export des notebooks C++ vers des fichiers \texttt{.cpp}}
+
+Un point important du projet a été la génération de fichiers C++ téléchargeables à partir des notebooks. Cette responsabilité est désormais portée par la fonction \texttt{creating\_cppFiles(...)}. Au départ, cette étape reposait sur une concaténation de cellules de code, trop fragile pour être fiable.
+
+La fonction \texttt{creating\_cppFiles(...)} a donc été retravaillée pour s'appuyer sur une logique plus propre :
+\begin{itemize}
+    \item utilisation de \texttt{nbconvert.ScriptExporter} pour exporter les notebooks ;
+    \item exclusion réelle des cellules techniques marquées \texttt{hide-cell} ou \texttt{nbsphinx-hidden} ;
+    \item retrait des directives spécifiques à Xeus-cling comme \texttt{\#pragma cling} ;
+    \item conservation des \texttt{\#include} utiles dans le fichier C++ final ;
+    \item génération automatique d'un \texttt{CMakeLists.txt} associé aux fichiers exportés ;
+    \item ajout de ce \texttt{CMakeLists.txt} dans l'archive ZIP des notebooks C++.
+\end{itemize}
+
+Ce point est important : le fichier exporté n'est plus simplement un collage des cellules du notebook, mais une version nettoyée, portable et plus exploitable comme vrai code C++.
+
+\subsection{Gestion de CMake et compilation des exemples}
+
+Le fichier \texttt{CMakeLists.txt} a constitué un autre sujet important. D'une part, il fallait régénérer correctement le \texttt{CMakeLists.txt} des exemples à partir d'un modèle. D'autre part, il fallait comprendre pourquoi certains tests de compilation échouaient sous Windows.
+
+Le premier point a conduit à :
+\begin{itemize}
+    \item corriger la reconstruction du \texttt{CMakeLists.txt} à partir du modèle ;
+    \item s'assurer que l'archive \texttt{all\_examples.zip} contenait bien la bonne version du fichier ;
+    \item générer également un \texttt{CMakeLists.txt} cohérent pour les fichiers \texttt{.cpp} exportés depuis les notebooks.
+\end{itemize}
+
+Le second point a montré une limite plus structurelle : sous Windows, Marmote n'est pas fourni comme un package CMake classique, si bien qu'un \texttt{find\_package(marmote)} ne fonctionne pas spontanément. Il a donc fallu adapter les essais de compilation et distinguer clairement :
+\begin{itemize}
+    \item la compilation des exemples officiels dans \texttt{build} ;
+    \item la livraison d'un \texttt{CMakeLists.txt} utilitaire dans les archives de notebooks C++.
+\end{itemize}
+
+\subsection{Publication Sphinx et ajustements documentaires}
+
+La génération de la documentation finale avec Sphinx a nécessité plusieurs ajustements.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.9\textwidth]{sphinx_cpp_api.png}
+    \caption{Maquette d'une page Sphinx pour l'API C++ et les leçons associées.}
+\end{figure}
+
+Parmi les problèmes rencontrés :
+\begin{itemize}
+    \item l'extension \texttt{recommonmark} manquante ;
+    \item l'absence de \texttt{pandoc} pour le rendu des notebooks ;
+    \item l'absence du kernel \texttt{xcpp17} dans certains environnements de build ;
+    \item des liens vers des fichiers de téléchargement absents, comme \texttt{manual.pdf} ;
+    \item des écarts entre les anciens index C++ et le nouveau dossier \texttt{cpptutos}.
+\end{itemize}
+
+Le travail documentaire a donc consisté à :
+\begin{itemize}
+    \item mettre à jour les fichiers \texttt{cpp\_examples.rst} et les références vers \texttt{cpptutos} ;
+    \item harmoniser les intitulés des leçons C++ avec ceux des leçons Python ;
+    \item distinguer clairement les cellules techniques cachées et les cellules visibles dans les notebooks ;
+    \item documenter la bonne commande de build Sphinx et le bon environnement Conda à utiliser.
+\end{itemize}
+
+\subsection{Usage des tags de masquage et cohérence pédagogique}
+
+La question du masquage des cellules techniques a également constitué un sujet de fond. Dans l'idéal, les cellules de configuration Xeus-cling ne doivent pas polluer la lecture de la documentation finale. Cependant, le comportement des tags dépend à la fois de Jupyter, de \texttt{nbsphinx} et du mode de rendu.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.85\textwidth]{tag_cells.png}
+    \caption{Illustration du masquage des cellules techniques dans les notebooks C++.}
+\end{figure}
+
+Le compromis retenu a été le suivant :
+\begin{itemize}
+    \item conserver les cellules \texttt{\#pragma cling} dans les notebooks pour l'exécution réelle ;
+    \item les taguer comme cellules cachées pour la documentation ;
+    \item garder visibles les \texttt{\#include} ou les cellules d'initialisation qui ont un intérêt pédagogique ;
+    \item exclure complètement ces cellules cachées lors de la génération des \texttt{.cpp} exportés.
+\end{itemize}
+
+Ce choix a permis d'améliorer simultanément :
+\begin{itemize}
+    \item l'exécutabilité locale des notebooks ;
+    \item la propreté des pages Sphinx ;
+    \item la qualité des exports C++ distribués.
+\end{itemize}
+
+\subsection{Nettoyage final et livrabilité}
+
+En fin de projet, une attention particulière a été portée à la livrabilité du dépôt. Cela a concerné :
+\begin{itemize}
+    \item le nettoyage et l'harmonisation des commentaires dans les scripts Python actifs ;
+    \item la mise en anglais des docstrings et commentaires techniques lorsque nécessaire ;
+    \item la vérification de la validité syntaxique des scripts de génération ;
+    \item la cohérence entre les dossiers \texttt{pytutos}, \texttt{cpptutos}, \texttt{media} et \texttt{instructions}.
+\end{itemize}
+
+Cette phase est moins visible qu'une nouvelle fonctionnalité, mais elle est indispensable dans un contexte de remise, car elle garantit que le dépôt peut être repris par d'autres personnes sans dépendre d'un contexte implicite trop important.
+
+\section{Conclusion}
+
+Ce projet m'a permis de travailler sur un cas concret d'évolution d'un workflow de documentation scientifique, à l'intersection de plusieurs domaines : Python, C++, notebooks Jupyter, génération Sphinx, environnements Conda et maintenance de scripts.
+
+Le travail réalisé ne s'est pas limité à l'ajout de notebooks C++. Il a aussi consisté à :
+\begin{itemize}
+    \item stabiliser un workflow existant ;
+    \item rendre les scripts plus robustes et plus sûrs ;
+    \item rapprocher les contenus Python et C++ ;
+    \item produire des exports C++ propres à partir des notebooks ;
+    \item améliorer la qualité des pages et archives diffusées dans la documentation.
+\end{itemize}
+
+Au-delà des résultats techniques, ce projet m'a appris à travailler dans une logique de maintenance progressive : comprendre l'existant, identifier les dépendances réelles, corriger sans casser, puis étendre le système de manière cohérente. Il m'a également montré qu'en documentation scientifique, la fidélité entre le texte, les exemples et l'implémentation réelle est un enjeu majeur.
+
+Les résultats obtenus constituent une base plus solide pour la suite du projet Marmote. Les notebooks C++ sont désormais intégrés dans une logique documentaire cohérente, les archives sont mieux maîtrisées, et le workflow global est plus lisible et plus industrialisable.
+
+\appendix
+\section{Annexes}
+
+\subsection{Installation de Sphinx et des extensions}
+\label{annexe:sphinx-install}
+\begin{lstlisting}[language=bash,caption={Installation de Sphinx et des extensions utiles.}]
+python -m pip install -U sphinx sphinx-rtd-theme myst-parser nbsphinx
+\end{lstlisting}
+
+\subsection{Génération de la documentation HTML avec Sphinx}
+\label{annexe:sphinx-build}
+\begin{lstlisting}[language=bash,caption={Commande de build Sphinx depuis doc/html.}]
+python -m sphinx -b html source build/html
+\end{lstlisting}
+
+\subsection{Création de l'environnement Xeus-cling}
+\label{annexe:xeus-env}
+\begin{lstlisting}[language=bash,caption={Création d'un environnement Conda pour les notebooks C++.}]
+conda create -n xeus-cpp-env -c conda-forge python=3.12 jupyterlab xeus-cling -y
+conda activate xeus-cpp-env
+conda install -c marmote -c conda-forge marmote -y
+\end{lstlisting}
+
+\subsection{Empilement d'environnements Conda}
+\label{annexe:stack-env}
+\begin{lstlisting}[language=bash,caption={Empilement d'environnements pour combiner outils Marmote et kernel C++.}]
+conda activate marmote-use
+conda activate --stack xeus-cpp-env
+\end{lstlisting}
+
+\subsection{Vérification des kernels Jupyter}
+\label{annexe:kernelspec}
+\begin{lstlisting}[language=bash,caption={Exemple de liste des kernels disponibles.}]
+jupyter kernelspec list
+\end{lstlisting}
+
+\subsection{Extrait de redirection automatique vers le bon dossier}
+\label{annexe:redirection}
+\begin{lstlisting}[language=Python,caption={Principe de redirection vers doc/html/source.}]
+current_directory = os.getcwd()
+
+if "project-root" in current_directory:
+    if os.path.basename(current_directory) == "source":
+        print("No directory change needed", os.getcwd())
+    else:
+        print("Unexpected working directory. Redirecting to the correct location...")
+        while os.path.basename(os.getcwd()) != "project-root":
+            print("Moving up...", os.getcwd())
+            os.chdir("..")
+        os.chdir(os.path.join("doc", "html", "source"))
+        print("Redirection completed successfully:", os.getcwd())
+else:
+    print("Wrong directory. Program stops")
+    sys.exit(1)
+\end{lstlisting}
+
+\subsection{Extrait du parsing d'arguments}
+\label{annexe:parse-args}
+\begin{lstlisting}[language=Python,caption={Arguments globaux utilisés par total.py.}]
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-n", "--dry_run", action="store_true")
+    parser.add_argument("-g", "--generate_only", action="store_true")
+    return parser.parse_args()
+\end{lstlisting}
+
+\subsection{Extrait de génération des exports C++}
+\label{annexe:cpp-export}
+\begin{lstlisting}[language=Python,caption={Principe d'export des notebooks C++ vers des scripts.}]
+exporter = ScriptExporter()
+body, _ = exporter.from_notebook_node(filtered_notebook)
+
+# Hidden technical cells are excluded before export.
+# Cling-specific lines such as '#pragma cling ...' are stripped
+# from the generated .cpp files.
+\end{lstlisting}
+
+\subsection{Exemple de tags pour masquer une cellule technique}
+\label{annexe:hidden-tags}
+\begin{lstlisting}[language=json,caption={Métadonnées utilisées pour masquer une cellule dans la documentation.}]
+{
+  "tags": [
+    "hide-cell",
+    "nbsphinx-hidden"
+  ],
+  "jupyter": {
+    "source_hidden": true
+  }
+}
+\end{lstlisting}
+
+\subsection{Configuration Marmote dans un notebook C++}
+\label{annexe:pragma-marmote}
+\begin{lstlisting}[language=C++,caption={Configuration Xeus-cling et Marmote dans un notebook C++.}]
+#pragma cling add_include_path("/home/assia/miniconda3/envs/xeus-cpp-env/include")
+#pragma cling add_include_path("/home/assia/miniconda3/envs/xeus-cpp-env/include/marmoteCore")
+#pragma cling add_include_path("/home/assia/miniconda3/envs/xeus-cpp-env/include/marmoteMarkovChain")
+#pragma cling add_library_path("/home/assia/miniconda3/envs/xeus-cpp-env/lib")
+#pragma cling load("libmarmoteCore.so")
+#pragma cling load("libmarmoteMarkovChain.so")
+\end{lstlisting}
+
+\subsection{Vérification de l'installation de Marmote dans Colab}
+\label{annexe:colab-check}
+\begin{lstlisting}[language=Python,caption={Cellules ajoutées pour vérifier Marmote dans un notebook Colab.}]
+!conda list marmote
+
+import sys
+site_packages_path = '/usr/local/lib/python3.11/site-packages'
+if site_packages_path not in sys.path:
+    sys.path.insert(0, site_packages_path)
+print(f"sys.path updated: {site_packages_path in sys.path}")
+\end{lstlisting}
+
+\end{document}

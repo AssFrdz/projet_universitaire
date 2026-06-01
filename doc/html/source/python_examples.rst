@@ -17,7 +17,7 @@ Python Tutorial and Examples
    ./pytutos/MDP_Lesson3.ipynb
    ./pytutos/MDP_Lesson4.ipynb
    ./pytutos/App_Lesson1.ipynb
-   ./pytutos/App_Lesson2.ipynb
+   ./pytutos/App_Lesson2.ipynb 
 
 
 
