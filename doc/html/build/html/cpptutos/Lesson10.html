@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 10: multidimensional random walks &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Lesson 10: multidimensional random walks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpptutos/Lesson10.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-10:-multidimensional-random-walks">
+<h1>Lesson 10: multidimensional random walks<a class="headerlink" href="#Lesson-10:-multidimensional-random-walks" title="Link to this heading"></a></h1>
+<p>This C++ notebook is the notebook form of <strong>Example 10</strong>. It shows how Marmote represents and simulates very large multidimensional random walks without storing a full transition matrix.</p>
+<p>The model lives on a four-dimensional grid of size <code class="docutils literal notranslate"><span class="pre">1000</span> <span class="pre">x</span> <span class="pre">1000</span> <span class="pre">x</span> <span class="pre">100</span> <span class="pre">x</span> <span class="pre">100</span></code>, so the total state-space cardinal is <code class="docutils literal notranslate"><span class="pre">10^10</span></code>. The lesson compares two construction styles:</p>
+<ul class="simple">
+<li><p>through a generic <code class="docutils literal notranslate"><span class="pre">HomogeneousMultidTransition</span></code> object</p></li>
+<li><p>through the specialized random-walk classes provided by Marmote</p></li>
+</ul>
+<p>As in the C++ example, we simulate both a continuous-time and a discrete-time chain. In the notebook, the simulation horizon is kept shorter than in the command-line example so that the printed trajectories remain readable.</p>
+<p><strong>Import the modules</strong></p>
+<p>The lesson uses the Markov chain simulation API together with the classes that encode homogeneous multidimensional transitions and random walks.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// --- Standard C++ utilities used in this notebook ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="c1">// --- Marmote headers used in this lesson ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteSimulationResult.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/General/marmoteHomogeneousMultidBirthDeath.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/General/marmoteHomogeneousMultidRandomWalk.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteBox.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteDiracDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteDiscreteDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteHomogeneousMultidTransition.h&gt;</span>
+
+<span class="c1">// --- Convenience declarations for the cells below ---</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">marmote</span><span class="p">;</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Definition-of-the-model">
+<h2>Definition of the model<a class="headerlink" href="#Definition-of-the-model" title="Link to this heading"></a></h2>
+<p>We first define a helper function for printing trajectories and the common model parameters used in all four phases of the example.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Reprint the stored trajectory with the explicit multidimensional state.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">printTrajectory</span><span class="p">(</span><span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">sr</span><span class="p">,</span><span class="w"> </span><span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">sp</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sr</span><span class="o">-&gt;</span><span class="n">trajectorySize</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cardinalType</span><span class="w"> </span><span class="n">zestate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sr</span><span class="o">-&gt;</span><span class="n">states</span><span class="p">()[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="n">sp</span><span class="o">-&gt;</span><span class="n">PrintState</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">zestate</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// The command-line example uses a very long horizon (1e4).</span>
+<span class="c1">// In the notebook we use shorter runs to keep the output readable.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">tmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">12.0</span><span class="p">;</span>
+<span class="n">simLenType</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+
+<span class="c1">// Four-dimensional grid: 1000 x 1000 x 100 x 100.</span>
+<span class="n">stateType</span><span class="w"> </span><span class="n">dims</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">rateup</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">ratedown</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">,</span><span class="w"> </span><span class="mf">0.125</span><span class="p">};</span>
+
+<span class="c1">// Start all simulations from state (0, 0, 0, 0).</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">iDis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiracDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Phase-1:-continuous-time-chain-built-from-HomogeneousMultidTransition">
+<h2>Phase 1: continuous-time chain built from <code class="docutils literal notranslate"><span class="pre">HomogeneousMultidTransition</span></code><a class="headerlink" href="#Phase-1:-continuous-time-chain-built-from-HomogeneousMultidTransition" title="Link to this heading"></a></h2>
+<p>We first build the transition structure explicitly, then wrap it in a generic <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code>. As in the original example, we check the consistency of the state-space cardinal in several objects before launching the simulation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create the compact multidimensional transition structure in continuous time.</span>
+<span class="n">HomogeneousMultidTransition</span><span class="o">*</span><span class="w"> </span><span class="n">genCT</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">HomogeneousMultidTransition</span><span class="p">(</span><span class="n">CONTINUOUS</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">rateup</span><span class="p">,</span><span class="w"> </span><span class="n">ratedown</span><span class="p">);</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mcCT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">genCT</span><span class="p">);</span>
+
+<span class="c1">// Check that all objects agree on the cardinal of the state space.</span>
+<span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">bigBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteBox</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Printing the size of the state space&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Big box cardinal           = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">bigBox</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;HomMultidTrans size        = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">genCT</span><span class="o">-&gt;</span><span class="n">orig_size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;MultiDimHom space cardinal = &quot;</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">genCT</span><span class="o">-&gt;</span><span class="n">orig_state_space</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">bigBox</span><span class="p">;</span>
+
+<span class="c1">// Launch the continuous-time simulation.</span>
+<span class="n">mcCT</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">iDis</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Execution of the continuous-time simulation with the trajectory printed along the way&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">srCT</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">mcCT</span><span class="o">-&gt;</span><span class="n">SimulateChainCT_AllOpt</span><span class="p">(</span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">CACHE_NONE</span><span class="p">);</span>
+
+<span class="c1">// Print the stored trajectory again, but with the explicit state vector.</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Printing again the trajectory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">printTrajectory</span><span class="p">(</span><span class="n">srCT</span><span class="p">,</span><span class="w"> </span><span class="n">genCT</span><span class="o">-&gt;</span><span class="n">orig_state_space</span><span class="p">());</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Phase-2:-discrete-time-chain-built-from-HomogeneousMultidTransition">
+<h2>Phase 2: discrete-time chain built from <code class="docutils literal notranslate"><span class="pre">HomogeneousMultidTransition</span></code><a class="headerlink" href="#Phase-2:-discrete-time-chain-built-from-HomogeneousMultidTransition" title="Link to this heading"></a></h2>
+<p>We repeat the same construction in discrete time. The multidimensional transition object is reused as a compact representation of the random walk.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Clean up the first experiment before starting the second one.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">mcCT</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">srCT</span><span class="p">;</span>
+
+<span class="c1">// Create the compact multidimensional transition structure in discrete time.</span>
+<span class="n">HomogeneousMultidTransition</span><span class="o">*</span><span class="w"> </span><span class="n">genDT</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">HomogeneousMultidTransition</span><span class="p">(</span><span class="n">DISCRETE</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">rateup</span><span class="p">,</span><span class="w"> </span><span class="n">ratedown</span><span class="p">);</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mcDT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">genDT</span><span class="p">);</span>
+
+<span class="c1">// Launch the discrete-time simulation.</span>
+<span class="n">mcDT</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">iDis</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Execution of the discrete-time simulation with the trajectory printed along the way&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">srDT</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">mcDT</span><span class="o">-&gt;</span><span class="n">SimulateChainDT_AllOpt</span><span class="p">(</span><span class="n">nsteps</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">CACHE_NONE</span><span class="p">);</span>
+
+<span class="c1">// Print the stored trajectory again.</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Printing again the trajectory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">printTrajectory</span><span class="p">(</span><span class="n">srDT</span><span class="p">,</span><span class="w"> </span><span class="n">genDT</span><span class="o">-&gt;</span><span class="n">orig_state_space</span><span class="p">());</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Phase-3:-direct-continuous-time-construction">
+<h2>Phase 3: direct continuous-time construction<a class="headerlink" href="#Phase-3:-direct-continuous-time-construction" title="Link to this heading"></a></h2>
+<p>Marmote also provides a specialized class for continuous-time multidimensional birth-death processes. This avoids building the generic transition object explicitly.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Clean up the second experiment.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">mcDT</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">srDT</span><span class="p">;</span>
+
+<span class="c1">// Build the same model directly as a multidimensional birth-death process.</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mcBirthDeath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HomogeneousMultiDBirthDeath</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">rateup</span><span class="p">,</span><span class="w"> </span><span class="n">ratedown</span><span class="p">);</span>
+<span class="n">mcBirthDeath</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">iDis</span><span class="p">);</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Execution of the continuous-time simulation with the trajectory printed along the way&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">srBirthDeath</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">mcBirthDeath</span><span class="o">-&gt;</span><span class="n">SimulateChainCT_AllOpt</span><span class="p">(</span><span class="n">tmax</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">CACHE_NONE</span><span class="p">);</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Printing again the trajectory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">printTrajectory</span><span class="p">(</span><span class="n">srBirthDeath</span><span class="p">,</span><span class="w"> </span><span class="n">mcBirthDeath</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">orig_state_space</span><span class="p">());</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Phase-4:-direct-discrete-time-construction">
+<h2>Phase 4: direct discrete-time construction<a class="headerlink" href="#Phase-4:-direct-discrete-time-construction" title="Link to this heading"></a></h2>
+<p>Finally, we use the specialized discrete-time random-walk class. The simulation logic is the same, but the model is created directly at the <code class="docutils literal notranslate"><span class="pre">MarkovChain</span></code> level.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Clean up the third experiment.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">mcBirthDeath</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">srBirthDeath</span><span class="p">;</span>
+
+<span class="c1">// Build the same model directly as a multidimensional random walk.</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">mcRandomWalk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HomogeneousMultiDRandomWalk</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="p">,</span><span class="w"> </span><span class="n">rateup</span><span class="p">,</span><span class="w"> </span><span class="n">ratedown</span><span class="p">);</span>
+<span class="n">mcRandomWalk</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">iDis</span><span class="p">);</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Execution of the discrete-time simulation with the trajectory printed along the way&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">srRandomWalk</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">mcRandomWalk</span><span class="o">-&gt;</span><span class="n">SimulateChainDT_AllOpt</span><span class="p">(</span><span class="n">nsteps</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">CACHE_NONE</span><span class="p">);</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Printing again the trajectory&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">printTrajectory</span><span class="p">(</span><span class="n">srRandomWalk</span><span class="p">,</span><span class="w"> </span><span class="n">mcRandomWalk</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">orig_state_space</span><span class="p">());</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Cleanup">
+<h2>Cleanup<a class="headerlink" href="#Cleanup" title="Link to this heading"></a></h2>
+<p>We release the objects created for the last experiment and the initial distribution shared by all simulations.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">delete</span><span class="w"> </span><span class="n">mcRandomWalk</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">srRandomWalk</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">iDis</span><span class="p">;</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

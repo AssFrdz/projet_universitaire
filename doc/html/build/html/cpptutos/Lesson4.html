@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 4: working with Distributions &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 5: Predefined Markov Chains" href="Lesson5.html" />
+    <link rel="prev" title="Lesson 3: working with state spaces" href="Lesson3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lesson 4: working with Distributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Common-Features">Common Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Some-distributions-can-be-manipulated">Some distributions can be manipulated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Comparison-of-distributions">Comparison of distributions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Markov-Chain-operations-which-return-distributions">Markov Chain operations which return distributions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Hitting-time-distributions">Hitting time distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson6.html">Lesson 6: manipulating Marmote sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson7.html">Lesson 7: structural analysis of Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson5.html">MDP Lesson 5: finite-horizon MDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Lesson 4: working with Distributions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpptutos/Lesson4.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-4:-working-with-Distributions">
+<h1>Lesson 4: working with Distributions<a class="headerlink" href="#Lesson-4:-working-with-Distributions" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<p>This C++ notebook keeps the same progression as the Python lesson and shows how distributions appear as both modelling inputs and results.</p>
+<p><strong>Import the modules</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// --- Standard C++ utilities used in this notebook ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">// --- Marmote headers used in this lesson ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteCore&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain&gt;</span>
+
+<span class="c1">// --- Convenience declarations for the cells below ---</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">marmote</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Distributions are everywhere in Marmote: as inputs and as outputs of many procedures.</p>
+<section id="Common-Features">
+<h2>Common Features<a class="headerlink" href="#Common-Features" title="Link to this heading"></a></h2>
+<section id="Statistical-information">
+<h3>Statistical information<a class="headerlink" href="#Statistical-information" title="Link to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Uniform distribution on [4,10].</span>
+<span class="n">UniformDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">udis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDistribution</span><span class="p">(</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">className</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Mean</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Rate</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Variance</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Cdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Ccdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Laplace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">DLaplace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Uniform discrete distribution on {4,...,10}.</span>
+<span class="n">UniformDiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">uddis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">className</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Mean</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Rate</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Variance</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Cdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Ccdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Laplace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">DLaplace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Exponential distribution with mean 4.0.</span>
+<span class="n">ExponentialDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">edis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExponentialDistribution</span><span class="p">(</span><span class="mf">4.0</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Mean</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Rate</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Variance</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Cdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Ccdf</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Laplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">DLaplace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Some-structural-information-and-sampling">
+<h3>Some structural information and sampling<a class="headerlink" href="#Some-structural-information-and-sampling" title="Link to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test a few structural properties.</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">HasProperty</span><span class="p">(</span><span class="s">&quot;integerValued&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">HasProperty</span><span class="p">(</span><span class="s">&quot;continuous&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">HasProperty</span><span class="p">(</span><span class="s">&quot;integerValued&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">HasProperty</span><span class="p">(</span><span class="s">&quot;compactSupport&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Sampling.</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">Sample</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Some-distributions-can-be-manipulated">
+<h2>Some distributions can be manipulated<a class="headerlink" href="#Some-distributions-can-be-manipulated" title="Link to this heading"></a></h2>
+<p>Some families can be rescaled. The same idea is shown in Python and C++, even if exception handling is more explicit in C++.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Rescale several distributions exactly as in the Python lesson.</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">udis</span><span class="o">-&gt;</span><span class="n">Rescale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">edis</span><span class="o">-&gt;</span><span class="n">Rescale</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">vals</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">3.4</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">6.7</span><span class="p">,</span><span class="w"> </span><span class="mf">8.9</span><span class="p">};</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">probs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="p">};</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">didis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">didis</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">didis</span><span class="o">-&gt;</span><span class="n">Rescale</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uddis</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Comparison-of-distributions">
+<h2>Comparison of distributions<a class="headerlink" href="#Comparison-of-distributions" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compare a few pairs of distributions with standard distances.</span>
+<span class="n">UniformDiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">d1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">);</span>
+<span class="n">GeometricDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">d2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GeometricDistribution</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">UniformDiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">d3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span>
+<span class="n">GeometricDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">d4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GeometricDistribution</span><span class="p">(</span><span class="mf">0.55</span><span class="p">);</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;L1 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;L2 = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL2</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Linf = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceLInfinity</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;TV = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceTV</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Computable L-infinity distance: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceLInfinity</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Markov-Chain-operations-which-return-distributions">
+<h2>Markov Chain operations which return distributions<a class="headerlink" href="#Markov-Chain-operations-which-return-distributions" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// A 4-state continuous birth-death chain.</span>
+<span class="n">Homogeneous1DBirthDeath</span><span class="o">*</span><span class="w"> </span><span class="n">four</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Homogeneous1DBirthDeath</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">TransDistrib</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">generator</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">TransDistrib</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">TransientDistribution</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">StationaryDistribution</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">simres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">SimulateChain</span><span class="p">(</span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">simres</span><span class="o">-&gt;</span><span class="n">Distribution</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Hitting-time-distributions">
+<h2>Hitting time distributions<a class="headerlink" href="#Hitting-time-distributions" title="Link to this heading"></a></h2>
+<p>The Python lesson shows several families of chains. In C++, some methods return a single <code class="docutils literal notranslate"><span class="pre">Distribution*</span></code>, while others return a vector of distributions.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Two-state continuous chain.</span>
+<span class="n">TwoStateContinuous</span><span class="o">*</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TwoStateContinuous</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">hitset2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Distribution</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">hd2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">two</span><span class="o">-&gt;</span><span class="n">HittingTimeDistributions</span><span class="p">(</span><span class="n">hitset2</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">hd2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Felsenstein 81 model.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">f81prob</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="p">};</span>
+<span class="n">Felsenstein81</span><span class="o">*</span><span class="w"> </span><span class="n">f81</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Felsenstein81</span><span class="p">(</span><span class="n">f81prob</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">hitset4</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">Distribution</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">hd4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f81</span><span class="o">-&gt;</span><span class="n">HittingTimeDistributions</span><span class="p">(</span><span class="n">hitset4</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">hd4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Phase-type distribution returned for a general Markov chain.</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">hitSetGen</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">};</span>
+<span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">htd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">four</span><span class="o">-&gt;</span><span class="n">HittingTimeDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">hitSetGen</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">htd</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">htd</span><span class="o">-&gt;</span><span class="n">Mean</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Another example with a 1-dimensional random walk.</span>
+<span class="n">Homogeneous1DRandomWalk</span><span class="o">*</span><span class="w"> </span><span class="n">bd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Homogeneous1DRandomWalk</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">hitset11</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">};</span>
+<span class="n">Distribution</span><span class="o">*</span><span class="w"> </span><span class="n">ht</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bd</span><span class="o">-&gt;</span><span class="n">HittingTimeDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">hitset11</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ht</span><span class="o">-&gt;</span><span class="n">toString</span><span class="p">(</span><span class="n">FORMAT_MARMOTE</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ht</span><span class="o">-&gt;</span><span class="n">Mean</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ht</span><span class="o">-&gt;</span><span class="n">Variance</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Release the chain objects used in the hitting-time examples.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">bd</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">f81</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">two</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">four</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lesson3.html" class="btn btn-neutral float-left" title="Lesson 3: working with state spaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lesson5.html" class="btn btn-neutral float-right" title="Lesson 5: Predefined Markov Chains" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

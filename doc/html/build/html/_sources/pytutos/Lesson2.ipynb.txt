@@ -18,7 +18,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "ad3c00f8-dc44-4bfb-8677-95bb5cfcb38c",
    "metadata": {
     "editable": true,
@@ -73,7 +73,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "516e49a9-82ff-420a-ace3-d3d6f403f0fc",
    "metadata": {
     "editable": true,
@@ -103,7 +103,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "id": "41755ed1-d813-4747-acde-48da054c1591",
    "metadata": {
     "editable": true,
@@ -137,7 +137,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "id": "5a4d67a5-000f-4ea0-afa5-f2f32dfce67d",
    "metadata": {},
    "outputs": [],
@@ -149,10 +149,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "id": "2cb5ee18-1005-43a4-b1a3-a6f4a3cca5cd",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0  1  2  } probas {     0.37     0.32     0.31 }\n",
+      "Discrete distribution values { 0  1  2  } probas {   0.3445    0.342   0.3135 }\n",
+      "Discrete distribution values { 0  1  2  } probas { 0.348325   0.3347 0.316975 }\n"
+     ]
+    }
+   ],
    "source": [
     "print( pi1 )\n",
     "print( pi2 )\n",
@@ -170,10 +180,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "id": "a3e7435c-dc55-4170-865e-e64cbeb69f01",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dirac distribution at 0\n",
+      "Discrete distribution values { 0  1  2  } probas {     0.25      0.5     0.25 }\n",
+      "Discrete distribution values { 0  1  2  } probas {   0.3625      0.3   0.3375 }\n",
+      "Discrete distribution values { 0  1  2  } probas { 0.345625   0.3425 0.311875 }\n"
+     ]
+    }
+   ],
    "source": [
     "pi0 = mc.DiracDistribution(0)\n",
     "c1.set_init_distribution(pi0)\n",
@@ -196,10 +217,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "id": "1e548819-5250-4228-90c9-6019f2bcfd9a",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete uniform distribution on [0..2]\n",
+      "Discrete distribution values { 0  1  2  } probas {     0.35 0.333333 0.316667 }\n",
+      "Discrete distribution values { 0  1  2  } probas {   0.3475 0.336667 0.315833 }\n",
+      "Discrete distribution values { 0  1  2  } probas { 0.347875 0.335833 0.316292 }\n"
+     ]
+    }
+   ],
    "source": [
     "pi0 = mc.UniformDiscreteDistribution(0,2)\n",
     "c1.set_init_distribution(pi0)\n",
@@ -239,7 +271,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "id": "d767b84f-ea5d-4b8d-95e7-9d0ca39ca637",
    "metadata": {},
    "outputs": [],
@@ -249,10 +281,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "id": "51dc5aeb-f88c-4308-89e9-eec68b595e52",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0  1  2  } probas { 0.347826 0.335968 0.316206 }\n"
+     ]
+    }
+   ],
    "source": [
     "print(pista)"
    ]
@@ -267,10 +307,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "id": "cfb6f951-0170-4946-bd56-fda80a224484",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Distance between pi and pi.P: 3.409902343820548e-08\n"
+     ]
+    }
+   ],
    "source": [
     "c1.set_init_distribution( pista )\n",
     "dis = c1.TransientDistributionDT(1)\n",
@@ -287,7 +335,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 11,
    "id": "31bf9e7e-2ab0-4503-9037-a6dc78e00340",
    "metadata": {},
    "outputs": [],
@@ -297,10 +345,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 12,
    "id": "62cb31a2-d611-481e-8bf3-7d688702bed2",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2.962278516926986e-08"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "mc.DiscreteDistribution.DistanceL1( pista, pista2 )"
    ]
@@ -316,10 +375,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "id": "8588b896-d1c0-4c5d-b3b4-5b190e0cd1a0",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0 1 2 } probas { 0.347826 0.335968 0.316206 }\n"
+     ]
+    }
+   ],
    "source": [
     "prosta_ex = np.array( [ 8/23, 85/253, 80/253 ], dtype=float )\n",
     "pista_ex = mc.DiscreteDistribution( states, prosta_ex )\n",
@@ -328,10 +395,19 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 14,
    "id": "db86a0c2-80d6-4642-b03f-b6878df8e696",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Distance between numerical pi (standard) and exact pi: 2.963156187085758e-08\n",
+      "Distance between numerical pi (RLGL) and exact pi: 2.457783976339556e-11\n"
+     ]
+    }
+   ],
    "source": [
     "print( \"Distance between numerical pi (standard) and exact pi:\", mc.DiscreteDistribution.DistanceL1( pista, pista_ex ) )\n",
     "print( \"Distance between numerical pi (RLGL) and exact pi:\", mc.DiscreteDistribution.DistanceL1( pista2, pista_ex ) )"
@@ -347,7 +423,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 15,
    "id": "185a09dc-c92c-4f04-b809-3b2abbb6ebca",
    "metadata": {},
    "outputs": [],
@@ -358,10 +434,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 16,
    "id": "f109cda6-ca74-4c67-ab4c-12a09af82226",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.0"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "mc.DiscreteDistribution.DistanceL1( pista_ex, didi )"
    ]
@@ -397,7 +484,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 17,
    "id": "a7b9e343-68a5-4506-8366-870fad5f34ad",
    "metadata": {},
    "outputs": [],
@@ -415,7 +502,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 18,
    "id": "153b65c7-2beb-4389-9d04-1af92edd8de1",
    "metadata": {},
    "outputs": [],
@@ -433,10 +520,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 19,
    "id": "0b61568c-1478-4467-b7c9-55b07f03f754",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[ 0  1  2  3  4  5  6  7  8  9 10]\n",
+      "[0 2 2 1 0 0 1 0 1 2 2]\n",
+      "10\n",
+      "2\n"
+     ]
+    }
+   ],
    "source": [
     "print( simRes.DT_dates() )\n",
     "print( simRes.states() )\n",
@@ -456,7 +554,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 20,
    "id": "b6bbc881-2c2f-4984-91cb-67b66711081c",
    "metadata": {},
    "outputs": [],
@@ -475,7 +573,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 21,
    "id": "076e913b-623b-4bc3-ace6-317625cdbe6b",
    "metadata": {},
    "outputs": [],
@@ -485,10 +583,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 22,
    "id": "b705f4cf-c4cd-449f-8a67-31427d751eb7",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0  1  2  } probas {      0.4      0.5      0.2 }\n"
+     ]
+    }
+   ],
    "source": [
     "print( trDis )"
    ]
@@ -511,7 +617,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 23,
    "id": "07b8c756-d527-470b-af2d-b595969c20a1",
    "metadata": {},
    "outputs": [],
@@ -531,7 +637,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 24,
    "id": "5e13090c-d9e3-48e3-a654-23d1592c6a09",
    "metadata": {},
    "outputs": [],
@@ -559,10 +665,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 25,
    "id": "42c06a4d-d7df-4e81-a069-45cb76a24d8d",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0  1  2  3  4  5  } probas {      0.5     0.25    0.125   0.0625  0.03125  0.03125 }\n"
+     ]
+    }
+   ],
    "source": [
     "stadis = c2.StationaryDistribution()\n",
     "print(stadis)"
@@ -603,7 +717,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 26,
    "id": "5012c5e2-edcf-4cf1-b8d8-37a49a1e2f44",
    "metadata": {},
    "outputs": [],
@@ -633,10 +747,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 27,
    "id": "bc79905d-6d70-4222-bfb2-0b84d258386a",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[ 0.          0.68179144  0.80719989  1.23775572  1.46677062  2.52885673\n",
+      "  3.0727846   5.41989445  5.50031038  6.21269314  8.71300781  9.01240243\n",
+      "  9.23062913  9.39085109 10.        ]\n",
+      "[0 1 2 3 0 1 2 3 0 1 0 1 2 0 1]\n"
+     ]
+    }
+   ],
    "source": [
     "print( simres.CT_dates() )\n",
     "print( simres.states() )"
@@ -669,7 +794,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 28,
    "id": "9d0c7f05-3052-4257-ab97-c03427e4b9e2",
    "metadata": {},
    "outputs": [],
@@ -701,7 +826,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 29,
    "id": "17951cde-76a0-4b54-b73a-e8e5087240db",
    "metadata": {},
    "outputs": [],
@@ -719,10 +844,27 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 30,
    "id": "e08898fe-8b57-4173-825a-219954f0bf94",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[ 12.28978944  34.47175666  59.53182098   2.62279882  77.98891762\n",
+      "  27.59033683   7.9859159    8.24485704  95.25705334  58.97501961\n",
+      "   7.41697398  46.76032501  17.14184738  45.77774633  39.17978\n",
+      "  63.72602185  13.88037483  64.46792683  21.40614812   2.6146148\n",
+      "  58.5772326  100.08816405  53.76033764   6.33672286  27.61668509\n",
+      "   1.00535633  20.33089312  28.34320992  51.27160978  20.29715789\n",
+      "  52.82545865  39.44938824  32.09801095  20.30477749  14.82191553\n",
+      "  26.11376391  65.99923282  27.60777529   4.43392386 100.69096794\n",
+      "  16.96503436  49.2927455   48.34919463  40.77073408  13.69864913\n",
+      "   5.42350102  17.57083442  21.46705047  18.66626099  19.57081799]\n"
+     ]
+    }
+   ],
    "source": [
     "print( simres.CT_dates() )"
    ]
@@ -738,10 +880,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 31,
    "id": "9590156f-f6af-4dca-9bc9-d7db3e8c37d3",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[31. 30. 28. 24. 16.  0.]\n"
+     ]
+    }
+   ],
    "source": [
     "avghit = c2.AverageHittingTimes( hitset )\n",
     "print( avghit )"
@@ -757,10 +907,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 32,
    "id": "6e2d80e7-cef9-4ea5-ac34-8b38059e1386",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Empirical average of hitting time from state 0 = 34.22154863704037\n"
+     ]
+    }
+   ],
    "source": [
     "avg = 0\n",
     "for i in range(50):\n",
@@ -793,7 +951,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.13.10"
+   "version": "3.13.12"
   }
  },
  "nbformat": 4,

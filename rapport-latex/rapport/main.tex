@@ -16,8 +16,9 @@
 \usepackage{cite}
 \usepackage{pdfpages}
 \usepackage{xcolor}
+\usepackage{placeins}
 
-\graphicspath{{figures/}{../doc/html/source/_images/}{../doc/html/build/html/_images/}{../doc/html/source/pytutos/}}
+\graphicspath{{./}}
 
 \newcommand{\missingfigurebox}[1]{%
   \setlength{\fboxsep}{8pt}%
@@ -72,7 +73,7 @@
 
 \input{pagedegarde}
 
-\title{Rapport de Projet Universitaire \\ Licence MIAGE}
+\title{Stabilisation du workflow documentaire de Marmote\\et intégration de notebooks C++}
 \datedebut{12 février 2026}
 \datefin{1 juin 2026}
 \membrea{FERRADJ Assia}
@@ -85,13 +86,17 @@
 \tableofcontents
 \newpage
 
-\section{Contexte du projet}
+\section{Introduction}
 
 Dans le cadre de ma Licence MIAGE, j'ai réalisé un projet long autour de la librairie scientifique \textbf{Marmote} (\emph{MARkovian MOdelling Tools and Environments}). Marmote est une bibliothèque dédiée à la modélisation et à la résolution de modèles de Markov à variables discrètes. Elle propose une API C++ et une API Python, cette dernière encapsulant les objets C++ afin de simplifier leur utilisation dans des notebooks scientifiques.
 
 Le projet s'inscrit dans un contexte à la fois académique et applicatif. D'un côté, il s'agissait de comprendre une base logicielle déjà existante, utilisée pour produire une documentation scientifique. De l'autre, il fallait faire évoluer cette base sans rompre le workflow de génération déjà en place. L'enjeu n'était donc pas seulement de produire du nouveau contenu, mais surtout de rendre ce contenu cohérent, automatisable et maintenable.
 
-Le site Marmote est généré avec \textbf{Sphinx}. Les exemples Python et C++ y sont présentés sous forme de pages HTML, de fichiers sources téléchargeables et d'archives. Avant la génération du site, plusieurs scripts Python préparent les ressources : copie des exemples C++, production des fichiers \texttt{.res} et \texttt{.cmd}, préparation de notebooks, génération d'archives, mise à jour de fichiers \texttt{CMakeLists.txt}, etc. C'est cette chaîne de préparation qui a constitué le cœur du travail.
+Le site Marmote est généré avec \textbf{Sphinx}. Les exemples Python et C++ y sont présentés sous forme de pages HTML, de fichiers sources téléchargeables et d'archives. Avant la génération du site, plusieurs scripts Python préparent les ressources : copie des exemples C++, production des fichiers \texttt{.res} et \texttt{.cmd}, préparation de notebooks, génération d'archives, mise à jour de fichiers \texttt{CMakeLists.txt}, etc. C'est cette chaîne de préparation qui a constitué le cœur du travail. Le dépôt utilisé pendant le projet est disponible à l'adresse suivante : \url{https://github.com/AssFrdz/projet_universitaire}.
+
+Ce rapport présente donc à la fois le cadre du projet, les missions qui m'ont été confiées, la manière dont je les ai abordées, les réalisations effectivement menées, puis les principales difficultés rencontrées. L'objectif est de montrer comment un travail de maintenance et d'extension progressive peut aboutir à un workflow de documentation plus robuste, mieux documenté et davantage exploitable.
+
+\section{Contexte du projet}
 
 \subsection*{Organisation du travail}
 
@@ -109,7 +114,7 @@ Au départ, les ressources Python et C++ étaient préparées par des chemins di
 
 \begin{figure}[h]
     \centering
-    \safeincludegraphics[width=0.9\textwidth]{workflow_base.png}
+    \safeincludegraphics[width=0.9\textwidth]{figures/workflow_base.png}
     \caption{Workflow initial de préparation des ressources de documentation.}
 \end{figure}
 
@@ -127,7 +132,7 @@ L'objectif général du projet était de faire évoluer cette organisation vers 
 
 \begin{figure}[h]
     \centering
-    \safeincludegraphics[width=0.9\textwidth]{workflow_cible.png}
+    \safeincludegraphics[width=0.9\textwidth]{figures/workflow_cible.png}
     \caption{Workflow cible avec intégration des notebooks C++ et d'un script global.}
 \end{figure}
 
@@ -146,9 +151,9 @@ La problématique qui a guidé l'ensemble du travail est donc la suivante :
 \medskip
 \textbf{Comment intégrer des notebooks Jupyter en C++ dans un workflow de documentation scientifique existant, tout en conservant un fonctionnement fiable, automatisable et maintenable ?}
 
-\section{Descriptif des missions}
+\section{Présentation des missions et cahier des charges}
 
-Le projet a été structuré autour de quatre grandes missions complémentaires : la stabilisation du workflow, la préparation des environnements, l'intégration des notebooks C++, puis l'amélioration de la publication documentaire.
+Le projet a été structuré autour de quatre grandes missions complémentaires : la stabilisation du workflow, la préparation des environnements, l'intégration des notebooks C++, puis l'amélioration de la publication documentaire. Cette partie joue le rôle d'un cahier des charges synthétique : elle présente, à un niveau encore général, ce que le stage devait permettre d'atteindre.
 
 \subsection{Stabilisation du workflow et de l'arborescence}
 
@@ -224,6 +229,61 @@ Enfin, une dernière mission a porté sur la qualité de la documentation produi
 
 Cette phase a été essentielle pour rendre le dépôt réellement livrable, au sens où les contenus générés sont exploitables à la fois par un lecteur de la documentation et par un développeur souhaitant récupérer les ressources.
 
+\section{Descriptif détaillé des missions et manière d'appréhender le projet}
+
+Même si les objectifs du projet pouvaient être formulés de manière relativement claire, leur mise en œuvre ne pouvait pas se faire sous la forme d'une refonte immédiate. L'une des premières décisions méthodologiques a donc été de procéder par étapes, en stabilisant d'abord l'existant avant d'ajouter de nouvelles briques.
+
+\subsection{Stabiliser avant d'étendre}
+
+Le dépôt manipulait déjà plusieurs types de ressources : exemples C++, exécutables, sorties d'exécution, notebooks Python, archives et pages Sphinx. Avant d'ajouter des notebooks C++, il était donc nécessaire de s'assurer que le workflow historique restait compréhensible et fonctionnel. Cela a orienté le travail vers une logique simple :
+\begin{itemize}
+    \item vérifier l'arborescence réelle du dépôt ;
+    \item identifier les scripts réellement utilisés ;
+    \item reproduire les erreurs observées ;
+    \item corriger les incohérences de chemins et de destinations ;
+    \item seulement ensuite intégrer les nouvelles fonctionnalités.
+\end{itemize}
+
+Cette approche m'a évité de multiplier trop tôt les couches de complexité. En particulier, elle a permis de distinguer clairement ce qui relevait d'un problème de structure du projet et ce qui relevait réellement de l'intégration de Xeus-cling ou des notebooks C++.
+
+\subsection{S'appuyer sur deux sources de vérité}
+
+Pour la partie notebook C++, la méthode retenue a consisté à toujours travailler à partir de deux références simultanées :
+\begin{itemize}
+    \item les notebooks Python présents dans \texttt{pytutos/}, qui portaient la structure pédagogique, les titres de sections et le niveau d'explication attendu ;
+    \item les exemples officiels C++ présents dans \texttt{xpl/}, qui constituaient la référence la plus fiable sur les appels d'API réellement disponibles.
+\end{itemize}
+
+Cette double lecture a été indispensable. Les notebooks Python fournissaient l'organisation pédagogique, mais ils ne suffisaient pas pour écrire du code C++ exécutable. Inversement, les exemples C++ étaient corrects sur le plan technique, mais trop bruts pour être intégrés tels quels dans un notebook pédagogique. Toute la difficulté a donc consisté à produire une version intermédiaire, à la fois fidèle, exécutable et lisible.
+
+\subsection{Procéder par validations successives}
+
+Le projet a aussi été mené selon une logique de validation incrémentale. Chaque ajout technique important a été validé à petite échelle avant d'être réinjecté dans le workflow global. Cela a été le cas pour :
+\begin{itemize}
+    \item les tests de redirection vers \texttt{doc/html/source} ;
+    \item le mode \texttt{dry\_run} ;
+    \item le lancement d'un premier notebook C++ vide ;
+    \item le chargement des bibliothèques Marmote dans Xeus-cling ;
+    \item la transcription d'un premier exemple complet ;
+    \item l'export des notebooks vers des fichiers \texttt{.cpp} ;
+    \item la régénération des archives et des fichiers \texttt{CMakeLists.txt}.
+\end{itemize}
+
+Cette manière de faire a limité les régressions. Elle a également facilité les échanges avec l'encadrant, car chaque séance de suivi pouvait s'appuyer sur un état précis du projet : un test réussi, une erreur reproductible, ou une nouvelle fonctionnalité partiellement stabilisée.
+
+\subsection{Conserver une logique de livrable final}
+
+Enfin, j'ai abordé le projet non pas comme une simple suite d'expérimentations, mais comme la préparation d'un dépôt livrable. Cela a influencé plusieurs décisions :
+\begin{itemize}
+    \item nettoyer les commentaires et docstrings des scripts actifs ;
+    \item distinguer les cellules techniques et pédagogiques dans les notebooks ;
+    \item éviter de diffuser des sorties trop volumineuses ou peu utiles ;
+    \item rendre les archives téléchargeables cohérentes avec le contenu de la documentation ;
+    \item maintenir une nomenclature claire entre \texttt{pytutos}, \texttt{cpptutos}, \texttt{media} et \texttt{instructions}.
+\end{itemize}
+
+Autrement dit, la mission n'a pas été pensée uniquement en termes de preuve de concept, mais aussi en termes de maintenance, de transmission et de réutilisabilité. C'est cette perspective qui a guidé la plupart des choix d'organisation.
+
 \section{Réalisation des missions}
 
 \subsection{Correction des problèmes de structure et de chemins}
@@ -276,6 +336,20 @@ Ce script global reprend désormais les étapes principales de génération d'ar
 
 Dans la pratique, ce script constitue l'ossature du nouveau workflow : il centralise l'exécution, rend les étapes plus lisibles et évite de relancer séparément plusieurs scripts avec des contextes différents.
 
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.82\textwidth]{figures/redirection_code.png}
+    \caption{Extrait de la logique de redirection automatique vers \texttt{doc/html/source}.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.88\textwidth]{figures/redirection_test.png}
+    \caption{Test réussi de la redirection depuis le dossier \texttt{build/bin}.}
+\end{figure}
+
+Ces ajustements ont eu un impact pratique immédiat. Avant cette sécurisation, il fallait constamment se souvenir du bon répertoire de lancement pour chaque script. Après modification, le script global devient plus tolérant au contexte de départ, tout en restant strict lorsque l'exécution sort de l'arborescence prévue. Cela a considérablement réduit les erreurs de manipulation durant les tests.
+
 \subsection{Préparation des notebooks Python et des variantes Colab}
 
 Le script \texttt{doc\_generateArchives.py} était déjà chargé de préparer les notebooks Python, mais il a été enrichi et corrigé pour mieux s'intégrer au nouveau flux.
@@ -292,6 +366,14 @@ Les traitements effectués sont les suivants :
 
 Cette partie a également demandé quelques corrections de destination, notamment pour les répertoires d'archives Python, afin d'éviter des déplacements vers des dossiers inexistants.
 
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.72\textwidth]{figures/colab_install_check.png}
+    \caption{Ajout de cellules de vérification de l'installation de Marmote dans le flux Colab.}
+\end{figure}
+
+Nous avons également revu la cellule de vérification de l'installation dans Colab. L'idée n'était pas seulement d'ajouter une cellule technique supplémentaire, mais de guider l'utilisateur lorsque l'import direct de Marmote échoue. La présence d'une cellule \texttt{!conda list marmote}, suivie d'un repli possible via \texttt{sys.path}, permet de documenter explicitement le diagnostic et la correction, ce qui est particulièrement utile pour un public étudiant ou pour une démonstration à distance.
+
 \subsection{Intégration des notebooks C++ avec Xeus-cling}
 
 \subsubsection{Choix de l'environnement}
@@ -305,6 +387,70 @@ Le workflow retenu est donc le suivant :
     \item lancement de JupyterLab depuis WSL ;
     \item utilisation du kernel \texttt{xcpp17} ou équivalent.
 \end{itemize}
+
+\subsubsection{Étapes concrètes de création d'un notebook C++}
+
+Au-delà de la description générale, la création effective d'un notebook C++ a suivi un enchaînement précis. Cette partie est importante, car elle correspond à la phase où l'on passe d'un environnement correctement installé à un support pédagogique réellement exécutable.
+
+\paragraph{1. Vérifier le lancement du serveur et la disponibilité des kernels}
+
+Une fois l'environnement \texttt{xeus-cpp-env} créé, le serveur JupyterLab est lancé depuis WSL. Il faut ensuite vérifier que les kernels C++ sont bien enregistrés dans l'environnement courant. Cette étape a servi de premier indicateur de cohérence entre Jupyter, Xeus-cling et l'environnement Conda.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.78\textwidth]{figures/jupyter_server_wsl.png}
+    \caption{Lancement du serveur JupyterLab depuis WSL.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.78\textwidth]{figures/kernelspec_list.png}
+    \caption{Vérification de la présence des kernels C++ avec \texttt{jupyter kernelspec list}.}
+\end{figure}
+
+\paragraph{2. Créer un notebook vide et sélectionner le bon kernel}
+
+La seconde étape consiste à ouvrir un notebook vierge puis à sélectionner le kernel C++ adapté. Dans notre cas, le choix s'est porté sur \texttt{C++17}, qui correspond aux kernels disponibles dans l'environnement Xeus-cling. Cette étape est simple en apparence, mais elle conditionne toute la suite : si le mauvais kernel est sélectionné, les cellules ne s'exécutent pas dans le bon interpréteur.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.58\textwidth]{figures/select_kernel_cpp17.png}
+    \caption{Sélection du kernel C++17 lors de la création d'un notebook.}
+\end{figure}
+
+\paragraph{3. Réaliser un test minimal}
+
+Avant d'intégrer Marmote, un test minimal est indispensable. Il permet de vérifier que le kernel fonctionne de manière autonome, avant même de charger des en-têtes ou des bibliothèques supplémentaires. Dans notre cas, un simple \texttt{std::cout << "ok"} a suffi à valider le fonctionnement du kernel.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.58\textwidth]{figures/cpp_notebook_smoke_test.png}
+    \caption{Premier test de fonctionnement du notebook C++ avec une sortie simple.}
+\end{figure}
+
+\paragraph{4. Charger Marmote dans le notebook}
+
+Une fois ce premier test validé, le notebook peut être enrichi avec la configuration Marmote. C'est à cette étape qu'apparaissent les directives \texttt{\#pragma cling add\_include\_path(...)} et \texttt{\#pragma cling load(...)}. Elles permettent de rendre accessibles les en-têtes et les bibliothèques nécessaires au code C++ Marmote.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.92\textwidth]{figures/marmote_cpp_notebook_setup.png}
+    \caption{Configuration d'un notebook C++ Marmote avec les directives \texttt{\#pragma cling}.}
+\end{figure}
+
+\paragraph{5. Exécuter un premier exemple Marmote}
+
+L'étape suivante consiste à reprendre un exemple simple de la documentation C++ et à l'adapter au contexte notebook. Cela implique notamment de retirer la structure \texttt{main}, de conserver uniquement le contenu utile des instructions C++, puis d'exécuter le code cellule par cellule. La sortie obtenue confirme que Marmote est bien chargé et que le noyau C++ interprète correctement les objets du modèle.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.62\textwidth]{figures/marmote_cpp_notebook_output.png}
+    \caption{Exemple de sortie obtenue après exécution d'un premier notebook Marmote en C++.}
+\end{figure}
+
+Ces différentes étapes ont servi de socle pour l'ensemble des notebooks C++ ensuite produits. Elles ont aussi montré que la réussite du projet ne dépendait pas uniquement du contenu des exemples, mais d'une chaîne complète : environnement, kernel, configuration Cling, chargement de Marmote et structuration pédagogique du notebook.
+
+\FloatBarrier
 
 \subsubsection{Construction des notebooks C++}
 
@@ -329,6 +475,32 @@ Les notebooks C++ générés couvrent désormais les leçons communes entre \tex
 
 Une attention particulière a été portée à la cohérence entre le nommage des notebooks, les correspondances avec les exemples officiels C++ et les entrées présentes dans \texttt{cpp\_examples.rst}.
 
+\subsubsection{Formalisation d'une méthode de génération avec Codex}
+
+Pour homogénéiser la transcription des notebooks, j'ai également formulé un prompt détaillé destiné à un agent Codex. L'idée n'était pas de lui déléguer aveuglément la production des notebooks, mais de formaliser précisément les contraintes à respecter : sources de référence, structure pédagogique, fonctions obsolètes à éviter, style des cellules Markdown, nature des sorties à conserver, etc.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.78\textwidth]{figures/codex_prompt_intro.png}
+    \caption{Début du prompt structurant la génération des notebooks C++.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.82\textwidth]{figures/codex_prompt_structure.png}
+    \caption{Extrait du prompt décrivant la structure attendue du notebook C++.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.82\textwidth]{figures/codex_prompt_constraints.png}
+    \caption{Extrait du prompt décrivant les contraintes de fidélité et les contraintes Marmote.}
+\end{figure}
+
+Cette formalisation a été très utile pour deux raisons. Premièrement, elle a permis de systématiser les conversions entre notebooks Python et notebooks C++. Deuxièmement, elle a servi de cadre de vérification : lorsqu'un notebook généré s'écartait de la structure attendue ou utilisait une API obsolète, il devenait plus simple d'identifier précisément le défaut et de le corriger.
+
+\FloatBarrier
+
 \subsection{Résolution des incohérences entre la documentation et le code réel}
 
 L'intégration des notebooks C++ a mis en évidence plusieurs décalages entre la documentation Marmote et l'implémentation réellement utilisable dans le kernel C++.
@@ -351,6 +523,18 @@ Cela a conduit à une série de corrections ciblées :
 \end{itemize}
 
 Ces corrections n'ont pas seulement permis de ``faire marcher'' les notebooks : elles ont aussi mis en évidence la nécessité d'écrire une documentation fidèle au comportement réel de l'API.
+
+\subsubsection{Limites d'une alternative sous Windows : \texttt{jupyter-cpp-kernel}}
+
+Avant de retenir définitivement Xeus-cling, une alternative Windows a été testée : \texttt{jupyter-cpp-kernel}, basé sur \texttt{g++}. Cette piste semblait intéressante, car elle évitait le détour par WSL. En pratique, elle s'est révélée peu adaptée à Marmote.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.9\textwidth]{figures/jcpp_kernel_error.png}
+    \caption{Exemple d'erreurs rencontrées avec \texttt{jupyter-cpp-kernel} sous Windows.}
+\end{figure}
+
+Les erreurs observées portaient sur le support incomplet de C++11 et sur des incompatibilités de toolchain, notamment via \texttt{mingw}. Même après plusieurs ajustements, cette solution restait trop fragile pour charger correctement les en-têtes et dépendances Marmote. Ce test a donc servi à justifier plus clairement le choix de WSL et de Xeus-cling pour le reste du projet.
 
 \subsection{Stabilisation des kernels et nettoyage des sorties}
 
@@ -393,11 +577,29 @@ Le premier point a conduit à :
     \item générer également un \texttt{CMakeLists.txt} cohérent pour les fichiers \texttt{.cpp} exportés depuis les notebooks.
 \end{itemize}
 
-Le second point a montré une limite plus structurelle : sous Windows, Marmote n'est pas fourni comme un package CMake classique, si bien qu'un \texttt{find\_package(marmote)} ne fonctionne pas spontanément. Il a donc fallu adapter les essais de compilation et distinguer clairement :
+Le second point a nécessité une clarification importante. Lors d'un premier essai, l'erreur renvoyée par \texttt{find\_package(marmote)} a laissé penser que Marmote ne proposait pas réellement de support CMake sous Windows. Après de nouveaux tests, cette interprétation s'est révélée inexacte. Le support existe bien, et les fichiers de configuration CMake sont présents ; le problème venait surtout du fait que CMake ne savait pas où les chercher. En pratique, il fallait donc indiquer explicitement à Windows la source ou le préfixe d'installation de Marmote, par exemple via \texttt{CMAKE\_PREFIX\_PATH} ou une variable du type \texttt{marmote\_DIR}. Une fois ce chemin correctement fourni, la configuration fonctionne sans patch spécifique de la bibliothèque.
+
+Il a donc fallu distinguer clairement :
 \begin{itemize}
     \item la compilation des exemples officiels dans \texttt{build} ;
     \item la livraison d'un \texttt{CMakeLists.txt} utilitaire dans les archives de notebooks C++.
 \end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.85\textwidth]{figures/cmake_error_find_package.png}
+    \caption{Erreur initiale rencontrée lorsque CMake ne connaît pas l'emplacement de la configuration Marmote.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.85\textwidth]{figures/cmake_success_build.png}
+    \caption{Configuration CMake réussie après indication correcte de la source et du contexte de build.}
+\end{figure}
+
+Ce passage a été déterminant, car il a permis de distinguer deux besoins différents : d'une part, pouvoir continuer à compiler correctement les exemples officiels pour produire les \texttt{.res} et \texttt{.cmd} ; d'autre part, fournir dans les archives des notebooks C++ un fichier \texttt{CMakeLists.txt} utile comme base de réutilisation. Il a aussi permis de reformuler correctement l'erreur observée : il ne s'agissait pas d'une absence de support CMake côté Marmote, mais d'un problème de localisation de cette configuration dans l'environnement Windows utilisé.
+
+\FloatBarrier
 
 \subsection{Publication Sphinx et ajustements documentaires}
 
@@ -405,8 +607,14 @@ La génération de la documentation finale avec Sphinx a nécessité plusieurs a
 
 \begin{figure}[h]
     \centering
-    \safeincludegraphics[width=0.9\textwidth]{sphinx_cpp_api.png}
-    \caption{Maquette d'une page Sphinx pour l'API C++ et les leçons associées.}
+    \safeincludegraphics[width=0.75\textwidth]{figures/cpp_api_page_real.png}
+    \caption{Capture de la page C++ API générée dans la documentation Marmote.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.6\textwidth]{figures/cpp_api_rst_links.png}
+    \caption{Extrait de la source \texttt{cpp\_api.rst} utilisée pour construire la page C++ API.}
 \end{figure}
 
 Parmi les problèmes rencontrés :
@@ -426,13 +634,33 @@ Le travail documentaire a donc consisté à :
     \item documenter la bonne commande de build Sphinx et le bon environnement Conda à utiliser.
 \end{itemize}
 
+\subsubsection{Refonte de l'index \texttt{cpp\_examples.rst}}
+
+La migration du dossier \texttt{example/} vers le dossier \texttt{cpptutos/} a demandé une mise à jour explicite de l'index C++. L'ancien fichier se basait sur des pages de type \texttt{example/exampleX}, alors que la nouvelle version devait refléter le nommage pédagogique des notebooks C++.
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.92\textwidth]{figures/cpp_examples_old.png}
+    \caption{Ancienne rédaction de l'index C++ basée sur le dossier \texttt{example/}.}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \safeincludegraphics[width=0.92\textwidth]{figures/cpp_examples_new.png}
+    \caption{Nouvelle rédaction de l'index C++ basée sur \texttt{cpptutos/}.}
+\end{figure}
+
+Cette évolution ne relève pas d'un simple changement cosmétique. Elle marque le passage d'une logique centrée sur des fichiers d'exemple bruts à une logique de leçons structurées, plus proche de la partie Python et plus cohérente avec l'objectif pédagogique du site.
+
+\FloatBarrier
+
 \subsection{Usage des tags de masquage et cohérence pédagogique}
 
 La question du masquage des cellules techniques a également constitué un sujet de fond. Dans l'idéal, les cellules de configuration Xeus-cling ne doivent pas polluer la lecture de la documentation finale. Cependant, le comportement des tags dépend à la fois de Jupyter, de \texttt{nbsphinx} et du mode de rendu.
 
 \begin{figure}[h]
     \centering
-    \safeincludegraphics[width=0.85\textwidth]{tag_cells.png}
+    \safeincludegraphics[width=0.85\textwidth]{figures/tag_cells.png}
     \caption{Illustration du masquage des cellules techniques dans les notebooks C++.}
 \end{figure}
 
@@ -462,6 +690,69 @@ En fin de projet, une attention particulière a été portée à la livrabilité
 \end{itemize}
 
 Cette phase est moins visible qu'une nouvelle fonctionnalité, mais elle est indispensable dans un contexte de remise, car elle garantit que le dépôt peut être repris par d'autres personnes sans dépendre d'un contexte implicite trop important.
+
+\FloatBarrier
+
+\section{Difficultés rencontrées}
+
+Même si les réalisations décrites dans les sections précédentes ont permis de faire progresser le projet de manière significative, elles ont été accompagnées de nombreuses difficultés. Ces difficultés n'ont pas toutes eu la même nature : certaines relevaient du contexte d'exécution, d'autres de la documentation existante, d'autres encore des environnements ou des limitations propres aux outils utilisés.
+
+\subsection{Difficultés liées à l'arborescence et aux scripts}
+
+Les premières difficultés rencontrées relevaient de la structure du projet elle-même. Plusieurs scripts supposaient l'existence de chemins ou de répertoires qui n'étaient pas toujours présents lors des premiers tests. Il a donc fallu reconstituer une arborescence cohérente et réaligner certains mappings entre exemples, exécutables et destinations.
+
+Une autre difficulté importante concernait la sensibilité des scripts au répertoire de lancement. Sans contrôle strict du contexte d'exécution, les copies et déplacements de fichiers devenaient rapidement source d'erreurs. Cela a justifié l'ajout de la redirection automatique et du mode \texttt{dry\_run}.
+
+\subsection{Difficultés liées aux environnements}
+
+La préparation des environnements a également constitué un point sensible. En particulier, l'intégration de Xeus-cling s'est heurtée à une différence nette entre Linux et Windows. Sous Windows, l'absence de packages prêts à l'emploi rend l'installation plus fragile et expose davantage à des problèmes de toolchain et de compatibilité.
+
+Les difficultés principales ont été les suivantes :
+\begin{itemize}
+    \item dépendances manquantes dans certains environnements ;
+    \item nécessité d'empiler plusieurs environnements Conda selon les besoins ;
+    \item disponibilité inégale des kernels entre les environnements de développement et de build ;
+    \item nécessité de conserver une cohérence entre Jupyter, Xeus-cling et Marmote.
+\end{itemize}
+
+\subsection{Difficultés liées aux notebooks C++}
+
+La partie la plus délicate du projet a sans doute été l'intégration des notebooks C++. Plusieurs problèmes sont apparus de manière récurrente :
+\begin{itemize}
+    \item kernel qui meurt lorsqu'une cellule appelle du code non résolu ;
+    \item ambiguïtés de surcharge propres à Cling ;
+    \item différences entre les fonctions documentées et celles réellement exploitables ;
+    \item réexécution de cellules laissant des objets ou pointeurs dans un état invalide ;
+    \item difficulté à obtenir des sorties à la fois informatives et pédagogiques.
+\end{itemize}
+
+À cela s'ajoute une difficulté plus méthodologique : un notebook n'est pas un exécutable linéaire classique. Il faut donc penser non seulement au code correct, mais aussi à l'ordre d'exécution des cellules, à la stabilité du kernel et à la lisibilité des sorties.
+
+\subsection{Difficultés liées à la publication documentaire}
+
+La génération Sphinx a elle aussi révélé plusieurs fragilités :
+\begin{itemize}
+    \item extension \texttt{recommonmark} absente ;
+    \item \texttt{pandoc} manquant pour le rendu des notebooks ;
+    \item kernel \texttt{xcpp17} non trouvé dans certains contextes de build ;
+    \item liens de téléchargement pointant vers des fichiers absents ;
+    \item incohérences entre les anciens index C++ et la nouvelle organisation en \texttt{cpptutos}.
+\end{itemize}
+
+Ces difficultés ont montré que la production documentaire ne dépend pas seulement du contenu des notebooks, mais d'une chaîne plus large : index RST, dépendances Sphinx, kernels disponibles, archives générées et cohérence des chemins publiés.
+
+\subsection{Bilan des difficultés}
+
+Dans l'ensemble, les difficultés rencontrées ont confirmé qu'il ne s'agissait pas d'un simple travail de conversion de fichiers, mais bien d'un travail de maintenance évolutive sur un workflow complet. La principale leçon méthodologique est qu'il faut traiter ensemble :
+\begin{itemize}
+    \item la structure du dépôt ;
+    \item les scripts de génération ;
+    \item les environnements d'exécution ;
+    \item le contenu pédagogique ;
+    \item et la publication finale.
+\end{itemize}
+
+Isoler un seul de ces aspects aurait conduit à une solution partielle. C'est précisément parce que les problèmes ont été abordés de manière globale qu'il a été possible d'aboutir à un résultat cohérent.
 
 \section{Conclusion}
 

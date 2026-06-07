@@ -18,7 +18,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "6986eb41-6cd3-41de-9771-b175faa145f4",
    "metadata": {},
    "outputs": [],
@@ -63,7 +63,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "34a944f0-112f-4667-9845-b43a4b973061",
    "metadata": {},
    "outputs": [],
@@ -89,7 +89,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "id": "69bfc7ed-2519-4c39-b396-c0dbba15ba50",
    "metadata": {},
    "outputs": [],
@@ -107,7 +107,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "id": "e71a00ac-1296-4039-95c5-6ddbb92c523c",
    "metadata": {},
    "outputs": [],
@@ -117,10 +117,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "id": "331effbc-b178-44e3-85ca-fc5979ab23e4",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Geometric distribution on N with proba      0.5: P(k) = 0.5 x (0.5)^k, k=0..+oo\n",
+      "1.0\n",
+      "0.5\n",
+      "0.25\n",
+      "0.03125\n"
+     ]
+    }
+   ],
    "source": [
     "print(stadis)\n",
     "print(stadis.Mean())\n",
@@ -141,10 +153,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "id": "10cc93ac-9746-43c9-95cb-174fb1907e2f",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Homogeneous1DRandomWalk\n"
+     ]
+    }
+   ],
    "source": [
     "umc = mc.Uniformize()\n",
     "print(umc.className())"
@@ -160,7 +180,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "id": "e2cb1293-3a6a-49d1-abef-0ae5f74edff6",
    "metadata": {},
    "outputs": [],
@@ -186,7 +206,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "id": "a7c70e0a-a9f7-479d-9efe-0a360a752509",
    "metadata": {},
    "outputs": [],
@@ -196,7 +216,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "id": "e41c8d30-6667-4236-af52-11b8ea86458e",
    "metadata": {},
    "outputs": [],
@@ -206,20 +226,39 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "id": "67853fce-1c3a-4cdb-98fe-8c382666ce19",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0  1  2  3  4  5  6  7  8  ... 10  } probas { 0.500244 0.250122 0.125061 0.0625305 0.0312653 0.0156326 0.00781632 0.00390816 0.00195408 ... 0.00048852 }\n"
+     ]
+    }
+   ],
    "source": [
     "print(stadisf)"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 11,
    "id": "d7caff48-bdee-47ae-905d-77a0ee629990",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0.9946262823644356\n",
+      "0.5002442598925256\n",
+      "0.2501221299462628\n",
+      "0.030776746458231585\n"
+     ]
+    }
+   ],
    "source": [
     "print(stadisf.Mean())\n",
     "print(stadisf.getProba(0))\n",
@@ -239,10 +278,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 12,
    "id": "618751bc-9b9b-4dbb-8a4e-3771fd00522f",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[False False False  True False False False  True False False False]\n"
+     ]
+    }
+   ],
    "source": [
     "hitSet = np.zeros( [11], dtype=bool)\n",
     "hitSet[3] = True\n",
@@ -260,10 +307,19 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "id": "5fa369da-28c1-4725-8b9a-b458f25dee68",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[27.5        25.         17.5         0.          1.83333333  3.\n",
+      "  2.83333333  0.          2.1875      4.0625      5.3125    ]\n"
+     ]
+    }
+   ],
    "source": [
     "avg = mcf.AverageHittingTimes( hitSet )\n",
     "print(avg)"
@@ -279,10 +335,27 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 14,
    "id": "9d10d81f-f833-4729-b442-c541389e6e74",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[ 0.         27.5         0.          0.          0.          0.        ]\n",
+      " [ 0.         25.          0.          0.          0.          0.        ]\n",
+      " [ 0.         17.5         0.          0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.          0.          0.        ]\n",
+      " [ 0.          1.57777778  0.          0.          0.          0.25555556]\n",
+      " [ 0.          2.4         0.          0.          0.          0.6       ]\n",
+      " [ 0.          2.04444444  0.          0.          0.          0.78888889]\n",
+      " [ 0.          0.          0.          0.          0.          0.        ]\n",
+      " [ 0.          0.          0.          0.          0.          2.1875    ]\n",
+      " [ 0.          0.          0.          0.          0.          4.0625    ]]\n"
+     ]
+    }
+   ],
    "source": [
     "avgcon = mcf.AverageHittingTimes_Conditional( hitSet )\n",
     "print( avgcon[0:10,2:8] )"
@@ -298,7 +371,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 15,
    "id": "cc712ebe-3bb8-4766-ab5a-fb8f44e032f6",
    "metadata": {},
    "outputs": [],
@@ -308,7 +381,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 16,
    "id": "feaf8431-0feb-40f4-8126-bbc618dca0b1",
    "metadata": {},
    "outputs": [],
@@ -318,10 +391,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 17,
    "id": "222c671a-1f71-43aa-809d-28725e915589",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[25.6306105   5.00618684  8.63932899 21.08123222 12.73683667 10.91006703\n",
+      " 57.17194878  4.914087    4.50851192 31.74400553 14.69296928  9.53306438\n",
+      "  2.77352015 28.45646188  2.15611548 28.73427136  9.37603428  9.06044453\n",
+      " 35.62576059  3.9922486 ]\n"
+     ]
+    }
+   ],
    "source": [
     "print(simres.CT_dates())"
    ]
@@ -346,7 +430,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 18,
    "id": "df9dc48d-92ff-4b42-82d7-4ac064878031",
    "metadata": {},
    "outputs": [],
@@ -356,7 +440,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 19,
    "id": "1e1af7c0-9409-4126-aba1-7882bdfa154d",
    "metadata": {},
    "outputs": [],
@@ -374,7 +458,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 20,
    "id": "dbff9da0-9bc1-4afd-a49b-69fdca4fecc2",
    "metadata": {},
    "outputs": [],
@@ -400,7 +484,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 21,
    "id": "3d2ecdce-02fd-4556-92a5-05fa469f7016",
    "metadata": {},
    "outputs": [],
@@ -410,7 +494,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 22,
    "id": "a3c4339d-2d7b-4bf3-98dc-7dffb10a1eba",
    "metadata": {},
    "outputs": [],
@@ -428,7 +512,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 23,
    "id": "481cab27-0053-4ad5-9a57-248db93a9a26",
    "metadata": {},
    "outputs": [],
@@ -448,7 +532,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 24,
    "id": "645dde7c-6631-4b45-9c4c-24607298f678",
    "metadata": {},
    "outputs": [],
@@ -481,7 +565,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.13.10"
+   "version": "3.13.12"
   }
  },
  "nbformat": 4,

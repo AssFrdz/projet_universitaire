@@ -222,7 +222,7 @@ int main( int argc, char** argv )
     cout <<"Checking Average Cost" << std::endl;
     cout << std::endl <<"Policy Ra" << std::endl;
     FeedbackSolutionMDP* politique = new FeedbackSolutionMDP(stateSpace->Cardinal());
-    politique->setActionIndex(0,0);
+    politique->setActionIndeax(0,0);
     politique->setActionIndex(1,0);
     politique->setActionIndex(2,0);
     politique->setActionIndex(3,2);

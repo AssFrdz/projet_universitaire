@@ -113,7 +113,7 @@
 <p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
 <p><strong>Import the modules</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">marmote.core</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mc</span>
@@ -124,7 +124,7 @@
 </div>
 <p>also import numpy</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -147,30 +147,16 @@
 <section id="Description-of-the-model">
 <h3>Description of the model<a class="headerlink" href="#Description-of-the-model" title="Link to this heading"></a></h3>
 <p>We use a model with three states <em>s1, s2, s3</em> and three actions <em>a0, a1, a2</em>. Transitions probabilities and rewards are described by the picture below.</p>
-<p><img alt="86ad081b6d9f4d1883dcb9324ea4aa05" src="../_images/geron1.png" /></p>
+<p><img alt="91c539c46a324112a65d783049dbb1dc" src="../_images/geron1.png" /></p>
 <p><strong>Creating States</strong></p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">actionSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">stateSpace</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In [1], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> actionSpace <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">mc</span><span style="color: rgb(98,98,98)">.</span>MarmoteInterval(<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">2</span>)
-<span class="ansi-green-intense-fg ansi-bold">      2</span> stateSpace <span style="color: rgb(98,98,98)">=</span> mc<span style="color: rgb(98,98,98)">.</span>MarmoteInterval(<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">2</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;mc&#39; is not defined
-</pre></div></div>
 </div>
 <p><strong>Some modelling choices</strong></p>
 <div class="line-block">
@@ -187,7 +173,7 @@ Cell <span class="ansi-green-fg">In [1], line 1</span>
 <h2>Build the MDP with constructor 1<a class="headerlink" href="#Build-the-MDP-with-constructor-1" title="Link to this heading"></a></h2>
 <p><strong>Creating Transitions Matrices</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trans</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
@@ -221,7 +207,7 @@ Cell <span class="ansi-green-fg">In [1], line 1</span>
 </div>
 <p><strong>Creation of one rewards matrix</strong></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100000</span>
@@ -239,26 +225,19 @@ Cell <span class="ansi-green-fg">In [1], line 1</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In [4], line 2</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> penalty <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">100000</span>
-<span class="ansi-green-fg">----&gt; 2</span> R<span style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">mc</span><span style="color: rgb(98,98,98)">.</span>FullMatrix(<span style="color: rgb(98,98,98)">3</span>,<span style="color: rgb(98,98,98)">3</span>)
-<span class="ansi-green-intense-fg ansi-bold">      3</span> R<span style="color: rgb(98,98,98)">.</span>setEntry(<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">7</span>)
-<span class="ansi-green-intense-fg ansi-bold">      4</span> R<span style="color: rgb(98,98,98)">.</span>setEntry(<span style="color: rgb(98,98,98)">0</span>,<span style="color: rgb(98,98,98)">1</span>,<span style="color: rgb(98,98,98)">0</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;mc&#39; is not defined
+True
 </pre></div></div>
 </div>
 <section id="Build-the-MDP">
 <h3>Build the MDP<a class="headerlink" href="#Build-the-MDP" title="Link to this heading"></a></h3>
 <p><strong>Parameters definition</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="mf">0.95</span>
@@ -266,14 +245,73 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">transb</span><span class="p">,</span><span class="n">R</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">first_mdp</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+#############################################
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+DiscountedMDP (Object at 000001A5B75CF0A0)
+MDP type (discrete,continuous): discrete
+MDP rule (min,max): max
+State space size: 3
+Action space size: 3
+State  dimension: 1
+Action dimension: 1
+#############################################
+Transition matrix per action:
+action: 0
+         0          0 7.000000e-01
+         0          1 3.000000e-01
+         1          1 1.000000e+00
+         2          2 1.000000e+00
+
+action: 1
+         0          0 1.000000e+00
+         1          2 1.000000e+00
+         2          2 1.000000e+00
+
+action: 2
+         0          0 8.000000e-01
+         0          1 2.000000e-01
+         1          1 1.000000e+00
+         2          0 8.000000e-01
+         2          1 1.000000e-01
+         2          2 1.000000e-01
+
+#############################################
+Reward Matrix (state,action):
+         0          0 7.000000e+00
+         0          1 0.000000e+00
+         0          2 0.000000e+00
+         1          0 0.000000e+00
+         1          1 -5.000000e+01
+         1          2 -1.000000e+05
+         2          0 -1.000000e+05
+         2          1 -1.000000e+05
+         2          2 3.200000e+01
+
+#############################################
+
+
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -281,7 +319,7 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 <h2>Build the MDP with constructor 2<a class="headerlink" href="#Build-the-MDP-with-constructor-2" title="Link to this heading"></a></h2>
 <p><strong>Creating Transitions Matrices</strong></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transb</span><span class="o">=</span><span class="nb">list</span><span class="p">()</span>
@@ -317,7 +355,7 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 <p>Since the reward values depend on the transition with a cost per transition, then we use a second way to build the MDP. We use a second constructor which uses two lists of matrices. One for the transition matrices as before and another for the rewards per transition. For the later list, the matrix at the <em>k</em>-th entry defines the gains associated with the action with index <em>k</em>. In this matrix, the entry with coordinate (i,j) defines the reward of the transition from i to j.</p>
 <p>We also define the penalty given to unavailable actions. Here a small negative value (-10^5) is used.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">penalty</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100000</span>
@@ -345,8 +383,8 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 </div>
 </div>
 <p>Let us check the matrices</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking&quot;</span><span class="p">)</span>
@@ -356,10 +394,30 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Checking
+R1 [[1.000000e+01, 0.000000e+00, 0.000000e+00],
+ [0.000000e+00, 0.000000e+00, 0.000000e+00],
+ [0.000000e+00, 0.000000e+00, -1.000000e+05]]
+
+R2 [[0.000000e+00, 0.000000e+00, 0.000000e+00],
+ [0.000000e+00, 0.000000e+00, -5.000000e+01],
+ [0.000000e+00, 0.000000e+00, -1.000000e+05]]
+
+R3 [[0.000000e+00, 0.000000e+00, 0.000000e+00],
+ [0.000000e+00, -1.000000e+05, 0.000000e+00],
+ [4.000000e+01, 0.000000e+00, 0.000000e+00]]
+
+</pre></div></div>
+</div>
 <section id="id1">
 <h3>Build the MDP<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">second_mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="n">stateSpace</span><span class="p">,</span> <span class="n">actionSpace</span><span class="p">,</span> <span class="n">transb</span><span class="p">,</span> <span class="n">rews</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
@@ -372,13 +430,55 @@ Cell <span class="ansi-green-fg">In [4], line 2</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In [3], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> second_mdp <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">md</span><span style="color: rgb(98,98,98)">.</span>DiscountedMDP(criterion, stateSpace, actionSpace, transb, rews, beta)
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span>(second_mdp)
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+#############################################
+#############################################
+Model: Infinite Horizon MDP
+MDP Criteria : Infinite horizon discounted
+Discount factor:0.95
+DiscountedMDP (Object at 000001A5B75CF4B0)
+MDP type (discrete,continuous): discrete
+MDP rule (min,max): max
+State space size: 3
+Action space size: 3
+State  dimension: 1
+Action dimension: 1
+#############################################
+Transition matrix per action:
+action: 0
+         0          0 7.000000e-01
+         0          1 3.000000e-01
+         1          1 1.000000e+00
+         2          2 1.000000e+00
 
-<span class="ansi-red-fg">NameError</span>: name &#39;md&#39; is not defined
+action: 1
+         0          0 1.000000e+00
+         1          2 1.000000e+00
+         2          2 1.000000e+00
+
+action: 2
+         0          0 8.000000e-01
+         0          1 2.000000e-01
+         1          1 1.000000e+00
+         2          0 8.000000e-01
+         2          1 1.000000e-01
+         2          2 1.000000e-01
+
+#############################################
+Reward Matrix (state,action):
+         0          0 7.000000e+00
+         1          1 -5.000000e+01
+         1          2 -1.000000e+05
+         2          0 -1.000000e+05
+         2          1 -1.000000e+05
+         2          2 3.200000e+01
+
+#############################################
+
+
 </pre></div></div>
 </div>
 </section>
@@ -387,7 +487,7 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 <h2>Solve the MDP<a class="headerlink" href="#Solve-the-MDP" title="Link to this heading"></a></h2>
 <p>Giving a value to the parameters for the solving algorithms</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create and initialize epsilon.</span>
@@ -397,14 +497,36 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimum2</span> <span class="o">=</span> <span class="n">second_mdp</span><span class="o">.</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">maxIter</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+Solution of MDP problem
+Size of the state space: 3
+#############################################
+Solution model: Feedback Stationary Policy
+- column 1: index of the state
+- column 2: Value function
+- column 3: Optimal action
+
+  0           21.8983   0
+  1           1.17884   1
+  2           53.8725   2
+#############################################
+
+
+</pre></div></div>
 </div>
 </section>
 <section id="Additional-features">
@@ -416,8 +538,8 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 <section id="Creation-of-the-Markov-chain-associated-with-a-policy">
 <h3>Creation of the Markov chain associated with a policy<a class="headerlink" href="#Creation-of-the-Markov-chain-associated-with-a-policy" title="Link to this heading"></a></h3>
 <p>The transition matrix associated with a policy can be retrieved using the <code class="docutils literal notranslate"><span class="pre">getChain</span></code> method, which returns a <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> constructed with respect to the policy given as a parameter.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Mat</span><span class="o">=</span><span class="n">second_mdp</span><span class="o">.</span><span class="n">GetChain</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
@@ -426,9 +548,20 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[7.000000e-01, 3.000000e-01, 0.000000e+00],
+ [0.000000e+00, 0.000000e+00, 1.000000e+00],
+ [8.000000e-01, 1.000000e-01, 1.000000e-01]]
+
+</pre></div></div>
+</div>
 <p>No we create the Markov Chain as detailled in Lesson 1. We first create the initial distribution, then the chain.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mf">0.333</span><span class="p">,</span> <span class="mf">0.333</span><span class="p">,</span> <span class="mf">0.334</span><span class="p">]</span> <span class="p">)</span>
@@ -438,7 +571,7 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">mmc</span><span class="o">.</span><span class="n">MarkovChain</span><span class="p">(</span> <span class="n">Mat</span> <span class="p">)</span>
@@ -448,13 +581,26 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </div>
 </div>
 <p>Print the chain</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Discrete-type Markov Chain
+ - on state space Interval( 0..2 )
+ - size 3
+ - generator of type SparseMatrix
+ - with initial distribution Discrete distribution values { 0 1 2 } probas {    0.333    0.333    0.334 }
+
+</pre></div></div>
 </div>
 </section>
 <section id="Creation-of-the-Q-Value-associated-with-a-policy-(for-R.L.-purpose)">
@@ -462,7 +608,7 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 <p>It also possible to create a <code class="docutils literal notranslate"><span class="pre">FeedbackQvalueMDP</span></code> in a <code class="docutils literal notranslate"><span class="pre">DiscountedMDP</span></code>. A <code class="docutils literal notranslate"><span class="pre">FeedbackQvalueMDP</span></code> is an object that is created form the value of a policy (in our case a <code class="docutils literal notranslate"><span class="pre">FeedbackSolutionMDP</span></code>). It stores a <em>Q-value</em> for any couple <em>(s,a)</em> with <em>s</em> the state and <em>a</em> the action. From that, it is then possible to randomly draw actions according to the <em>EpsilonGreedy</em> or <em>Softmax</em> rules.</p>
 <p>Create the <code class="docutils literal notranslate"><span class="pre">FeedbackQvalueMDP</span></code> object</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">=</span><span class="n">second_mdp</span><span class="o">.</span><span class="n">GetQValue</span><span class="p">(</span><span class="n">optimum2</span><span class="p">)</span>
@@ -470,17 +616,40 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </div>
 </div>
 <p>Then we print it</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+#############################################
+# - column 1: index of the state
+# - column 2: index of the action
+# - column 3: Value
+#
+0 0 21.89831521
+0 1 20.80335271
+0 2 16.86666105
+1 0 1.119894386
+1 1 1.178885397
+1 2 -99998.88011
+2 0 -99948.82111
+2 1 -99948.82111
+2 2 53.87256015
+#############################################
+
+</pre></div></div>
+</div>
 <p>For drawing action we should reset the random generator</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">ResetSeed</span><span class="p">()</span>
@@ -488,8 +657,8 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </div>
 </div>
 <p>We draw an action with <em>EpsilonGreedy</em> principle in state 0 with epsilon=0.1 for a maximisation criteria</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">action</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">EpsilonGreedyMax</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
@@ -497,15 +666,31 @@ Cell <span class="ansi-green-fg">In [3], line 1</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
+</div>
 <p>We draw an action with <em>SoftMax</em> principle in state 2</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">action</span><span class="o">=</span><span class="n">F</span><span class="o">.</span><span class="n">SoftMax</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0
+</pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

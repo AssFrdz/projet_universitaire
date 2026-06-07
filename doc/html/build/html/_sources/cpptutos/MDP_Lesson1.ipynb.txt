@@ -1,0 +1,868 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "07c89d82",
+   "metadata": {},
+   "source": [
+    "# MDP Lesson 1: discounted MDP  "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d5fbcaef",
+   "metadata": {},
+   "source": [
+    "This lesson can be downloaded as a notebook, a notebook for colab and a python file [here](https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html)\n",
+    "\n",
+    "This C++ notebook is the Xeus-cling counterpart of the Python lesson. It follows the same pedagogical progression while using the official Marmote C++ API."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3a835fb8",
+   "metadata": {},
+   "source": [
+    "## Using the library"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7be69401",
+   "metadata": {},
+   "source": [
+    "**Import the modules**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "346ef229",
+   "metadata": {},
+   "source": [
+    "The following commands allow one to configure Xeus-cling and to include the headers required for a discounted MDP."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "aed83623",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "#ifdef _WIN32\n",
+    "#pragma cling add_include_path(\"C:/Users/assia/miniconda3/envs/jcpp-win/Library/include\")\n",
+    "#pragma cling add_include_path(\"C:/Users/assia/miniconda3/envs/jcpp-win/Library/include/marmoteCore\")\n",
+    "#pragma cling add_include_path(\"C:/Users/assia/miniconda3/envs/jcpp-win/Library/include/marmoteMDP\")\n",
+    "#pragma cling add_library_path(\"C:/Users/assia/miniconda3/envs/jcpp-win/Library/bin\")\n",
+    "#pragma cling load(\"marmoteCore.dll\")\n",
+    "#pragma cling load(\"marmoteMarkovChain.dll\")\n",
+    "#pragma cling load(\"marmoteMDP.dll\")\n",
+    "#else\n",
+    "#pragma cling add_include_path(\"/home/assia/miniconda3/envs/xeus-cpp-env/include\")\n",
+    "#pragma cling add_include_path(\"/home/assia/miniconda3/envs/xeus-cpp-env/include/marmoteCore\")\n",
+    "#pragma cling add_include_path(\"/home/assia/miniconda3/envs/xeus-cpp-env/include/marmoteMDP\")\n",
+    "#pragma cling add_library_path(\"/home/assia/miniconda3/envs/xeus-cpp-env/lib\")\n",
+    "#pragma cling load(\"libmarmoteCore.so\")\n",
+    "#pragma cling load(\"libmarmoteMarkovChain.so\")\n",
+    "#pragma cling load(\"libmarmoteMDP.so\")\n",
+    "#endif\n",
+    "\n",
+    "#include <iostream>\n",
+    "#include <string>\n",
+    "#include <vector>\n",
+    "\n",
+    "#include <marmoteCore/marmoteFullMatrix.h>\n",
+    "#include <marmoteCore/marmoteInterval.h>\n",
+    "#include <marmoteCore/marmoteSparseMatrix.h>\n",
+    "#include <marmoteMDP/marmoteDiscountedMDP.h>\n",
+    "#include <marmoteMDP/marmoteFeedbackSolutionMDP.h>\n",
+    "\n",
+    "using namespace std;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "73b99024",
+   "metadata": {},
+   "source": [
+    "It is necessary to import the modules corresponding to *marmote.core* and *marmote.mdp* from the C++ Marmote library.  \n",
+    "Hence the core headers handle the basic objects (*Sets*, *distributions*, *matrices*, ...), while the MDP headers handle Markov Decision Process objects.\n",
+    "\n",
+    "In this first lesson, we show how to make and how to solve a simple infinite-horizon discounted criteria MDP."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f3b63d5e",
+   "metadata": {},
+   "source": [
+    "## Build a simple MDP"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3450bbc6",
+   "metadata": {},
+   "source": [
+    "### Reminders about  MDP"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "72025f6e",
+   "metadata": {},
+   "source": [
+    "Formally a MDP is a tuple *(S,A,P_a,R)* where  \n",
+    "+ S is the state space  \n",
+    "+ A is the action space  \n",
+    "+ P_a is a collection of transition matrices. A matrix for each action  \n",
+    "+ R is a reward (or cost) matrix  "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cea8dd56",
+   "metadata": {},
+   "source": [
+    "#### Description of the example implemented here"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "63e8c6f5",
+   "metadata": {},
+   "source": [
+    "We assume a simple model with two states x1=0 and x2=1 and in each state: two actions a1=0 and a2=1.\n",
+    "\n",
+    "The reward matrix is:\n",
+    "\n",
+    "|      |      |\n",
+    "|:----:|:----:|\n",
+    "| 4.5  | 2.0  |\n",
+    "| -1.5 | 3.0  |\n",
+    "\n",
+    "where *r(x,a)* is the entry with row coordinate $x$ and column coordinate $a$.  \n",
+    "The entry *r(x,a)* represents the reward when in state *x* action *a* is performed.\n",
+    "\n",
+    "The transition matrices are:\n",
+    "\n",
+    "Transition matrix of the action 0:\n",
+    "\n",
+    "|      |      |\n",
+    "|:----:|:----:|\n",
+    "| 0.6  | 0.4  |\n",
+    "| 0.5  | 0.5  |\n",
+    "\n",
+    "Transition matrix of the action 1:\n",
+    "\n",
+    "|      |      |\n",
+    "|:----:|:----:|\n",
+    "| 0.2  | 0.8  |\n",
+    "| 0.7  | 0.3  |"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "517d1667",
+   "metadata": {},
+   "source": [
+    "### Elements of a MDP object"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f03545d1",
+   "metadata": {},
+   "source": [
+    "#### Attributes of the object"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a7bc5db1",
+   "metadata": {},
+   "source": [
+    "A MDP in Marmote receives at least four important attributes:\n",
+    "\n",
+    "1. The *state space* that is a *MarmoteSet* object.\n",
+    "2. The *action space* that is also a *MarmoteSet* object.\n",
+    "3. A vector of transition structures.  \n",
+    "   Each entry in the vector corresponds with a transition structure associated with a given action.\n",
+    "4. A reward structure, preferably a `FullMatrix`, whose entry `(x,a)` is the reward of action `a` in state `x`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "76e01e1c",
+   "metadata": {},
+   "source": [
+    "#### How to build the DiscountedMDP object"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1e03a710",
+   "metadata": {},
+   "source": [
+    "**Create state space and action space**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "67b4a8b7",
+   "metadata": {},
+   "source": [
+    "Here we define two `MarmoteInterval` objects for state and action spaces. The two following lines define two intervals going from 0 to 1."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "cf52a385",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "MarmoteSet* actionSpace = new MarmoteInterval(0, 1);\n",
+    "MarmoteSet* stateSpace = new MarmoteInterval(0, 1);"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "40e39cd7",
+   "metadata": {},
+   "source": [
+    "**Storing matrices**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "052e5df9",
+   "metadata": {},
+   "source": [
+    "A `vector` is used in C++ to store all transition matrices.  \n",
+    "The number of matrices should correspond with the size of the action space."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "4b241c6d",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "vector<TransitionStructure*> trans(actionSpace->Cardinal());"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e38f6f0f",
+   "metadata": {},
+   "source": [
+    "**Build transition matrices**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "188b500e",
+   "metadata": {},
+   "source": [
+    "Now, we create `P0`, an object `SparseMatrix` with size 2x2. The command to initialize an entry is `setEntry(row, column, value)`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "ae404c2d",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Matrix P0\n",
+      "         0          0 6.000000e-01\n",
+      "         0          1 4.000000e-01\n",
+      "         1          0 5.000000e-01\n",
+      "         1          1 5.000000e-01\n"
+     ]
+    }
+   ],
+   "source": [
+    "SparseMatrix* P0 = new SparseMatrix(2);\n",
+    "P0->setEntry(0, 0, 0.6);\n",
+    "P0->setEntry(0, 1, 0.4);\n",
+    "P0->setEntry(1, 0, 0.5);\n",
+    "P0->setEntry(1, 1, 0.5);\n",
+    "cout << \"Matrix P0\" << endl;\n",
+    "P0->Write(&cout);\n",
+    "trans.at(0) = P0;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6a29c95a",
+   "metadata": {},
+   "source": [
+    "We now add a new `SparseMatrix` for the second action."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "d71dbc2a",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "SparseMatrix* P1 = new SparseMatrix(2);\n",
+    "P1->setEntry(0, 0, 0.2);\n",
+    "P1->setEntry(0, 1, 0.8);\n",
+    "P1->setEntry(1, 0, 0.7);\n",
+    "P1->setEntry(1, 1, 0.3);\n",
+    "trans.at(1) = P1;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cbf318c4",
+   "metadata": {},
+   "source": [
+    "**Build reward matrix**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "23067e49",
+   "metadata": {},
+   "source": [
+    "We create a `FullMatrix` object with size 2x2. This matrix is used for storing the rewards associated with each couple *(state, action)*."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "52ceee4c",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "FullMatrix* Reward = new FullMatrix(2, 2);\n",
+    "Reward->setEntry(0, 0, 4.5);\n",
+    "Reward->setEntry(0, 1, 2.0);\n",
+    "Reward->setEntry(1, 0, -1.5);\n",
+    "Reward->setEntry(1, 1, 3.0);"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9b690dcf",
+   "metadata": {},
+   "source": [
+    "**Additional parameters of the discounted MDP**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ed6c1023",
+   "metadata": {},
+   "source": [
+    "Two additional parameters should be entered: *beta* and *criterion*.  \n",
+    "- *beta* is the discount factor for incorporating future values. In the C++ code below, we store it in a variable named `discountFactor` because `beta` is ambiguous in Xeus-cling due to `std::beta`.  \n",
+    "- *criterion* indicates the optimisation criterion, which is either maximisation (`\"max\"`) or minimisation (`\"min\"`)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "bfa8f8b6",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "double discountFactor = 0.95;\n",
+    "string criterion = \"max\";"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "14e8f2ce",
+   "metadata": {},
+   "source": [
+    "**Build a discounted MDP**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3d0e5eb5",
+   "metadata": {},
+   "source": [
+    "We now construct a `DiscountedMDP` object using the parameters defined above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "8f71b50e",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Model: Infinite Horizon MDP\n",
+      "MDP Criteria : Infinite horizon discounted\n",
+      "Discount factor:0.95\n",
+      "#############################################\n",
+      "#############################################\n",
+      "Model: Infinite Horizon MDP\n",
+      "MDP Criteria : Infinite horizon discounted\n",
+      "Discount factor:0.95\n",
+      "DiscountedMDP (Object at 0x56123398bb10)\n",
+      "MDP type (discrete,continuous): discrete\n",
+      "MDP rule (min,max): max\n",
+      "State space size: 2\n",
+      "Action space size: 2\n",
+      "State  dimension: 1\n",
+      "Action dimension: 1\n",
+      "#############################################\n",
+      "Transition matrix per action:\n",
+      "action: 0\n",
+      "         0          0 6.000000e-01\n",
+      "         0          1 4.000000e-01\n",
+      "         1          0 5.000000e-01\n",
+      "         1          1 5.000000e-01\n",
+      "\n",
+      "action: 1\n",
+      "         0          0 2.000000e-01\n",
+      "         0          1 8.000000e-01\n",
+      "         1          0 7.000000e-01\n",
+      "         1          1 3.000000e-01\n",
+      "\n",
+      "#############################################\n",
+      "Reward Matrix (state,action):\n",
+      "         0          0 4.500000e+00\n",
+      "         0          1 2.000000e+00\n",
+      "         1          0 -1.500000e+00\n",
+      "         1          1 3.000000e+00\n",
+      "\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "DiscountedMDP* mdp = new DiscountedMDP(criterion, stateSpace, actionSpace, trans, Reward, discountFactor);\n",
+    "mdp->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b895bcdb",
+   "metadata": {},
+   "source": [
+    "## Solving the MDP"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b921f3fa",
+   "metadata": {},
+   "source": [
+    "### List of solution methods"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "069f8540",
+   "metadata": {},
+   "source": [
+    "We list here the different methods implemented to solve discounted Markov Decision Processes. All these methods return a `FeedbackSolutionMDP` object.\n",
+    "\n",
+    "1. *Value Iteration* with method name `ValueIteration`  \n",
+    "2. *Value Iteration using Gauss Seidel* with method name `ValueIterationGS`   \n",
+    "3. *Value Iteration with a given initial value function* with method name `ValueIterationInit`   \n",
+    "4. *Policy Iteration Modified* with method name `PolicyIterationModified`  \n",
+    "5. *Policy Iteration Modified with Gauss Seidel* with method name `PolicyIterationModifiedGS`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d5feec25",
+   "metadata": {},
+   "source": [
+    "### Running solution methods"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9b2dc7e1",
+   "metadata": {},
+   "source": [
+    "Parameters:  \n",
+    "1. *epsilon* is a precision threshold used to determine convergence.  \n",
+    "2. *maxIter* gives the maximal number of authorised iterations."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "906ba751",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "double epsilon = 0.00001;\n",
+    "int maxIter = 700;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cf3950f1",
+   "metadata": {},
+   "source": [
+    "**Value Iteration**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "488bc513",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 2\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0            79.589   0\n",
+      "  1           78.2192   1\n",
+      "#############################################\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "FeedbackSolutionMDP* optimum = mdp->ValueIteration(epsilon, maxIter);\n",
+    "optimum->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e282ef0d",
+   "metadata": {},
+   "source": [
+    "**Gauss Seidel Value Iteration**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "4c3fb634",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 2\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           38.9873   0\n",
+      "  1           39.3571   1\n",
+      "#############################################\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "FeedbackSolutionMDP* optimum2 = mdp->ValueIterationGS(epsilon, 10);\n",
+    "optimum2->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "da866e97",
+   "metadata": {},
+   "source": [
+    "**Value Iteration Init**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7586b670",
+   "metadata": {},
+   "source": [
+    "It is also possible to choose which value function will be used to start the value iteration process. To do this, one enters a third parameter which is a `SolutionMDP*` whose value field is used to initialise the process."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "75ed8206",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 2\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           79.5876   0\n",
+      "  1           78.2178   1\n",
+      "#############################################\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "FeedbackSolutionMDP* optimum3 = mdp->ValueIterationInit(epsilon, 200, optimum2);\n",
+    "optimum3->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3774c626",
+   "metadata": {},
+   "source": [
+    "**Policy Iteration Modified**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "9601d206",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 2\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0            79.589   0\n",
+      "  1           78.2192   1\n",
+      "#############################################\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "FeedbackSolutionMDP* optimum4 = mdp->PolicyIterationModified(epsilon, maxIter, 0.001, 100);\n",
+    "optimum4->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "94da90b8",
+   "metadata": {},
+   "source": [
+    "**Policy Iteration Modified with Gauss Seidel**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "c8cb4e37",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 2\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0            79.589   0\n",
+      "  1           78.2192   1\n",
+      "#############################################\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "FeedbackSolutionMDP* optimum5 = mdp->PolicyIterationModifiedGS(epsilon, maxIter, 0.001, 100);\n",
+    "optimum5->Write();"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "745c579a",
+   "metadata": {},
+   "source": [
+    "## About the SolutionMDP object"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d64fe708",
+   "metadata": {},
+   "source": [
+    "The solution is stored in a `FeedbackSolutionMDP` object. This object has attributes that store a value and an action for each state.  \n",
+    "The printing of a `FeedbackSolutionMDP` gives first information about the policy, and then displays the information for all states.\n",
+    "\n",
+    "The next instructions illustrate how to read the values and the actions after solving the MDP."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "7dddc7fb",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "i= 0 value= 7.958904e+01 action= 0\n",
+      "i= 1 value= 7.821917e+01 action= 1\n"
+     ]
+    }
+   ],
+   "source": [
+    "mdp->PolicyCost(optimum, epsilon, maxIter);\n",
+    "double* values = optimum->getValue();\n",
+    "stateType* actions = optimum->getAction();\n",
+    "for (int i = 0; i < stateSpace->Cardinal(); ++i) {\n",
+    "    cout << \"i= \" << i << \" value= \" << values[i] << \" action= \" << actions[i] << endl;\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "69ebd299",
+   "metadata": {},
+   "source": [
+    "End of the notebook"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "3306225f",
+   "metadata": {
+    "vscode": {
+     "languageId": "c++"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "delete optimum;\n",
+    "delete optimum2;\n",
+    "delete optimum3;\n",
+    "delete optimum4;\n",
+    "delete optimum5;\n",
+    "delete mdp;\n",
+    "delete stateSpace;\n",
+    "delete actionSpace;"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "C++17",
+   "language": "C++17",
+   "name": "xcpp17"
+  },
+  "language_info": {
+   "codemirror_mode": "text/x-c++src",
+   "file_extension": ".cpp",
+   "mimetype": "text/x-c++src",
+   "name": "c++",
+   "version": "17"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

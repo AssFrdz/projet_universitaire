@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 2: solving Markov chains &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 3: working with state spaces" href="Lesson3.html" />
+    <link rel="prev" title="Lesson 1: making Markov chains" href="Lesson1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lesson 2: solving Markov chains</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#First-example:-solving-discrete-time-Markov-chains">First example: solving discrete-time Markov chains</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Second-example:-solving-continuous-time-Markov-chains">Second example: solving continuous-time Markov chains</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson6.html">Lesson 6: manipulating Marmote sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson7.html">Lesson 7: structural analysis of Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson5.html">MDP Lesson 5: finite-horizon MDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Lesson 2: solving Markov chains</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpptutos/Lesson2.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-2:-solving-Markov-chains">
+<h1>Lesson 2: solving Markov chains<a class="headerlink" href="#Lesson-2:-solving-Markov-chains" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<p>This C++ notebook mirrors the Python lesson and focuses on the main solution objects returned by Marmote.</p>
+<p><strong>Import the modules</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// --- Standard C++ utilities used in this notebook ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">// --- Marmote headers used in this lesson ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteCore&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain&gt;</span>
+
+<span class="c1">// --- Convenience declarations for the cells below ---</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">marmote</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>In Lesson 1, we saw how to create and inspect Markov chains. We now illustrate the different metrics that can be computed on them in C++.</p>
+<section id="First-example:-solving-discrete-time-Markov-chains">
+<h2>First example: solving discrete-time Markov chains<a class="headerlink" href="#First-example:-solving-discrete-time-Markov-chains" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recreate the 3-state discrete-time Markov chain of Lesson 1.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">states</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">};</span>
+<span class="n">FullMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FullMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">set_type</span><span class="p">(</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.50</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.40</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.20</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.40</span><span class="p">);</span>
+<span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.40</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.30</span><span class="p">);</span><span class="w"> </span><span class="n">P</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.30</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">initial_prob</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">};</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">states</span><span class="p">,</span><span class="w"> </span><span class="n">initial_prob</span><span class="p">);</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="p">);</span>
+<span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">);</span>
+<span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_model_name</span><span class="p">(</span><span class="s">&quot;Demo&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<section id="Transient-distributions">
+<h3>Transient distributions<a class="headerlink" href="#Transient-distributions" title="Link to this heading"></a></h3>
+<p>The method <code class="docutils literal notranslate"><span class="pre">TransientDistributionDT</span></code> is used exactly as in Python.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute transient distributions after 1, 2 and 3 steps.</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pi1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pi2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pi3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pi1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pi2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pi3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Change the initial distribution to a Dirac mass at state 0.</span>
+<span class="n">DiracDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pi0_dirac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiracDistribution</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">pi0_dirac</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Use a uniform discrete distribution instead.</span>
+<span class="n">UniformDiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pi0_uniform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">c1</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">pi0_uniform</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">TransientDistributionDT</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+DiscreteDistribution (Object at 0x59dd9cdcfa30)Discrete distribution values { 0  1  2  } probas {     0.37     0.32     0.31 }
+DiscreteDistribution (Object at 0x59dd9ce2d7f0)Discrete distribution values { 0  1  2  } probas {   0.3445    0.342   0.3135 }
+DiscreteDistribution (Object at 0x59dd9cdd1040)Discrete distribution values { 0  1  2  } probas { 0.348325   0.3347 0.316975 }
+DiscreteDistribution (Object at 0x59dd9cd66e80)Discrete distribution values { 0  1  2  } probas {     0.25      0.5     0.25 }
+DiscreteDistribution (Object at 0x59dd9ce32d90)Discrete distribution values { 0  1  2  } probas {     0.35 0.333333 0.316667 }
+</pre></div></div>
+</div>
+</section>
+<section id="Stationary-distribution">
+<h3>Stationary distribution<a class="headerlink" href="#Stationary-distribution" title="Link to this heading"></a></h3>
+<p>As in Python, we compare the default stationary distribution method, the RLGL variant, and the exact distribution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Default stationary distribution.</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">StationaryDistribution</span><span class="p">();</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pista</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// RLGL stationary distribution.</span>
+<span class="n">UniformDiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">u0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UniformDiscreteDistribution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pista2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">StationaryDistributionRLGL</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mf">1e-10</span><span class="p">,</span><span class="w"> </span><span class="n">u0</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pista2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Distance L1 between both approximations = &quot;</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="n">pista</span><span class="p">,</span><span class="w"> </span><span class="n">pista2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Exact stationary distribution.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">prosta_ex</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">8.0</span><span class="o">/</span><span class="mf">23.0</span><span class="p">,</span><span class="w"> </span><span class="mf">85.0</span><span class="o">/</span><span class="mf">253.0</span><span class="p">,</span><span class="w"> </span><span class="mf">80.0</span><span class="o">/</span><span class="mf">253.0</span><span class="p">};</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">pista_ex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">states</span><span class="p">,</span><span class="w"> </span><span class="n">prosta_ex</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">pista_ex</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Distance L1 between default and exact pi = &quot;</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Distribution</span><span class="o">::</span><span class="n">DistanceL1</span><span class="p">(</span><span class="n">pista</span><span class="p">,</span><span class="w"> </span><span class="n">pista_ex</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+DiscreteDistribution (Object at 0x59dd9ce1e8f0)Discrete distribution values { 0  1  2  } probas { 0.347826 0.335968 0.316206 }
+DiscreteDistribution (Object at 0x59dd9ce40650)Discrete distribution values { 0  1  2  } probas { 0.347826 0.335968 0.316206 }
+Distance L1 between both approximations = 2.96228e-08
+DiscreteDistribution (Object at 0x59dd9ce1e9e0)Discrete distribution values { 0 1 2 } probas { 0.347826 0.335968 0.316206 }
+Distance L1 between default and exact pi = 2.96316e-08
+</pre></div></div>
+</div>
+</section>
+<section id="Simulation">
+<h3>Simulation<a class="headerlink" href="#Simulation" title="Link to this heading"></a></h3>
+<p>Simulation objects in C++ expose the same information as in Python, but vectors are accessed explicitly.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Simulate a trajectory of 10 steps and keep it in memory.</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">simRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">SimulateChainDT</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="n">simRes</span><span class="o">-&gt;</span><span class="n">Diagnose</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">simRes</span><span class="o">-&gt;</span><span class="n">DT_dates</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Run a second simulation with occupancy statistics and no stored trajectory.</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">simRes2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c1</span><span class="o">-&gt;</span><span class="n">SimulateChainDT</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">trDis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simRes2</span><span class="o">-&gt;</span><span class="n">Distribution</span><span class="p">();</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">trDis</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Second-example:-solving-continuous-time-Markov-chains">
+<h2>Second example: solving continuous-time Markov chains<a class="headerlink" href="#Second-example:-solving-continuous-time-Markov-chains" title="Link to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recreate the continuous-time chain of Lesson 1.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">Q</span><span class="o">-&gt;</span><span class="n">set_type</span><span class="p">(</span><span class="n">CONTINUOUS</span><span class="p">);</span>
+<span class="n">Q</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">Q</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">stateType</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Q</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Q</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Q</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Q</span><span class="o">-&gt;</span><span class="n">addToEntry</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<span class="n">c2</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">);</span>
+<span class="n">c2</span><span class="o">-&gt;</span><span class="n">set_model_name</span><span class="p">(</span><span class="s">&quot;Demo_Continuous&quot;</span><span class="p">);</span>
+
+<span class="c1">// Stationary distribution and simulation.</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">stadis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">StationaryDistribution</span><span class="p">();</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">stadis</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">simresCT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">SimulateChainCT</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="n">simresCT</span><span class="o">-&gt;</span><span class="n">Diagnose</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">simresCT</span><span class="o">-&gt;</span><span class="n">CT_dates</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Hitting time simulation toward state 5.</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">hitset</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">};</span>
+<span class="n">SimulationResult</span><span class="o">*</span><span class="w"> </span><span class="n">hitSim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">SimulateHittingTime</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">cardinalType</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">hitset</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">hitSim</span><span class="o">-&gt;</span><span class="n">CT_dates</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Average hitting times for all starting states.</span>
+<span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">avghit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c2</span><span class="o">-&gt;</span><span class="n">AverageHittingTimes</span><span class="p">(</span><span class="n">hitset</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">avghit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Release the main objects created in this lesson.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">c2</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">simRes</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">simRes2</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lesson1.html" class="btn btn-neutral float-left" title="Lesson 1: making Markov chains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lesson3.html" class="btn btn-neutral float-right" title="Lesson 3: working with state spaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

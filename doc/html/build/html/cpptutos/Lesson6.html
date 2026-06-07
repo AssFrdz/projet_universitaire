@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 6: manipulating Marmote sets &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lesson 7: structural analysis of Markov chains" href="Lesson7.html" />
+    <link rel="prev" title="Lesson 5: Predefined Markov Chains" href="Lesson5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Lesson 6: manipulating Marmote sets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Test-procedure">Test procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Create-the-sets">Create the sets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Run-the-tests">Run the tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson7.html">Lesson 7: structural analysis of Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson2.html">MDP Lesson 2: additional methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson5.html">MDP Lesson 5: finite-horizon MDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">Lesson 6: manipulating Marmote sets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpptutos/Lesson6.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Lesson-6:-manipulating-Marmote-sets">
+<h1>Lesson 6: manipulating Marmote sets<a class="headerlink" href="#Lesson-6:-manipulating-Marmote-sets" title="Link to this heading"></a></h1>
+<p>This C++ notebook is the notebook form of <strong>Example 6</strong>. It illustrates how to build <code class="docutils literal notranslate"><span class="pre">MarmoteSet</span></code> objects, inspect their cardinal and dimensions, and enumerate their states in several ways.</p>
+<p><strong>Import the modules</strong></p>
+<p>The example only needs the core Marmote classes related to sets, intervals and boxes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// --- Standard C++ utilities used in this notebook ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="c1">// --- Marmote headers used in this lesson ---</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteBox.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteInterval.h&gt;</span>
+
+<span class="c1">// --- Convenience declarations for the cells below ---</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">marmote</span><span class="p">;</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Test-procedure">
+<h2>Test procedure<a class="headerlink" href="#Test-procedure" title="Link to this heading"></a></h2>
+<p>We begin by defining a helper that reproduces the behavior of the C++ example: print the main features of a set, enumerate it directly, walk through it state by state, and enumerate it again through the state indices.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define the test procedure used throughout the notebook.</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">testSetNotebook</span><span class="p">(</span><span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">set</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">set</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The set pointer is null. Re-run the creation cell before testing.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;###### &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; features:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Cardinal = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, NbDimensions &quot;</span>
+<span class="w">         </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">tot_nb_dims</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Direct enumeration of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">Enumerate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Enumeration of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; via through walk:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MarmoteState</span><span class="w"> </span><span class="n">statebuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">StateBuffer</span><span class="p">();</span>
+<span class="w">    </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">FirstState</span><span class="p">(</span><span class="n">statebuffer</span><span class="p">);</span>
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;stateIndex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">Index</span><span class="p">(</span><span class="n">statebuffer</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> state &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">PrintState</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">statebuffer</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_STRUCTURED</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">NextState</span><span class="p">(</span><span class="n">statebuffer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">set</span><span class="o">-&gt;</span><span class="n">IsFirst</span><span class="p">(</span><span class="n">statebuffer</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;#&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;# Enumeration of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; via index access:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">stateType</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">DecodeState</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">statebuffer</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;stateIndex: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s"> state &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">set</span><span class="o">-&gt;</span><span class="n">PrintState</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">,</span><span class="w"> </span><span class="n">statebuffer</span><span class="p">,</span><span class="w"> </span><span class="n">FORMAT_STRUCTURED</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">statebuffer</span><span class="p">;</span>
+<span class="p">}</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Create-the-sets">
+<h2>Create the sets<a class="headerlink" href="#Create-the-sets" title="Link to this heading"></a></h2>
+<p>The original example creates a one-dimensional box of size 2 and a two-dimensional box of size <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">x</span> <span class="pre">3</span></code>, then tests them both directly and through a generic <code class="docutils literal notranslate"><span class="pre">MarmoteSet*</span></code> pointer.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create the dimensions used to build the two boxes.</span>
+<span class="n">stateType</span><span class="w"> </span><span class="n">dim1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">};</span>
+<span class="n">stateType</span><span class="w"> </span><span class="n">dim2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+
+<span class="c1">// Create a 1-dimensional MarmoteBox with size 2.</span>
+<span class="n">MarmoteBox</span><span class="o">*</span><span class="w"> </span><span class="n">bb1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteBox</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">dim1</span><span class="p">);</span>
+
+<span class="c1">// Create a 2-dimensional MarmoteBox with size 2 x 3.</span>
+<span class="n">MarmoteBox</span><span class="o">*</span><span class="w"> </span><span class="n">bb2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteBox</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">dim2</span><span class="p">);</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="Run-the-tests">
+<h2>Run the tests<a class="headerlink" href="#Run-the-tests" title="Link to this heading"></a></h2>
+<p>We now apply the same inspection procedure to each concrete object and to the corresponding generic <code class="docutils literal notranslate"><span class="pre">MarmoteSet*</span></code> pointer.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Test the first box directly.</span>
+<span class="n">testSetNotebook</span><span class="p">(</span><span class="n">bb1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Marmote Box #1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Test the same object through a generic MarmoteSet pointer.</span>
+<span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">cc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bb1</span><span class="p">;</span>
+<span class="n">testSetNotebook</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pointer to Marmote Box #1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Test the second box directly.</span>
+<span class="n">testSetNotebook</span><span class="p">(</span><span class="n">bb2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Marmote Box #2&quot;</span><span class="p">);</span>
+
+<span class="c1">// Test the same object through a generic MarmoteSet pointer.</span>
+<span class="n">cc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bb2</span><span class="p">;</span>
+<span class="n">testSetNotebook</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pointer to Marmote Box #2&quot;</span><span class="p">);</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Release the objects created in this lesson.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">bb1</span><span class="p">;</span>
+<span class="n">bb1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">bb2</span><span class="p">;</span>
+<span class="n">bb2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Lesson5.html" class="btn btn-neutral float-left" title="Lesson 5: Predefined Markov Chains" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Lesson7.html" class="btn btn-neutral float-right" title="Lesson 7: structural analysis of Markov chains" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

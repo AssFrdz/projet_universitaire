@@ -24,7 +24,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "0ba1ba04-c2a1-4e40-8a54-a5cdfea098d0",
    "metadata": {
     "editable": true,
@@ -82,7 +82,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "237b15e3-c717-4db6-9501-ff9303a79c57",
    "metadata": {
     "editable": true,
@@ -98,7 +98,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "id": "863a0902-2d76-4744-bdd7-e923b9db2461",
    "metadata": {
     "editable": true,
@@ -107,7 +107,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "name =  MarmoteInterval\n",
+      "cardinal =  7\n",
+      "Interval( 0..6 )\n"
+     ]
+    }
+   ],
    "source": [
     "print( \"name = \", itl.className())\n",
     "print( \"cardinal = \", itl.Cardinal())\n",
@@ -125,7 +135,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "id": "5fae7cb9-797a-457a-91f5-7c0bc8f612c1",
    "metadata": {
     "editable": true,
@@ -155,7 +165,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "id": "61e6f464-ebf2-46e6-919d-738977d38023",
    "metadata": {
     "editable": true,
@@ -164,7 +174,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "name =  MarmoteBox\n",
+      "cardinal =  6\n",
+      "Box( [ 0..1 ] x [ 0..2 ] )\n"
+     ]
+    }
+   ],
    "source": [
     "print( \"name = \", box.className())\n",
     "print( \"cardinal = \", box.Cardinal())\n",
@@ -187,7 +207,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "id": "8aefd702-06d7-44eb-bc53-d287457a4939",
    "metadata": {
     "editable": true,
@@ -196,7 +216,18 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'(   0,   0) (   0,   1) (   0,   2) (   1,   0) (   1,   1) (   1,   2) '"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "box.Enumerate()"
    ]
@@ -235,7 +266,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "id": "9ebd4e86-e886-4013-9dd6-45dbaf10f67a",
    "metadata": {
     "editable": true,
@@ -244,14 +275,25 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "box.Index( [1,0] )"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "id": "e8a6e4db-8621-49bc-8be4-aace5e332f3f",
    "metadata": {
     "editable": true,
@@ -260,7 +302,18 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([1, 1])"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "box.DecodeState( 4 )"
    ]
@@ -292,7 +345,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "id": "673b2d4a-dd16-465b-b910-5e305101a0e3",
    "metadata": {
     "editable": true,
@@ -318,7 +371,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "id": "d18e5cdb-7938-4a7f-acfb-126623a08b3e",
    "metadata": {
     "editable": true,
@@ -327,7 +380,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Format with index:  4 \n",
+      "Format with both:  4:{   1   1} \n",
+      "Format with full description:     1   1 \n"
+     ]
+    }
+   ],
    "source": [
     "marmotecore.setStateWritePolicy( marmotecore.STATE_INDEX )\n",
     "print( \"Format with index: \", box.FormatState( 4 ) )\n",
@@ -347,7 +410,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 11,
    "id": "4447bf09-db3f-405a-89c4-05f0ebb8b44b",
    "metadata": {
     "editable": true,
@@ -381,10 +444,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 12,
    "id": "4586ad92-dfa2-4d22-8aca-335dba5ac72b",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "False\n",
+      "False\n",
+      "True\n"
+     ]
+    }
+   ],
    "source": [
     "print( itl.Belongs( np.array([4]) ) )    # 4 is in [0..6]\n",
     "print( itl.Belongs( np.array([40]) ) )   # 40 is not\n",
@@ -417,10 +491,23 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "id": "5cbed50e-aa99-462f-8a79-bea00361c9cc",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(0, array([0, 0]))\n",
+      "(1, array([0, 1]))\n",
+      "(2, array([0, 2]))\n",
+      "(3, array([1, 0]))\n",
+      "(4, array([1, 1]))\n",
+      "(5, array([1, 2]))\n"
+     ]
+    }
+   ],
    "source": [
     "for s in box:\n",
     "    print(s)"
@@ -450,7 +537,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 14,
    "id": "20126fd7-657a-40bb-b026-268c3a57a0cd",
    "metadata": {
     "editable": true,
@@ -459,7 +546,21 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[0 0]\n",
+      "0:{   0   0} \n",
+      "1:{   0   1} \n",
+      "2:{   0   2} \n",
+      "3:{   1   0} \n",
+      "4:{   1   1} \n",
+      "5:{   1   2} \n"
+     ]
+    }
+   ],
    "source": [
     "marmotecore.setStateWritePolicy( marmotecore.STATE_BOTH )\n",
     "bbuf = box.StateBuffer()\n",
@@ -525,7 +626,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 15,
    "id": "54e68557-eeaa-49a0-8af9-9669d4b3688b",
    "metadata": {
     "editable": true,
@@ -541,7 +642,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 16,
    "id": "c80745bc-bb71-45f7-b964-1fad9970b223",
    "metadata": {
     "editable": true,
@@ -550,7 +651,26 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "name =  BinarySequence\n",
+      "cardinal =  64\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'( 0 0 0 0 0 0) ( 0 0 0 0 0 1) ( 0 0 0 0 1 0) ( 0 0 0 0 1 1) ( 0 0 0 1 0 0) ( 0 0 0 1 0 1) ( 0 0 0 1 1 0) ( 0 0 0 1 1 1) ( 0 0 1 0 0 0) ( 0 0 1 0 0 1) ( 0 0 1 0 1 0) ( 0 0 1 0 1 1) ( 0 0 1 1 0 0) ( 0 0 1 1 0 1) ( 0 0 1 1 1 0) ( 0 0 1 1 1 1) ( 0 1 0 0 0 0) ( 0 1 0 0 0 1) ( 0 1 0 0 1 0) ( 0 1 0 0 1 1) ( 0 1 0 1 0 0) ( 0 1 0 1 0 1) ( 0 1 0 1 1 0) ( 0 1 0 1 1 1) ( 0 1 1 0 0 0) ( 0 1 1 0 0 1) ( 0 1 1 0 1 0) ( 0 1 1 0 1 1) ( 0 1 1 1 0 0) ( 0 1 1 1 0 1) ( 0 1 1 1 1 0) ( 0 1 1 1 1 1) ( 1 0 0 0 0 0) ( 1 0 0 0 0 1) ( 1 0 0 0 1 0) ( 1 0 0 0 1 1) ( 1 0 0 1 0 0) ( 1 0 0 1 0 1) ( 1 0 0 1 1 0) ( 1 0 0 1 1 1) ( 1 0 1 0 0 0) ( 1 0 1 0 0 1) ( 1 0 1 0 1 0) ( 1 0 1 0 1 1) ( 1 0 1 1 0 0) ( 1 0 1 1 0 1) ( 1 0 1 1 1 0) ( 1 0 1 1 1 1) ( 1 1 0 0 0 0) ( 1 1 0 0 0 1) ( 1 1 0 0 1 0) ( 1 1 0 0 1 1) ( 1 1 0 1 0 0) ( 1 1 0 1 0 1) ( 1 1 0 1 1 0) ( 1 1 0 1 1 1) ( 1 1 1 0 0 0) ( 1 1 1 0 0 1) ( 1 1 1 0 1 0) ( 1 1 1 0 1 1) ( 1 1 1 1 0 0) ( 1 1 1 1 0 1) ( 1 1 1 1 1 0) ( 1 1 1 1 1 1) '"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "print( \"name = \", biseq.className())\n",
     "print( \"cardinal = \", biseq.Cardinal())\n",
@@ -559,7 +679,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 17,
    "id": "48a74dd6-467b-4bb0-9d30-039861b4db17",
    "metadata": {
     "editable": true,
@@ -568,7 +688,78 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0:{0 0 0 0 0 0} \n",
+      "1:{0 0 0 0 0 1} \n",
+      "2:{0 0 0 0 1 0} \n",
+      "3:{0 0 0 0 1 1} \n",
+      "4:{0 0 0 1 0 0} \n",
+      "5:{0 0 0 1 0 1} \n",
+      "6:{0 0 0 1 1 0} \n",
+      "7:{0 0 0 1 1 1} \n",
+      "8:{0 0 1 0 0 0} \n",
+      "9:{0 0 1 0 0 1} \n",
+      "10:{0 0 1 0 1 0} \n",
+      "11:{0 0 1 0 1 1} \n",
+      "12:{0 0 1 1 0 0} \n",
+      "13:{0 0 1 1 0 1} \n",
+      "14:{0 0 1 1 1 0} \n",
+      "15:{0 0 1 1 1 1} \n",
+      "16:{0 1 0 0 0 0} \n",
+      "17:{0 1 0 0 0 1} \n",
+      "18:{0 1 0 0 1 0} \n",
+      "19:{0 1 0 0 1 1} \n",
+      "20:{0 1 0 1 0 0} \n",
+      "21:{0 1 0 1 0 1} \n",
+      "22:{0 1 0 1 1 0} \n",
+      "23:{0 1 0 1 1 1} \n",
+      "24:{0 1 1 0 0 0} \n",
+      "25:{0 1 1 0 0 1} \n",
+      "26:{0 1 1 0 1 0} \n",
+      "27:{0 1 1 0 1 1} \n",
+      "28:{0 1 1 1 0 0} \n",
+      "29:{0 1 1 1 0 1} \n",
+      "30:{0 1 1 1 1 0} \n",
+      "31:{0 1 1 1 1 1} \n",
+      "32:{1 0 0 0 0 0} \n",
+      "33:{1 0 0 0 0 1} \n",
+      "34:{1 0 0 0 1 0} \n",
+      "35:{1 0 0 0 1 1} \n",
+      "36:{1 0 0 1 0 0} \n",
+      "37:{1 0 0 1 0 1} \n",
+      "38:{1 0 0 1 1 0} \n",
+      "39:{1 0 0 1 1 1} \n",
+      "40:{1 0 1 0 0 0} \n",
+      "41:{1 0 1 0 0 1} \n",
+      "42:{1 0 1 0 1 0} \n",
+      "43:{1 0 1 0 1 1} \n",
+      "44:{1 0 1 1 0 0} \n",
+      "45:{1 0 1 1 0 1} \n",
+      "46:{1 0 1 1 1 0} \n",
+      "47:{1 0 1 1 1 1} \n",
+      "48:{1 1 0 0 0 0} \n",
+      "49:{1 1 0 0 0 1} \n",
+      "50:{1 1 0 0 1 0} \n",
+      "51:{1 1 0 0 1 1} \n",
+      "52:{1 1 0 1 0 0} \n",
+      "53:{1 1 0 1 0 1} \n",
+      "54:{1 1 0 1 1 0} \n",
+      "55:{1 1 0 1 1 1} \n",
+      "56:{1 1 1 0 0 0} \n",
+      "57:{1 1 1 0 0 1} \n",
+      "58:{1 1 1 0 1 0} \n",
+      "59:{1 1 1 0 1 1} \n",
+      "60:{1 1 1 1 0 0} \n",
+      "61:{1 1 1 1 0 1} \n",
+      "62:{1 1 1 1 1 0} \n",
+      "63:{1 1 1 1 1 1} \n"
+     ]
+    }
+   ],
    "source": [
     "bbuf = biseq.StateBuffer()\n",
     "biseq.FirstState(bbuf)\n",
@@ -595,7 +786,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 18,
    "id": "f689bb48-5d18-4b30-b68c-6fd70617da00",
    "metadata": {
     "editable": true,
@@ -604,7 +795,16 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "45\n"
+     ]
+    }
+   ],
    "source": [
     "st1 = np.array( [1, 0, 1, 1, 0, 1], dtype=int )\n",
     "print( biseq.Belongs( st1 ) )\n",
@@ -613,7 +813,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 19,
    "id": "a29e96f0-bb66-4508-ba03-bcfd9e706b29",
    "metadata": {
     "editable": true,
@@ -622,7 +822,16 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "False\n",
+      "0\n"
+     ]
+    }
+   ],
    "source": [
     "st2 = np.array( [2, 4, 1, 1, 0, 1], dtype=int )\n",
     "print( biseq.Belongs( st2 ) )\n",
@@ -659,7 +868,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 20,
    "id": "53c1f898-e1b7-4c02-b09b-b4bfb9d434cd",
    "metadata": {
     "editable": true,
@@ -675,7 +884,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 21,
    "id": "0c0a69e4-4146-4561-be9e-47b0a88a9f3e",
    "metadata": {
     "editable": true,
@@ -684,7 +893,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "name =  MarmoteIntegers\n",
+      "cardinal =  -2\n",
+      "False\n"
+     ]
+    }
+   ],
    "source": [
     "print( \"name = \", itg.className())\n",
     "print( \"cardinal = \", itg.Cardinal()) ## -2 is the convention for 'infinite cardinal'\n",
@@ -707,7 +926,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 22,
    "id": "bfc993bd-e9c9-4fa8-8cef-ef908ee883d1",
    "metadata": {
     "editable": true,
@@ -716,7 +935,16 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
    "source": [
     "print( itg.Belongs( [4] ) )\n",
     "print( itg.Belongs( [-3] ) )"
@@ -724,7 +952,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 23,
    "id": "eaeae0c6-68d7-4228-9624-b0a8e2ca9734",
    "metadata": {
     "editable": true,
@@ -733,7 +961,15 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0\n"
+     ]
+    }
+   ],
    "source": [
     "print( itg.Index( [-3] ) )"
    ]
@@ -768,7 +1004,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 24,
    "id": "f101a959-5ddc-412d-ac6f-51fae6809b35",
    "metadata": {
     "editable": true,
@@ -784,7 +1020,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 25,
    "id": "a452b992-5f84-4a4b-b21e-c99b5071816b",
    "metadata": {
     "editable": true,
@@ -793,14 +1029,25 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'( 0 0 0 0 0 0 3) ( 0 0 0 0 0 1 2) ( 0 0 0 0 0 2 1) ( 0 0 0 0 0 3 0) ( 0 0 0 0 1 0 2) ( 0 0 0 0 1 1 1) ( 0 0 0 0 1 2 0) ( 0 0 0 0 2 0 1) ( 0 0 0 0 2 1 0) ( 0 0 0 0 3 0 0) ( 0 0 0 1 0 0 2) ( 0 0 0 1 0 1 1) ( 0 0 0 1 0 2 0) ( 0 0 0 1 1 0 1) ( 0 0 0 1 1 1 0) ( 0 0 0 1 2 0 0) ( 0 0 0 2 0 0 1) ( 0 0 0 2 0 1 0) ( 0 0 0 2 1 0 0) ( 0 0 0 3 0 0 0) ( 0 0 1 0 0 0 2) ( 0 0 1 0 0 1 1) ( 0 0 1 0 0 2 0) ( 0 0 1 0 1 0 1) ( 0 0 1 0 1 1 0) ( 0 0 1 0 2 0 0) ( 0 0 1 1 0 0 1) ( 0 0 1 1 0 1 0) ( 0 0 1 1 1 0 0) ( 0 0 1 2 0 0 0) ( 0 0 2 0 0 0 1) ( 0 0 2 0 0 1 0) ( 0 0 2 0 1 0 0) ( 0 0 2 1 0 0 0) ( 0 0 3 0 0 0 0) ( 0 1 0 0 0 0 2) ( 0 1 0 0 0 1 1) ( 0 1 0 0 0 2 0) ( 0 1 0 0 1 0 1) ( 0 1 0 0 1 1 0) ( 0 1 0 0 2 0 0) ( 0 1 0 1 0 0 1) ( 0 1 0 1 0 1 0) ( 0 1 0 1 1 0 0) ( 0 1 0 2 0 0 0) ( 0 1 1 0 0 0 1) ( 0 1 1 0 0 1 0) ( 0 1 1 0 1 0 0) ( 0 1 1 1 0 0 0) ( 0 1 2 0 0 0 0) ( 0 2 0 0 0 0 1) ( 0 2 0 0 0 1 0) ( 0 2 0 0 1 0 0) ( 0 2 0 1 0 0 0) ( 0 2 1 0 0 0 0) ( 0 3 0 0 0 0 0) ( 1 0 0 0 0 0 2) ( 1 0 0 0 0 1 1) ( 1 0 0 0 0 2 0) ( 1 0 0 0 1 0 1) ( 1 0 0 0 1 1 0) ( 1 0 0 0 2 0 0) ( 1 0 0 1 0 0 1) ( 1 0 0 1 0 1 0) ( 1 0 0 1 1 0 0) ( 1 0 0 2 0 0 0) ( 1 0 1 0 0 0 1) ( 1 0 1 0 0 1 0) ( 1 0 1 0 1 0 0) ( 1 0 1 1 0 0 0) ( 1 0 2 0 0 0 0) ( 1 1 0 0 0 0 1) ( 1 1 0 0 0 1 0) ( 1 1 0 0 1 0 0) ( 1 1 0 1 0 0 0) ( 1 1 1 0 0 0 0) ( 1 2 0 0 0 0 0) ( 2 0 0 0 0 0 1) ( 2 0 0 0 0 1 0) ( 2 0 0 0 1 0 0) ( 2 0 0 1 0 0 0) ( 2 0 1 0 0 0 0) ( 2 1 0 0 0 0 0) ( 3 0 0 0 0 0 0) '"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "splx.Enumerate()"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 26,
    "id": "dc1002b2-177b-482c-a260-530b0691d907",
    "metadata": {
     "editable": true,
@@ -809,7 +1056,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "False\n",
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
    "source": [
     "print( splx.Belongs( [ 0, 0, 0, 0, 0, 0 ] ) )\n",
     "print( splx.Belongs( [ 0, 0, 0, 0, 0, 0, 3 ] ) )\n",
@@ -818,7 +1075,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 27,
    "id": "a7303344-7477-40a7-bd02-82ac3fcc8b87",
    "metadata": {
     "editable": true,
@@ -834,7 +1091,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 28,
    "id": "7283c981-a7f3-4fb4-9d9e-81649220166b",
    "metadata": {
     "editable": true,
@@ -843,7 +1100,18 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'( 1 1 1 0 0 0 0) ( 1 1 0 1 0 0 0) ( 1 1 0 0 1 0 0) ( 1 1 0 0 0 1 0) ( 1 1 0 0 0 0 1) ( 1 0 1 1 0 0 0) ( 1 0 1 0 1 0 0) ( 1 0 1 0 0 1 0) ( 1 0 1 0 0 0 1) ( 1 0 0 1 1 0 0) ( 1 0 0 1 0 1 0) ( 1 0 0 1 0 0 1) ( 1 0 0 0 1 1 0) ( 1 0 0 0 1 0 1) ( 1 0 0 0 0 1 1) ( 0 1 1 1 0 0 0) ( 0 1 1 0 1 0 0) ( 0 1 1 0 0 1 0) ( 0 1 1 0 0 0 1) ( 0 1 0 1 1 0 0) ( 0 1 0 1 0 1 0) ( 0 1 0 1 0 0 1) ( 0 1 0 0 1 1 0) ( 0 1 0 0 1 0 1) ( 0 1 0 0 0 1 1) ( 0 0 1 1 1 0 0) ( 0 0 1 1 0 1 0) ( 0 0 1 1 0 0 1) ( 0 0 1 0 1 1 0) ( 0 0 1 0 1 0 1) ( 0 0 1 0 0 1 1) ( 0 0 0 1 1 1 0) ( 0 0 0 1 1 0 1) ( 0 0 0 1 0 1 1) ( 0 0 0 0 1 1 1) '"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "bsplx.Enumerate()"
    ]
@@ -879,7 +1147,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.14"
+   "version": "3.13.12"
   }
  },
  "nbformat": 4,

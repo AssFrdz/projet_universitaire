@@ -4,6 +4,8 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import json
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -72,3 +74,40 @@ nbsphinx_allow_errors = True
 
 exclude_patterns = ['_build', '**/_build/**', '.ipynb_checkpoints']
 
+
+def _apply_legacy_hidden_cell_metadata(app, docname, source):
+    """
+    Map legacy notebook tags to the nbsphinx metadata expected by Sphinx.
+
+    The C++ notebooks currently use the custom tag ``hide-cell`` for technical
+    setup cells. nbsphinx does not hide those cells automatically; it expects
+    ``"nbsphinx": "hidden"`` in the cell metadata instead.
+    """
+    try:
+        notebook_path = str(app.env.doc2path(docname, base=False))
+    except Exception:
+        return
+
+    if not notebook_path.endswith('.ipynb'):
+        return
+
+    try:
+        notebook = json.loads(source[0])
+    except Exception:
+        return
+
+    changed = False
+    for cell in notebook.get('cells', []):
+        metadata = cell.setdefault('metadata', {})
+        tags = metadata.get('tags', [])
+        if 'hide-cell' in tags or 'nbsphinx-hidden' in tags:
+            if metadata.get('nbsphinx') != 'hidden':
+                metadata['nbsphinx'] = 'hidden'
+                changed = True
+
+    if changed:
+        source[0] = json.dumps(notebook, ensure_ascii=False)
+
+
+def setup(app):
+    app.connect('source-read', _apply_legacy_hidden_cell_metadata)

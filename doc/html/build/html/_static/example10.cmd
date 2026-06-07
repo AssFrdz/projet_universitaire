@@ -1,1 +1,1 @@
-./example10 -tmax_sim 5
+./example10-tmax_sim 5

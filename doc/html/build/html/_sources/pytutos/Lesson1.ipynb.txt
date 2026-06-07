@@ -24,7 +24,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "0762fef1-b6c0-457d-9599-707e74c607d9",
    "metadata": {
     "editable": true,
@@ -92,7 +92,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "44643d0b-f20c-4e34-afa1-8a83c41d49a0",
    "metadata": {
     "editable": true,
@@ -133,7 +133,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "id": "3e6ac350-a933-4cd6-9071-121cf1c89e11",
    "metadata": {
     "editable": true,
@@ -163,7 +163,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "id": "56ca2eb8-635c-4ef2-8e9b-8429229cad44",
    "metadata": {
     "editable": true,
@@ -194,7 +194,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "id": "565d6d08-c03c-4233-b9e9-8cf40dfe0960",
    "metadata": {
     "editable": true,
@@ -203,7 +203,18 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "P.setEntry(0,0,0.25)\n",
     "P.setEntry(0,1,0.5)\n",
@@ -226,7 +237,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "id": "ada10311-eaf7-4823-9cb0-275bfb4b747f",
    "metadata": {
     "editable": true,
@@ -235,7 +246,18 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[2.500000e-01, 5.000000e-01, 2.500000e-01],\n",
+      " [4.000000e-01, 2.000000e-01, 4.000000e-01],\n",
+      " [4.000000e-01, 3.000000e-01, 3.000000e-01]]\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(P)"
    ]
@@ -261,7 +283,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "id": "ee8c6dd6-3ba4-46f3-b7a1-7b7d394ba5df",
    "metadata": {
     "editable": true,
@@ -286,7 +308,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "id": "36219d1b-059c-4395-aec7-8bb74f3034d4",
    "metadata": {
     "editable": true,
@@ -295,7 +317,15 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete distribution values { 0 1 2 } probas {      0.2      0.2      0.6 }\n"
+     ]
+    }
+   ],
    "source": [
     "print( initial )"
    ]
@@ -330,7 +360,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "id": "53dd8f85-f421-4e49-b6f1-bd0e738b2244",
    "metadata": {
     "editable": true,
@@ -360,7 +390,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "id": "99d9086d-3b71-4509-84a7-8515c3f360ca",
    "metadata": {
     "editable": true,
@@ -369,7 +399,20 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete-type Markov Chain\n",
+      " - on state space Interval( 0..2 )\n",
+      " - size 3\n",
+      " - generator of type FullMatrix\n",
+      " - with initial distribution Discrete distribution values { 0 1 2 } probas {      0.2      0.2      0.6 }\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(c1)"
    ]
@@ -384,7 +427,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 11,
    "id": "5646ffc7-4e2b-416a-93d6-d03a861c196e",
    "metadata": {
     "editable": true,
@@ -393,7 +436,17 @@
     },
     "tags": []
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0  =  0\n",
+      "3\n",
+      "Demo_Discrete\n"
+     ]
+    }
+   ],
    "source": [
     "print( c1.type(), \" = \", mc.DISCRETE )             # The type of the chain (DISCRETE or CONTINUOUS) as a numerical representation\n",
     "print( c1.state_space_size() )\n",
@@ -428,40 +481,92 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 12,
    "id": "53075168-7ae1-4449-b64e-cbc16f72eaf6",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "theRows = [ 0 0 0 1 1 1 2 2 2]';\n",
+      "theColumns = [ 0 1 2 0 1 2 0 1 2]';\n",
+      "theValues = [         0.25          0.5         0.25          0.4          0.2          0.4          0.4          0.3          0.3]';\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print( c1.generator().toString( mc.FORMAT_MATLAB_SPARSE ) )"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "id": "fa77c516-526d-4495-a7a7-ac386e419545",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "mc_matrix=np.array([\n",
+      "[0.25, 0.5, 0.25],\n",
+      "[0.4, 0.2, 0.4],\n",
+      "[0.4, 0.3, 0.3]\n",
+      "], dtype=float)\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print( c1.generator().toString( mc.FORMAT_NUMPY ) )"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 14,
    "id": "6609d397-58e5-4dd9-840f-d95827d4421b",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "mc_matrix=matrix(c(0.25, 0.5, 0.25, 0.4, 0.2, 0.4, 0.4, 0.3, 0.3), nrow=3, byrow=TRUE)\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print( c1.generator().toString( mc.FORMAT_R ) )"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 15,
    "id": "277cdef5-89f7-4784-a07e-0ca69ea7b47e",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "_matrix := Matrix( 3, 3, {\n",
+      "(1, 1)=2.500000e-01,\n",
+      "(1, 2)=5.000000e-01,\n",
+      "(1, 3)=2.500000e-01,\n",
+      "(2, 1)=4.000000e-01,\n",
+      "(2, 2)=2.000000e-01,\n",
+      "(2, 3)=4.000000e-01,\n",
+      "(3, 1)=4.000000e-01,\n",
+      "(3, 2)=3.000000e-01,\n",
+      "(3, 3)=3.000000e-01\n",
+      "}, storage=rectangular):\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print( c1.generator().toString( mc.FORMAT_MAPLE ) )"
    ]
@@ -484,7 +589,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 16,
    "id": "377b46cd-6e81-40ca-99b3-2ec729d4e960",
    "metadata": {},
    "outputs": [],
@@ -505,10 +610,24 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 17,
    "id": "421d165b-4fbc-4142-b6ec-22d812c78888",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[-1.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00],\n",
+      " [1.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00],\n",
+      " [1.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00, 0.000000e+00],\n",
+      " [1.000000e+00, 0.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00, 0.000000e+00],\n",
+      " [1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, -2.000000e+00, 1.000000e+00],\n",
+      " [1.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00, -1.000000e+00]]\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(Q)"
    ]
@@ -523,7 +642,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 18,
    "id": "992b694e-f101-4f91-b828-c81424bd4b36",
    "metadata": {},
    "outputs": [],
@@ -543,10 +662,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 19,
    "id": "3be2e2db-dfba-4e32-b085-576bca41a6e4",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1  =  1\n",
+      "6\n",
+      "Demo_Continuous\n"
+     ]
+    }
+   ],
    "source": [
     "print( c2.type(), \" = \", mc.CONTINUOUS )             # The type of the chain (DISCRETE or CONTINUOUS) as a numerical representation\n",
     "print( c2.state_space_size() )\n",
@@ -555,10 +684,35 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 20,
    "id": "fdc9318d-3bfe-4c14-bb7e-fca629323324",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "SparseMatrix\n",
+      "         0          1 1.000000e+00\n",
+      "         0          0 -1.000000e+00\n",
+      "         1          0 1.000000e+00\n",
+      "         1          1 -2.000000e+00\n",
+      "         1          2 1.000000e+00\n",
+      "         2          0 1.000000e+00\n",
+      "         2          2 -2.000000e+00\n",
+      "         2          3 1.000000e+00\n",
+      "         3          0 1.000000e+00\n",
+      "         3          3 -2.000000e+00\n",
+      "         3          4 1.000000e+00\n",
+      "         4          0 1.000000e+00\n",
+      "         4          4 -2.000000e+00\n",
+      "         4          5 1.000000e+00\n",
+      "         5          0 1.000000e+00\n",
+      "         5          5 -1.000000e+00\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "c2.generator().className()\n",
     "Q2 = c2.generator()\n",
@@ -569,9 +723,7 @@
   {
    "cell_type": "markdown",
    "id": "974d6116-839b-4ff1-bb5a-568d079532a9",
-   "metadata": {
-    "jp-MarkdownHeadingCollapsed": true
-   },
+   "metadata": {},
    "source": [
     "## Transformation of Markov chains"
    ]
@@ -595,7 +747,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 21,
    "id": "67a31531-dfd3-4541-9ab6-0ab10ff352c9",
    "metadata": {},
    "outputs": [],
@@ -605,10 +757,23 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 22,
    "id": "cc8c653d-e416-48ff-9433-3aa9dc4d6d49",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Discrete-type Markov Chain\n",
+      " - on state space Interval( 0..5 )\n",
+      " - size 6\n",
+      " - generator of type SparseMatrix\n",
+      " - unspecified initial distribution\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(c2uni)"
    ]
@@ -647,10 +812,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 23,
    "id": "31439022-3562-4f37-837f-17df36ce1d84",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2.0"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "c2uni.generator().uniformization_rate()"
    ]
@@ -665,7 +841,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 24,
    "id": "93f6c968-a88e-425b-891f-0fc663e1c932",
    "metadata": {},
    "outputs": [],
@@ -675,10 +851,27 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 25,
    "id": "4ead8c9c-9b6b-46cc-8479-62a35352977e",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "mc_matrix=np.array([\n",
+      "[0.75, 0.25, 0, 0, 0, 0],\n",
+      "[0.25, 0.5, 0.25, 0, 0, 0],\n",
+      "[0.25, 0, 0.5, 0.25, 0, 0],\n",
+      "[0.25, 0, 0, 0.5, 0.25, 0],\n",
+      "[0.25, 0, 0, 0, 0.5, 0.25],\n",
+      "[0.25, 0, 0, 0, 0, 0.75]\n",
+      "], dtype=float)\n",
+      "\n",
+      "Unif rate =  4.0\n"
+     ]
+    }
+   ],
    "source": [
     "mc.setInoutFormatPolicy(mc.FORMAT_NUMPY)\n",
     "print(c2uni2.generator().toString())\n",
@@ -695,10 +888,26 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 26,
    "id": "4fc5758e-3961-425c-a10f-62b7c8daa739",
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "mc_matrix=np.array([\n",
+      "[0, 1, 0, 0, 0, 0],\n",
+      "[0.5, 0, 0.5, 0, 0, 0],\n",
+      "[0.5, 0, 0, 0.5, 0, 0],\n",
+      "[0.5, 0, 0, 0, 0.5, 0],\n",
+      "[0.5, 0, 0, 0, 0, 0.5],\n",
+      "[1, 0, 0, 0, 0, 0]\n",
+      "], dtype=float)\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "c2embed = c2.Embed()\n",
     "print(c2embed.generator().toString())"
@@ -727,7 +936,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.14"
+   "version": "3.13.12"
   }
  },
  "nbformat": 4,

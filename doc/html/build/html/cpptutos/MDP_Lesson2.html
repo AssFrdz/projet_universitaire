@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP Lesson 2: additional methods &mdash; Marmote initial documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+      <link rel="stylesheet" type="text/css" href="../_static/tailwind.css?v=3908b066" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51ad5368"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MDP Lesson 3: average MDP and policy handling" href="MDP_Lesson3.html" />
+    <link rel="prev" title="MDP Lesson 1: discounted MDP" href="MDP_Lesson1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Marmote
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build_instructions.html">Install and run instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../cpp_api.html">C++ API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../cpp_examples.html">Commented examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Lesson1.html">Lesson 1: making Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson2.html">Lesson 2: solving Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson3.html">Lesson 3: working with state spaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson4.html">Lesson 4: working with Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson5.html">Lesson 5: Predefined Markov Chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson6.html">Lesson 6: manipulating Marmote sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Lesson7.html">Lesson 7: structural analysis of Markov chains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson1.html">MDP Lesson 1: discounted MDP</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MDP Lesson 2: additional methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Table-of-Contents">Table of Contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Modelling">Modelling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Build-the-MDP-with-constructor-1">Build the MDP with constructor 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Build-the-MDP-with-constructor-2">Build the MDP with constructor 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Solve-the-MDP">Solve the MDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Additional-features">Additional features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson3.html">MDP Lesson 3: average MDP and policy handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson4.html">MDP Lesson 4: Total Reward MDP with two-dimensional state space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MDP_Lesson5.html">MDP Lesson 5: finite-horizon MDP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_downloads.html">Files for download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_index.html">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About Marmote and MarmoteMDP</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Marmote</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cpp_api.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="../cpp_examples.html">C++ Tutorial and Examples</a></li>
+      <li class="breadcrumb-item active">MDP Lesson 2: additional methods</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cpptutos/MDP_Lesson2.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="MDP-Lesson-2:-additional-methods">
+<h1>MDP Lesson 2: additional methods<a class="headerlink" href="#MDP-Lesson-2:-additional-methods" title="Link to this heading"></a></h1>
+<p>This lesson can be downloaded as a notebook, a notebook for colab and a python file <a class="reference external" href="https://marmote.gitlabpages.inria.fr/marmote/python_downloads.html">here</a></p>
+<p><strong>Import the modules</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// --- Standard C++ utilities used in the notebook ---</span>
+<span class="c1">// These headers support formatted output and basic containers.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">// --- Marmote headers used in this lesson ---</span>
+<span class="c1">// They provide the C++ counterparts of the Python Marmote objects.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteDiscreteDistribution.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteFullMatrix.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteInterval.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteCore/marmoteSparseMatrix.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMDP/marmoteDiscountedMDP.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMDP/marmoteFeedbackQValueMDP.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMDP/marmoteFeedbackSolutionMDP.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;marmoteMarkovChain/marmoteMarkovChain.h&gt;</span>
+
+<span class="c1">// --- Convenience declarations for the notebook cells below ---</span>
+<span class="c1">// They simplify the pedagogical examples without changing the model.</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="Table-of-Contents">
+<h2>Table of Contents<a class="headerlink" href="#Table-of-Contents" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#Modelling"><span class="std std-ref">Modelling</span></a></p></li>
+<li><p><a class="reference internal" href="#Build-the-MDP-with-constructor-1"><span class="std std-ref">Build the MDP with Constructor 1</span></a></p></li>
+<li><p><a class="reference internal" href="#Build-the-MDP-with-constructor-2"><span class="std std-ref">Build the MDP with Constructor 2</span></a></p></li>
+<li><p><a class="reference internal" href="#Solve-the-MDP"><span class="std std-ref">Solve the MDP</span></a></p></li>
+<li><p><a class="reference internal" href="#Additional-features"><span class="std std-ref">Additional features (Q value, Markov Chain)</span></a></p></li>
+</ol>
+<p>We want to illustrate the different ways to build the MDP object with the use of different constructors.</p>
+</section>
+<section id="Modelling">
+<h2>Modelling<a class="headerlink" href="#Modelling" title="Link to this heading"></a></h2>
+<section id="Description-of-the-model">
+<h3>Description of the model<a class="headerlink" href="#Description-of-the-model" title="Link to this heading"></a></h3>
+<p>We use a model with three states <em>s1, s2, s3</em> and three actions <em>a0, a1, a2</em>. Transitions probabilities and rewards are described by the picture below.</p>
+<p><img alt="picture of the MDP" class="no-scaled-link" src="../_images/geron.png" width="666" /></p>
+<p><strong>Creating States</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create the action space shared by all states.</span>
+<span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">actionSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">MarmoteSet</span><span class="o">*</span><span class="w"> </span><span class="n">stateSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarmoteInterval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Some modelling choices</strong></p>
+<div class="line-block">
+<div class="line">As it could be noticed, the number of actions is not the same in each state. In state <em>s1</em> one can trigger any of the actions <em>a0</em>, <em>a1</em> and <em>a2</em> while in state <em>s3</em> only action <em>a2</em> can be triggered.</div>
+<div class="line">To make programming easier, we choose an identical action space in each state. Missing actions are modelled as virtual actions that have no effect and receive a high penalty.</div>
+</div>
+</section>
+</section>
+<section id="Build-the-MDP-with-constructor-1">
+<h2>Build the MDP with constructor 1<a class="headerlink" href="#Build-the-MDP-with-constructor-1" title="Link to this heading"></a></h2>
+<p><strong>Creating transition matrices</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">trans</span><span class="p">(</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+
+<span class="c1">// Matrix for action a_0.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P0</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">);</span>
+<span class="n">P0</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+<span class="n">P0</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P0</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P0</span><span class="p">;</span>
+
+<span class="c1">// Matrix for action a_1.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P1</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P1</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P1</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P1</span><span class="p">;</span>
+
+<span class="c1">// Matrix for action a_2.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="n">P2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P2</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Creation of one reward matrix</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define the penalty used in the reward structures.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">penalty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-100000.0</span><span class="p">;</span>
+<span class="n">FullMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FullMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-50</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<section id="Build-the-MDP">
+<h3>Build the MDP<a class="headerlink" href="#Build-the-MDP" title="Link to this heading"></a></h3>
+<p><strong>Parameters definition</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// We avoid the name `beta` here because it is ambiguous in Xeus-cling</span>
+<span class="c1">// due to the standard function std::beta.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">discountFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.95</span><span class="p">;</span>
+<span class="n">string</span><span class="w"> </span><span class="n">criterion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;max&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>We now build a first discounted MDP with the constructor that takes one reward matrix defined on couples <em>(state, action)</em>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// The Python notebook contains a small variable-name inconsistency here.</span>
+<span class="c1">// In C++, we use the transition vector actually built in this section.</span>
+<span class="n">DiscountedMDP</span><span class="o">*</span><span class="w"> </span><span class="n">first_mdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span><span class="w"> </span><span class="n">stateSpace</span><span class="p">,</span><span class="w"> </span><span class="n">actionSpace</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">discountFactor</span><span class="p">);</span>
+<span class="n">first_mdp</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Build-the-MDP-with-constructor-2">
+<h2>Build the MDP with constructor 2<a class="headerlink" href="#Build-the-MDP-with-constructor-2" title="Link to this heading"></a></h2>
+<p><strong>Creating transition matrices</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Allocate the transition matrices for the second constructor.</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">transb</span><span class="p">(</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P0b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P0b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.7</span><span class="p">);</span>
+<span class="n">P0b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span>
+<span class="n">P0b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P0b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">transb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P0b</span><span class="p">;</span>
+
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P1b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P1b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P1b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P1b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">transb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P1b</span><span class="p">;</span>
+
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">P2b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="n">P2b</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="n">transb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P2b</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Creation of several reward matrices</strong></p>
+<p>Since the reward values depend on the transition, we use a second constructor which takes two vectors of matrices: one for transition matrices and one for transition-dependent rewards.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create the reward matrices associated with each action.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">R1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">R2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">R3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparseMatrix</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">R1</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="n">R1</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+
+<span class="n">R2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">-50</span><span class="p">);</span>
+<span class="n">R2</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+
+<span class="n">R3</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">penalty</span><span class="p">);</span>
+<span class="n">R3</span><span class="o">-&gt;</span><span class="n">setEntry</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">TransitionStructure</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">rews</span><span class="p">(</span><span class="n">actionSpace</span><span class="o">-&gt;</span><span class="n">Cardinal</span><span class="p">());</span>
+<span class="n">rews</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R1</span><span class="p">;</span>
+<span class="n">rews</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R2</span><span class="p">;</span>
+<span class="n">rews</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R3</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Let us check the matrices.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Display the three reward matrices to check their entries.</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Checking R1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">R1</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Checking R2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">R2</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Checking R3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">R3</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<section id="id1">
+<h3>Build the MDP<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Build the discounted MDP with transition-dependent rewards.</span>
+<span class="n">DiscountedMDP</span><span class="o">*</span><span class="w"> </span><span class="n">second_mdp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscountedMDP</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span><span class="w"> </span><span class="n">stateSpace</span><span class="p">,</span><span class="w"> </span><span class="n">actionSpace</span><span class="p">,</span><span class="w"> </span><span class="n">transb</span><span class="p">,</span><span class="w"> </span><span class="n">rews</span><span class="p">,</span><span class="w"> </span><span class="n">discountFactor</span><span class="p">);</span>
+<span class="n">second_mdp</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Solve-the-MDP">
+<h2>Solve the MDP<a class="headerlink" href="#Solve-the-MDP" title="Link to this heading"></a></h2>
+<p>Giving values to the parameters for the solving algorithms.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set the numerical precision and the iteration budget for the solver.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">epsilon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.00001</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">maxIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solve the model with value iteration.</span>
+<span class="n">FeedbackSolutionMDP</span><span class="o">*</span><span class="w"> </span><span class="n">optimum2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second_mdp</span><span class="o">-&gt;</span><span class="n">ValueIteration</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span><span class="w"> </span><span class="n">maxIter</span><span class="p">);</span>
+<span class="n">optimum2</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Additional-features">
+<h2>Additional features<a class="headerlink" href="#Additional-features" title="Link to this heading"></a></h2>
+<section id="(Markov-Chain-and-Q-Value)">
+<h3>(Markov Chain and Q-Value)<a class="headerlink" href="#(Markov-Chain-and-Q-Value)" title="Link to this heading"></a></h3>
+<p>We present now some additional features related to the Q-value and the Markov chain associated with a policy.</p>
+</section>
+<section id="Creation-of-the-Markov-chain-associated-with-a-policy">
+<h3>Creation of the Markov chain associated with a policy<a class="headerlink" href="#Creation-of-the-Markov-chain-associated-with-a-policy" title="Link to this heading"></a></h3>
+<p>The transition matrix associated with a policy can be retrieved using the <code class="docutils literal notranslate"><span class="pre">GetChain</span></code> method, which returns a <code class="docutils literal notranslate"><span class="pre">SparseMatrix</span></code> constructed from the policy given as a parameter.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Extract the Markov chain induced by the optimal policy.</span>
+<span class="n">SparseMatrix</span><span class="o">*</span><span class="w"> </span><span class="n">Mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second_mdp</span><span class="o">-&gt;</span><span class="n">GetChain</span><span class="p">(</span><span class="n">optimum2</span><span class="p">);</span>
+<span class="n">Mat</span><span class="o">-&gt;</span><span class="n">set_type</span><span class="p">(</span><span class="n">DISCRETE</span><span class="p">);</span>
+<span class="n">Mat</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Now we create the Markov chain. In Python, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays are used for the initial probabilities. In C++, we use a plain array of doubles and pass it to the <code class="docutils literal notranslate"><span class="pre">DiscreteDistribution</span></code> constructor.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an initial distribution for the induced Markov chain.</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">initial_prob</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.333</span><span class="p">,</span><span class="w"> </span><span class="mf">0.333</span><span class="p">,</span><span class="w"> </span><span class="mf">0.334</span><span class="p">};</span>
+<span class="n">DiscreteDistribution</span><span class="o">*</span><span class="w"> </span><span class="n">initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DiscreteDistribution</span><span class="p">(</span><span class="n">stateSpace</span><span class="p">,</span><span class="w"> </span><span class="n">initial_prob</span><span class="p">);</span>
+
+<span class="n">MarkovChain</span><span class="o">*</span><span class="w"> </span><span class="n">chain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MarkovChain</span><span class="p">(</span><span class="n">Mat</span><span class="p">);</span>
+<span class="n">chain</span><span class="o">-&gt;</span><span class="n">set_init_distribution</span><span class="p">(</span><span class="n">initial</span><span class="p">);</span>
+<span class="n">chain</span><span class="o">-&gt;</span><span class="n">set_model_name</span><span class="p">(</span><span class="s">&quot;Chain issued from the MDP&quot;</span><span class="p">);</span>
+<span class="n">chain</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Creation-of-the-Q-Value-associated-with-a-policy-(for-R.L.-purpose)">
+<h3>Creation of the Q Value associated with a policy (for R.L. purpose)<a class="headerlink" href="#Creation-of-the-Q-Value-associated-with-a-policy-(for-R.L.-purpose)" title="Link to this heading"></a></h3>
+<p>It is also possible to create a <code class="docutils literal notranslate"><span class="pre">FeedbackQValueMDP</span></code> in a <code class="docutils literal notranslate"><span class="pre">DiscountedMDP</span></code>. A <code class="docutils literal notranslate"><span class="pre">FeedbackQValueMDP</span></code> stores a Q-value for any couple <em>(s,a)</em>. From that, it is possible to draw actions according to the <em>EpsilonGreedy</em> or <em>SoftMax</em> rules.</p>
+<p>Create the <code class="docutils literal notranslate"><span class="pre">FeedbackQValueMDP</span></code> object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Build the Q-value object associated with the optimal policy.</span>
+<span class="n">FeedbackQValueMDP</span><span class="o">*</span><span class="w"> </span><span class="n">F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second_mdp</span><span class="o">-&gt;</span><span class="n">GetQValue</span><span class="p">(</span><span class="n">optimum2</span><span class="p">);</span>
+<span class="n">F</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>For drawing actions, we reset the random generator.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Reset the random seed before sampling actions from the Q-value policy.</span>
+<span class="n">F</span><span class="o">-&gt;</span><span class="n">ResetSeed</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>We draw an action with the <em>EpsilonGreedy</em> principle in state 0 with epsilon = 0.1 for a maximisation criterion.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Sample an action with an epsilon-greedy rule.</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F</span><span class="o">-&gt;</span><span class="n">EpsilonGreedyMax</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>We draw an action with the <em>SoftMax</em> principle in state 2.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Sample an action with the softmax rule.</span>
+<span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">F</span><span class="o">-&gt;</span><span class="n">SoftMax</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>End of the notebook</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Release the dynamically allocated objects used in this notebook.</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">F</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">chain</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">initial</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">optimum2</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">first_mdp</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">second_mdp</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">stateSpace</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">actionSpace</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="MDP_Lesson1.html" class="btn btn-neutral float-left" title="MDP Lesson 1: discounted MDP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="MDP_Lesson3.html" class="btn btn-neutral float-right" title="MDP Lesson 3: average MDP and policy handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, 2024, 2025 ajm and eh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

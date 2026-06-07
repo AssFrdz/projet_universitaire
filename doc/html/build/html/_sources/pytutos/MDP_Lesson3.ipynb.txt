@@ -23,7 +23,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -84,7 +84,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -104,7 +104,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -151,9 +151,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
    "source": [
     "Reward  =  mc.FullMatrix(dim_SS, dim_AS)\n",
     "Reward.setEntry(0,0,0)\n",
@@ -179,9 +190,17 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "criterion=\"min\"\n",
     "\n",
@@ -212,9 +231,53 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Compute with value Iteration\n",
+      "\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1666.67\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           24571.4   0\n",
+      "  1           25904.8   0\n",
+      "  2           28238.1   1\n",
+      "  3           28904.8   2\n",
+      "#############################################\n",
+      "\n",
+      "\n",
+      "Computation with Policy Iteration modified\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1666.67\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0            177619   0\n",
+      "  1            178952   0\n",
+      "  2            181286   1\n",
+      "  3            181952   2\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "#create and initialize epsilon.\n",
     "epsilon = 0.00001\n",
@@ -246,9 +309,34 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Computation with relative value iteration\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1666.67\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           7666.67   0\n",
+      "  1              6000   0\n",
+      "  2              6000   1\n",
+      "  3              6000   2\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(\"Computation with relative value iteration\")\n",
     "optimum3 = mdp1.RelativeValueIteration(epsilon, maxIter)\n",
@@ -321,7 +409,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -356,7 +444,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 9,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -375,9 +463,32 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 10,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0                 0   0\n",
+      "  1                 0   0\n",
+      "  2                 0   1\n",
+      "  3                 0   2\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "policy.resetValue()\n",
     "print(policy)"
@@ -399,9 +510,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 11,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Getting Average Cost of policy 0.0\n",
+      "Getting value in 0: 0.0\n",
+      "Getting value in 1: 0.0\n",
+      "Getting value in 2: 0.0\n",
+      "Getting value in 3: 0.0\n"
+     ]
+    }
+   ],
    "source": [
     "print(\"Getting Average Cost of policy\",policy.getAvgCost())\n",
     "print(\"Getting value in 0:\", policy.getValueIndex(0))\n",
@@ -428,9 +551,33 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 12,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1666.67\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0             26619   0\n",
+      "  1           27952.4   0\n",
+      "  2           30285.7   1\n",
+      "  3           30952.4   2\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "mdp1.PolicyCost(policy, epsilon, maxIter)\n",
     "print(policy)"
@@ -445,9 +592,73 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 13,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Define Policy Ra\n",
+      "Print solution Ra\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1923.08\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           28396.4   0\n",
+      "  1             29858   0\n",
+      "  2           34627.2   0\n",
+      "  3           32473.4   2\n",
+      "#############################################\n",
+      "\n",
+      "\n",
+      "Modify the previous Policy and a defining a new policy Rc\n",
+      "Print solution of Rc\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):          1727.27\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           34628.1   0\n",
+      "  1           35991.7   0\n",
+      "  2           38900.8   2\n",
+      "  3           38900.8   2\n",
+      "#############################################\n",
+      "\n",
+      "\n",
+      "Define Policy Rd\n",
+      "Print solution of Rd\n",
+      "#############################################\n",
+      "Solution of MDP problem\n",
+      "Size of the state space: 4\n",
+      "#############################################\n",
+      "Solution model: Feedback Stationary Policy\n",
+      "Average Cost (only for average models):             3000\n",
+      "- column 1: index of the state\n",
+      "- column 2: Value function \n",
+      "- column 3: Optimal action \n",
+      "\n",
+      "  0           1.5e+06   0\n",
+      "  1           1.5e+06   2\n",
+      "  2           1.5e+06   2\n",
+      "  3           1.5e+06   2\n",
+      "#############################################\n",
+      "\n",
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "print(\"Define Policy Ra\")\n",
     "politique =  md.FeedbackSolutionMDP(stateSpace.Cardinal())\n",
@@ -518,9 +729,19 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 14,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Printing monotonicity property of value function (1 if increasing -1 if decreasing 0 otherwise) : 1\n",
+      "Verif convexity with details\n",
+      "Printing convexity property of value function (1 if convex -1 concave 0 otherwise) : 0\n"
+     ]
+    }
+   ],
    "source": [
     "checkValue =  md.PropertiesValue(stateSpace)\n",
     "checkValue.avoidDetail()\n",
@@ -549,9 +770,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 15,
    "metadata": {},
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Checking Structural Properties of value\n",
+      "PropertiesPolicy::MonotonicityOptimalPolicy=1 (1 if increasing -1 if decreasing 0 otherwise) : \n"
+     ]
+    }
+   ],
    "source": [
     "print(\"Checking Structural Properties of value\")\n",
     "checkPolicy =  md.PropertiesPolicy(stateSpace)\n",
@@ -591,7 +821,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.11.9"
+   "version": "3.13.12"
   }
  },
  "nbformat": 4,
